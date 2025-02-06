@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
   h1 {
     font-size: ${typography.fontSizeH1};
     font-weight: ${typography.fontWeightRegular};
-    /* margin-bottom: ${spacing.large}; */
+    margin-bottom: ${spacing.small};
     /* color: ${colors.primary}; */
   }
 
@@ -58,7 +58,7 @@ const GlobalStyle = createGlobalStyle`
 
   .body-text-medium {
     font-size: ${typography.fontSizeBodyMedium};
-    /* margin-bottom: ${spacing.small}; */
+    margin-bottom: ${spacing.medium};
     color: ${colors.text};
   }
 
@@ -80,10 +80,12 @@ const GlobalStyle = createGlobalStyle`
   /* Buttons */
   button {
     font-family: ${typography.fontFamily};
-    font-size: ${typography.fontSizeBase};
+    font-size: ${typography.fontSizeBody};
+    font-weight: ${typography.fontWeightSemiBold};
     background-color: ${colors.buttonBackground};
     color: ${colors.buttonText};
     border: none;
+    border-radius: 80px;
     padding: ${spacing.small} ${spacing.medium};
     cursor: pointer;
     transition: background-color 0.3s ease;
