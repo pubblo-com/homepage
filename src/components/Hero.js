@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { spacing } from '../styles/tokens';
+import { spacing, breakpoints } from '../styles/tokens';
 import Button from "../components/Button"; 
 import logo from "../assets/pubblo-logo.png";
 import backgroundImage from "../assets/hero-bg_v2.jpg"; 
@@ -16,10 +16,15 @@ const HeroSection = styled.section`
 const HeroContent = styled.div`
   width: 100%;
   max-width: 950px; 
-  padding: ${spacing.xLarge} ${spacing.xLarge};
+  padding: ${spacing.xXLarge} ${spacing.xXLarge};
   display: flex;
   flex-direction: column;
-  align-items: flex-start; 
+  align-items: flex-start;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    /* flex-direction: column; */
+    padding: ${spacing.xLarge} ${spacing.large};
+  }
 `;
 
 const Logo = styled.img`

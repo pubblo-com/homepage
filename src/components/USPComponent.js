@@ -1,17 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import { spacing, typography, colors } from '../styles/tokens';
+import { spacing, typography, colors, breakpoints } from '../styles/tokens';
 import ListComponent from "./ListComponent";
 
 const USPSection = styled.section`
   width: 100%;
   background-color: ${props => props.backgroundColor || 'transparent'};
-  /* background-color: ${colors.primary}; */
-  padding: ${spacing.xLarge};
+  padding: ${spacing.xXLarge};
   display: flex;
   flex-direction: row; 
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: ${spacing.large};
+  }
 `;
 
 const USPContent = styled.div`
@@ -20,6 +23,10 @@ const USPContent = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column;
+  }
 `;
 
 const LeftSide = styled.div`
@@ -28,6 +35,11 @@ const LeftSide = styled.div`
   flex-direction: column;
   align-items: flex-start;
   color: ${props => props.textColor || 'text'};
+  padding-bottom: ${spacing.medium};
+  
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%; 
+  }
 `;
 
 const RightSide = styled.div`
@@ -35,6 +47,10 @@ const RightSide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%; 
+  }
 `;
 
 const USPComponent = ({ headline, usps, backgroundColor, textColor, }) => {

@@ -43,7 +43,8 @@ export const spacing = {
   small: '16px',
   medium: '24px',
   large: '32px',
-  xLarge: '64px',
+  xLarge: '48px',
+  xXLarge: '64px',
 
 };
 
