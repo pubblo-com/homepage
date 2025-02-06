@@ -5,6 +5,7 @@ export const colors = {
   background: '#F6F5F2', // Light Beige
   // background: '#FFFFFF', // white
   text: '#333333', // Default text color
+  white: '#FFFFFF',
   link: '#2A30EA', // Link color
   linkHover: '#0052CC', // Link hover color
   buttonBackground: '#2A30EA', // Button Background
@@ -17,9 +18,9 @@ export const typography = {
   fontFamily: "'Plus Jakarta Sans', sans-serif", 
 
   fontSizeH1: '50px', 
-  fontSizeH2: '45px', 
-  fontSizeH3: '30px', 
-  fontSizeBodyLarge: '45px', 
+  fontSizeH2: '40px', 
+  fontSizeH3: '27px', 
+  fontSizeBodyLarge: '40px', 
   fontSizeBodyMedium: '24px', 
   fontSizeBody: '16px', 
   fontSizeBodySmall: '14px', 
@@ -38,11 +39,12 @@ export const typography = {
 
 // Spacing 
 export const spacing = {
-  xsmall: '8px',
+  xSmall: '8px',
   small: '16px',
   medium: '24px',
   large: '32px',
   xLarge: '64px',
+
 };
 
 // Breakpoints 

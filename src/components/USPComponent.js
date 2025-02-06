@@ -5,7 +5,8 @@ import ListComponent from "./ListComponent";
 
 const USPSection = styled.section`
   width: 100%;
-  /* background-color: ${colors.background}; */
+  background-color: ${props => props.backgroundColor || 'transparent'};
+  /* background-color: ${colors.primary}; */
   padding: ${spacing.xLarge};
   display: flex;
   flex-direction: row; 
@@ -26,6 +27,7 @@ const LeftSide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  color: ${props => props.textColor || 'text'};
 `;
 
 const RightSide = styled.div`
@@ -35,19 +37,17 @@ const RightSide = styled.div`
   align-items: flex-start;
 `;
 
-
-
-const USPComponent = ({ headline, usps }) => {
+const USPComponent = ({ headline, usps, backgroundColor, textColor, }) => {
   return (
-    <USPSection>
+    <USPSection backgroundColor={backgroundColor}>
       <USPContent>
 
-        <LeftSide>
+        <LeftSide textColor={textColor}>
           <h2>{headline}</h2>
         </LeftSide>
 
         <RightSide>
-          <ListComponent usps={usps}/>
+          <ListComponent usps={usps} textColor={textColor} />
         </RightSide>
         
       </USPContent>
