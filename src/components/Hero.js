@@ -7,7 +7,7 @@ import backgroundImage from "../assets/hero-bg_v2.jpg";
 
 const HeroSection = styled.section`
   width: 100%;
-  background: url(${backgroundImage}) center/cover no-repeat;s
+  background: url(${backgroundImage}) center/cover no-repeat;
   display: flex;
   flex-direction: column;
   position: relative;
