@@ -9,6 +9,8 @@ import icon3 from '../assets/icon3.svg';
 import iconWhite1 from '../assets/icon-white1.svg';
 import iconWhite2 from '../assets/icon-white2.svg';
 import TextImageComponent from '../components/TextImageComponent.js';
+import TextComponent from '../components/TextComponent.js';
+import FormComponent from '../components/FormComponent.js';
 
 
 const publisherUsps = [
@@ -66,7 +68,16 @@ const HomePage = () => {
       <TextImageComponent
         headline='Beta version live Q2 2025'
         text='Platform design and development currently ongoing.'
-      
+      />
+      {/* <TextComponent
+        headline='Get 3 months for free by joining our test group'
+        text='State which modules you’re interested in and fill in your contact details below.'
+        smallText='*No monthly charge, other charges may occur.'
+      /> */}
+      <FormComponent
+        headline='Get 3 months for free by joining our test group'
+        text='State which modules you’re interested in and fill in your contact details below.'
+        smallText='*No monthly charge, other charges may occur.'
       />
     </div>
   );

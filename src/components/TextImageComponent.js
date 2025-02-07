@@ -21,7 +21,7 @@ const TextImageContent = styled.div`
   justify-content: space-between;
 
   @media (max-width: ${breakpoints.tablet}) {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 `;
 
@@ -50,14 +50,12 @@ const TextSection = styled.div`
   }
 `;
 
-const TextImageComponent = ({ headline, text, usps, backgroundColor, textColor, }) => {
+const TextImageComponent = ({ headline, text, smallText }) => {
   return (
-    <TextImageSection backgroundColor={backgroundColor}>
+    <TextImageSection>
       <TextImageContent>
 
-        <ImageSection textColor={textColor}>
-
-        </ImageSection>
+        <ImageSection />
 
         <TextSection>
           <h2>{headline}</h2>
