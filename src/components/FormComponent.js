@@ -39,6 +39,7 @@ const LeftSide = styled.div`
   
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%; 
+    padding: 0 0 ${spacing.large} 0;
   }
 `;
 
@@ -53,78 +54,9 @@ const RightSide = styled.div`
   }
   `;
 
-// const StyledForm = styled.form`
-//   display: flex;
-//   flex-direction: column; 
-//   /* gap: ${spacing.xSmall}; */
-//   width: 100%;
-//   max-width: 500px
 
+const FormComponent = ({ headline, text, smallText, backgroundColor, textColor, inputFields, checkboxes }) => {
   
-//   // Style labels
-//   label {
-//     margin-bottom: ${spacing.xSmall}; // Add some space between label and input field
-//     font-weight: bold; // Make the label text bold for visibility
-//   }
-
-//   // Style input fields
-//   input {
-//     padding: ${spacing.small};
-//     margin-bottom: ${spacing.small}; // Add space between input fields
-//     border: 1px solid #ccc; // Add border to inputs
-//     border-radius: 4px; // Rounded corners for inputs
-//     font-size: 1rem;
-//   }
-
-//   // Make form responsive on mobile
-//   @media (max-width: ${breakpoints.tablet}) {
-//     padding: ${spacing.medium};
-//   }
-// `;
-
-const FormComponent = ({ headline, text, smallText, backgroundColor, textColor, inputFields, }) => {
-  
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   email: "",
-  //   phone: "",
-  //   company: "",
-  //   address: "",
-  //   crm: "",
-  //   scouting: "",
-  //   connecting: "",
-  //   reselling: "",
-  // });
-
-  // const [status, setStatus] = useState(null); 
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value,
-  //   });
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   alert('Form submitted');
-  //   setStatus('submitting')
-
-  //   const form = e.target;
-  //     fetch(form.action, {
-  //       method: 'POST',
-  //       body: new FormData(form),
-  //     })
-  //     .then(response => {
-  //       setStatus('success');
-  //       console.log("Form submitted successfully", response);
-  //     })
-  //     .catch(error => {
-  //       setStatus('error');
-  //       console.error("Error submitting form", error);
-  //     });
-  // };
 
   return (
     <FormSection backgroundColor={backgroundColor}>
@@ -136,7 +68,7 @@ const FormComponent = ({ headline, text, smallText, backgroundColor, textColor, 
         </LeftSide>
 
         <RightSide>
-            <Form inputFields={inputFields}  />
+            <Form inputFields={inputFields} checkboxes={checkboxes}  />
             <p className="body-text">Any questions, please contact us at info@pubblo.com</p>
         </RightSide>
 

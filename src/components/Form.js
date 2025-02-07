@@ -8,34 +8,36 @@ import InputField from "./InputField";
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column; 
-  /* gap: ${spacing.xSmall}; */
   width: 100%;
   max-width: 500px
 
-  
-  /* // Style labels
-  label {
-    margin-bottom: ${spacing.xSmall}; // Add some space between label and input field
-    font-weight: bold; // Make the label text bold for visibility
-  }
-
-  // Style input fields
-  input {
-    padding: ${spacing.small};
-    margin-bottom: ${spacing.small}; // Add space between input fields
-    border: 1px solid #ccc; // Add border to inputs
-    border-radius: 4px; // Rounded corners for inputs
-    font-size: 1rem;
-  } */
-
-  // Make form responsive on mobile
   @media (max-width: ${breakpoints.tablet}) {
     padding: ${spacing.medium};
   }
 `;
 
-const Form = ({ headline, text, smallText, backgroundColor, textColor, inputFields }) => {
+const Label = styled.label`
+  margin-bottom: ${spacing.xSmall};
+  font-weight: ${typography.fontWeightSemiBold}
+`;
 
+const CheckboxSection = styled.div`
+margin-bottom: ${spacing.medium};
+
+`;
+
+const InputSection = styled.div`
+
+`;
+
+const StyledButton = styled.button`
+  width: auto;
+  align-self: flex-end; 
+
+`;
+
+
+const Form = ({ headline, text, smallText, backgroundColor, textColor, inputFields, checkboxes, checkboxId, checkboxLabel, checkboxName, checkboxValue }) => {
   
   const [formData, setFormData] = useState({
     name: "",
@@ -43,39 +45,57 @@ const Form = ({ headline, text, smallText, backgroundColor, textColor, inputFiel
     phone: "",
     company: "",
     address: "",
-    crm: "",
-    scouting: "",
-    connecting: "",
-    reselling: "",
+    areas: [],
   });
+
+  console.log('formdata', formData)
 
   const [status, setStatus] = useState(null); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
-    });
+    }));
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      areas: checked
+        ? [...prev.areas, value] 
+        : prev.areas.filter((area) => area !== value), 
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Form submitted');
-    setStatus('submitting')
+    setStatus("submitting");
 
-    const form = e.target;
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
+    const formDataObj = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        value.forEach((val) => formDataObj.append(key, val));
+      } else {
+        formDataObj.append(key, value);
+      }
+    });
+
+    fetch("/", {
+      method: "POST",
+      body: formDataObj,
+    })
+      .then((response) => {
+        if (response.ok) {
+          setStatus("success");
+        } else {
+          throw new Error("Network response was not ok");
+        }
       })
-      .then(response => {
-        setStatus('success');
-        console.log("Form submitted successfully", response);
-      })
-      .catch(error => {
-        setStatus('error');
-        console.error("Error submitting form", error);
+      .catch(() => {
+        setStatus("error");
       });
   };
 
@@ -88,94 +108,38 @@ const Form = ({ headline, text, smallText, backgroundColor, textColor, inputFiel
      >
       <input type="hidden" name="form-name" value="contact-form" />
               
-      <label>Checkbox options:</label>
+      <Label>Checkbox options:</Label>
 
-      <Checkbox />
+      <CheckboxSection>
+        {checkboxes.map((checkbox, index) => (
+          <Checkbox
+            key={index}
+            checkboxId={checkbox.checkboxId}
+            checkboxLabel={checkbox.checkboxLabel}
+            checkboxName={checkbox.checkboxName}
+            checkboxValue={checkbox.checkboxValue}
+            checked={formData.areas.includes(checkbox.checkboxValue)}
+            onChange={handleCheckboxChange}
+          />
+        ))}
+      </CheckboxSection>
 
-              {/* <div>
-                <input type="checkbox" id="crm" name="areas" value="crm" />
-                <label htmlFor="option1">The CRM tool for receiving pitches from game designers</label>
-              </div> */}
+      <InputSection>
+        {inputFields.map((input, index) => (
+          <InputField 
+            key={index}
+            formData={formData}
+            handleChange={handleChange}
+            label={input.label}
+            type={input.type}
+            name={input.name}
+            id={input.id}
+          />
+        ))}
+      </InputSection>
 
-     
-              {/* <label>
-                <input type="checkbox" name="scouting" /> Scouting for new games (unpublished and published)
-              </label>
-              <label>
-                <input type="checkbox" name="connecting" /> Connecting with game designers and requesting new games
-              </label>
-              <label>
-                <input type="checkbox" name="reselling" /> Making my games available for localization and distribution in new geographies
-              </label> */}
-
-      {inputFields.map((input, index) => (
-        <InputField 
-          key={index}
-          formData={formData}
-          handleChange={handleChange}
-          label={input.label}
-          type={input.type}
-          name={input.name}
-          id={input.id}
-        />
-      ))}
-
-        {/* <InputField 
-          formData={formData}
-          handleChange={handleChange}
-          label="Name"
-          type="text"
-          name="name"
-          id="name"
-        /> */}
-
-              {/* <label htmlFor="name">Name:</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-
-              <label htmlFor="phone">Phone:</label>
-              <input
-                type="tel"
-                name="phone"
-                id="phone"
-                value={formData.phone}
-                onChange={handleChange}
-              />
-
-              <label htmlFor="company">Company Name:</label>
-              <input
-                type="text"
-                name="company"
-                id="company"
-                value={formData.company}
-                onChange={handleChange}
-              />
-
-              <label htmlFor="address">Company Address:</label>
-              <input
-                type="text"
-                name="address"
-                id="address"
-                value={formData.address}
-                onChange={handleChange}
-              /> */}
-
-      <button type="submit">Submit</button>
-      status === 'submitting' && <p className="body-text">Submitting...</p>}
+      <StyledButton type="submit">Submit</StyledButton>
+      {status === 'submitting' && <p className="body-text">Submitting...</p>}
       {status === 'success' && <p className="body-text">Thank you for your message!</p>}
       {status === 'error' && <p className="body-text">There was an error submitting the form. Please try again.</p>}
     </StyledForm>

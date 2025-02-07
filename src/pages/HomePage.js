@@ -1,6 +1,5 @@
 import React from 'react';
 import { spacing, typography, colors } from '../styles/tokens';
-// import Button from '../components/Button';
 import Hero from '../components/Hero';
 import USPComponent from '../components/USPComponent.js';
 import icon1 from '../assets/icon1.svg';
@@ -57,11 +56,37 @@ const inputFields = [
   { label: "Address", type: "text", name: "address", id: "address" }
 ];
 
+const checkboxes = [
+  { 
+    checkboxId: "crm", 
+    checkboxName: "areas", 
+    checkboxValue: "crm", 
+    checkboxLabel: "The CRM tool for receiving pitches from game designers"
+  },
+  { 
+    checkboxId: "scouting", 
+    checkboxName: "areas", 
+    checkboxValue: "scouting", 
+    checkboxLabel: "Scouting for new games (unpublished and published)"
+  },
+  { 
+    checkboxId: "connecting", 
+    checkboxName: "areas", 
+    checkboxValue: "connecting", 
+    checkboxLabel: "Connecting with game designers"
+  },
+  { 
+    checkboxId: "newGeographies", 
+    checkboxName: "areas", 
+    checkboxValue: "newGeographies", 
+    checkboxLabel: "Making my games available for localization and distribution in new geographies"
+  }
+];
+
 const HomePage = () => {
-  // const handleClick = () => alert('Button clicked!');
+
   return (
     <div>
-      {/* <Button text="Click me" onClick={handleClick} /> */}
       <Hero />
       <USPComponent
         headline='Key benefits for publishers'
@@ -87,6 +112,7 @@ const HomePage = () => {
         text='State which modules you’re interested in and fill in your contact details below.'
         smallText='*No monthly charge, other charges may occur.'
         inputFields={inputFields}
+        checkboxes={checkboxes}
       />
     </div>
   );
