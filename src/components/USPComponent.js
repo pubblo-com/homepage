@@ -30,12 +30,11 @@ const USPContent = styled.div`
 `;
 
 const LeftSide = styled.div`
-  width: 45%; 
+  width: 47%; 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   color: ${props => props.textColor || 'text'};
-  padding-bottom: ${spacing.medium};
   
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%; 
@@ -43,7 +42,7 @@ const LeftSide = styled.div`
 `;
 
 const RightSide = styled.div`
-  width: 45%;
+  width: 47%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

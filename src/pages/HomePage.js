@@ -8,6 +8,7 @@ import icon2 from '../assets/icon2.svg';
 import icon3 from '../assets/icon3.svg';
 import iconWhite1 from '../assets/icon-white1.svg';
 import iconWhite2 from '../assets/icon-white2.svg';
+import TextImageComponent from '../components/TextImageComponent.js';
 
 
 const publisherUsps = [
@@ -50,7 +51,7 @@ const HomePage = () => {
   // const handleClick = () => alert('Button clicked!');
   return (
     <div>
-      {/* <Button text="Click me" onClick={handleClick} /> */} */}
+      {/* <Button text="Click me" onClick={handleClick} /> */}
       <Hero />
       <USPComponent
         headline='Key benefits for publishers'
@@ -61,7 +62,11 @@ const HomePage = () => {
         usps={designerUsps}
         backgroundColor={colors.primary}
         textColor={colors.background}
-   
+      />
+      <TextImageComponent
+        headline='Beta version live Q2 2025'
+        text='Platform design and development currently ongoing.'
+      
       />
     </div>
   );

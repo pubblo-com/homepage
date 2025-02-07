@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
   h2 {
     font-size: ${typography.fontSizeH2};
     font-weight: ${typography.fontWeightRegular};
-    /* margin-bottom: ${spacing.medium}; */
+    margin-bottom: ${spacing.medium};
     /* color: ${colors.secondary}; */
   }
 
@@ -111,6 +111,7 @@ const GlobalStyle = createGlobalStyle`
 
     h3 {
       font-size: ${typography.fontSizeH3Mobile};
+      margin-bottom: ${spacing.xSmall};
     }
   .body-text-large {
     font-size: ${typography.fontSizeBodyLargeMobile};

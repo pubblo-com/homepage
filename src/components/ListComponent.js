@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { spacing, typography, colors } from '../styles/tokens';
+import { spacing, typography, colors, breakpoints } from '../styles/tokens';
 
 const USPItem = styled.div`
   display: flex;
@@ -13,6 +13,10 @@ const USPIcon = styled.img`
   height: 40px;
   margin-right: ${spacing.small};
   margin-top: ${spacing.xSmall};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-top: 0;
+  }
 `;
 
 const USPText = styled.div`
