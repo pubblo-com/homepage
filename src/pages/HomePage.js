@@ -95,8 +95,8 @@ const HomePage = () => {
       <USPComponent
         headline='Key benefits for game designers'
         usps={designerUsps}
-        backgroundColor={colors.primary}
-        textColor={colors.background}
+        backgroundcolor={colors.primary}
+        textcolor={colors.background}
       />
       <TextImageComponent
         headline='Beta version live Q2 2025'
@@ -112,8 +112,8 @@ const HomePage = () => {
       <TextComponent
         headline='About us'
         text='We’re a dedicated team of game designers and IT developers. Our mission is to assist in bringing new board games to life and bringing existing board games to new markets, by connecting people in the board game industry. We know from our experience how hard this can be, for all parties involved. But we also know how successful a partnership can be. Our founder Marcus Carleson ran a modestly successful Kickstarter campaign for his game Hitster in 2019, raising approx. 10 000 USD, but partnering with Jumbo, Hitster was the most sold game in Europe 2024.'
-        backgroundColor={colors.secondary}
-        textColor={colors.background}
+        backgroundcolor={colors.secondary}
+        textcolor={colors.background}
       />
     </div>
   );

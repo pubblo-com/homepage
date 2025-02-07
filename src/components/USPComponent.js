@@ -5,7 +5,7 @@ import ListComponent from "./ListComponent";
 
 const USPSection = styled.section`
   width: 100%;
-  background-color: ${props => props.backgroundColor || 'transparent'};
+  background-color: ${props => props.backgroundcolor || 'transparent'};
   padding: ${spacing.xXLarge};
   display: flex;
   flex-direction: row; 
@@ -52,9 +52,9 @@ const RightSide = styled.div`
   }
 `;
 
-const USPComponent = ({ headline, usps, backgroundColor, textColor, }) => {
+const USPComponent = ({ headline, usps, backgroundcolor, textColor, }) => {
   return (
-    <USPSection backgroundColor={backgroundColor}>
+    <USPSection backgroundcolor={backgroundcolor}>
       <USPContent>
 
         <LeftSide textColor={textColor}>

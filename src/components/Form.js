@@ -37,7 +37,7 @@ const StyledButton = styled.button`
 `;
 
 
-const Form = ({ headline, text, smallText, backgroundColor, textColor, inputFields, checkboxes, checkboxId, checkboxLabel, checkboxName, checkboxValue }) => {
+const Form = ({ headline, text, smallText, backgroundColor, textcolor, inputFields, checkboxes, checkboxId, checkboxLabel, checkboxName, checkboxValue }) => {
   
   const [formData, setFormData] = useState({
     name: "",

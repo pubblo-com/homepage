@@ -5,7 +5,7 @@ import ListComponent from "./ListComponent";
 
 const TextSection = styled.section`
   width: 100%;
-  background-color: ${props => props.backgroundColor || 'transparent'};
+  background-color: ${props => props.backgroundcolor || 'transparent'};
   padding: ${spacing.xXLarge};
   display: flex;
   flex-direction: row; 
@@ -34,7 +34,7 @@ const LeftSide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  color: ${props => props.textColor || 'text'};
+  color: ${props => props.textcolor || 'text'};
   
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%; 
@@ -47,7 +47,7 @@ const RightSide = styled.div`
   flex-direction: column;
   align-items: flex-start;
   p {
-    color: ${props => props.textColor || 'text'};
+    color: ${props => props.textcolor || 'text'};
   }
 
   @media (max-width: ${breakpoints.tablet}) {
@@ -55,16 +55,16 @@ const RightSide = styled.div`
   }
 `;
 
-const TextComponent = ({ headline, text, smallText, backgroundColor, textColor, }) => {
+const TextComponent = ({ headline, text, smallText, backgroundcolor, textcolor, }) => {
   return (
-    <TextSection backgroundColor={backgroundColor}>
+    <TextSection backgroundcolor={backgroundcolor}>
       <TextContent>
 
-        <LeftSide textColor={textColor}>
+        <LeftSide textcolor={textcolor}>
           <h2>{headline}</h2>
         </LeftSide>
 
-        <RightSide textColor={textColor}>
+        <RightSide textcolor={textcolor}>
           <p className="body-text" >{text}</p>
         </RightSide>
         

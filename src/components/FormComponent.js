@@ -35,7 +35,7 @@ const LeftSide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  color: ${props => props.textColor || 'text'};
+  color: ${props => props.textcolor || 'text'};
   
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%; 
@@ -55,13 +55,13 @@ const RightSide = styled.div`
   `;
 
 
-const FormComponent = ({ headline, text, smallText, backgroundColor, textColor, inputFields, checkboxes }) => {
+const FormComponent = ({ headline, text, smallText, backgroundColor, textcolor, inputFields, checkboxes }) => {
   
 
   return (
     <FormSection backgroundColor={backgroundColor}>
       <FormContent>
-        <LeftSide textColor={textColor}>
+        <LeftSide textcolor={textcolor}>
             <h2>{headline}</h2>
             <p className="body-text-medium">{text}</p>
             <p className="body-text-small">{smallText}</p>
