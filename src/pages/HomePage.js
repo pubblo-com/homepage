@@ -102,17 +102,18 @@ const HomePage = () => {
         headline='Beta version live Q2 2025'
         text='Platform design and development currently ongoing.'
       />
-      {/* <TextComponent
-        headline='Get 3 months for free by joining our test group'
-        text='State which modules you’re interested in and fill in your contact details below.'
-        smallText='*No monthly charge, other charges may occur.'
-      /> */}
       <FormComponent
         headline='Get 3 months for free by joining our test group'
         text='State which modules you’re interested in and fill in your contact details below.'
         smallText='*No monthly charge, other charges may occur.'
         inputFields={inputFields}
         checkboxes={checkboxes}
+      />
+      <TextComponent
+        headline='About us'
+        text='We’re a dedicated team of game designers and IT developers. Our mission is to assist in bringing new board games to life and bringing existing board games to new markets, by connecting people in the board game industry. We know from our experience how hard this can be, for all parties involved. But we also know how successful a partnership can be. Our founder Marcus Carleson ran a modestly successful Kickstarter campaign for his game Hitster in 2019, raising approx. 10 000 USD, but partnering with Jumbo, Hitster was the most sold game in Europe 2024.'
+        backgroundColor={colors.secondary}
+        textColor={colors.background}
       />
     </div>
   );

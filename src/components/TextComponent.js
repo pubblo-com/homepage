@@ -46,6 +46,9 @@ const RightSide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  p {
+    color: ${props => props.textColor || 'text'};
+  }
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%; 
@@ -61,9 +64,8 @@ const TextComponent = ({ headline, text, smallText, backgroundColor, textColor, 
           <h2>{headline}</h2>
         </LeftSide>
 
-        <RightSide>
-          <p className="body-text-medium">{text}</p>
-          <p className="body-text-small">{smallText}</p>
+        <RightSide textColor={textColor}>
+          <p className="body-text" >{text}</p>
         </RightSide>
         
       </TextContent>
