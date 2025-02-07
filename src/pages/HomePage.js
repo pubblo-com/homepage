@@ -49,6 +49,14 @@ const designerUsps = [
   },
 ];
 
+const inputFields = [
+  { label: "Name", type: "text", name: "name", id: "name" },
+  { label: "Email", type: "email", name: "email", id: "email" },
+  { label: "Phone", type: "tel", name: "phone", id: "phone" },
+  { label: "Company", type: "text", name: "company", id: "company" },
+  { label: "Address", type: "text", name: "address", id: "address" }
+];
+
 const HomePage = () => {
   // const handleClick = () => alert('Button clicked!');
   return (
@@ -78,6 +86,7 @@ const HomePage = () => {
         headline='Get 3 months for free by joining our test group'
         text='State which modules you’re interested in and fill in your contact details below.'
         smallText='*No monthly charge, other charges may occur.'
+        inputFields={inputFields}
       />
     </div>
   );
