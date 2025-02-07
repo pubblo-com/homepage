@@ -1,5 +1,5 @@
 import React from 'react';
-import { spacing, typography, colors } from '../styles/tokens';
+import { colors } from '../styles/tokens';
 import Hero from '../components/Hero';
 import USPComponent from '../components/USPComponent.js';
 import icon1 from '../assets/icon1.svg';

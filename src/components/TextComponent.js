@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { spacing, typography, colors, breakpoints } from '../styles/tokens';
-import ListComponent from "./ListComponent";
+import { spacing, breakpoints } from '../styles/tokens';
 
 const TextSection = styled.section`
   width: 100%;

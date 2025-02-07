@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { spacing, typography, colors, breakpoints } from '../styles/tokens';
+import { spacing, typography } from '../styles/tokens';
 
 const InputSection = styled.section`
   display: flex;

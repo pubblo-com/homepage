@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { spacing, typography, colors, breakpoints } from '../styles/tokens';
-// import Checkbox from "./Checkbox";
+import { spacing, breakpoints } from '../styles/tokens';
 import Form from "./Form";
 
 const FormSection = styled.section`

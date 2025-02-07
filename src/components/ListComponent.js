@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { spacing, typography, colors, breakpoints } from '../styles/tokens';
+import { spacing, breakpoints } from '../styles/tokens';
 
 const USPItem = styled.div`
   display: flex;
