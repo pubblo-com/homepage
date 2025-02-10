@@ -110,36 +110,12 @@ const Form = ({ inputFields, checkboxes }) => {
   //     .catch(() => setStatus('error'));
   // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    Object.entries(formData).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach((val) => {
-          const hiddenInput = document.createElement('input');
-          hiddenInput.type = 'hidden';
-          hiddenInput.name = key;
-          hiddenInput.value = val;
-          form.appendChild(hiddenInput);
-        });
-      } else {
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = key;
-        hiddenInput.value = value;
-        form.appendChild(hiddenInput);
-      }
-    });
-
-    form.submit();
-  };
-
   return (
     <StyledForm
       name='contact-form'
       method='POST'
       data-netlify='true'
-      onSubmit={handleSubmit}
+      // onSubmit={handleSubmit}
       // onSubmit={() => setStatus('submitting')}
     >
       <input type='hidden' name='form-name' value='contact-form' />
