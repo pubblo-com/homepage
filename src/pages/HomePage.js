@@ -2,35 +2,36 @@ import React from 'react';
 import { colors } from '../styles/tokens';
 import Hero from '../components/Hero';
 import USPComponent from '../components/USPComponent.js';
-import icon1 from '../assets/icon1.svg';
-import icon2 from '../assets/icon2.svg';
-import icon3 from '../assets/icon3.svg';
-import iconWhite1 from '../assets/icon-white1.svg';
-import iconWhite2 from '../assets/icon-white2.svg';
+import iconRocket from '../assets/icon-rocket.svg';
+import iconHappy from '../assets/icon-happy.svg';
+import iconClock from '../assets/icon-clock.svg';
+import iconStars from '../assets/icon-stars.svg';
+import iconWhiteClock from '../assets/icon-white-clock.svg';
+import iconWhiteRocket from '../assets/icon-white-rocket.svg';
 import TextImageComponent from '../components/TextImageComponent.js';
 import TextComponent from '../components/TextComponent.js';
 import FormComponent from '../components/FormComponent.js';
 
 const publisherUsps = [
   {
-    icon: icon1,
+    icon: iconClock,
     heading: 'Save time handling incoming pitches',
     description:
       'Using the platform as your white label CRM tool for incoming pitches, with an easy-to-use interface and standardized pitch format.',
   },
   {
-    icon: icon2,
+    icon: iconStars,
     heading: 'Increase your funnel of new games',
     description:
       'By scouting the platform for unpublished games and published games available for localization and distribution.',
   },
   {
-    icon: icon3,
+    icon: iconHappy,
     heading: 'Connect with game designers',
     description: 'And make requests for new games',
   },
   {
-    icon: icon1,
+    icon: iconRocket,
     heading: 'Scale your existing games to new markets',
     description: 'By finding partnerships in new geographies',
   },
@@ -38,13 +39,13 @@ const publisherUsps = [
 
 const designerUsps = [
   {
-    icon: iconWhite1,
+    icon: iconWhiteClock,
     heading: 'Reach all publishers with one pitch',
     description:
       'You might just have an idea for a game, or you might be launching a crowdfunding campaign. Wherever you are in the process, you can pitch your game to publishers and distributors to increase the reach and chances of success for your game.',
   },
   {
-    icon: iconWhite2,
+    icon: iconWhiteRocket,
     heading: 'Another usp',
     description:
       'By scouting the platform for unpublished games and published games available for localization and distribution.',

@@ -52,16 +52,16 @@ const RightSide = styled.div`
   }
 `;
 
-const USPComponent = ({ headline, usps, backgroundcolor, textColor }) => {
+const USPComponent = ({ headline, usps, backgroundcolor, textcolor }) => {
   return (
     <USPSection backgroundcolor={backgroundcolor}>
       <USPContent>
-        <LeftSide textColor={textColor}>
+        <LeftSide textColor={textcolor}>
           <h2>{headline}</h2>
         </LeftSide>
 
         <RightSide>
-          <ListComponent usps={usps} textColor={textColor} />
+          <ListComponent usps={usps} textcolor={textcolor} />
         </RightSide>
       </USPContent>
     </USPSection>

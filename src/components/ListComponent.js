@@ -24,17 +24,17 @@ const USPText = styled.div`
   flex-direction: column;
   h3,
   p {
-    color: ${(props) => props.textColor || 'text'};
+    color: ${(props) => props.textcolor || 'text'};
   }
 `;
 
-const ListComponent = ({ usps, textColor }) => {
+const ListComponent = ({ usps, textcolor }) => {
   return (
     <>
       {usps.map((usp, index) => (
         <USPItem key={index}>
           <USPIcon src={usp.icon} alt={`Icon ${index + 1}`} />
-          <USPText textColor={textColor}>
+          <USPText textcolor={textcolor}>
             <h3>{usp.heading}</h3>
             <p className='body-text'>{usp.description} </p>
           </USPText>
