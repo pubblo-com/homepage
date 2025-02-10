@@ -62,54 +62,55 @@ const Form = ({ inputFields, checkboxes }) => {
     }));
   };
 
-  // const handleSubmit = () => {
-  //   // e.preventDefault();
-  //   setStatus('submitting');
+  const handleSubmit = () => {
+    // e.preventDefault();
+    setStatus('submitting');
+    setStatus('success');
 
-  //   // const formDataObj = new FormData();
-  //   // Object.entries(formData).forEach(([key, value]) => {
-  //   //   if (Array.isArray(value)) {
-  //   //     value.forEach((val) => formDataObj.append(key, val));
-  //   //   } else {
-  //   //     formDataObj.append(key, value);
-  //   //   }
-  //   // });
+    //   // const formDataObj = new FormData();
+    //   // Object.entries(formData).forEach(([key, value]) => {
+    //   //   if (Array.isArray(value)) {
+    //   //     value.forEach((val) => formDataObj.append(key, val));
+    //   //   } else {
+    //   //     formDataObj.append(key, value);
+    //   //   }
+    //   // });
 
-  //   // fetch('/', {
-  //   //   method: 'POST',
-  //   //   body: formDataObj,
-  //   // })
-  //   //   .then((response) => {
-  //   //     if (response.ok) {
-  //   //       setStatus('success');
-  //   //     } else {
-  //   //       throw new Error('Network response was not ok');
-  //   //     }
-  //   //   })
-  //   //   .catch(() => {
-  //   //     setStatus('error');
-  //   //   });
-  // };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formDataObj = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach((val) => formDataObj.append(key, val));
-      } else {
-        formDataObj.append(key, value);
-      }
-    });
-
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formDataObj).toString(),
-    })
-      .then(() => setStatus('success'))
-      .catch(() => setStatus('error'));
+    //   // fetch('/', {
+    //   //   method: 'POST',
+    //   //   body: formDataObj,
+    //   // })
+    //   //   .then((response) => {
+    //   //     if (response.ok) {
+    //   //       setStatus('success');
+    //   //     } else {
+    //   //       throw new Error('Network response was not ok');
+    //   //     }
+    //   //   })
+    //   //   .catch(() => {
+    //   //     setStatus('error');
+    //   //   });
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const formDataObj = new FormData();
+  //   Object.entries(formData).forEach(([key, value]) => {
+  //     if (Array.isArray(value)) {
+  //       value.forEach((val) => formDataObj.append(key, val));
+  //     } else {
+  //       formDataObj.append(key, value);
+  //     }
+  //   });
+
+  //   fetch('/', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  //     body: new URLSearchParams(formDataObj).toString(),
+  //   })
+  //     .then(() => setStatus('success'))
+  //     .catch(() => setStatus('error'));
+  // };
 
   return (
     <StyledForm
