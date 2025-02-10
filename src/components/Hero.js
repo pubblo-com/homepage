@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
-import Button from "../components/Button"; 
-import logo from "../assets/pubblo-logo.png";
-import backgroundImage from "../assets/hero-bg_v2.jpg"; 
+import Button from '../components/Button';
+import logo from '../assets/pubblo-logo.png';
+import backgroundImage from '../assets/hero-bg_v2.jpg';
 
 const HeroSection = styled.section`
   width: 100%;
@@ -15,7 +15,7 @@ const HeroSection = styled.section`
 
 const HeroContent = styled.div`
   width: 100%;
-  max-width: 950px; 
+  max-width: 950px;
   padding: ${spacing.xXLarge} ${spacing.xXLarge};
   display: flex;
   flex-direction: column;
@@ -37,11 +37,13 @@ const Logo = styled.img`
 const Hero = () => {
   return (
     <HeroSection>
-      <Logo src={logo} alt="Logo" />
+      <Logo src={logo} alt='Logo' />
       <HeroContent>
-        <h1>A digital marketplace connecting the board game industry</h1> 
-        <p className="body-text-medium">Like visiting a fair, without the travel!</p>
-        <Button text="Sign up" />
+        <h1>A digital marketplace connecting the board game industry</h1>
+        <p className='body-text-medium'>
+          Like visiting a fair, without the travel!
+        </p>
+        <Button text='Sign up' />
       </HeroContent>
     </HeroSection>
   );

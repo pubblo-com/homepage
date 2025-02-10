@@ -11,17 +11,18 @@ import TextImageComponent from '../components/TextImageComponent.js';
 import TextComponent from '../components/TextComponent.js';
 import FormComponent from '../components/FormComponent.js';
 
-
 const publisherUsps = [
   {
     icon: icon1,
     heading: 'Save time handling incoming pitches',
-    description: 'Using the platform as your white label CRM tool for incoming pitches, with an easy-to-use interface and standardized pitch format.',
+    description:
+      'Using the platform as your white label CRM tool for incoming pitches, with an easy-to-use interface and standardized pitch format.',
   },
   {
     icon: icon2,
     heading: 'Increase your funnel of new games',
-    description: 'By scouting the platform for unpublished games and published games available for localization and distribution.',
+    description:
+      'By scouting the platform for unpublished games and published games available for localization and distribution.',
   },
   {
     icon: icon3,
@@ -39,52 +40,54 @@ const designerUsps = [
   {
     icon: iconWhite1,
     heading: 'Reach all publishers with one pitch',
-    description: 'You might just have an idea for a game, or you might be launching a crowdfunding campaign. Wherever you are in the process, you can pitch your game to publishers and distributors to increase the reach and chances of success for your game.',
+    description:
+      'You might just have an idea for a game, or you might be launching a crowdfunding campaign. Wherever you are in the process, you can pitch your game to publishers and distributors to increase the reach and chances of success for your game.',
   },
   {
     icon: iconWhite2,
     heading: 'Another usp',
-    description: 'By scouting the platform for unpublished games and published games available for localization and distribution.',
+    description:
+      'By scouting the platform for unpublished games and published games available for localization and distribution.',
   },
 ];
 
 const inputFields = [
-  { label: "Name", type: "text", name: "name", id: "name" },
-  { label: "Email", type: "email", name: "email", id: "email" },
-  { label: "Phone", type: "tel", name: "phone", id: "phone" },
-  { label: "Company", type: "text", name: "company", id: "company" },
-  { label: "Address", type: "text", name: "address", id: "address" }
+  { label: 'Name', type: 'text', name: 'name', id: 'name' },
+  { label: 'Email', type: 'email', name: 'email', id: 'email' },
+  { label: 'Phone', type: 'tel', name: 'phone', id: 'phone' },
+  { label: 'Company', type: 'text', name: 'company', id: 'company' },
+  { label: 'Address', type: 'text', name: 'address', id: 'address' },
 ];
 
 const checkboxes = [
-  { 
-    checkboxId: "crm", 
-    checkboxName: "areas", 
-    checkboxValue: "crm", 
-    checkboxLabel: "The CRM tool for receiving pitches from game designers"
+  {
+    checkboxId: 'crm',
+    checkboxName: 'areas',
+    checkboxValue: 'crm',
+    checkboxLabel: 'The CRM tool for receiving pitches from game designers',
   },
-  { 
-    checkboxId: "scouting", 
-    checkboxName: "areas", 
-    checkboxValue: "scouting", 
-    checkboxLabel: "Scouting for new games (unpublished and published)"
+  {
+    checkboxId: 'scouting',
+    checkboxName: 'areas',
+    checkboxValue: 'scouting',
+    checkboxLabel: 'Scouting for new games (unpublished and published)',
   },
-  { 
-    checkboxId: "connecting", 
-    checkboxName: "areas", 
-    checkboxValue: "connecting", 
-    checkboxLabel: "Connecting with game designers"
+  {
+    checkboxId: 'connecting',
+    checkboxName: 'areas',
+    checkboxValue: 'connecting',
+    checkboxLabel: 'Connecting with game designers',
   },
-  { 
-    checkboxId: "newGeographies", 
-    checkboxName: "areas", 
-    checkboxValue: "newGeographies", 
-    checkboxLabel: "Making my games available for localization and distribution in new geographies"
-  }
+  {
+    checkboxId: 'newGeographies',
+    checkboxName: 'areas',
+    checkboxValue: 'newGeographies',
+    checkboxLabel:
+      'Making my games available for localization and distribution in new geographies',
+  },
 ];
 
 const HomePage = () => {
-
   return (
     <div>
       <Hero />

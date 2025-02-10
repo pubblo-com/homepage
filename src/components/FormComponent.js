@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
-import Form from "./Form";
+import Form from './Form';
 
 const FormSection = styled.section`
   width: 100%;
-  background-color: ${props => props.backgroundColor || 'transparent'};
+  background-color: ${(props) => props.backgroundColor || 'transparent'};
   padding: ${spacing.xLarge};
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 
@@ -30,14 +30,14 @@ const FormContent = styled.div`
 `;
 
 const LeftSide = styled.div`
-  width: 47%; 
+  width: 47%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  color: ${props => props.textcolor || 'text'};
-  
+  color: ${(props) => props.textcolor || 'text'};
+
   @media (max-width: ${breakpoints.tablet}) {
-    width: 100%; 
+    width: 100%;
     padding: 0 0 ${spacing.large} 0;
   }
 `;
@@ -49,28 +49,34 @@ const RightSide = styled.div`
   align-items: flex-start;
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 100%; 
+    width: 100%;
   }
-  `;
+`;
 
-
-const FormComponent = ({ headline, text, smallText, backgroundColor, textcolor, inputFields, checkboxes }) => {
-  
-
+const FormComponent = ({
+  headline,
+  text,
+  smallText,
+  backgroundColor,
+  textcolor,
+  inputFields,
+  checkboxes,
+}) => {
   return (
     <FormSection backgroundColor={backgroundColor}>
       <FormContent>
         <LeftSide textcolor={textcolor}>
-            <h2>{headline}</h2>
-            <p className="body-text-medium">{text}</p>
-            <p className="body-text-small">{smallText}</p>
+          <h2>{headline}</h2>
+          <p className='body-text-medium'>{text}</p>
+          <p className='body-text-small'>{smallText}</p>
         </LeftSide>
 
         <RightSide>
-            <Form inputFields={inputFields} checkboxes={checkboxes}  />
-            <p className="body-text">Any questions, please contact us at info@pubblo.com</p>
+          <Form inputFields={inputFields} checkboxes={checkboxes} />
+          <p className='body-text'>
+            Any questions, please contact us at info@pubblo.com
+          </p>
         </RightSide>
-
       </FormContent>
     </FormSection>
   );

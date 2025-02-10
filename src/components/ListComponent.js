@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 
 const USPItem = styled.div`
@@ -22,8 +22,9 @@ const USPIcon = styled.img`
 const USPText = styled.div`
   display: flex;
   flex-direction: column;
-  h3, p {
-    color: ${props => props.textColor || 'text'};
+  h3,
+  p {
+    color: ${(props) => props.textColor || 'text'};
   }
 `;
 
@@ -35,7 +36,7 @@ const ListComponent = ({ usps, textColor }) => {
           <USPIcon src={usp.icon} alt={`Icon ${index + 1}`} />
           <USPText textColor={textColor}>
             <h3>{usp.heading}</h3>
-            <p className="body-text">{usp.description} </p>
+            <p className='body-text'>{usp.description} </p>
           </USPText>
         </USPItem>
       ))}

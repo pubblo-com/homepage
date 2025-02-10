@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
-import backgroundImage from "../assets/timeline.jpg"; 
+import backgroundImage from '../assets/timeline.jpg';
 
 const TextImageSection = styled.section`
   width: 100%;
-  background-color: ${props => props.backgroundColor || 'transparent'};
+  background-color: ${(props) => props.backgroundColor || 'transparent'};
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
@@ -25,7 +25,7 @@ const TextImageContent = styled.div`
 `;
 
 const ImageSection = styled.div`
-  width: 50%; 
+  width: 50%;
   height: 350px;
   background: url(${backgroundImage}) center/cover no-repeat;
   position: relative;
@@ -44,7 +44,7 @@ const TextSection = styled.div`
   padding: ${spacing.xXLarge};
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 100%; 
+    width: 100%;
     padding: ${spacing.large};
   }
 `;
@@ -53,18 +53,15 @@ const TextImageComponent = ({ headline, text, smallText }) => {
   return (
     <TextImageSection>
       <TextImageContent>
-
         <ImageSection />
 
         <TextSection>
           <h2>{headline}</h2>
-          <p className="body-text-medium">{text}</p>
+          <p className='body-text-medium'>{text}</p>
         </TextSection>
-        
       </TextImageContent>
     </TextImageSection>
   );
 };
 
 export default TextImageComponent;
-

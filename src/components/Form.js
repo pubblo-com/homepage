@@ -1,56 +1,59 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import { spacing, typography, breakpoints } from '../styles/tokens';
-import Checkbox from "./Checkbox";
-import InputField from "./InputField";
-
+import Checkbox from './Checkbox';
+import InputField from './InputField';
 
 const StyledForm = styled.form`
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   width: 100%;
-  max-width: 500px
-
-  @media (max-width: ${breakpoints.tablet}) {
+  max-width: 500px @media (max-width: ${breakpoints.tablet}) {
     padding: ${spacing.medium};
   }
 `;
 
 const Label = styled.label`
   margin-bottom: ${spacing.xSmall};
-  font-weight: ${typography.fontWeightSemiBold}
+  font-weight: ${typography.fontWeightSemiBold};
 `;
 
 const CheckboxSection = styled.div`
-margin-bottom: ${spacing.medium};
-
+  margin-bottom: ${spacing.medium};
 `;
 
-const InputSection = styled.div`
-
-`;
+const InputSection = styled.div``;
 
 const StyledButton = styled.button`
   width: auto;
-  align-self: flex-end; 
-
+  align-self: flex-end;
 `;
 
-
-const Form = ({ headline, text, smallText, backgroundColor, textcolor, inputFields, checkboxes, checkboxId, checkboxLabel, checkboxName, checkboxValue }) => {
-  
+const Form = ({
+  headline,
+  text,
+  smallText,
+  backgroundColor,
+  textcolor,
+  inputFields,
+  checkboxes,
+  checkboxId,
+  checkboxLabel,
+  checkboxName,
+  checkboxValue,
+}) => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    address: "",
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    address: '',
     areas: [],
   });
 
-  console.log('formdata', formData)
+  console.log('formdata', formData);
 
-  const [status, setStatus] = useState(null); 
+  const [status, setStatus] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,14 +68,14 @@ const Form = ({ headline, text, smallText, backgroundColor, textcolor, inputFiel
     setFormData((prev) => ({
       ...prev,
       areas: checked
-        ? [...prev.areas, value] 
-        : prev.areas.filter((area) => area !== value), 
+        ? [...prev.areas, value]
+        : prev.areas.filter((area) => area !== value),
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus("submitting");
+    setStatus('submitting');
 
     const formDataObj = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
@@ -83,31 +86,31 @@ const Form = ({ headline, text, smallText, backgroundColor, textcolor, inputFiel
       }
     });
 
-    fetch("/", {
-      method: "POST",
+    fetch('/', {
+      method: 'POST',
       body: formDataObj,
     })
       .then((response) => {
         if (response.ok) {
-          setStatus("success");
+          setStatus('success');
         } else {
-          throw new Error("Network response was not ok");
+          throw new Error('Network response was not ok');
         }
       })
       .catch(() => {
-        setStatus("error");
+        setStatus('error');
       });
   };
 
   return (
     <StyledForm
-      name="contact-form"
-      method="POST"
-      data-netlify="true"
+      name='contact-form'
+      method='POST'
+      data-netlify='true'
       onSubmit={handleSubmit}
-     >
-      <input type="hidden" name="form-name" value="contact-form" />
-              
+    >
+      <input type='hidden' name='form-name' value='contact-form' />
+
       <Label>Checkbox options:</Label>
 
       <CheckboxSection>
@@ -126,7 +129,7 @@ const Form = ({ headline, text, smallText, backgroundColor, textcolor, inputFiel
 
       <InputSection>
         {inputFields.map((input, index) => (
-          <InputField 
+          <InputField
             key={index}
             formData={formData}
             handleChange={handleChange}
@@ -138,10 +141,16 @@ const Form = ({ headline, text, smallText, backgroundColor, textcolor, inputFiel
         ))}
       </InputSection>
 
-      <StyledButton type="submit">Submit</StyledButton>
-      {status === 'submitting' && <p className="body-text">Submitting...</p>}
-      {status === 'success' && <p className="body-text">Thank you for your message!</p>}
-      {status === 'error' && <p className="body-text">There was an error submitting the form. Please try again.</p>}
+      <StyledButton type='submit'>Submit</StyledButton>
+      {status === 'submitting' && <p className='body-text'>Submitting...</p>}
+      {status === 'success' && (
+        <p className='body-text'>Thank you for your message!</p>
+      )}
+      {status === 'error' && (
+        <p className='body-text'>
+          There was an error submitting the form. Please try again.
+        </p>
+      )}
     </StyledForm>
   );
 };

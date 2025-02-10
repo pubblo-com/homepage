@@ -15,29 +15,29 @@ export const colors = {
 
 // Typography
 export const typography = {
-  fontFamily: "'Plus Jakarta Sans', sans-serif", 
+  fontFamily: "'Plus Jakarta Sans', sans-serif",
 
-  fontSizeH1: '50px', 
-  fontSizeH2: '40px', 
-  fontSizeH3: '27px', 
-  fontSizeBodyLarge: '40px', 
-  fontSizeBodyMedium: '24px', 
-  fontSizeBody: '16px', 
-  fontSizeBodySmall: '14px', 
+  fontSizeH1: '50px',
+  fontSizeH2: '40px',
+  fontSizeH3: '27px',
+  fontSizeBodyLarge: '40px',
+  fontSizeBodyMedium: '24px',
+  fontSizeBody: '16px',
+  fontSizeBodySmall: '14px',
 
   fontSizeH1Mobile: '35px',
-  fontSizeH2Mobile: '30px', 
-  fontSizeH3Mobile: '20px', 
+  fontSizeH2Mobile: '30px',
+  fontSizeH3Mobile: '20px',
   fontSizeBodyLargeMobile: '30px',
 
-  lineHeightBase: '1.5', 
+  lineHeightBase: '1.5',
 
-  fontWeightRegular: '400', 
-  fontWeightBold: '700', 
-  fontWeightSemiBold: '600', 
+  fontWeightRegular: '400',
+  fontWeightBold: '700',
+  fontWeightSemiBold: '600',
 };
 
-// Spacing 
+// Spacing
 export const spacing = {
   xSmall: '8px',
   small: '16px',
@@ -45,10 +45,9 @@ export const spacing = {
   large: '32px',
   xLarge: '48px',
   xXLarge: '64px',
-
 };
 
-// Breakpoints 
+// Breakpoints
 export const breakpoints = {
   mobile: '480px',
   tablet: '768px',

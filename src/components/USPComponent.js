@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
-import ListComponent from "./ListComponent";
+import ListComponent from './ListComponent';
 
 const USPSection = styled.section`
   width: 100%;
-  background-color: ${props => props.backgroundcolor || 'transparent'};
+  background-color: ${(props) => props.backgroundcolor || 'transparent'};
   padding: ${spacing.xXLarge};
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 
@@ -30,14 +30,14 @@ const USPContent = styled.div`
 `;
 
 const LeftSide = styled.div`
-  width: 47%; 
+  width: 47%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  color: ${props => props.textColor || 'text'};
-  
+  color: ${(props) => props.textColor || 'text'};
+
   @media (max-width: ${breakpoints.tablet}) {
-    width: 100%; 
+    width: 100%;
   }
 `;
 
@@ -48,15 +48,14 @@ const RightSide = styled.div`
   align-items: flex-start;
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 100%; 
+    width: 100%;
   }
 `;
 
-const USPComponent = ({ headline, usps, backgroundcolor, textColor, }) => {
+const USPComponent = ({ headline, usps, backgroundcolor, textColor }) => {
   return (
     <USPSection backgroundcolor={backgroundcolor}>
       <USPContent>
-
         <LeftSide textColor={textColor}>
           <h2>{headline}</h2>
         </LeftSide>
@@ -64,11 +63,9 @@ const USPComponent = ({ headline, usps, backgroundcolor, textColor, }) => {
         <RightSide>
           <ListComponent usps={usps} textColor={textColor} />
         </RightSide>
-        
       </USPContent>
     </USPSection>
   );
 };
 
 export default USPComponent;
-
