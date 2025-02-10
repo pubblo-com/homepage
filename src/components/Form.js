@@ -62,8 +62,8 @@ const Form = ({ inputFields, checkboxes }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    // e.preventDefault();
     setStatus('submitting');
 
     // const formDataObj = new FormData();
