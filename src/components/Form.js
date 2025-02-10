@@ -41,8 +41,8 @@ const Form = ({ inputFields, checkboxes }) => {
 
   console.log('formdata', formData);
 
-  const [status, setStatus] = useState(null);
-  console.log('status', status);
+  // const [status, setStatus] = useState(null);
+  // console.log('status', status);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
