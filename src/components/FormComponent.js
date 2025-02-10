@@ -73,7 +73,7 @@ const FormComponent = ({
         <RightSide>
           <Form inputFields={inputFields} checkboxes={checkboxes} />
           <p className='body-text'>
-            Any questions, please contact us at info@pubblo.com
+            Any questions, please contact us at info@pubblo.com
           </p>
         </RightSide>
       </FormContent>
