@@ -97,7 +97,7 @@ const Form = ({ inputFields, checkboxes }) => {
       method='POST'
       data-netlify='true'
       // onSubmit={handleSubmit}
-      onSubmit={() => setStatus('submitting')}
+      // onSubmit={() => setStatus('submitting')}
     >
       <input type='hidden' name='form-name' value='contact-form' />
 
@@ -132,7 +132,7 @@ const Form = ({ inputFields, checkboxes }) => {
       </InputSection>
 
       <StyledButton type='submit'>Submit</StyledButton>
-      {status === 'submitting' && <p className='body-text'>Submitting...</p>}
+      {/* {status === 'submitting' && <p className='body-text'>Submitting...</p>}
       {status === 'success' && (
         <p className='body-text'>Thank you for your message!</p>
       )}
@@ -140,7 +140,7 @@ const Form = ({ inputFields, checkboxes }) => {
         <p className='body-text'>
           There was an error submitting the form. Please try again.
         </p>
-      )}
+      )} */}
     </StyledForm>
   );
 };
