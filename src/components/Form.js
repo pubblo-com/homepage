@@ -62,41 +62,42 @@ const Form = ({ inputFields, checkboxes }) => {
     }));
   };
 
-  const handleSubmit = () => {
-    // e.preventDefault();
-    setStatus('submitting');
+  // const handleSubmit = () => {
+  //   // e.preventDefault();
+  //   setStatus('submitting');
 
-    // const formDataObj = new FormData();
-    // Object.entries(formData).forEach(([key, value]) => {
-    //   if (Array.isArray(value)) {
-    //     value.forEach((val) => formDataObj.append(key, val));
-    //   } else {
-    //     formDataObj.append(key, value);
-    //   }
-    // });
+  //   // const formDataObj = new FormData();
+  //   // Object.entries(formData).forEach(([key, value]) => {
+  //   //   if (Array.isArray(value)) {
+  //   //     value.forEach((val) => formDataObj.append(key, val));
+  //   //   } else {
+  //   //     formDataObj.append(key, value);
+  //   //   }
+  //   // });
 
-    // fetch('/', {
-    //   method: 'POST',
-    //   body: formDataObj,
-    // })
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       setStatus('success');
-    //     } else {
-    //       throw new Error('Network response was not ok');
-    //     }
-    //   })
-    //   .catch(() => {
-    //     setStatus('error');
-    //   });
-  };
+  //   // fetch('/', {
+  //   //   method: 'POST',
+  //   //   body: formDataObj,
+  //   // })
+  //   //   .then((response) => {
+  //   //     if (response.ok) {
+  //   //       setStatus('success');
+  //   //     } else {
+  //   //       throw new Error('Network response was not ok');
+  //   //     }
+  //   //   })
+  //   //   .catch(() => {
+  //   //     setStatus('error');
+  //   //   });
+  // };
 
   return (
     <StyledForm
       name='contact-form'
       method='POST'
       data-netlify='true'
-      onSubmit={handleSubmit}
+      // onSubmit={handleSubmit}
+      onSubmit={() => setStatus('submitting')}
     >
       <input type='hidden' name='form-name' value='contact-form' />
 
