@@ -41,8 +41,8 @@ const Form = ({ inputFields, checkboxes }) => {
 
   console.log('formdata', formData);
 
-  // const [status, setStatus] = useState(null);
-  // console.log('status', status);
+  const [status, setStatus] = useState(null);
+  console.log('status', status);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -91,12 +91,32 @@ const Form = ({ inputFields, checkboxes }) => {
   //   //   });
   // };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formDataObj = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      if (Array.isArray(value)) {
+        value.forEach((val) => formDataObj.append(key, val));
+      } else {
+        formDataObj.append(key, value);
+      }
+    });
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formDataObj).toString(),
+    })
+      .then(() => setStatus('success'))
+      .catch(() => setStatus('error'));
+  };
+
   return (
     <StyledForm
       name='contact-form'
       method='POST'
       data-netlify='true'
-      // onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       // onSubmit={() => setStatus('submitting')}
     >
       <input type='hidden' name='form-name' value='contact-form' />
@@ -132,7 +152,7 @@ const Form = ({ inputFields, checkboxes }) => {
       </InputSection>
 
       <StyledButton type='submit'>Submit</StyledButton>
-      {/* {status === 'submitting' && <p className='body-text'>Submitting...</p>}
+      {status === 'submitting' && <p className='body-text'>Submitting...</p>}
       {status === 'success' && (
         <p className='body-text'>Thank you for your message!</p>
       )}
@@ -140,7 +160,7 @@ const Form = ({ inputFields, checkboxes }) => {
         <p className='body-text'>
           There was an error submitting the form. Please try again.
         </p>
-      )} */}
+      )}
     </StyledForm>
   );
 };
