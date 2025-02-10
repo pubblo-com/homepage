@@ -42,6 +42,7 @@ const Form = ({ inputFields, checkboxes }) => {
   console.log('formdata', formData);
 
   const [status, setStatus] = useState(null);
+  console.log('status', status);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,29 +66,29 @@ const Form = ({ inputFields, checkboxes }) => {
     e.preventDefault();
     setStatus('submitting');
 
-    const formDataObj = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
-      if (Array.isArray(value)) {
-        value.forEach((val) => formDataObj.append(key, val));
-      } else {
-        formDataObj.append(key, value);
-      }
-    });
+    // const formDataObj = new FormData();
+    // Object.entries(formData).forEach(([key, value]) => {
+    //   if (Array.isArray(value)) {
+    //     value.forEach((val) => formDataObj.append(key, val));
+    //   } else {
+    //     formDataObj.append(key, value);
+    //   }
+    // });
 
-    fetch('/', {
-      method: 'POST',
-      body: formDataObj,
-    })
-      .then((response) => {
-        if (response.ok) {
-          setStatus('success');
-        } else {
-          throw new Error('Network response was not ok');
-        }
-      })
-      .catch(() => {
-        setStatus('error');
-      });
+    // fetch('/', {
+    //   method: 'POST',
+    //   body: formDataObj,
+    // })
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       setStatus('success');
+    //     } else {
+    //       throw new Error('Network response was not ok');
+    //     }
+    //   })
+    //   .catch(() => {
+    //     setStatus('error');
+    //   });
   };
 
   return (
