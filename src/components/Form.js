@@ -29,19 +29,7 @@ const StyledButton = styled.button`
   align-self: flex-end;
 `;
 
-const Form = ({
-  headline,
-  text,
-  smallText,
-  backgroundColor,
-  textcolor,
-  inputFields,
-  checkboxes,
-  checkboxId,
-  checkboxLabel,
-  checkboxName,
-  checkboxValue,
-}) => {
+const Form = ({ inputFields, checkboxes }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

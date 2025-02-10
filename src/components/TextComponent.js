@@ -54,13 +54,7 @@ const RightSide = styled.div`
   }
 `;
 
-const TextComponent = ({
-  headline,
-  text,
-  smallText,
-  backgroundcolor,
-  textcolor,
-}) => {
+const TextComponent = ({ headline, text, backgroundcolor, textcolor }) => {
   return (
     <TextSection backgroundcolor={backgroundcolor}>
       <TextContent>

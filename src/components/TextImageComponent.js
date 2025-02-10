@@ -49,7 +49,7 @@ const TextSection = styled.div`
   }
 `;
 
-const TextImageComponent = ({ headline, text, smallText }) => {
+const TextImageComponent = ({ headline, text }) => {
   return (
     <TextImageSection>
       <TextImageContent>

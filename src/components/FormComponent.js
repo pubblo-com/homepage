@@ -70,7 +70,6 @@ const FormComponent = ({
           <p className='body-text-medium'>{text}</p>
           <p className='body-text-small'>{smallText}</p>
         </LeftSide>
-
         <RightSide>
           <Form inputFields={inputFields} checkboxes={checkboxes} />
           <p className='body-text'>
