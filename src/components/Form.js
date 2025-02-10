@@ -39,8 +39,6 @@ const Form = ({ inputFields, checkboxes }) => {
     areas: [],
   });
 
-  console.log('formdata', formData);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -63,7 +61,7 @@ const Form = ({ inputFields, checkboxes }) => {
     <StyledForm name='contact-form' method='POST' data-netlify='true'>
       <input type='hidden' name='form-name' value='contact-form' />
 
-      <Label>Checkbox options:</Label>
+      <Label>I'm interested in:</Label>
 
       <CheckboxSection>
         {checkboxes.map((checkbox, index) => (

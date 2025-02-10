@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
-import Button from '../components/Button';
 import logo from '../assets/pubblo-logo.png';
 import backgroundImage from '../assets/hero-bg_v2.jpg';
 
@@ -22,7 +21,6 @@ const HeroContent = styled.div`
   align-items: flex-start;
 
   @media (max-width: ${breakpoints.tablet}) {
-    /* flex-direction: column; */
     padding: ${spacing.xLarge} ${spacing.large};
   }
 `;
@@ -43,7 +41,6 @@ const Hero = () => {
         <p className='body-text-medium'>
           Like visiting a fair, without the travel!
         </p>
-        <Button text='Sign up' />
       </HeroContent>
     </HeroSection>
   );

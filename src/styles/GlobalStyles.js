@@ -87,6 +87,7 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     border-radius: 80px;
     padding: ${spacing.small} ${spacing.medium};
+    margin-bottom: ${spacing.small};
     cursor: pointer;
     transition: background-color 0.3s ease;
 
