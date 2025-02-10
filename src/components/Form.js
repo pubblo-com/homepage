@@ -97,7 +97,6 @@ const Form = ({ inputFields, checkboxes }) => {
       method='POST'
       data-netlify='true'
       // onSubmit={handleSubmit}
-      action='/'
       onSubmit={() => setStatus('submitting')}
     >
       <input type='hidden' name='form-name' value='contact-form' />
