@@ -32,12 +32,12 @@ const Logo = styled.img`
   width: 60px;
 `;
 
-const Hero = ({ title, tagline }) => {
+const Hero = ({ headline, tagline }) => {
   return (
     <HeroSection>
       <Logo src={logo} alt='Logo' />
       <HeroContent>
-        <h1>{title}</h1>
+        <h1>{headline}</h1>
         <p className='body-text-medium'>{tagline}</p>
       </HeroContent>
     </HeroSection>

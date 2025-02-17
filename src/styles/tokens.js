@@ -18,17 +18,17 @@ export const typography = {
   fontFamily: "'Plus Jakarta Sans', sans-serif",
 
   fontSizeH1: '50px',
-  fontSizeH2: '40px',
-  fontSizeH3: '27px',
-  fontSizeBodyLarge: '40px',
+  fontSizeH2: '37px',
+  fontSizeH3: '24px',
+  fontSizeBodyLarge: '33px',
   fontSizeBodyMedium: '24px',
   fontSizeBody: '16px',
   fontSizeBodySmall: '14px',
 
   fontSizeH1Mobile: '35px',
-  fontSizeH2Mobile: '30px',
-  fontSizeH3Mobile: '20px',
-  fontSizeBodyLargeMobile: '30px',
+  fontSizeH2Mobile: '28px',
+  fontSizeH3Mobile: '19px',
+  fontSizeBodyLargeMobile: '24px',
 
   lineHeightBase: '1.5',
 

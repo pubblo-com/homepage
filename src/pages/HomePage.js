@@ -3,54 +3,39 @@ import { colors } from '../styles/tokens';
 import Hero from '../components/Hero';
 import USPComponent from '../components/USPComponent.js';
 import iconRocket from '../assets/icon-rocket.svg';
-import iconHappy from '../assets/icon-happy.svg';
+// import iconHappy from '../assets/icon-happy.svg';
 import iconClock from '../assets/icon-clock.svg';
 import iconStars from '../assets/icon-stars.svg';
-// import iconWhiteClock from '../assets/icon-white-clock.svg';
-// import iconWhiteRocket from '../assets/icon-white-rocket.svg';
 import TextImageComponent from '../components/TextImageComponent.js';
 import TextComponent from '../components/TextComponent.js';
 import FormComponent from '../components/FormComponent.js';
+import BigMessageComponent from '../components/BigMessageComponent.js';
 
 const publisherUsps = [
   {
-    icon: iconClock,
-    heading: 'Save time handling incoming pitches',
-    description:
-      'Using the platform as your white label CRM tool for incoming pitches, with an easy-to-use interface and standardized pitch format.',
-  },
-  {
     icon: iconStars,
-    heading: 'Increase your funnel of new games',
+    heading: 'Spot tomorrow’s hit games first',
     description:
-      'By scouting the platform for unpublished games and published games available for localization and distribution.',
+      'Find the best new games for your portfolio by scouting with elaborate filters.',
   },
   {
-    icon: iconHappy,
-    heading: 'Connect with game designers',
-    description: 'And make requests for new games',
+    icon: iconClock,
+    heading: 'Make pitch evaluation easy',
+    description:
+      'Organize and evaluate incoming pitches efficiently with the CRM tool and a standardized pitch format.',
   },
   {
     icon: iconRocket,
     heading: 'Scale your existing games to new markets',
-    description: 'By finding partnerships in new geographies',
+    description:
+      'Expand globally by making your games available for localization and distribution  in new geographies.',
   },
+  // {
+  //   icon: iconRocket,
+  //   heading: 'Scale your existing games to new markets',
+  //   description: 'By finding partnerships in new geographies',
+  // },
 ];
-
-// const designerUsps = [
-//   {
-//     icon: iconWhiteClock,
-//     heading: 'Reach all publishers with one pitch',
-//     description:
-//       'You might just have an idea for a game, or you might be launching a crowdfunding campaign. Wherever you are in the process, you can pitch your game to publishers and distributors to increase the reach and chances of success for your game.',
-//   },
-//   {
-//     icon: iconWhiteRocket,
-//     heading: 'Another usp',
-//     description:
-//       'By scouting the platform for unpublished games and published games available for localization and distribution.',
-//   },
-// ];
 
 const inputFields = [
   { label: 'Name', type: 'text', name: 'name', id: 'name' },
@@ -92,19 +77,16 @@ const HomePage = () => {
   return (
     <div>
       <Hero
-        title='Bringing new games to life'
+        headline='Bringing new games to life'
         tagline='Connecting board game designers, publishers and distributors'
       />
-      <USPComponent
-        headline='Key benefits for publishers'
-        usps={publisherUsps}
-      />
-      {/* <USPComponent
-        headline='Key benefits for game designers'
-        usps={designerUsps}
+      <BigMessageComponent
+        headline='What is Pubblo?'
+        text='Pubblo is the ultimate platform for publishers, designers, and distributors to collaborate, discover, and bring new board games to market. Whether you’re scouting fresh titles, evaluating pitches, or expanding into new regions, Pubblo makes the process more efficient than ever before.'
         backgroundcolor={colors.primary}
         textcolor={colors.background}
-      /> */}
+      />
+      <USPComponent headline='Key benefits' usps={publisherUsps} />
       <TextImageComponent
         headline='Beta version live Q2 2025'
         text='Platform design and development currently ongoing.'
