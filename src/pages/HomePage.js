@@ -6,8 +6,8 @@ import iconRocket from '../assets/icon-rocket.svg';
 import iconHappy from '../assets/icon-happy.svg';
 import iconClock from '../assets/icon-clock.svg';
 import iconStars from '../assets/icon-stars.svg';
-import iconWhiteClock from '../assets/icon-white-clock.svg';
-import iconWhiteRocket from '../assets/icon-white-rocket.svg';
+// import iconWhiteClock from '../assets/icon-white-clock.svg';
+// import iconWhiteRocket from '../assets/icon-white-rocket.svg';
 import TextImageComponent from '../components/TextImageComponent.js';
 import TextComponent from '../components/TextComponent.js';
 import FormComponent from '../components/FormComponent.js';
@@ -37,20 +37,20 @@ const publisherUsps = [
   },
 ];
 
-const designerUsps = [
-  {
-    icon: iconWhiteClock,
-    heading: 'Reach all publishers with one pitch',
-    description:
-      'You might just have an idea for a game, or you might be launching a crowdfunding campaign. Wherever you are in the process, you can pitch your game to publishers and distributors to increase the reach and chances of success for your game.',
-  },
-  {
-    icon: iconWhiteRocket,
-    heading: 'Another usp',
-    description:
-      'By scouting the platform for unpublished games and published games available for localization and distribution.',
-  },
-];
+// const designerUsps = [
+//   {
+//     icon: iconWhiteClock,
+//     heading: 'Reach all publishers with one pitch',
+//     description:
+//       'You might just have an idea for a game, or you might be launching a crowdfunding campaign. Wherever you are in the process, you can pitch your game to publishers and distributors to increase the reach and chances of success for your game.',
+//   },
+//   {
+//     icon: iconWhiteRocket,
+//     heading: 'Another usp',
+//     description:
+//       'By scouting the platform for unpublished games and published games available for localization and distribution.',
+//   },
+// ];
 
 const inputFields = [
   { label: 'Name', type: 'text', name: 'name', id: 'name' },
@@ -91,17 +91,20 @@ const checkboxes = [
 const HomePage = () => {
   return (
     <div>
-      <Hero />
+      <Hero
+        title='Bringing new games to life'
+        tagline='Connecting board game designers, publishers and distributors'
+      />
       <USPComponent
         headline='Key benefits for publishers'
         usps={publisherUsps}
       />
-      <USPComponent
+      {/* <USPComponent
         headline='Key benefits for game designers'
         usps={designerUsps}
         backgroundcolor={colors.primary}
         textcolor={colors.background}
-      />
+      /> */}
       <TextImageComponent
         headline='Beta version live Q2 2025'
         text='Platform design and development currently ongoing.'

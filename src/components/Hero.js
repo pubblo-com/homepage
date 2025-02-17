@@ -32,15 +32,13 @@ const Logo = styled.img`
   width: 60px;
 `;
 
-const Hero = () => {
+const Hero = ({ title, tagline }) => {
   return (
     <HeroSection>
       <Logo src={logo} alt='Logo' />
       <HeroContent>
-        <h1>A digital marketplace connecting the board game industry</h1>
-        <p className='body-text-medium'>
-          Like visiting a fair, without the travel!
-        </p>
+        <h1>{title}</h1>
+        <p className='body-text-medium'>{tagline}</p>
       </HeroContent>
     </HeroSection>
   );
