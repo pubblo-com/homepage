@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 import ListComponent from './ListComponent';
+import backgroundImage from '../assets/curly-line.svg';
 
 const USPSection = styled.section`
   width: 100%;
@@ -52,12 +53,25 @@ const RightSide = styled.div`
   }
 `;
 
+const ImageSection = styled.div`
+  width: 50%;
+  height: 350px;
+  background: url(${backgroundImage}) center/cover no-repeat;
+  position: relative;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+    height: 250px;
+  }
+`;
+
 const USPComponent = ({ headline, usps, backgroundcolor, textcolor }) => {
   return (
     <USPSection backgroundcolor={backgroundcolor}>
       <USPContent>
         <LeftSide textColor={textcolor}>
           <h2>{headline}</h2>
+          <ImageSection />
         </LeftSide>
 
         <RightSide>
