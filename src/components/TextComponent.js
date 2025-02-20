@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
+import H2WithUnderline from './H2WithUnderline';
 
 const TextSection = styled.section`
   width: 100%;
@@ -54,12 +55,20 @@ const RightSide = styled.div`
   }
 `;
 
-const TextComponent = ({ headline, text, backgroundcolor, textcolor }) => {
+const TextComponent = ({
+  headline,
+  text,
+  backgroundcolor,
+  textcolor,
+  underlinecolor,
+}) => {
   return (
     <TextSection backgroundcolor={backgroundcolor}>
       <TextContent>
         <LeftSide textcolor={textcolor}>
-          <h2>{headline}</h2>
+          <H2WithUnderline underlinecolor={underlinecolor}>
+            {headline}
+          </H2WithUnderline>
         </LeftSide>
 
         <RightSide textcolor={textcolor}>
