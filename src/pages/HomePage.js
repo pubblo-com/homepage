@@ -90,6 +90,7 @@ const HomePage = () => {
       <TextImageComponent
         headline='Beta version live Q2 2025'
         text='Platform design and development currently ongoing.'
+        backgroundcolor={colors.white}
       />
       <FormComponent
         headline='Get 3 months for free by joining our test group'

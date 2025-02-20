@@ -5,7 +5,7 @@ import backgroundImage from '../assets/timeline.jpg';
 
 const TextImageSection = styled.section`
   width: 100%;
-  background-color: ${(props) => props.backgroundColor || 'transparent'};
+  background-color: ${(props) => props.backgroundcolor || 'transparent'};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -49,9 +49,9 @@ const TextSection = styled.div`
   }
 `;
 
-const TextImageComponent = ({ headline, text }) => {
+const TextImageComponent = ({ headline, text, backgroundcolor }) => {
   return (
-    <TextImageSection>
+    <TextImageSection backgroundcolor={backgroundcolor}>
       <TextImageContent>
         <ImageSection />
 

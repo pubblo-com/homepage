@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
+import H2WithUnderline from './H2WithUnderline';
 
 const TextSection = styled.section`
   width: 100%;
@@ -39,7 +40,7 @@ const BigMessageComponent = ({
   return (
     <TextSection backgroundcolor={backgroundcolor}>
       <TextContent textcolor={textcolor}>
-        <h2>{headline}</h2>
+        <H2WithUnderline>{headline}</H2WithUnderline>
         <p className='body-text-large'>{text}</p>
       </TextContent>
     </TextSection>
