@@ -82,7 +82,7 @@ const HomePage = () => {
       />
       <BigMessageComponent
         headline='What is Pubblo?'
-        text='Pubblo is a platform where publishers, designers, and distributors can connect to bring new board games to market. Whether you’re scouting fresh titles, evaluating pitches, or looking for localization & distribution partners, Pubblo makes the process more efficient than ever before.'
+        text='Pubblo is a platform where publishers, designers, and distributors connect to bring new board games to market. Whether you’re scouting fresh titles, evaluating pitches, or looking for distribution partners, Pubblo is for you.'
         backgroundcolor={colors.primary}
         textcolor={colors.background}
       />

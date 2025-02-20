@@ -18,9 +18,9 @@ export const typography = {
   fontFamily: "'Plus Jakarta Sans', sans-serif",
 
   fontSizeH1: '50px',
-  fontSizeH2: '37px',
+  fontSizeH2: '36px',
   fontSizeH3: '24px',
-  fontSizeBodyLarge: '33px',
+  fontSizeBodyLarge: '36px',
   fontSizeBodyMedium: '24px',
   fontSizeBody: '16px',
   fontSizeBodySmall: '14px',

@@ -12,9 +12,27 @@ const USPSection = styled.section`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: ${spacing.large};
+  }
+`;
+
+const ImageSection = styled.div`
+  width: 60%;
+  height: 550px;
+  background: url(${backgroundImage}) bottom center / contain no-repeat;
+  position: absolute;
+  bottom: 0;
+  left: -100px;
+  z-index: 0;
+  transform: rotate(0deg);
+  transform-origin: bottom left;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: none;
   }
 `;
 
@@ -36,6 +54,8 @@ const LeftSide = styled.div`
   flex-direction: column;
   align-items: flex-start;
   color: ${(props) => props.textColor || 'text'};
+  position: relative;
+  z-index: 1;
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
@@ -53,25 +73,13 @@ const RightSide = styled.div`
   }
 `;
 
-const ImageSection = styled.div`
-  width: 50%;
-  height: 350px;
-  background: url(${backgroundImage}) center/cover no-repeat;
-  position: relative;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 100%;
-    height: 250px;
-  }
-`;
-
 const USPComponent = ({ headline, usps, backgroundcolor, textcolor }) => {
   return (
     <USPSection backgroundcolor={backgroundcolor}>
+      <ImageSection />
       <USPContent>
         <LeftSide textColor={textcolor}>
           <h2>{headline}</h2>
-          <ImageSection />
         </LeftSide>
 
         <RightSide>
