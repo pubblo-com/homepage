@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { spacing, typography, breakpoints } from '../styles/tokens';
 import Checkbox from './Checkbox';
 import InputField from './InputField';
+import Button from './Button';
 
 const StyledForm = styled.form`
   display: flex;
@@ -23,11 +24,6 @@ const CheckboxSection = styled.div`
 `;
 
 const InputSection = styled.div``;
-
-const StyledButton = styled.button`
-  width: auto;
-  align-self: flex-end;
-`;
 
 const Form = ({ inputFields, checkboxes }) => {
   const [formData, setFormData] = useState({
@@ -90,8 +86,7 @@ const Form = ({ inputFields, checkboxes }) => {
           />
         ))}
       </InputSection>
-
-      <StyledButton type='submit'>Submit</StyledButton>
+      <Button type='submit' text='Submit' />
     </StyledForm>
   );
 };

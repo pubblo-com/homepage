@@ -77,7 +77,7 @@ const HomePage = () => {
   return (
     <div>
       <Hero
-        headline='Bringing new games to life'
+        headline='Bringing games to life everywhere'
         tagline='Connecting board game designers, publishers and distributors'
       />
       <BigMessageComponent
@@ -88,12 +88,12 @@ const HomePage = () => {
       />
       <USPComponent headline='Key benefits' usps={publisherUsps} />
       <TextImageComponent
-        headline='Beta version live Q2 2025'
+        headline='Beta version live Q3 2025'
         text='Platform design and development currently ongoing.'
         backgroundcolor={colors.white}
       />
       <FormComponent
-        headline='Get 3 months for free by joining our test group'
+        headline='Get 2 months for free by joining our test group'
         text='State which modules you’re interested in and fill in your contact details below.'
         smallText='*No monthly charge, other charges may occur.'
         inputFields={inputFields}
