@@ -3,7 +3,7 @@ export const colors = {
   primary: '#2A30EA', // Primary Blue
   secondary: '#11135E', // Dark Blue
   contrast: '#F95160', // Bright red
-  // background: '#F6F5F2', // Light Beige
+  beige: '#F6F5F2', // Light Beige
   background: '#FFFFFF', // white
   text: '#333333', // Default text color
   white: '#FFFFFF',
@@ -17,8 +17,7 @@ export const colors = {
 // Typography
 export const typography = {
   fontFamily: "'Plus Jakarta Sans', sans-serif",
-
-  fontSizeH1: '50px',
+  fontSizeH1: '57px',
   fontSizeH2: '36px',
   fontSizeH3: '24px',
   fontSizeBodyLarge: '36px',

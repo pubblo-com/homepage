@@ -6,7 +6,8 @@ import H2WithUnderline from './H2WithUnderline';
 const TextSection = styled.section`
   width: 100%;
   background-color: ${(props) => props.backgroundcolor || 'transparent'};
-  padding: ${spacing.xXLarge};
+  padding: ${spacing.medium} ${spacing.xXLarge} ${spacing.xXLarge}
+    ${spacing.xXLarge};
   display: flex;
   flex-direction: row;
   justify-content: space-between;

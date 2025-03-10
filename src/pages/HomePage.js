@@ -85,8 +85,6 @@ const HomePage = () => {
       <BigMessageComponent
         headline='What is Pubblo?'
         text='Pubblo is a platform where publishers, designers, and distributors connect to bring new board games to market. Whether you’re scouting fresh titles, evaluating pitches, or looking for distribution partners, Pubblo is for you.'
-        // backgroundcolor={colors.primary}
-        // textcolor={colors.background}
         underlinecolor={colors.contrast}
       />
       <USPComponent
@@ -98,7 +96,7 @@ const HomePage = () => {
       <TextImageComponent
         headline='Beta version live Q3 2025'
         text='Platform design and development currently ongoing.'
-        backgroundcolor={colors.white}
+        backgroundcolor={colors.beige}
       />
       <FormComponent
         headline='Get 2 months for free by joining our test group'
