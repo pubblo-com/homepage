@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 import Form from './Form';
@@ -53,32 +53,39 @@ const RightSide = styled.div`
   }
 `;
 
-const FormComponent = ({
-  headline,
-  text,
-  smallText,
-  backgroundColor,
-  textcolor,
-  inputFields,
-  checkboxes,
-}) => {
-  return (
-    <FormSection backgroundColor={backgroundColor}>
-      <FormContent>
-        <LeftSide textcolor={textcolor}>
-          <h2>{headline}</h2>
-          <p className='body-text-medium'>{text}</p>
-          <p className='body-text-small'>{smallText}</p>
-        </LeftSide>
-        <RightSide>
-          <Form inputFields={inputFields} checkboxes={checkboxes} />
-          <p className='body-text'>
-            Any questions, please contact us at info@pubblo.com
-          </p>
-        </RightSide>
-      </FormContent>
-    </FormSection>
-  );
-};
+const FormComponent = forwardRef(
+  (
+    {
+      headline,
+      text,
+      smallText,
+      backgroundColor,
+      textcolor,
+      inputFields,
+      checkboxes,
+    },
+    ref,
+  ) => {
+    return (
+      <FormSection ref={ref} backgroundColor={backgroundColor}>
+        <FormContent>
+          <LeftSide textcolor={textcolor}>
+            <h2>{headline}</h2>
+            <p className='body-text'>{text}</p>
+            <p className='body-text-small'>{smallText}</p>
+          </LeftSide>
+          <RightSide>
+            <Form inputFields={inputFields} checkboxes={checkboxes} />
+            <p className='body-text'>
+              Any questions, please contact us at info@pubblo.com
+            </p>
+          </RightSide>
+        </FormContent>
+      </FormSection>
+    );
+  },
+);
+
+FormComponent.displayName = 'FormComponent';
 
 export default FormComponent;

@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
   /* Body Text (Base text) */
   .body-text {
     font-size: ${typography.fontSizeBody};
-    /* margin-bottom: ${spacing.small}; */
+    margin-bottom: ${spacing.small};
     color: ${colors.text};
   }
 

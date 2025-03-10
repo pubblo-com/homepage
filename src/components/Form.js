@@ -25,6 +25,11 @@ const CheckboxSection = styled.div`
 
 const InputSection = styled.div``;
 
+const ButtonSection = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 const Form = ({ inputFields, checkboxes }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -86,7 +91,9 @@ const Form = ({ inputFields, checkboxes }) => {
           />
         ))}
       </InputSection>
-      <Button type='submit' text='Submit' />
+      <ButtonSection>
+        <Button type='submit' text='Submit' />
+      </ButtonSection>
     </StyledForm>
   );
 };

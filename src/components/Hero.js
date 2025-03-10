@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 import logo from '../assets/pubblo-logo.png';
 import backgroundImage from '../assets/hero-bg_v2.jpg';
+import Button from './Button';
 
 const HeroSection = styled.section`
   width: 100%;
@@ -32,13 +33,14 @@ const Logo = styled.img`
   width: 60px;
 `;
 
-const Hero = ({ headline, tagline }) => {
+const Hero = ({ headline, tagline, buttonText, onScrollToSection }) => {
   return (
     <HeroSection>
       <Logo src={logo} alt='Logo' />
       <HeroContent>
         <h1>{headline}</h1>
         <p className='body-text-medium'>{tagline}</p>
+        <Button text={buttonText} onClick={onScrollToSection} />
       </HeroContent>
     </HeroSection>
   );

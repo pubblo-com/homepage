@@ -23,7 +23,7 @@ export const typography = {
   fontSizeBodyLarge: '36px',
   fontSizeBodyMedium: '24px',
   fontSizeBody: '16px',
-  fontSizeBodySmall: '14px',
+  fontSizeBodySmall: '12px',
 
   fontSizeH1Mobile: '35px',
   fontSizeH2Mobile: '28px',

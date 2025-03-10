@@ -57,7 +57,7 @@ const TextImageComponent = ({ headline, text, backgroundcolor }) => {
 
         <TextSection>
           <h2>{headline}</h2>
-          <p className='body-text-medium'>{text}</p>
+          <p className='body-text'>{text}</p>
         </TextSection>
       </TextImageContent>
     </TextImageSection>

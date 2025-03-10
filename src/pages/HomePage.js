@@ -1,9 +1,9 @@
 import React from 'react';
+import { useRef } from 'react';
 import { colors } from '../styles/tokens';
 import Hero from '../components/Hero';
 import USPComponent from '../components/USPComponent.js';
 import iconRocket from '../assets/icon-rocket.svg';
-// import iconHappy from '../assets/icon-happy.svg';
 import iconClock from '../assets/icon-clock.svg';
 import iconStars from '../assets/icon-stars.svg';
 import TextImageComponent from '../components/TextImageComponent.js';
@@ -30,11 +30,6 @@ const publisherUsps = [
     description:
       'Expand globally by making your games available for localization and distribution  in new geographies.',
   },
-  // {
-  //   icon: iconRocket,
-  //   heading: 'Scale your existing games to new markets',
-  //   description: 'By finding partnerships in new geographies',
-  // },
 ];
 
 const inputFields = [
@@ -74,11 +69,18 @@ const checkboxes = [
 ];
 
 const HomePage = () => {
+  const formSectionRef = useRef(null);
+  const handleScroll = () => {
+    formSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div>
       <Hero
         headline='Bringing games to life everywhere'
         tagline='Connecting board game designers, publishers and distributors'
+        buttonText='Sign up for free trial'
+        onScrollToSection={handleScroll}
       />
       <BigMessageComponent
         headline='What is Pubblo?'
@@ -98,6 +100,7 @@ const HomePage = () => {
         smallText='*No monthly charge, other charges may occur.'
         inputFields={inputFields}
         checkboxes={checkboxes}
+        ref={formSectionRef}
       />
       <TextComponent
         headline='About us'
