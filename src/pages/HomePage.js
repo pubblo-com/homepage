@@ -3,9 +3,9 @@ import { useRef } from 'react';
 import { colors } from '../styles/tokens';
 import Hero from '../components/Hero';
 import USPComponent from '../components/USPComponent.js';
-import iconRocket from '../assets/icon-rocket.svg';
-import iconClock from '../assets/icon-clock.svg';
-import iconStars from '../assets/icon-stars.svg';
+import iconRocket from '../assets/icon-white-rocket.svg';
+import iconClock from '../assets/icon-white-clock.svg';
+import iconStars from '../assets/icon-white-stars.svg';
 import TextImageComponent from '../components/TextImageComponent.js';
 import TextComponent from '../components/TextComponent.js';
 import FormComponent from '../components/FormComponent.js';
@@ -85,10 +85,16 @@ const HomePage = () => {
       <BigMessageComponent
         headline='What is Pubblo?'
         text='Pubblo is a platform where publishers, designers, and distributors connect to bring new board games to market. Whether you’re scouting fresh titles, evaluating pitches, or looking for distribution partners, Pubblo is for you.'
+        // backgroundcolor={colors.primary}
+        // textcolor={colors.background}
+        underlinecolor={colors.contrast}
+      />
+      <USPComponent
+        headline='Key benefits'
+        usps={publisherUsps}
         backgroundcolor={colors.primary}
         textcolor={colors.background}
       />
-      <USPComponent headline='Key benefits' usps={publisherUsps} />
       <TextImageComponent
         headline='Beta version live Q3 2025'
         text='Platform design and development currently ongoing.'

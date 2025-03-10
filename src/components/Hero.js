@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 import logo from '../assets/pubblo-logo.png';
 import backgroundImage from '../assets/hero-bg_v2.jpg';
+import WaveImage from '../assets/wave.svg';
 import Button from './Button';
 
 const HeroSection = styled.section`
@@ -33,6 +34,21 @@ const Logo = styled.img`
   width: 60px;
 `;
 
+const WaveSection = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+`;
+
+const WaveImageContainer = styled.img`
+  width: 100%;
+  height: auto;
+  diplay: block;
+  position: absolute;
+  bottom: 0;
+`;
+
 const Hero = ({ headline, tagline, buttonText, onScrollToSection }) => {
   return (
     <HeroSection>
@@ -42,6 +58,9 @@ const Hero = ({ headline, tagline, buttonText, onScrollToSection }) => {
         <p className='body-text-medium'>{tagline}</p>
         <Button text={buttonText} onClick={onScrollToSection} />
       </HeroContent>
+      <WaveSection>
+        <WaveImageContainer src={WaveImage} alt='Wave design' />
+      </WaveSection>
     </HeroSection>
   );
 };

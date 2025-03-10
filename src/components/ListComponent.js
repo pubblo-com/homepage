@@ -13,6 +13,7 @@ const USPIcon = styled.img`
   height: 40px;
   margin-right: ${spacing.small};
   margin-top: ${spacing.xSmall};
+  opacity: 0.6;
 
   @media (max-width: ${breakpoints.tablet}) {
     margin-top: 0;

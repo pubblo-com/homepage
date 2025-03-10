@@ -2,8 +2,9 @@
 export const colors = {
   primary: '#2A30EA', // Primary Blue
   secondary: '#11135E', // Dark Blue
-  background: '#F6F5F2', // Light Beige
-  // background: '#FFFFFF', // white
+  contrast: '#F95160', // Bright red
+  // background: '#F6F5F2', // Light Beige
+  background: '#FFFFFF', // white
   text: '#333333', // Default text color
   white: '#FFFFFF',
   link: '#2A30EA', // Link color

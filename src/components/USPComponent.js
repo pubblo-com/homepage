@@ -30,6 +30,7 @@ const ImageSection = styled.div`
   z-index: 0;
   transform: rotate(0deg);
   transform-origin: bottom left;
+  opacity: 0.12;
 
   @media (max-width: ${breakpoints.tablet}) {
     display: none;
