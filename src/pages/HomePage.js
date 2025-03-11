@@ -101,7 +101,6 @@ const HomePage = () => {
       <FormComponent
         headline='Get 2 months for free by joining our test group'
         text='State which modules you’re interested in and fill in your contact details below.'
-        smallText='*No monthly charge, other charges may occur.'
         inputFields={inputFields}
         checkboxes={checkboxes}
         ref={formSectionRef}

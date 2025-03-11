@@ -55,15 +55,7 @@ const RightSide = styled.div`
 
 const FormComponent = forwardRef(
   (
-    {
-      headline,
-      text,
-      smallText,
-      backgroundColor,
-      textcolor,
-      inputFields,
-      checkboxes,
-    },
+    { headline, text, backgroundColor, textcolor, inputFields, checkboxes },
     ref,
   ) => {
     return (
@@ -72,7 +64,6 @@ const FormComponent = forwardRef(
           <LeftSide textcolor={textcolor}>
             <h2>{headline}</h2>
             <p className='body-text'>{text}</p>
-            <p className='body-text-small'>{smallText}</p>
           </LeftSide>
           <RightSide>
             <Form inputFields={inputFields} checkboxes={checkboxes} />
