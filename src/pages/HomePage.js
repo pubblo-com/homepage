@@ -99,7 +99,7 @@ const HomePage = () => {
         backgroundcolor={colors.beige}
       />
       <FormComponent
-        headline='Get 2 months for free by joining our test group'
+        headline='Get 6 months for free by joining our test group'
         text='State which modules you’re interested in and fill in your contact details below.'
         inputFields={inputFields}
         checkboxes={checkboxes}
