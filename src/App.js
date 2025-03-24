@@ -9,7 +9,7 @@ function App() {
       <GlobalStyles />
       <Router>
         <Routes>
-          <Route path='/' element={<HomePage />} />
+          <Route path='/preview' element={<HomePage />} />
         </Routes>
       </Router>
     </>
