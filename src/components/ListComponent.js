@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { spacing, breakpoints } from '../styles/tokens';
+import { spacing, breakpoints, colors } from '../styles/tokens';
 
 const USPItem = styled.div`
   display: flex;
@@ -8,12 +8,20 @@ const USPItem = styled.div`
   margin-bottom: ${spacing.medium};
 `;
 
-const USPIcon = styled.img`
+const USPIcon = styled.div`
   width: 40px;
   height: 40px;
   margin-right: ${spacing.small};
   margin-top: ${spacing.xSmall};
-  opacity: 0.6;
+  background-color: ${colors.contrast};
+  -webkit-mask-image: url(${(p) => p.$src});
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url(${(p) => p.$src});
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
 
   @media (max-width: ${breakpoints.tablet}) {
     margin-top: 0;
@@ -34,7 +42,7 @@ const ListComponent = ({ usps, textcolor }) => {
     <>
       {usps.map((usp, index) => (
         <USPItem key={index}>
-          <USPIcon src={usp.icon} alt={`Icon ${index + 1}`} />
+          <USPIcon $src={usp.icon} aria-hidden='true' />
           <USPText textcolor={textcolor}>
             <h3>{usp.heading}</h3>
             <p className='body-text'>{usp.description} </p>

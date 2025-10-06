@@ -25,6 +25,12 @@ const CheckboxSection = styled.div`
 
 const InputSection = styled.div``;
 
+const Collapsible = styled.div`
+  max-height: ${(p) => (p.$open ? '1000px' : '0')};
+  overflow: hidden;
+  transition: max-height 250ms ease;
+`;
+
 const ButtonSection = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -58,6 +64,8 @@ const Form = ({ inputFields, checkboxes }) => {
     }));
   };
 
+  const isOpen = formData.areas.length > 0;
+
   return (
     <StyledForm name='contact-form' method='POST' data-netlify='true'>
       <input type='hidden' name='form-name' value='contact-form' />
@@ -78,22 +86,24 @@ const Form = ({ inputFields, checkboxes }) => {
         ))}
       </CheckboxSection>
 
-      <InputSection>
-        {inputFields.map((input, index) => (
-          <InputField
-            key={index}
-            formData={formData}
-            handleChange={handleChange}
-            label={input.label}
-            type={input.type}
-            name={input.name}
-            id={input.id}
-          />
-        ))}
-      </InputSection>
-      <ButtonSection>
-        <Button type='submit' text='Submit' />
-      </ButtonSection>
+      <Collapsible $open={isOpen}>
+        <InputSection>
+          {inputFields.map((input, index) => (
+            <InputField
+              key={index}
+              formData={formData}
+              handleChange={handleChange}
+              label={input.label}
+              type={input.type}
+              name={input.name}
+              id={input.id}
+            />
+          ))}
+        </InputSection>
+        <ButtonSection>
+          <Button type='submit' text='Submit' />
+        </ButtonSection>
+      </Collapsible>
     </StyledForm>
   );
 };

@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { spacing, breakpoints } from '../styles/tokens';
+import { spacing, breakpoints, colors } from '../styles/tokens';
 import ListComponent from './ListComponent';
 import backgroundImage from '../assets/curly-line.svg';
+import WaveImage from '../assets/wave.svg';
 
 const USPSection = styled.section`
   width: 100%;
   background-color: ${(props) => props.backgroundcolor || 'transparent'};
-  padding: ${spacing.xXLarge};
+  padding: ${spacing.xXLarge} ${spacing.xXLarge} ${spacing.xXLarge} ${spacing.xXLarge};
+  padding-top: ${spacing.xXLarge * 2};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -17,24 +19,37 @@ const USPSection = styled.section`
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: ${spacing.large};
+    padding-top: ${spacing.xLarge * 1.5};
   }
 `;
 
 const ImageSection = styled.div`
-  width: 60%;
-  height: 550px;
-  background: url(${backgroundImage}) bottom center / contain no-repeat;
+  width: min(85%, 1200px);
+  height: min(700px, 55vh);
   position: absolute;
   bottom: 0;
-  left: -100px;
+  left: -15vw;
   z-index: 0;
   transform: rotate(0deg);
   transform-origin: bottom left;
-  opacity: 0.12;
+  opacity: 0.18;
+  background-color: ${colors.contrast};
+  -webkit-mask-image: url(${backgroundImage});
+  -webkit-mask-position: bottom left;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-image: url(${backgroundImage});
+  mask-position: bottom left;
+  mask-repeat: no-repeat;
+  mask-size: contain;
 
   @media (max-width: ${breakpoints.tablet}) {
     display: none;
   }
+`;
+
+const TopWave = styled.img`
+  display: none;
 `;
 
 const USPContent = styled.div`
@@ -55,6 +70,7 @@ const LeftSide = styled.div`
   flex-direction: column;
   align-items: flex-start;
   color: ${(props) => props.textColor || 'text'};
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
   position: relative;
   z-index: 1;
 
@@ -68,6 +84,8 @@ const RightSide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  color: ${(props) => props.textColor || 'text'};
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
@@ -77,6 +95,7 @@ const RightSide = styled.div`
 const USPComponent = ({ headline, usps, backgroundcolor, textcolor }) => {
   return (
     <USPSection backgroundcolor={backgroundcolor}>
+      <TopWave src={WaveImage} alt='' aria-hidden='true' />
       <ImageSection />
       <USPContent>
         <LeftSide textColor={textcolor}>

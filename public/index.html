@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="A digital marketplace connecting the board game industry. Like a fair, without the travel."
+      content="Powering licensing deals in the board game industry. Connect designers, publishers, and distributors worldwide with standardized pitches and streamlined workflows."
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -56,6 +56,13 @@
       <input type="hidden" name="areas" value="newGeographies" />
     </form>
     <div id="root"></div>
+    <!-- Netlify detection forms -->
+    <form name="spielpitch" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <input type="text" name="role" />
+    </form>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
