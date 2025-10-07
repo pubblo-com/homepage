@@ -12,22 +12,29 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-    # Build the app (skip ESLint)
-    ENV DISABLE_ESLINT_PLUGIN=true
-    RUN npm run build
+# Build the app (skip ESLint)
+ENV DISABLE_ESLINT_PLUGIN=true
+RUN npm run build
 
 # Production stage
-FROM nginx:alpine
+FROM node:18-alpine
 
-# Copy built files from build stage
-COPY --from=build /app/build /usr/share/nginx/html
+WORKDIR /app
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy package files
+COPY package*.json ./
+
+# Install only production dependencies
+RUN npm ci --only=production
+
+# Copy built React app from build stage
+COPY --from=build /app/build ./build
+
+# Copy server code
+COPY server ./server
 
 # Expose port
 EXPOSE 8080
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
-
+# Start the Node.js server
+CMD ["node", "server/index.js"]

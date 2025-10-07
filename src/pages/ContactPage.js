@@ -92,14 +92,28 @@ const ContactPage = () => {
     }
   }, [isDemo]);
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Reset form
-    setName('');
-    setEmail('');
-    setCompany('');
-    setMessage('');
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, company, message })
+      });
+      
+      if (!response.ok) throw new Error('Failed to send message');
+      
+      setSubmitted(true);
+      // Reset form
+      setName('');
+      setEmail('');
+      setCompany('');
+      setMessage('');
+    } catch (error) {
+      console.error('Contact form error:', error);
+      alert('Something went wrong. Please try again.');
+    }
   };
 
   if (submitted) {

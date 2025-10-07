@@ -107,11 +107,9 @@ const PricingPage = () => {
 
   return (
     <Wrap>
-      <Title>Choose the modules you need</Title>
+      <Title>Pricing to be announced at launch</Title>
       <p style={{ marginBottom: spacing.large }}>
-        Pitch List and Portfolio are free during the beta. Pricing for the remaining modules will be
-        announced at launch (Q1 2026). Buyers and Sellers have separate tracks – pick the modules that fit
-        your role.
+        Pubblo's products are currently in beta. Pricing will be announced at launch in January 2026. Don't miss our introduction discounts!
       </p>
 
       <Grid>

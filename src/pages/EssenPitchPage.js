@@ -77,29 +77,107 @@ const Small = styled.small`
   line-height: 1.6;
 `;
 
+const SuccessModal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: ${spacing.medium};
+  animation: fadeIn 0.3s ease;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
+
+const SuccessContent = styled.div`
+  background: white;
+  border-radius: 16px;
+  padding: ${spacing.xLarge};
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+  text-align: center;
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  h2 {
+    color: #2a30ea;
+    margin: 0 0 ${spacing.medium};
+    font-size: 28px;
+  }
+
+  p {
+    color: #333;
+    line-height: 1.6;
+    margin: 0 0 ${spacing.large};
+  }
+`;
+
+const CheckIcon = styled.div`
+  width: 80px;
+  height: 80px;
+  background: #2a30ea;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto ${spacing.large};
+  
+  &::after {
+    content: '✓';
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+  }
+`;
+
 const EssenPitchPage = () => {
   const [role, setRole] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
-    const formName = 'spielpitch';
-    const payload = new URLSearchParams();
-    payload.append('form-name', formName);
-    payload.append('name', name);
-    payload.append('email', email);
-    if (role === 'publisher') payload.append('company', company);
-    payload.append('role', role);
 
     try {
-      await fetch('/', {
+      const response = await fetch('/api/spielpitch', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: payload.toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          name, 
+          email, 
+          company: role === 'publisher' ? company : undefined, 
+          role 
+        })
       });
-      alert('Thanks! We\'ve received your registration.');
+      
+      if (!response.ok) throw new Error('Failed to register');
+      
+      setShowSuccess(true);
       setRole('');
       setName('');
       setEmail('');
@@ -109,9 +187,27 @@ const EssenPitchPage = () => {
     }
   };
 
+  const closeSuccessModal = () => {
+    setShowSuccess(false);
+  };
+
   return (
-    <Wrap>
-      <Heading>Join our Pitch Competition</Heading>
+    <>
+      {showSuccess && (
+        <SuccessModal onClick={closeSuccessModal}>
+          <SuccessContent onClick={(e) => e.stopPropagation()}>
+            <CheckIcon />
+            <h2>Registration Successful! 🎉</h2>
+            <p>
+              Thanks for registering! We've sent a confirmation email to <strong>{email}</strong> with next steps and information about your free Pubblo access for 2025.
+            </p>
+            <Button text="Close" onClick={closeSuccessModal} />
+          </SuccessContent>
+        </SuccessModal>
+      )}
+      
+      <Wrap>
+        <Heading>Join our Pitch Competition</Heading>
       <p>Starting on the 23rd of October, the first day of SPIEL in Essen, we're running a pitch competition. The competition is open until the 30th of November but register already now - early birds will get an advantage*</p>
       <ChoiceRow>
         <Card>
@@ -184,7 +280,8 @@ const EssenPitchPage = () => {
           submitted material; creators retain all rights to their ideas.
         </Small>
       </Info>
-    </Wrap>
+      </Wrap>
+    </>
   );
 };
 

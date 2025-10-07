@@ -45,6 +45,7 @@ const Form = ({ inputFields, checkboxes }) => {
     address: '',
     areas: [],
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,11 +65,48 @@ const Form = ({ inputFields, checkboxes }) => {
     }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await fetch('/api/homepage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      if (!response.ok) throw new Error('Failed to submit');
+      
+      setSubmitted(true);
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        address: '',
+        areas: [],
+      });
+    } catch (error) {
+      console.error('Homepage form error:', error);
+      alert('Something went wrong. Please try again.');
+    }
+  };
+
   const isOpen = formData.areas.length > 0;
 
+  if (submitted) {
+    return (
+      <div style={{ textAlign: 'center', padding: spacing.xLarge }}>
+        <h3 style={{ color: '#2e7d32' }}>✓ Thank you for your interest!</h3>
+        <p>We've received your submission and will be in touch soon.</p>
+        <Button text='Submit another form' onClick={() => setSubmitted(false)} />
+      </div>
+    );
+  }
+
   return (
-    <StyledForm name='contact-form' method='POST' data-netlify='true'>
-      <input type='hidden' name='form-name' value='contact-form' />
+    <StyledForm onSubmit={handleSubmit}>
 
       <Label>I'm interested in:</Label>
 
