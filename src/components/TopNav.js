@@ -182,7 +182,7 @@ const TopNav = ({ onCtaClick }) => {
       </Menu>
 
       <Right>
-        <MenuLink as='a' href='https://front.pubblo.com/' target='_blank' rel='noopener noreferrer'>Log in</MenuLink>
+        <MenuLink as='a' href='https://portal.pubblo.com/' target='_blank' rel='noopener noreferrer'>Log in</MenuLink>
         <Button text='Book demo' onClick={onCtaClick} />
       </Right>
 
@@ -199,7 +199,7 @@ const TopNav = ({ onCtaClick }) => {
         <MobileMenuLink to='/spielpitch' onClick={close}>Spiel Pitch</MobileMenuLink>
         <MobileMenuLink to='/about' onClick={close}>About</MobileMenuLink>
         <MobileMenuLink to='/contact' onClick={close}>— Contact</MobileMenuLink>
-        <MobileMenuLink as='a' href='https://front.pubblo.com/' target='_blank' rel='noopener noreferrer' onClick={close}>Log in</MobileMenuLink>
+        <MobileMenuLink as='a' href='https://portal.pubblo.com/' target='_blank' rel='noopener noreferrer' onClick={close}>Log in</MobileMenuLink>
         <div>
           <Button text='Book demo' onClick={() => { close(); onCtaClick(); }} />
         </div>
