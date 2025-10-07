@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors, spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
@@ -124,6 +125,11 @@ const Pink = styled.span`
 `;
 
 const ComparePage = () => {
+  const navigate = useNavigate();
+  const handleGoToLogin = () => {
+    navigate('/login');
+  };
+
   return (
     <Wrap>
       <Title>Pubblo vs. pitch directories, matchmaking, trade fairs and generic CRMs</Title>
@@ -141,7 +147,7 @@ const ComparePage = () => {
         <Cell $head>Generic CRM</Cell>
         <Cell $head>Pitch matchmaking</Cell>
         <Cell $head>Trade fairs</Cell>
-        <Cell $head $center>Pubblo <Badge>Deal engine</Badge></Cell>
+        <Cell $head $center>Pubblo <Badge>Deal engine</Badge></Cell>
 
         <Cell>Submission intake</Cell>
         <Cell>Manual forms / e‑mail</Cell>
@@ -188,8 +194,8 @@ const ComparePage = () => {
       </TableWrapper>
 
       <div style={{ marginTop: spacing.xXLarge, display: 'flex', gap: '16px' }}>
-        <Button text='See a scored submission' />
-        <Button text='Start free portfolio' variant='contrast' />
+        <Button text='Start free trial' onClick={handleGoToLogin} />
+        <Button text='Start free trial' variant='contrast' onClick={handleGoToLogin} />
       </div>
 
       <div style={{ marginTop: spacing.xLarge }}>

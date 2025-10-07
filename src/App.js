@@ -1,6 +1,6 @@
 import React from 'react';
 import GlobalStyles from './styles/GlobalStyles';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import TopNav from './components/TopNav';
 import UsersPage from './pages/UsersPage';
@@ -18,33 +18,47 @@ import ScrollToTop from './components/ScrollToTop';
 import ComparePage from './pages/ComparePage';
 import ContactPage from './pages/ContactPage';
 
+function AppContent() {
+  const navigate = useNavigate();
+  
+  const handleBookDemo = () => {
+    navigate('/contact?demo=true');
+  };
+
+  return (
+    <>
+      <TopNav onCtaClick={handleBookDemo} />
+      <ScrollToTop />
+      <div style={{ paddingTop: 72 }}>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/publisher' element={<HomePublisher />} />
+          <Route path='/creator' element={<HomeCreator />} />
+          <Route path='/preview' element={<HomePage />} />
+          <Route path='/users' element={<UsersPage />} />
+          <Route path='/products' element={<ProductsPage />} />
+          <Route path='/pricing' element={<PricingPage />} />
+          <Route path='/compare' element={<ComparePage />} />
+          <Route path='/faq' element={<FAQPage />} />
+          <Route path='/company' element={<CompanyPage />} />
+          <Route path='/about' element={<CompanyPage />} />
+          <Route path='/contact' element={<ContactPage />} />
+          <Route path='/spielpitch' element={<EssenPitchPage />} />
+          <Route path='/privacy' element={<PrivacyPage />} />
+          <Route path='/terms' element={<TermsPage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </>
+  );
+}
+
 function App() {
   return (
     <>
       <GlobalStyles />
       <Router>
-        <TopNav onCtaClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })} />
-        <ScrollToTop />
-        <div style={{ paddingTop: 72 }}>
-          <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/publisher' element={<HomePublisher />} />
-            <Route path='/creator' element={<HomeCreator />} />
-          <Route path='/preview' element={<HomePage />} />
-            <Route path='/users' element={<UsersPage />} />
-            <Route path='/products' element={<ProductsPage />} />
-            <Route path='/pricing' element={<PricingPage />} />
-            <Route path='/compare' element={<ComparePage />} />
-            <Route path='/faq' element={<FAQPage />} />
-            <Route path='/company' element={<CompanyPage />} />
-            <Route path='/about' element={<CompanyPage />} />
-            <Route path='/contact' element={<ContactPage />} />
-            <Route path='/spielpitch' element={<EssenPitchPage />} />
-            <Route path='/privacy' element={<PrivacyPage />} />
-            <Route path='/terms' element={<TermsPage />} />
-          </Routes>
-          <Footer />
-        </div>
+        <AppContent />
       </Router>
     </>
   );

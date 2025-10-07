@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../styles/tokens';
 import { spacing, breakpoints } from '../styles/tokens';
@@ -168,9 +169,13 @@ const checkboxes = [
 ];
 
 const HomePage = ({ lockedAudience }) => {
+  const navigate = useNavigate();
   const formSectionRef = useRef(null);
-  const handleScroll = () => {
+  const handleScrollToForm = () => {
     formSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+  const handleGoToLogin = () => {
+    navigate('/login');
   };
   const [showMarcus, setShowMarcus] = useState(false);
   const [visibleIds, setVisibleIds] = useState({});
@@ -231,22 +236,22 @@ const HomePage = ({ lockedAudience }) => {
       />
       <div>
       <Hero
-        onScrollToSection={handleScroll}
+        onScrollToSection={handleGoToLogin}
         lockedAudience={lockedAudience}
         audiences={{
           publishers: {
-            headline: 'Don’t let old systems hold you back',
+            headline: "Don't let old systems hold you back",
             subhead:
-              'Turn emails and Excel into efficient workflows with Pubblo’s digital tool for trading board game licenses and distribution rights.',
-            support: 'Work smarter. With Pubblo, it’s simple.',
+              "Turn emails and Excel into efficient workflows with Pubblo's digital tool for trading board game licenses and distribution rights.",
+            support: "Work smarter. With Pubblo, it's simple.",
             ctaText: 'Start free trial',
           },
           designers: {
             headline: 'One pitch to reach them all',
             subhead:
               'Make compelling and informative pitches for your games with Pubblo and reach new partners and markets.',
-            support: 'Work smarter. With Pubblo, it’s simple.',
-            ctaText: 'Create pitch',
+            support: "Work smarter. With Pubblo, it's simple.",
+            ctaText: 'Start free trial',
           },
         }}
       />
@@ -315,17 +320,18 @@ const HomePage = ({ lockedAudience }) => {
       <SectionWrap>
         <Reveal data-reveal-id='spiel' className={visibleIds['spiel'] ? 'is-visible' : ''}>
           <SpielTeaser>
-            <h2 style={{ marginTop: 0 }}>Spiel Pitch</h2>
+            <h2 style={{ marginTop: 0 }}>Pitch Competition</h2>
             <p>
-              During Spiel 2025 we’re running a pitch competition. If you’ve got a game, register to receive Pubblo’s
-              structured pitch template and submit your full pitch online after the fair.
+              Starting on the 23rd of October, the first day of SPIEL in Essen, we're running a pitch competition. The competition is open until the 30th of November but register already now - early birds will get an advantage.
             </p>
             <p>
-              If you’re looking for games, tell us what you’re interested in and join the evaluation panel. You’ll be
-              invited to review submissions that match your portfolio and help surface the most promising titles.
+              If you've got a game, register and make a great pitch using Pubblo's pitch creation tool. You can win a pitch meeting with a matching publisher!
             </p>
             <p>
-              Registration deadline: <strong>November 30, 2025</strong>. Pitch submission deadline: <strong>December 15, 2025</strong>.
+              If you're looking for games, tell us what you're interested in and you'll be invited to review matching pitches. Register now - you can be first to see the winning pitches.
+            </p>
+            <p>
+              <strong>Join for free - no strings attached!</strong>
             </p>
             <div style={{ marginTop: spacing.medium }}>
               <a href='/spielpitch' style={{ textDecoration: 'none' }}>

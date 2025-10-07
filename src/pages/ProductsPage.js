@@ -75,7 +75,14 @@ const ProductsPage = () => {
   const portfolioRef = useRef(null);
   const agencyRef = useRef(null);
 
-  const scrollTo = (ref) => ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const scrollTo = (ref) => {
+    if (ref.current) {
+      const yOffset = -100; // Offset for fixed header
+      const element = ref.current;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
 
   const productsStructuredData = {
     "@context": "https://schema.org",

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
@@ -54,36 +55,73 @@ const TextArea = styled.textarea`
   min-height: 140px;
 `;
 
+const SuccessBox = styled.div`
+  background: #e8f5e9;
+  border: 2px solid #4caf50;
+  border-radius: 14px;
+  padding: ${spacing.xLarge};
+  text-align: center;
+  margin: ${spacing.xXLarge} auto;
+  max-width: 500px;
+  
+  h3 {
+    color: #2e7d32;
+    margin-top: 0;
+    margin-bottom: ${spacing.medium};
+  }
+  
+  p {
+    color: #1b5e20;
+    line-height: 1.6;
+  }
+`;
+
 const ContactPage = () => {
+  const [searchParams] = useSearchParams();
+  const isDemo = searchParams.get('demo') === 'true';
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
   const [message, setMessage] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (isDemo) {
+      setMessage("I'm interested in a demo. Please contact me to schedule a meeting.");
+    }
+  }, [isDemo]);
 
   const submit = (e) => {
     e.preventDefault();
-    alert(`Thanks! ${name} | ${email} | ${message.substring(0, 50)}...`);
+    setSubmitted(true);
+    // Reset form
+    setName('');
+    setEmail('');
+    setCompany('');
+    setMessage('');
   };
+
+  if (submitted) {
+    return (
+      <Wrap>
+        <SuccessBox>
+          <h3>✓ Message sent successfully!</h3>
+          <p>Thank you for reaching out. We'll get back to you as soon as possible.</p>
+          <div style={{ marginTop: spacing.large }}>
+            <Button text='Send another message' onClick={() => setSubmitted(false)} />
+          </div>
+        </SuccessBox>
+      </Wrap>
+    );
+  }
 
   return (
     <Wrap>
       <Title>Contact us</Title>
 
       <Card>
-        <h3>Team</h3>
-        <p>
-          Magnus Hölcke (CEO) — operations & general inquiries:
-          <br />
-          <a href='mailto:magnus@pubblo.com'>magnus@pubblo.com</a>
-          <br />
-          <br />
-          Marcus Carleson (Founder) — media & partnerships:
-          <br />
-          <a href='mailto:marcus@pubblo.com'>marcus@pubblo.com</a>
-        </p>
-      </Card>
-
-      <Card>
-        <h3>Report a bug or ask a question</h3>
+        <h3>Drop us a note, we'd love to hear from you</h3>
         <form onSubmit={submit}>
           <Row>
             <div>
@@ -95,6 +133,10 @@ const ContactPage = () => {
               <Input id='email' type='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
             </div>
           </Row>
+          <div style={{ marginTop: spacing.medium }}>
+            <Label htmlFor='company'>Company{isDemo && ' *'}</Label>
+            <Input id='company' value={company} onChange={(e) => setCompany(e.target.value)} required={isDemo} />
+          </div>
           <div style={{ marginTop: spacing.medium }}>
             <Label htmlFor='message'>Message</Label>
             <TextArea id='message' value={message} onChange={(e) => setMessage(e.target.value)} required />

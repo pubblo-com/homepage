@@ -111,28 +111,23 @@ const EssenPitchPage = () => {
 
   return (
     <Wrap>
-      <Heading>Sign up for Spiel Pitch</Heading>
-      <p>Choose an option to continue:</p>
+      <Heading>Join our Pitch Competition</Heading>
+      <p>Starting on the 23rd of October, the first day of SPIEL in Essen, we're running a pitch competition. The competition is open until the 30th of November but register already now - early birds will get an advantage*</p>
       <ChoiceRow>
         <Card>
           <h3>Got a game?</h3>
-          <p>Join the competition – you don’t need to pitch at the fair.</p>
-          <Bullets>
-            <li>Registration deadline: <strong>November 30, 2025</strong></li>
-            <li>Submit your full pitch in Pubblo by <strong>December 15, 2025</strong></li>
-          </Bullets>
+          <p>You can win a pitch meeting with a matching publisher!</p>
+          <p>Register and submit your pitch no later than the 30th of November</p>
           <CTA>
-            <Button text='I’ve got a game' variant='contrast' onClick={() => setRole('creator')} />
+            <Button text="I've got a game" variant='contrast' onClick={() => setRole('creator')} />
           </CTA>
         </Card>
         <Card>
           <h3>Looking for games?</h3>
-          <p>Listen to selected pitches and discover new titles.</p>
-          <Bullets>
-            <li>Tell us your interests to get the right invites</li>
-          </Bullets>
+          <p>You can be the first to see the winning pitches!</p>
+          <p>Register no later than the 30th of November</p>
           <CTA>
-            <Button text='I’m looking for games' onClick={() => setRole('publisher')} />
+            <Button text="I'm looking for games" onClick={() => setRole('publisher')} />
           </CTA>
         </Card>
       </ChoiceRow>
@@ -165,30 +160,23 @@ const EssenPitchPage = () => {
       <Info>
         <h3>About the competition</h3>
         <p>
-          Registration deadline: <strong>November 30, 2025</strong>. After you register, you will receive Pubblo's
-          structured pitch template by email. Pitch submission deadline: <strong>December 15, 2025</strong>. After
-          submissions close, our jury will select the winning game based on potential (market fit, clarity of pitch
-          and feasibility).
+          Register and submit your pitch(es) no later than the 30th of November 2025. A jury will evaluate all submitted pitches and select winners based on market potential.
+        </p>
+        <Small>
+          *Time of submission will be an advantage when choosing between pitches perceived to be equal in terms of potential.
+        </Small>
+        <p>
+          Publishers and distributors that register will be randomly selected as winners. The winners will see pitches first but all participants will eventually get access to matching pitches.
         </p>
         <p>
-          Creators may submit more than one game idea.
-        </p>
-        <p>
-          Everyone who registers receives two months of free access to Pubblo’s
-          portfolio tool for published games (with analytics and portfolio
-          management).
-        </p>
-        <p>
-          Publishers who register will be able to tag their interests (genres,
-          mechanics, player count, audience, etc.) to get the right pitches at
-          the right time.
+          <strong>Everyone who registers receives free access to Pubblo for the remainder of 2025.</strong>
         </p>
 
         <Small>
           Terms and notes: One account per participant/company. By registering
           you agree to be contacted about the competition and your submission.
           Submissions must be original and not infringe third‑party rights. The
-          jury’s decision is final and cannot be appealed. No purchase is
+          jury's decision is final and cannot be appealed. No purchase is
           necessary. Pubblo may reference anonymized statistics from the
           competition for product improvement and PR. Personal data is handled
           according to our privacy policy. Benefits are non‑transferable and may

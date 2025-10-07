@@ -56,6 +56,8 @@ const Pill = styled.span`
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   height: 48px;
   line-height: 1;
+  position: relative;
+  z-index: 2;
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: 8px 12px;
@@ -77,6 +79,8 @@ const CenterPill = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 2;
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: 8px 12px;
@@ -95,6 +99,7 @@ const Connector = styled.div`
     rgba(42,48,234,0.18),
     rgba(249,81,96,0.18)
   );
+  z-index: 1;
   ${(p) => (p.$side === 'left' ? 'left: 0;' : 'right: 0;')}
 `;
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors, spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
@@ -99,6 +100,11 @@ const BadgeRow = styled.div`
 `;
 
 const PricingPage = () => {
+  const navigate = useNavigate();
+  const handleGoToLogin = () => {
+    navigate('/login');
+  };
+
   return (
     <Wrap>
       <Title>Choose the modules you need</Title>
@@ -120,10 +126,10 @@ const PricingPage = () => {
             <Price>Free (beta)</Price>
           </PriceBlock>
           <List>
-            <Item>Describe what you’re looking for; get matching pitches</Item>
+            <Item>Describe what you're looking for; get matching pitches</Item>
             <Item>Review standardized pitch pages</Item>
           </List>
-          <Button text='Get started' variant='secondary' />
+          <Button text='Start free trial' variant='secondary' onClick={handleGoToLogin} />
         </Card>
 
         <Card>
@@ -134,14 +140,14 @@ const PricingPage = () => {
             <Badge>Buyers</Badge>
           </BadgeRow>
           <PriceBlock>
-            <Price>Coming Q1 ’26</Price>
+            <Price>Coming Q1 '26</Price>
           </PriceBlock>
           <List>
             <Item>Receive submissions in a standardized format</Item>
             <Item>Auto‑score against your preferences</Item>
             <Item>Assign, comment and track status</Item>
           </List>
-          <Button text='Notify me' variant='secondary' />
+          <Button text='Start free trial' variant='secondary' onClick={handleGoToLogin} />
         </Card>
 
         <Card>
@@ -159,7 +165,7 @@ const PricingPage = () => {
             <Item $variant='pink'>Share with buyers; track interest</Item>
             <Item $variant='pink'>Generate Pubblo‑ready pitches</Item>
           </List>
-          <Button text='Start for free' variant='secondary-contrast' />
+          <Button text='Start free trial' variant='secondary-contrast' onClick={handleGoToLogin} />
         </Card>
 
         <Card>
@@ -170,13 +176,13 @@ const PricingPage = () => {
             <Badge $variant='pink'>Sellers</Badge>
           </BadgeRow>
           <PriceBlock>
-            <Price>Coming Q1 ’26</Price>
+            <Price>Coming Q1 '26</Price>
           </PriceBlock>
           <List>
             <Item $variant='pink'>Pubblo outreach to relevant partners</Item>
             <Item $variant='pink'>Sales support and deal coordination</Item>
           </List>
-          <Button text='Talk to us' variant='secondary-contrast' />
+          <Button text='Start free trial' variant='secondary-contrast' onClick={handleGoToLogin} />
         </Card>
       </Grid>
     </Wrap>
