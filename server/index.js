@@ -198,7 +198,7 @@ function getSpielPitchConfirmationEmail(name, role) {
       ${role === 'creator' ? `
         <h3>Next Steps for Game Designers:</h3>
         <ol>
-          <li><strong>Create your account</strong> at <a href="https://portal.pubblo.com">portal.pubblo.com</a></li>
+          <li><strong>Create your account</strong> at <a href="https://portal.pubblo.com/#/create-account/1-email-password">portal.pubblo.com</a></li>
           <li><strong>Submit your pitch</strong> using Pubblo's pitch creation tool</li>
           <li><strong>Deadline:</strong> November 30, 2025</li>
         </ol>
@@ -207,7 +207,7 @@ function getSpielPitchConfirmationEmail(name, role) {
       ` : `
         <h3>Next Steps for Publishers/Distributors:</h3>
         <ol>
-          <li><strong>Create your account</strong> at <a href="https://portal.pubblo.com">portal.pubblo.com</a></li>
+          <li><strong>Create your account</strong> at <a href="https://portal.pubblo.com/#/create-account/1-email-password">portal.pubblo.com</a></li>
           <li><strong>Set your preferences</strong> to see matching pitches</li>
           <li><strong>Winners will be randomly selected</strong> to see pitches first</li>
         </ol>
@@ -218,7 +218,7 @@ function getSpielPitchConfirmationEmail(name, role) {
       <p>Everyone who registers receives <strong>free access to Pubblo for the remainder of 2025</strong>!</p>
       
       <p style="margin-top: 30px;">
-        <a href="https://portal.pubblo.com" style="background: #2a30ea; color: white; padding: 12px 24px; text-decoration: none; border-radius: 32px; display: inline-block;">
+        <a href="https://portal.pubblo.com/#/create-account/1-email-password" style="background: #2a30ea; color: white; padding: 12px 24px; text-decoration: none; border-radius: 32px; display: inline-block;">
           Get Started on Pubblo →
         </a>
       </p>

@@ -159,6 +159,7 @@ const EssenPitchPage = () => {
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState('');
 
   const submit = async (e) => {
     e.preventDefault();
@@ -177,6 +178,7 @@ const EssenPitchPage = () => {
       
       if (!response.ok) throw new Error('Failed to register');
       
+      setSubmittedEmail(email);
       setShowSuccess(true);
       setRole('');
       setName('');
@@ -199,7 +201,7 @@ const EssenPitchPage = () => {
             <CheckIcon />
             <h2>Registration Successful! 🎉</h2>
             <p>
-              Thanks for registering! We've sent a confirmation email to <strong>{email}</strong> with next steps and information about your free Pubblo access for 2025.
+              Thanks for registering! We've sent a confirmation email to <strong>{submittedEmail}</strong> with next steps and information about your free Pubblo access for 2025.
             </p>
             <Button text="Close" onClick={closeSuccessModal} />
           </SuccessContent>

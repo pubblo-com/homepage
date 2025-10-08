@@ -19,6 +19,8 @@ const HeroSection = styled.section`
   @media (max-width: ${breakpoints.mobile}) {
     background: url(${backgroundImageMobile}) center/cover no-repeat;
     justify-content: start;
+    min-height: 600px;
+    padding-bottom: 120px;
   }
 `;
 
@@ -47,6 +49,7 @@ const WaveSection = styled.div`
   bottom: 0;
   left: 0;
   line-height: 0;
+  z-index: 1;
 `;
 
 const WaveImageContainer = styled.img`
@@ -74,6 +77,8 @@ const CopyWrap = styled.div`
   animation: ${(p) => (p.$audience === 'publishers' ? slideFromLeft : slideFromRight)} 320ms ease;
   margin-top: ${spacing.large};
   margin-bottom: ${spacing.xLarge};
+  position: relative;
+  z-index: 10;
   > p {
     max-width: 760px;
   }
