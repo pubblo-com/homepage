@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
+import { getRecaptchaToken } from '../utils/recaptcha';
 
 const Wrap = styled.main`
   padding: 120px ${spacing.xXLarge} 80px;
@@ -165,6 +166,7 @@ const EssenPitchPage = () => {
     e.preventDefault();
 
     try {
+      const recaptchaToken = await getRecaptchaToken('spielpitch_submit');
       const response = await fetch('/api/spielpitch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -172,7 +174,8 @@ const EssenPitchPage = () => {
           name, 
           email, 
           company: role === 'publisher' ? company : undefined, 
-          role 
+          role,
+          recaptchaToken
         })
       });
       

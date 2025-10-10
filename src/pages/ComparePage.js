@@ -9,7 +9,7 @@ const Wrap = styled.main`
   max-width: 1100px;
   margin: 0 auto;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.tablet}), (orientation: landscape) and (max-height: 480px) {
     padding: 100px ${spacing.large} 64px;
   }
 `;
@@ -23,41 +23,35 @@ const Lead = styled.p`
   line-height: 1.7;
 `;
 
-const TableWrapper = styled.div`
+// Outer wrapper hosts the stationary gradient overlay
+const TableOuter = styled.div`
   margin-top: ${spacing.xLarge};
   position: relative;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    
-    /* Scrollbar styling */
-    &::-webkit-scrollbar {
-      height: 8px;
-    }
-    &::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 4px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: ${colors.buttonBackground};
-      border-radius: 4px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background: ${colors.buttonBackgroundHover};
-    }
-
-    /* Fade indicators on edges */
+  @media (max-width: ${breakpoints.tablet}), (orientation: landscape) and (max-height: 480px) {
     &::after {
       content: '';
       position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 8px;
-      width: 40px;
-      background: linear-gradient(to left, rgba(255,255,255,0.9), transparent);
+      inset: 0 0 0 auto; /* ensure full height, right side */
+      width: 24px;
+      background: linear-gradient(to left, rgba(255,255,255,0.95), rgba(255,255,255,0));
       pointer-events: none;
     }
+  }
+`;
+
+// Scrollable inner container so the gradient does not move with content
+const TableScroll = styled.div`
+  @media (max-width: ${breakpoints.tablet}), (orientation: landscape) and (max-height: 480px) {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: ${spacing.small};
+    padding-right: ${spacing.small};
+
+    &::-webkit-scrollbar { height: 8px; }
+    &::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+    &::-webkit-scrollbar-thumb { background: ${colors.buttonBackground}; border-radius: 4px; }
+    &::-webkit-scrollbar-thumb:hover { background: ${colors.buttonBackgroundHover}; }
   }
 `;
 
@@ -69,7 +63,7 @@ const ScrollHint = styled.div`
   margin-bottom: ${spacing.small};
   font-weight: 600;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.tablet}), (orientation: landscape) and (max-height: 480px) {
     display: block;
   }
 `;
@@ -81,8 +75,10 @@ const Table = styled.div`
   border-radius: 12px;
   overflow: hidden;
 
-  @media (max-width: ${breakpoints.tablet}) {
-    min-width: 800px;
+  @media (max-width: ${breakpoints.tablet}), (orientation: landscape) and (max-height: 480px) {
+    /* Make columns only as wide as their content and allow horizontal overflow */
+    grid-template-columns: minmax(180px, max-content) repeat(5, max-content);
+    width: max-content;
   }
 `;
 
@@ -97,11 +93,16 @@ const Cell = styled.div`
   /* first row */
   &:nth-child(-n+6) { border-top: 0; }
 
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.tablet}), (orientation: landscape) and (max-height: 480px) {
     padding: ${spacing.small} 12px;
-    white-space: normal;
-    min-width: 140px;
     line-height: 1.4;
+    min-width: 0; /* allow shrinking to content */
+    white-space: nowrap; /* default: keep compact */
+    
+    /* Allow first column to wrap for readability */
+    &:nth-child(6n+1) {
+      white-space: normal;
+    }
   }
 `;
 
@@ -127,7 +128,7 @@ const Pink = styled.span`
 const ComparePage = () => {
   const navigate = useNavigate();
   const handleGoToLogin = () => {
-    navigate('/login');
+    navigate('/launch#/create-account/1-email-password');
   };
 
   return (
@@ -140,8 +141,9 @@ const ComparePage = () => {
       </Lead>
 
       <ScrollHint>← Swipe to compare →</ScrollHint>
-      <TableWrapper>
-        <Table>
+      <TableOuter>
+        <TableScroll>
+          <Table>
         <Cell $head>Capability</Cell>
         <Cell $head>Pitch directory</Cell>
         <Cell $head>Generic CRM</Cell>
@@ -190,8 +192,9 @@ const ComparePage = () => {
         <Cell>Facilitation of meetings only</Cell>
         <Cell>—</Cell>
         <Cell>Optional Pubblo <Pink>Agency</Pink> for targeted partner outreach</Cell>
-        </Table>
-      </TableWrapper>
+          </Table>
+        </TableScroll>
+      </TableOuter>
 
       <div style={{ marginTop: spacing.xXLarge, display: 'flex', gap: '16px' }}>
         <Button text='Start free trial' onClick={handleGoToLogin} />

@@ -18,6 +18,9 @@
 3. **Docker Desktop**
    - Install from [docker.com](https://www.docker.com/products/docker-desktop)
 
+4. (Recommended) Using Artifact Registry instead of Container Registry
+   - We push images to Artifact Registry in region `europe-west1`.
+
 ### Setup (First Time Only)
 
 1. **Authenticate with Google Cloud**
@@ -28,7 +31,7 @@
 
 2. **Set your project**
    ```bash
-   gcloud config set project YOUR_PROJECT_ID
+   gcloud config set project homepage-473608
    ```
 
 3. **Enable required APIs**
@@ -38,7 +41,7 @@
    gcloud services enable containerregistry.googleapis.com
    ```
 
-### 🎯 Deployment Options
+### 🎯 Deployment Options (Artifact Registry)
 
 #### Option 1: Using Deploy Script (Recommended)
 
@@ -50,28 +53,34 @@ chmod +x deploy.sh
 ./deploy.sh
 ```
 
-On Windows PowerShell:
+On Windows PowerShell (recommended):
 ```powershell
-bash deploy.sh
+./deploy.ps1 -ProjectId homepage-473608 -ServiceName homepage -Region europe-west1 -RepoName homepage
 ```
 
 #### Option 2: Manual Deployment
 
 ```bash
-# 1. Build Docker image
-docker build -t gcr.io/YOUR_PROJECT_ID/pubblo-landing:latest .
+# 0. Configure Docker auth for Artifact Registry
+gcloud auth configure-docker europe-west1-docker.pkg.dev
 
-# 2. Push to Google Container Registry
-docker push gcr.io/YOUR_PROJECT_ID/pubblo-landing:latest
+# 1. Ensure repo exists
+gcloud artifacts repositories create homepage --repository-format=docker --location=europe-west1 --description "Homepage images"
 
-# 3. Deploy to Cloud Run
-gcloud run deploy pubblo-landing \
-  --image=gcr.io/YOUR_PROJECT_ID/pubblo-landing:latest \
-  --platform=managed \
-  --region=europe-north1 \
-  --allow-unauthenticated \
-  --port=8080 \
-  --memory=512Mi
+# 2. Build Docker image
+docker build -t europe-west1-docker.pkg.dev/homepage-473608/homepage/homepage:latest .
+
+# 3. Push to Artifact Registry
+docker push europe-west1-docker.pkg.dev/homepage-473608/homepage/homepage:latest
+
+# 4. Deploy to Cloud Run
+gcloud run deploy homepage \
+   --image=europe-west1-docker.pkg.dev/homepage-473608/homepage/homepage:latest \
+   --platform=managed \
+   --region=europe-west1 \
+   --allow-unauthenticated \
+   --port=8080 \
+   --memory=512Mi
 ```
 
 #### Option 3: Automatic Deploy via GitHub (CI/CD)
@@ -89,9 +98,9 @@ gcloud run deploy pubblo-landing \
 1. **Map custom domain in Cloud Run**
    ```bash
    gcloud run domain-mappings create \
-     --service=pubblo-landing \
-     --domain=www.pubblo.com \
-     --region=europe-north1
+      --service=homepage \
+      --domain=www.pubblo.com \
+      --region=europe-west1
    ```
 
 2. **Update DNS records** (as shown in Cloud Console)
@@ -100,20 +109,20 @@ gcloud run deploy pubblo-landing \
 
 **View logs:**
 ```bash
-gcloud run services logs read pubblo-landing --region=europe-north1
+gcloud run services logs read homepage --region=europe-west1
 ```
 
 **View service details:**
 ```bash
-gcloud run services describe pubblo-landing --region=europe-north1
+gcloud run services describe homepage --region=europe-west1
 ```
 
 **Scale settings:**
 ```bash
-gcloud run services update pubblo-landing \
-  --min-instances=1 \
-  --max-instances=20 \
-  --region=europe-north1
+gcloud run services update homepage \
+   --min-instances=1 \
+   --max-instances=20 \
+   --region=europe-west1
 ```
 
 ### 💰 Cost Estimation
@@ -127,9 +136,9 @@ Cloud Run pricing (approx):
 ### 🔧 Environment Variables (if needed later)
 
 ```bash
-gcloud run services update pubblo-landing \
-  --update-env-vars API_KEY=your_key \
-  --region=europe-north1
+gcloud run services update homepage \
+   --update-env-vars API_KEY=your_key \
+   --region=europe-west1
 ```
 
 ### 🐛 Troubleshooting
@@ -164,5 +173,43 @@ Since you're moving away from Netlify Forms, you'll need:
    - Mailgun
    - Google Cloud Email API
 
-Would you like me to create a Cloud Function for form handling?
+Note: This project already includes a Node.js Express server that handles forms and serves the built React app. Ensure environment variables are set in Cloud Run if you use MongoDB or SMTP:
+
+- MONGODB_URI
+- SMTP_HOST
+- SMTP_USERNAME
+- SMTP_PASSWORD
+
+You can set them during deploy with:
+
+```bash
+gcloud run deploy homepage \
+   --image=europe-west1-docker.pkg.dev/homepage-473608/homepage/homepage:latest \
+   --region=europe-west1 \
+   --allow-unauthenticated \
+   --port=8080 \
+   --set-env-vars MONGODB_URI=... ,SMTP_HOST=... ,SMTP_USERNAME=... ,SMTP_PASSWORD=...
+```
+
+### 🔐 Fix for "Unauthenticated request" error
+
+Felet betyder att Docker inte är autentiserad mot Artifact Registry eller att du pushar till fel registry/region.
+
+Gör så här:
+
+```powershell
+gcloud auth login
+gcloud config set project homepage-473608
+gcloud services enable artifactregistry.googleapis.com
+gcloud auth configure-docker europe-west1-docker.pkg.dev
+
+# Bygg och pusha med korrekt image-path
+docker build -t europe-west1-docker.pkg.dev/homepage-473608/homepage/homepage:latest .
+docker push europe-west1-docker.pkg.dev/homepage-473608/homepage/homepage:latest
+```
+
+## Pre-launch countdown page
+
+- New route `/launch` shows a branded countdown to 2025-10-23 10:00 (Stockholm) and once the time is reached, it redirects to https://portal.pubblo.com preserving query/hash.
+- The rest of the website remains fully active; only the `/launch` page performs the post-date redirect.
 

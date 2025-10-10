@@ -20,26 +20,40 @@ if ! command -v gcloud &> /dev/null; then
 fi
 
 # Get project ID (or set it manually)
-PROJECT_ID=$(gcloud config get-value project)
+PROJECT_ID=${PROJECT_ID:-homepage-473608}
+gcloud config set project "$PROJECT_ID" >/dev/null
 if [ -z "$PROJECT_ID" ]; then
-    echo -e "${RED}❌ No Google Cloud project configured.${NC}"
-    echo "Run: gcloud config set project YOUR_PROJECT_ID"
-    exit 1
+  echo -e "${RED}❌ No Google Cloud project configured.${NC}"
+  echo "Run: gcloud config set project YOUR_PROJECT_ID"
+  exit 1
 fi
 
 echo -e "${GREEN}✓ Using project: $PROJECT_ID${NC}"
 
 # Set variables
-SERVICE_NAME="service-name"
+SERVICE_NAME="homepage"
 REGION="europe-west1"
-IMAGE_NAME="gcr.io/$PROJECT_ID/$SERVICE_NAME"
+REPO_NAME="homepage" # Artifact Registry repo name
+REGISTRY="$REGION-docker.pkg.dev"
+IMAGE_NAME="$REGISTRY/$PROJECT_ID/$REPO_NAME/$SERVICE_NAME"
 
 # Build Docker image
+echo -e "${BLUE}🔧 Enabling required APIs...${NC}"
+gcloud services enable cloudbuild.googleapis.com run.googleapis.com artifactregistry.googleapis.com >/dev/null
+
+echo -e "${BLUE}🔐 Configuring Docker auth for $REGISTRY...${NC}"
+gcloud auth configure-docker $REGISTRY -q >/dev/null
+
+echo -e "${BLUE}📂 Ensuring Artifact Registry repo $REPO_NAME exists...${NC}"
+if ! gcloud artifacts repositories describe $REPO_NAME --location=$REGION >/dev/null 2>&1; then
+  gcloud artifacts repositories create $REPO_NAME --repository-format=docker --location=$REGION --description "Homepage images" >/dev/null
+fi
+
 echo -e "${BLUE}📦 Building Docker image...${NC}"
 docker build -t $IMAGE_NAME:latest .
 
 # Push to Google Container Registry
-echo -e "${BLUE}☁️  Pushing to Google Container Registry...${NC}"
+echo -e "${BLUE}☁️  Pushing to Artifact Registry...${NC}"
 docker push $IMAGE_NAME:latest
 
 # Deploy to Cloud Run

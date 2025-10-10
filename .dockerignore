@@ -1,3 +1,28 @@
+# Node modules and caches
+node_modules
+npm-debug.log
+.yarn
+.pnpm-store
+
+# Git
+.git
+.gitignore
+
+# Local env
+.env
+.env.*
+
+# Build output (we rebuild inside Docker)
+build
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+
+# Docker
+.dockerignore
 node_modules
 npm-debug.log
 .git

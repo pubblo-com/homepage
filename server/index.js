@@ -1,4 +1,6 @@
 const express = require('express');
+// Load .env in development for convenience
+try { require('dotenv').config(); } catch {}
 const cors = require('cors');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
@@ -6,6 +8,10 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+// Server-side launch moment: 2025-10-23 10:00 Stockholm = 2025-10-23T08:00:00Z
+const LAUNCH_UTC_MS = new Date('2025-10-23T08:00:00Z').getTime();
+const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET;
+const DISABLE_EMAIL = String(process.env.DISABLE_EMAIL).toLowerCase() === 'true';
 
 // Middleware
 app.use(cors());
@@ -128,17 +134,21 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// Verify SMTP connection on startup
-if (process.env.SMTP_HOST && process.env.SMTP_USERNAME && process.env.SMTP_PASSWORD) {
-  transporter.verify((error, success) => {
-    if (error) {
-      console.error('❌ SMTP connection verification failed:', error.message);
-    } else {
-      console.log('✅ SMTP server is ready to send emails');
-    }
-  });
+// Verify SMTP connection on startup (unless disabled)
+if (DISABLE_EMAIL) {
+  console.warn('🧪 Email sending disabled via DISABLE_EMAIL=true');
 } else {
-  console.warn('⚠️  SMTP credentials incomplete - email features may not work');
+  if (process.env.SMTP_HOST && process.env.SMTP_USERNAME && process.env.SMTP_PASSWORD) {
+    transporter.verify((error, success) => {
+      if (error) {
+        console.error('❌ SMTP connection verification failed:', error.message);
+      } else {
+        console.log('✅ SMTP server is ready to send emails');
+      }
+    });
+  } else {
+    console.warn('⚠️  SMTP credentials incomplete - email features may not work');
+  }
 }
 
 // Email Templates
@@ -193,32 +203,16 @@ function getSpielPitchConfirmationEmail(name, role) {
     html: `
       <h2>Welcome to the Spiel Pitch Competition!</h2>
       <p>Hi ${name},</p>
-      <p>Thank you for registering as a <strong>${role === 'creator' ? 'game designer' : 'publisher/distributor'}</strong> for our Spiel Pitch Competition!</p>
+      <p>Thank you for registering for the Spiel Pitch Competition!</p>
+      <h3>The competition will begin at 10 am CET on Thursday, 23 October 2025</h3>
+
+      <p>Once the competition starts, you will receive an e-mail containing further details and links.</p>
       
-      ${role === 'creator' ? `
-        <h3>Next Steps for Game Designers:</h3>
-        <ol>
-          <li><strong>Create your account</strong> at <a href="https://portal.pubblo.com/#/create-account/1-email-password">portal.pubblo.com</a></li>
-          <li><strong>Submit your pitch</strong> using Pubblo's pitch creation tool</li>
-          <li><strong>Deadline:</strong> November 30, 2025</li>
-        </ol>
-        <p>Early submissions get an advantage when choosing between pitches perceived to be equal in terms of potential.</p>
-        <p><strong>Prize:</strong> Win a pitch meeting with a matching publisher!</p>
-      ` : `
-        <h3>Next Steps for Publishers/Distributors:</h3>
-        <ol>
-          <li><strong>Create your account</strong> at <a href="https://portal.pubblo.com/#/create-account/1-email-password">portal.pubblo.com</a></li>
-          <li><strong>Set your preferences</strong> to see matching pitches</li>
-          <li><strong>Winners will be randomly selected</strong> to see pitches first</li>
-        </ol>
-        <p>All participants will eventually get access to matching pitches.</p>
-      `}
-      
-      <h3>Your Free Access:</h3>
-      <p>Everyone who registers receives <strong>free access to Pubblo for the remainder of 2025</strong>!</p>
-      
+      <p>We look forward to seeing you on Pubblo!</p>
+      <p></p>
+      <p>The button below will start to work once the competition begins:</p>
       <p style="margin-top: 30px;">
-        <a href="https://portal.pubblo.com/#/create-account/1-email-password" style="background: #2a30ea; color: white; padding: 12px 24px; text-decoration: none; border-radius: 32px; display: inline-block;">
+            <a href="https://pubblo.com/launch/#/spielpitch" style="background: #2a30ea; color: white; padding: 12px 24px; text-decoration: none; border-radius: 32px; display: inline-block;">
           Get Started on Pubblo →
         </a>
       </p>
@@ -247,13 +241,139 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// Dev-only helper: simple page to generate reCAPTCHA v3 tokens locally
+if (process.env.NODE_ENV !== 'production') {
+  app.get('/dev/recaptcha', (req, res) => {
+    const siteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '';
+    const action = req.query.action || 'test';
+    res.type('html').send(`<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>reCAPTCHA v3 Token Generator</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; padding: 24px; max-width: 800px; margin: 0 auto; }
+      .row { margin: 12px 0; }
+      input[type="text"] { width: 100%; padding: 8px 12px; font-size: 14px; }
+      button { background: #2a30ea; color: #fff; border: 0; padding: 10px 16px; border-radius: 6px; cursor: pointer; }
+      code, textarea { width: 100%; box-sizing: border-box; padding: 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+      textarea { height: 140px; }
+      .hint { color: #555; font-size: 13px; }
+      .warn { color: #b00; }
+    </style>
+    ${siteKey ? `<script src="https://www.google.com/recaptcha/api.js?render=${siteKey}"></script>` : ''}
+  </head>
+  <body>
+    <h1>reCAPTCHA v3 Token Generator</h1>
+    ${siteKey ? '' : '<p class="warn">REACT_APP_RECAPTCHA_SITE_KEY is missing. Set it in your .env and restart the server.</p>'}
+    <div class="row">
+      <label>Site key</label>
+      <input type="text" value="${siteKey}" readonly />
+    </div>
+    <div class="row">
+      <label>Action</label>
+      <input id="action" type="text" value="${action}" />
+      <div class="hint">Use a short action name, e.g., contact | spielpitch | homepage</div>
+    </div>
+    <div class="row">
+      <button id="gen" ${siteKey ? '' : 'disabled'}>Generate token</button>
+      <button id="copy" disabled style="margin-left:8px;">Copy</button>
+    </div>
+    <div class="row">
+      <label>Token</label>
+      <textarea id="token" readonly placeholder="Press Generate to get a token..."></textarea>
+    </div>
+    <script>
+      const siteKey = ${JSON.stringify(siteKey)};
+      const tokenEl = document.getElementById('token');
+      const actionEl = document.getElementById('action');
+      const genBtn = document.getElementById('gen');
+      const copyBtn = document.getElementById('copy');
+      function setToken(t){ tokenEl.value = t || ''; copyBtn.disabled = !t; }
+      if (genBtn) {
+        genBtn.addEventListener('click', function(){
+          if (!siteKey) return alert('Missing site key');
+          const action = (actionEl.value || 'test').trim();
+          setToken('Generating...');
+          grecaptcha.ready(function(){
+            grecaptcha.execute(siteKey, { action }).then(function(token){
+              setToken(token);
+            }).catch(function(err){
+              setToken('');
+              alert('Failed to get token: ' + (err && err.message || err));
+            });
+          });
+        });
+      }
+      copyBtn.addEventListener('click', function(){
+        navigator.clipboard.writeText(tokenEl.value).then(function(){
+          copyBtn.textContent = 'Copied!';
+          setTimeout(function(){ copyBtn.textContent = 'Copy'; }, 800);
+        });
+      });
+    </script>
+  </body>
+ </html>`);
+  });
+}
+
+// Server decides redirect on /launch when time has passed
+app.get('/launch', (req, res) => {
+  const now = Date.now();
+  if (now >= LAUNCH_UTC_MS) {
+    // Preserve query parameters and optional hash (if client provided as ?hash=...)
+    const qsBuilder = new URLSearchParams();
+    let hash = '';
+    for (const [key, value] of Object.entries(req.query || {})) {
+      if (key.toLowerCase() === 'hash') {
+        // value can be array or string
+        hash = Array.isArray(value) ? String(value[0] ?? '') : String(value ?? '');
+      } else {
+        if (Array.isArray(value)) {
+          value.forEach(v => qsBuilder.append(key, String(v)));
+        } else if (value !== undefined && value !== null) {
+          qsBuilder.append(key, String(value));
+        }
+      }
+    }
+    let destination = 'https://portal.pubblo.com';
+    const qs = qsBuilder.toString();
+    if (qs) destination += `?${qs}`;
+    if (hash) destination += `#${hash}`;
+    return res.redirect(302, destination);
+  }
+  // Before launch: serve SPA so the countdown page renders
+  return res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
+
+// Note: The launch countdown/redirect is handled client-side on /launch route only.
+
 // Contact form endpoint
 app.post('/api/contact', async (req, res) => {
   const startTime = Date.now();
   console.log('\n📨 [CONTACT] New contact form submission');
   
   try {
-    const { name, email, company, message } = req.body;
+    const { name, email, company, message, recaptchaToken } = req.body;
+    // Verify reCAPTCHA if secret is set
+    if (RECAPTCHA_SECRET) {
+      try {
+        const verifyRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ secret: RECAPTCHA_SECRET, response: recaptchaToken || '' })
+        });
+        const verify = await verifyRes.json();
+        if (!verify.success || (typeof verify.score === 'number' && verify.score < 0.5)) {
+          console.warn('⚠️  [CONTACT] reCAPTCHA verification failed', verify);
+          return res.status(400).json({ error: 'Captcha validation failed' });
+        }
+      } catch (capErr) {
+        console.error('❌ [CONTACT] reCAPTCHA verify error:', capErr.message);
+        return res.status(400).json({ error: 'Captcha verification error' });
+      }
+    }
     console.log(`👤 From: ${name} <${email}> ${company ? `(${company})` : ''}`);
 
     // Validate required fields for contact form
@@ -297,24 +417,28 @@ app.post('/api/contact', async (req, res) => {
       console.warn('⚠️  [CONTACT] MongoDB not connected - skipping database save');
     }
 
-    // Send notification email to info
-    console.log('📧 [CONTACT] Sending notification email to info@pubblo.com...');
-    try {
-      const notification = getNotificationEmail(contactData);
-      const mailOptions = {
-        from: 'info@pubblo.com',
-        to: 'info@pubblo.com',
-        subject: notification.subject,
-        html: notification.html
-      };
-      console.log('📨 [CONTACT] Mail options:', JSON.stringify({ from: mailOptions.from, to: mailOptions.to, subject: mailOptions.subject }, null, 2));
-      const emailResult = await transporter.sendMail(mailOptions);
-      console.log('✅ [CONTACT] Notification email sent successfully');
-      console.log('📬 [CONTACT] Email response:', JSON.stringify(emailResult, null, 2));
-    } catch (emailError) {
-      console.error('❌ [CONTACT] Email send failed:', emailError.message);
-      console.error('❌ [CONTACT] Error stack:', emailError.stack);
-      throw emailError;
+    // Send notification email to info (unless disabled)
+    if (!DISABLE_EMAIL) {
+      console.log('📧 [CONTACT] Sending notification email to info@pubblo.com...');
+      try {
+        const notification = getNotificationEmail(contactData);
+        const mailOptions = {
+          from: 'info@pubblo.com',
+          to: 'info@pubblo.com',
+          subject: notification.subject,
+          html: notification.html
+        };
+        console.log('📨 [CONTACT] Mail options:', JSON.stringify({ from: mailOptions.from, to: mailOptions.to, subject: mailOptions.subject }, null, 2));
+        const emailResult = await transporter.sendMail(mailOptions);
+        console.log('✅ [CONTACT] Notification email sent successfully');
+        console.log('📬 [CONTACT] Email response:', JSON.stringify(emailResult, null, 2));
+      } catch (emailError) {
+        console.error('❌ [CONTACT] Email send failed:', emailError.message);
+        console.error('❌ [CONTACT] Error stack:', emailError.stack);
+        throw emailError;
+      }
+    } else {
+      console.warn('🧪 [CONTACT] Email send skipped (DISABLE_EMAIL=true)');
     }
 
     const duration = Date.now() - startTime;
@@ -333,7 +457,25 @@ app.post('/api/spielpitch', async (req, res) => {
   console.log('\n🎲 [SPIELPITCH] New Spiel Pitch registration');
   
   try {
-    const { name, email, company, role } = req.body;
+    const { name, email, company, role, recaptchaToken } = req.body;
+    // Verify reCAPTCHA if secret is set
+    if (RECAPTCHA_SECRET) {
+      try {
+        const verifyRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ secret: RECAPTCHA_SECRET, response: recaptchaToken || '' })
+        });
+        const verify = await verifyRes.json();
+        if (!verify.success || (typeof verify.score === 'number' && verify.score < 0.5)) {
+          console.warn('⚠️  [SPIELPITCH] reCAPTCHA verification failed', verify);
+          return res.status(400).json({ error: 'Captcha validation failed' });
+        }
+      } catch (capErr) {
+        console.error('❌ [SPIELPITCH] reCAPTCHA verify error:', capErr.message);
+        return res.status(400).json({ error: 'Captcha verification error' });
+      }
+    }
     console.log(`👤 From: ${name} <${email}> as ${role ? role.toUpperCase() : 'UNKNOWN'} ${company ? `(${company})` : ''}`);
 
     // Validate role
@@ -377,44 +519,52 @@ app.post('/api/spielpitch', async (req, res) => {
       console.warn('⚠️  [SPIELPITCH] MongoDB not connected - skipping database save');
     }
 
-    // Send notification email to info
-    console.log('📧 [SPIELPITCH] Sending notification email to info@pubblo.com...');
-    try {
-      const notification = getNotificationEmail(contactData);
-      const mailOptions = {
-        from: 'info@pubblo.com',
-        to: 'info@pubblo.com',
-        subject: notification.subject,
-        html: notification.html
-      };
-      console.log('📨 [SPIELPITCH] Mail options:', JSON.stringify({ from: mailOptions.from, to: mailOptions.to, subject: mailOptions.subject }, null, 2));
-      const emailResult = await transporter.sendMail(mailOptions);
-      console.log('✅ [SPIELPITCH] Notification email sent successfully');
-      console.log('📬 [SPIELPITCH] Email response:', JSON.stringify(emailResult, null, 2));
-    } catch (emailError) {
-      console.error('❌ [SPIELPITCH] Notification email failed:', emailError.message);
-      console.error('❌ [SPIELPITCH] Error stack:', emailError.stack);
-      throw emailError;
+    // Send notification email to info (unless disabled)
+    if (!DISABLE_EMAIL) {
+      console.log('📧 [SPIELPITCH] Sending notification email to info@pubblo.com...');
+      try {
+        const notification = getNotificationEmail(contactData);
+        const mailOptions = {
+          from: 'info@pubblo.com',
+          to: 'info@pubblo.com',
+          subject: notification.subject,
+          html: notification.html
+        };
+        console.log('📨 [SPIELPITCH] Mail options:', JSON.stringify({ from: mailOptions.from, to: mailOptions.to, subject: mailOptions.subject }, null, 2));
+        const emailResult = await transporter.sendMail(mailOptions);
+        console.log('✅ [SPIELPITCH] Notification email sent successfully');
+        console.log('📬 [SPIELPITCH] Email response:', JSON.stringify(emailResult, null, 2));
+      } catch (emailError) {
+        console.error('❌ [SPIELPITCH] Notification email failed:', emailError.message);
+        console.error('❌ [SPIELPITCH] Error stack:', emailError.stack);
+        throw emailError;
+      }
+    } else {
+      console.warn('🧪 [SPIELPITCH] Notification email skipped (DISABLE_EMAIL=true)');
     }
 
-    // Send confirmation email to user
-    console.log(`📧 [SPIELPITCH] Sending confirmation email to ${email}...`);
-    try {
-      const confirmation = getSpielPitchConfirmationEmail(name, role);
-      const mailOptions = {
-        from: 'info@pubblo.com',
-        to: email,
-        subject: confirmation.subject,
-        html: confirmation.html
-      };
-      console.log('📨 [SPIELPITCH] Confirmation mail options:', JSON.stringify({ from: mailOptions.from, to: mailOptions.to, subject: mailOptions.subject }, null, 2));
-      const emailResult = await transporter.sendMail(mailOptions);
-      console.log('✅ [SPIELPITCH] Confirmation email sent successfully');
-      console.log('📬 [SPIELPITCH] Email response:', JSON.stringify(emailResult, null, 2));
-    } catch (emailError) {
-      console.error('❌ [SPIELPITCH] Confirmation email failed:', emailError.message);
-      console.error('❌ [SPIELPITCH] Error stack:', emailError.stack);
-      throw emailError;
+    // Send confirmation email to user (unless disabled)
+    if (!DISABLE_EMAIL) {
+      console.log(`📧 [SPIELPITCH] Sending confirmation email to ${email}...`);
+      try {
+        const confirmation = getSpielPitchConfirmationEmail(name, role);
+        const mailOptions = {
+          from: 'info@pubblo.com',
+          to: email,
+          subject: confirmation.subject,
+          html: confirmation.html
+        };
+        console.log('📨 [SPIELPITCH] Confirmation mail options:', JSON.stringify({ from: mailOptions.from, to: mailOptions.to, subject: mailOptions.subject }, null, 2));
+        const emailResult = await transporter.sendMail(mailOptions);
+        console.log('✅ [SPIELPITCH] Confirmation email sent successfully');
+        console.log('📬 [SPIELPITCH] Email response:', JSON.stringify(emailResult, null, 2));
+      } catch (emailError) {
+        console.error('❌ [SPIELPITCH] Confirmation email failed:', emailError.message);
+        console.error('❌ [SPIELPITCH] Error stack:', emailError.stack);
+        throw emailError;
+      }
+    } else {
+      console.warn('🧪 [SPIELPITCH] Confirmation email skipped (DISABLE_EMAIL=true)');
     }
 
     const duration = Date.now() - startTime;
@@ -433,7 +583,25 @@ app.post('/api/homepage', async (req, res) => {
   console.log('\n🏠 [HOMEPAGE] New homepage form submission');
   
   try {
-    const { name, email, phone, company, address, areas } = req.body;
+    const { name, email, phone, company, address, areas, recaptchaToken } = req.body;
+    // Verify reCAPTCHA if secret is set
+    if (RECAPTCHA_SECRET) {
+      try {
+        const verifyRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ secret: RECAPTCHA_SECRET, response: recaptchaToken || '' })
+        });
+        const verify = await verifyRes.json();
+        if (!verify.success || (typeof verify.score === 'number' && verify.score < 0.5)) {
+          console.warn('⚠️  [HOMEPAGE] reCAPTCHA verification failed', verify);
+          return res.status(400).json({ error: 'Captcha validation failed' });
+        }
+      } catch (capErr) {
+        console.error('❌ [HOMEPAGE] reCAPTCHA verify error:', capErr.message);
+        return res.status(400).json({ error: 'Captcha verification error' });
+      }
+    }
     console.log(`👤 From: ${name} <${email}> ${company ? `(${company})` : ''}`);
     console.log(`📋 Interested in: ${areas ? areas.join(', ') : 'none'}`);
 
@@ -474,24 +642,28 @@ app.post('/api/homepage', async (req, res) => {
       console.warn('⚠️  [HOMEPAGE] MongoDB not connected - skipping database save');
     }
 
-    // Send notification email to info
-    console.log('📧 [HOMEPAGE] Sending notification email to info@pubblo.com...');
-    try {
-      const notification = getNotificationEmail(contactData);
-      const mailOptions = {
-        from: 'info@pubblo.com',
-        to: 'info@pubblo.com',
-        subject: notification.subject,
-        html: notification.html
-      };
-      console.log('📨 [HOMEPAGE] Mail options:', JSON.stringify({ from: mailOptions.from, to: mailOptions.to, subject: mailOptions.subject }, null, 2));
-      const emailResult = await transporter.sendMail(mailOptions);
-      console.log('✅ [HOMEPAGE] Notification email sent successfully');
-      console.log('📬 [HOMEPAGE] Email response:', JSON.stringify(emailResult, null, 2));
-    } catch (emailError) {
-      console.error('❌ [HOMEPAGE] Email send failed:', emailError.message);
-      console.error('❌ [HOMEPAGE] Error stack:', emailError.stack);
-      throw emailError;
+    // Send notification email to info (unless disabled)
+    if (!DISABLE_EMAIL) {
+      console.log('📧 [HOMEPAGE] Sending notification email to info@pubblo.com...');
+      try {
+        const notification = getNotificationEmail(contactData);
+        const mailOptions = {
+          from: 'info@pubblo.com',
+          to: 'info@pubblo.com',
+          subject: notification.subject,
+          html: notification.html
+        };
+        console.log('📨 [HOMEPAGE] Mail options:', JSON.stringify({ from: mailOptions.from, to: mailOptions.to, subject: mailOptions.subject }, null, 2));
+        const emailResult = await transporter.sendMail(mailOptions);
+        console.log('✅ [HOMEPAGE] Notification email sent successfully');
+        console.log('📬 [HOMEPAGE] Email response:', JSON.stringify(emailResult, null, 2));
+      } catch (emailError) {
+        console.error('❌ [HOMEPAGE] Email send failed:', emailError.message);
+        console.error('❌ [HOMEPAGE] Error stack:', emailError.stack);
+        throw emailError;
+      }
+    } else {
+      console.warn('🧪 [HOMEPAGE] Email send skipped (DISABLE_EMAIL=true)');
     }
 
     const duration = Date.now() - startTime;

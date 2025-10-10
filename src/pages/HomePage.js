@@ -175,7 +175,7 @@ const HomePage = ({ lockedAudience }) => {
     formSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
   const handleGoToLogin = () => {
-    navigate('/login');
+    navigate('/launch#/create-account/1-email-password');
   };
   const [showMarcus, setShowMarcus] = useState(false);
   const [visibleIds, setVisibleIds] = useState({});

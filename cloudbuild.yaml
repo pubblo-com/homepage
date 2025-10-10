@@ -1,16 +1,25 @@
 # Google Cloud Build configuration
+substitutions:
+  _REGION: 'europe-west1'
+  _REPO: 'homepage'
+  _IMAGE: '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO}/homepage:latest'
+
 steps:
+  # Configure Docker auth for Artifact Registry
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud auth configure-docker ${_REGION}-docker.pkg.dev -q
+
   # Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: [
-      'build',
-      '-t', 'gcr.io/$PROJECT_ID/homepage:latest',
-      '.'
-    ]
+    args: ['build', '-t', '${_IMAGE}', '.']
 
-  # Push the Docker image to Google Container Registry
+  # Push the Docker image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/homepage:latest']
+    args: ['push', '${_IMAGE}']
 
   # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -18,16 +27,16 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'service-name'
-      - '--image=gcr.io/$PROJECT_ID/homepage:latest'
-      - '--region=europe-west1'
+      - 'homepage'
+      - '--image=${_IMAGE}'
+      - '--region=${_REGION}'
       - '--platform=managed'
       - '--allow-unauthenticated'
       - '--port=8080'
       - '--memory=512Mi'
 
 images:
-  - 'gcr.io/$PROJECT_ID/homepage:latest'
+  - '${_IMAGE}'
 
 options:
   logging: CLOUD_LOGGING_ONLY

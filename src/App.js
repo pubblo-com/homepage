@@ -17,6 +17,7 @@ import TermsPage from './pages/TermsPage';
 import ScrollToTop from './components/ScrollToTop';
 import ComparePage from './pages/ComparePage';
 import ContactPage from './pages/ContactPage';
+import LaunchPage from './pages/LaunchPage';
 
 function AppContent() {
   const navigate = useNavigate();
@@ -24,10 +25,15 @@ function AppContent() {
   const handleBookDemo = () => {
     navigate('/contact?demo=true');
   };
+  // Route helper for "Start free trial" style CTAs to go through launch path
+  const gotoStartTrial = () => {
+    // Use hash route under /launch so server controls cutover
+    navigate('/launch#/create-account/1-email-password');
+  };
 
   return (
     <>
-      <TopNav onCtaClick={handleBookDemo} />
+  <TopNav onCtaClick={handleBookDemo} />
       <ScrollToTop />
       <div style={{ paddingTop: 72 }}>
         <Routes>
@@ -46,6 +52,7 @@ function AppContent() {
           <Route path='/spielpitch' element={<EssenPitchPage />} />
           <Route path='/privacy' element={<PrivacyPage />} />
           <Route path='/terms' element={<TermsPage />} />
+          <Route path='/launch' element={<LaunchPage />} />
         </Routes>
         <Footer />
       </div>

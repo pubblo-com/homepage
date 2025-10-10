@@ -4,6 +4,7 @@ import { spacing, typography, breakpoints } from '../styles/tokens';
 import Checkbox from './Checkbox';
 import InputField from './InputField';
 import Button from './Button';
+import { getRecaptchaToken } from '../utils/recaptcha';
 
 const StyledForm = styled.form`
   display: flex;
@@ -69,10 +70,11 @@ const Form = ({ inputFields, checkboxes }) => {
     e.preventDefault();
     
     try {
+      const recaptchaToken = await getRecaptchaToken('homepage_submit');
       const response = await fetch('/api/homepage', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({ ...formData, recaptchaToken })
       });
       
       if (!response.ok) throw new Error('Failed to submit');

@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
+import { getRecaptchaToken } from '../utils/recaptcha';
 
 const Wrap = styled.main`
   padding: 120px ${spacing.xXLarge} 80px;
@@ -96,10 +97,11 @@ const ContactPage = () => {
     e.preventDefault();
     
     try {
+      const recaptchaToken = await getRecaptchaToken('contact_submit');
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, company, message })
+        body: JSON.stringify({ name, email, company, message, recaptchaToken })
       });
       
       if (!response.ok) throw new Error('Failed to send message');

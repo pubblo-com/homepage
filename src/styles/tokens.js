@@ -17,6 +17,7 @@ export const colors = {
 // Typography
 export const typography = {
   fontFamily: "'Plus Jakarta Sans', sans-serif",
+  fontSizeBase: '16px',
   fontSizeH1: '57px',
   fontSizeH2: '36px',
   fontSizeH3: '24px',

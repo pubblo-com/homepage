@@ -3,7 +3,7 @@ import { spacing } from '../styles/tokens';
 
 const H2WithUnderline = styled.h2`
   position: relative;
-  display: inline;
+  display: inline-block;
   width: fit-content;
 
   &::after {
