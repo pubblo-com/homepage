@@ -52,6 +52,83 @@ if (-not $repoExists) {
     & gcloud artifacts repositories create $RepoName --repository-format=docker --location=$Region --description "Homepage images" | Out-Null
 }
 
+# Resolve reCAPTCHA configuration if parameters are not provided
+Write-Host "Resolving reCAPTCHA configuration..." -ForegroundColor Cyan
+
+# Helper: try read key from .env
+function Get-EnvValueFromFile($filePath, $key) {
+    if (Test-Path $filePath) {
+        $line = (Get-Content $filePath | Where-Object { $_ -match ("^\s*" + [regex]::Escape($key) + "\s*=") } | Select-Object -First 1)
+        if ($line) { return ($line -split '=',2)[1].Trim() }
+    }
+    return $null
+}
+
+$envFile = Join-Path $PSScriptRoot ".env"
+
+if (-not $RecaptchaSiteKey) {
+    # 1) Try local .env
+    $RecaptchaSiteKey = Get-EnvValueFromFile -filePath $envFile -key 'REACT_APP_RECAPTCHA_SITE_KEY'
+}
+
+# Will also inspect current Cloud Run service envs for site key and secret config
+$svcJson = $null
+try {
+    $svcJson = (& gcloud run services describe $ServiceName --platform=managed --region=$Region --format=json | ConvertFrom-Json)
+} catch {}
+
+$existingEnv = $null
+if ($svcJson) {
+    try { $existingEnv = $svcJson.spec.template.spec.containers[0].env } catch { $existingEnv = @() }
+}
+
+if (-not $RecaptchaSiteKey -and $existingEnv) {
+    $siteKeyEnv = $existingEnv | Where-Object { $_.name -eq 'REACT_APP_RECAPTCHA_SITE_KEY' } | Select-Object -First 1
+    if ($siteKeyEnv) {
+        if ($siteKeyEnv.value) {
+            $RecaptchaSiteKey = $siteKeyEnv.value
+            Write-Host "Using REACT_APP_RECAPTCHA_SITE_KEY from Cloud Run env (literal)." -ForegroundColor Yellow
+        } elseif ($siteKeyEnv.valueFrom -and $siteKeyEnv.valueFrom.secretKeyRef -and $siteKeyEnv.valueFrom.secretKeyRef.name) {
+            $secretName = $siteKeyEnv.valueFrom.secretKeyRef.name
+            Write-Host "Fetching site key from Secret Manager: $secretName" -ForegroundColor Yellow
+            try {
+                $RecaptchaSiteKey = (& gcloud secrets versions access latest --secret=$secretName)
+            } catch {
+                Write-Warning "Failed to access secret '$secretName'. You may lack permissions."
+            }
+        }
+    }
+}
+
+# Detect existing RECAPTCHA_SECRET binding type to avoid type conflict
+$skipSecretUpdate = $false
+$resolvedRecaptchaSecret = $RecaptchaSecret
+if ($existingEnv) {
+    $secretEnv = $existingEnv | Where-Object { $_.name -eq 'RECAPTCHA_SECRET' } | Select-Object -First 1
+    if ($secretEnv) {
+        if ($secretEnv.valueFrom -and $secretEnv.valueFrom.secretKeyRef -and $secretEnv.valueFrom.secretKeyRef.name) {
+            # It's bound as a secret in Cloud Run; do not override with literal
+            $skipSecretUpdate = $true
+            Write-Host "RECAPTCHA_SECRET is already configured as a Cloud Run Secret binding. Skipping update to avoid type conflict." -ForegroundColor Yellow
+        } elseif ($secretEnv.value) {
+            # Literal exists; if no param provided, keep existing
+            if (-not $resolvedRecaptchaSecret) {
+                $resolvedRecaptchaSecret = $secretEnv.value
+                Write-Host "Using existing RECAPTCHA_SECRET from Cloud Run env (literal)." -ForegroundColor Yellow
+            }
+        }
+    }
+}
+
+# If still not resolved and not bound as secret, try .env
+if (-not $skipSecretUpdate -and -not $resolvedRecaptchaSecret) {
+    $fromEnvFile = Get-EnvValueFromFile -filePath $envFile -key 'RECAPTCHA_SECRET'
+    if ($fromEnvFile) {
+        $resolvedRecaptchaSecret = $fromEnvFile
+        Write-Host "Using RECAPTCHA_SECRET from local .env" -ForegroundColor Yellow
+    }
+}
+
 # Build and push image
 $image = "$registry/$ProjectId/$RepoName/${ServiceName}:latest"
 Write-Host "Building Docker image: $image" -ForegroundColor Cyan
@@ -85,7 +162,13 @@ $deployArgs = @(
     '--min-instances=0',
     '--max-instances=10'
 )
-if ($RecaptchaSecret) { $deployArgs += @('--update-env-vars',"RECAPTCHA_SECRET=$RecaptchaSecret") }
+if ($resolvedRecaptchaSecret) {
+    if ($skipSecretUpdate) {
+        Write-Warning "RECAPTCHA_SECRET already bound as a secret. Value will not be updated to avoid type change."
+    } else {
+        $deployArgs += @('--update-env-vars',"RECAPTCHA_SECRET=$resolvedRecaptchaSecret")
+    }
+}
 & gcloud @deployArgs
 if ($LASTEXITCODE -ne 0) {
     Write-Error "gcloud run deploy failed. See output above."

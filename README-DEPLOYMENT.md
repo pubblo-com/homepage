@@ -38,7 +38,7 @@
    ```bash
    gcloud services enable cloudbuild.googleapis.com
    gcloud services enable run.googleapis.com
-   gcloud services enable containerregistry.googleapis.com
+   gcloud services enable artifactregistry.googleapis.com
    ```
 
 ### 🎯 Deployment Options (Artifact Registry)
@@ -56,6 +56,24 @@ chmod +x deploy.sh
 On Windows PowerShell (recommended):
 ```powershell
 ./deploy.ps1 -ProjectId homepage-473608 -ServiceName homepage -Region europe-west1 -RepoName homepage
+```
+
+The Windows deploy script auto-resolves reCAPTCHA when parameters are omitted:
+
+- REACT_APP_RECAPTCHA_SITE_KEY (client build-time)
+   - Resolution order: local `.env` → Cloud Run env var → Secret Manager (if bound)
+- RECAPTCHA_SECRET (server runtime)
+   - If already bound as a Cloud Run Secret, the script skips updates to avoid type conflicts
+   - Else: uses parameter if provided → Cloud Run env (literal) → local `.env`
+
+You can still override explicitly:
+
+```powershell
+# Force a specific site key into the client bundle at build time
+./deploy.ps1 -ProjectId homepage-473608 -ServiceName homepage -Region europe-west1 -RepoName homepage -RecaptchaSiteKey "<SITE_KEY>"
+
+# Provide a literal secret ONLY if not already bound as a Cloud Run Secret
+./deploy.ps1 -ProjectId homepage-473608 -ServiceName homepage -Region europe-west1 -RepoName homepage -RecaptchaSecret "<SECRET>"
 ```
 
 #### Option 2: Manual Deployment
@@ -141,6 +159,15 @@ gcloud run services update homepage \
    --region=europe-west1
 ```
 
+reCAPTCHA configuration used by this app:
+
+- `REACT_APP_RECAPTCHA_SITE_KEY` (client, build-time) — baked into the React bundle
+- `RECAPTCHA_SECRET` (server, runtime) — validated on the server
+
+Notes:
+- The deploy script auto-resolves both values when parameters are omitted (see above)
+- When `RECAPTCHA_SECRET` is bound to Secret Manager in Cloud Run, the script will not attempt to replace it with a literal to avoid type changes
+
 ### 🐛 Troubleshooting
 
 **Build fails:**
@@ -158,6 +185,23 @@ docker run -p 8080:8080 test-build
 **Form submissions not working:**
 - You'll need to implement a backend API for forms
 - Consider Cloud Functions or Firebase for form handling
+
+**reCAPTCHA tests (prod & local):**
+- Positive (should pass): submit a form on the site; in DevTools → Network, confirm payload contains `recaptchaToken`; expect 200 `{ success: true }`.
+- Negative (should block): POST with empty/invalid token (PowerShell example):
+
+   ```powershell
+   Invoke-RestMethod -Method Post -Uri "https://<your-cloud-run-host>/api/contact" -ContentType "application/json" -Body (@{
+      name = "Prod Test"; email = "test@example.com"; message = "Hello"; recaptchaToken = ""
+   } | ConvertTo-Json)
+   ```
+
+- Local helper: start only the server with email disabled and use token generator page
+
+   ```powershell
+   $env:NODE_ENV='development'; $env:PORT='8080'; $env:DISABLE_EMAIL='true'; npm run server
+   ```
+   Open http://localhost:8080/dev/recaptcha and copy a token.
 
 ### 📧 Form Handling (Next Steps)
 
