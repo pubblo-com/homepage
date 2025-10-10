@@ -257,3 +257,22 @@ docker push europe-west1-docker.pkg.dev/homepage-473608/homepage/homepage:latest
 - New route `/launch` shows a branded countdown to 2025-10-23 10:00 (Stockholm) and once the time is reached, it redirects to https://portal.pubblo.com preserving query/hash.
 - The rest of the website remains fully active; only the `/launch` page performs the post-date redirect.
 
+
+## reCAPTCHA admin setup (domains & settings)
+
+To ensure tokens are issued on all environments, configure your site key in Google reCAPTCHA admin:
+
+1. Open https://www.google.com/recaptcha/admin and select your v3 site key
+2. Under Allowed domains, add (one per line):
+   - `pubblo.com`
+   - `www.pubblo.com`
+   - Your Cloud Run host, e.g. `homepage-214327319969.europe-west1.run.app`
+   - `localhost` (for local development)
+3. Save changes
+
+Actions used in this app: `contact`, `spielpitch`, `homepage` (v3 action names). A default score threshold of 0.5 is enforced server-side; adjust if needed by editing `server/index.js`.
+
+Rollout notes:
+- The site key is embedded at build time; re-deploy to update the client bundle if you change keys.
+- The secret is read at runtime; use Cloud Run secrets for production.
+
