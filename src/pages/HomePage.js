@@ -171,9 +171,6 @@ const checkboxes = [
 const HomePage = ({ lockedAudience }) => {
   const navigate = useNavigate();
   const formSectionRef = useRef(null);
-  const handleScrollToForm = () => {
-    formSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
   const handleGoToLogin = () => {
     navigate('/launch#/create-account/1-email-password');
   };

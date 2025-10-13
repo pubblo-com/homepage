@@ -164,7 +164,9 @@ const LaunchPage = () => {
     try {
       const url = new URL(window.location.href);
       hashParam = (url.searchParams.get('hash') || '').toLowerCase();
-    } catch {}
+    } catch (error) {
+      // Ignore URL parsing errors
+    }
     const haystack = `${href} ${hashParam}`;
     if (haystack.includes('spielpitch')) {
       return 'Welcome back to join the SPIEL Pitch Competition and start your free trial';

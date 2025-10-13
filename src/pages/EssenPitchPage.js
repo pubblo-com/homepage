@@ -38,12 +38,6 @@ const CTA = styled.div`
   margin-top: auto;
 `;
 
-const Bullets = styled.ul`
-  margin: 8px 0 ${spacing.medium};
-  padding-left: 20px;
-  line-height: 1.6;
-`;
-
 const Form = styled.form`
   display: grid;
   gap: ${spacing.medium};
