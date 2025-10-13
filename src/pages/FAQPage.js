@@ -4,8 +4,8 @@ import { spacing, breakpoints, colors } from '../styles/tokens';
 import SEOHead from '../components/SEOHead';
 
 const Wrap = styled.main`
-  padding: 120px ${spacing.xXLarge} 80px;
-  max-width: 960px;
+  padding: 64px 0 ${spacing.xXLarge};
+  max-width: 1200px;
   margin: 0 auto;
 
   @media (max-width: ${breakpoints.tablet}) {

@@ -5,8 +5,8 @@ import Button from '../components/Button';
 import { getRecaptchaToken } from '../utils/recaptcha';
 
 const Wrap = styled.main`
-  padding: 120px ${spacing.xXLarge} 80px;
-  max-width: 960px;
+  padding: 64px 0 ${spacing.xXLarge};
+  max-width: 1200px;
   margin: 0 auto;
 
   @media (max-width: ${breakpoints.tablet}) {
@@ -212,7 +212,7 @@ const EssenPitchPage = () => {
         <Card>
           <h3>Got a game?</h3>
           <p>You can win a pitch meeting with a matching publisher!</p>
-          <p>Register and submit your pitch no later than the 30th of November</p>
+          <p style={{ marginBottom: spacing.small }}>Register and submit your pitch no later than the 30th of November</p>
           <CTA>
             <Button text="I've got a game" variant='contrast' onClick={() => setRole('creator')} />
           </CTA>
@@ -220,7 +220,7 @@ const EssenPitchPage = () => {
         <Card>
           <h3>Looking for games?</h3>
           <p>You can be the first to see the winning pitches!</p>
-          <p>Register no later than the 30th of November</p>
+          <p style={{ marginBottom: spacing.small }}>Register no later than the 30th of November</p>
           <CTA>
             <Button text="I'm looking for games" onClick={() => setRole('publisher')} />
           </CTA>

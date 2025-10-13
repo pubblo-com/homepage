@@ -62,6 +62,16 @@ const USPContent = styled.div`
   @media (max-width: ${breakpoints.tablet}) {
     flex-direction: column;
   }
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px ${spacing.xXLarge};
+  padding-left: 0;
+  padding-right: 0;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 48px ${spacing.large};
+  }
 `;
 
 const LeftSide = styled.div`

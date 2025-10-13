@@ -38,14 +38,17 @@ const BigMessageComponent = ({
   backgroundcolor,
   textcolor,
   underlinecolor,
+  children,
+  style
 }) => {
   return (
-    <TextSection backgroundcolor={backgroundcolor}>
+    <TextSection backgroundcolor={backgroundcolor} style={style}>
       <TextContent textcolor={textcolor}>
         <H2WithUnderline underlinecolor={underlinecolor}>
+          {children}
           {headline}
         </H2WithUnderline>
-        <p className='body-text-large'>{text}</p>
+        {text && <p className='body-text-large'>{text}</p>}
       </TextContent>
     </TextSection>
   );

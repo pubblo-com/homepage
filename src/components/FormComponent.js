@@ -7,6 +7,8 @@ const FormSection = styled.section`
   width: 100%;
   background-color: ${(props) => props.backgroundColor || 'transparent'};
   padding: ${spacing.xLarge};
+  padding-left: 0;
+  padding-right: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

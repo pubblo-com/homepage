@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 
 const Wrap = styled.main`
-  padding: 120px ${spacing.xXLarge} 80px;
+  padding: 64px 0 ${spacing.xXLarge};
   max-width: 900px;
   margin: 0 auto;
 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { colors, spacing, breakpoints } from '../styles/tokens';
 
 const Wrap = styled.main`
-  padding: 120px ${spacing.xXLarge} 80px;
+  padding: 64px 0 ${spacing.xXLarge};
   max-width: 1200px;
   margin: 0 auto;
 

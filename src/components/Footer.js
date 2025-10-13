@@ -13,6 +13,8 @@ const Inner = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: ${spacing.xXLarge} ${spacing.xXLarge};
+  padding-left: 0;
+  padding-right: 0;
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: ${spacing.large};

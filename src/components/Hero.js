@@ -24,10 +24,23 @@ const HeroSection = styled.section`
   }
 `;
 
+const HeroWrapper = styled.div`
+  padding: 120px 0 ${spacing.xXLarge};
+  display: flex;
+  justify-content: start;
+  max-width: 1200px;
+  align-self: center;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 100px ${spacing.large} 64px;
+  }
+`;
+
 const HeroContent = styled.div`
   width: 70%;
-  max-width: 1100px;
+  max-width: 1200px;
   padding: ${spacing.xXLarge} ${spacing.xXLarge};
+  padding-left: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -52,12 +65,14 @@ const WaveSection = styled.div`
   z-index: 1;
 `;
 
-const WaveImageContainer = styled.img`
+const WaveImageContainer = styled.div`
   width: 100%;
-  height: auto;
+  height: 120px;
   display: block;
   position: relative;
   bottom: -1px;
+  background: #ffffff;
+  background: linear-gradient(0deg,rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
 `;
 
 const slideFromLeft = keyframes`
@@ -197,45 +212,47 @@ const Hero = ({
 
   return (
     <HeroSection>
-      <HeroContent>
-        <SuperTitle>Powering licensing deals in the board game industry</SuperTitle>
-        {audiences && !lockedAudience && (
-          <PillToggle role='tablist' aria-label='Choose audience'>
-            <PillButton
-              role='tab'
-              aria-selected={audience === 'publishers'}
-              onClick={() => onSelect('publishers')}
-              $variant='publishers'
-              $active={audience === 'publishers'}
-            >
-              For publishers
-            </PillButton>
-            <PillButton
-              role='tab'
-              aria-selected={audience === 'designers'}
-              onClick={() => onSelect('designers')}
-              $variant='designers'
-              $active={audience === 'designers'}
-            >
-              For designers
-            </PillButton>
-          </PillToggle>
-        )}
-        <CopyWrap key={audience} $audience={audience}>
-          <h3>{activeCopy.headline}</h3>
-          {activeCopy.subhead && (
-            <p className='body-text-medium'>{activeCopy.subhead}</p>
+      <HeroWrapper>
+        <HeroContent>
+          <SuperTitle>Powering licensing deals in the board game industry</SuperTitle>
+          {audiences && !lockedAudience && (
+            <PillToggle role='tablist' aria-label='Choose audience'>
+              <PillButton
+                role='tab'
+                aria-selected={audience === 'publishers'}
+                onClick={() => onSelect('publishers')}
+                $variant='publishers'
+                $active={audience === 'publishers'}
+              >
+                For publishers
+              </PillButton>
+              <PillButton
+                role='tab'
+                aria-selected={audience === 'designers'}
+                onClick={() => onSelect('designers')}
+                $variant='designers'
+                $active={audience === 'designers'}
+              >
+                For designers
+              </PillButton>
+            </PillToggle>
           )}
-          {activeCopy.support && (
-            <p className='body-text-medium'>{activeCopy.support}</p>
-          )}
-          <Button
-            text={activeCopy.ctaText || buttonText}
-            onClick={onScrollToSection}
-            variant={audience === 'designers' ? 'contrast' : 'primary'}
-          />
-        </CopyWrap>
-      </HeroContent>
+          <CopyWrap key={audience} $audience={audience}>
+            <h3>{activeCopy.headline}</h3>
+            {activeCopy.subhead && (
+              <p className='body-text-medium'>{activeCopy.subhead}</p>
+            )}
+            {activeCopy.support && (
+              <p className='body-text-medium'>{activeCopy.support}</p>
+            )}
+            <Button
+              text={activeCopy.ctaText || buttonText}
+              onClick={onScrollToSection}
+              variant={audience === 'designers' ? 'contrast' : 'primary'}
+            />
+          </CopyWrap>
+        </HeroContent>
+      </HeroWrapper>
       <WaveSection>
         <WaveImageContainer src={WaveImage} alt='Wave design' />
       </WaveSection>
