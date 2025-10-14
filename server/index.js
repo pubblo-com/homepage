@@ -212,7 +212,7 @@ function getSpielPitchConfirmationEmail(name, role) {
       <p></p>
       <p>The button below will start to work once the competition begins:</p>
       <p style="margin-top: 30px;">
-            <a href="https://pubblo.com/launch/#/spielpitch" style="background: #2a30ea; color: white; padding: 12px 24px; text-decoration: none; border-radius: 32px; display: inline-block;">
+            <a href="https://pubblo.com/launch/#/spielpitch" style="background: #4453a4; color: white; padding: 12px 24px; text-decoration: none; border-radius: 32px; display: inline-block;">
           Get Started on Pubblo →
         </a>
       </p>
@@ -256,7 +256,7 @@ if (process.env.NODE_ENV !== 'production') {
       body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; padding: 24px; max-width: 800px; margin: 0 auto; }
       .row { margin: 12px 0; }
       input[type="text"] { width: 100%; padding: 8px 12px; font-size: 14px; }
-      button { background: #2a30ea; color: #fff; border: 0; padding: 10px 16px; border-radius: 6px; cursor: pointer; }
+  button { background: #4453a4; color: #fff; border: 0; padding: 10px 16px; border-radius: 6px; cursor: pointer; }
       code, textarea { width: 100%; box-sizing: border-box; padding: 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
       textarea { height: 140px; }
       .hint { color: #555; font-size: 13px; }

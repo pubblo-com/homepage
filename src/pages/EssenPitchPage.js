@@ -118,7 +118,7 @@ const SuccessContent = styled.div`
   }
 
   h2 {
-    color: #2a30ea;
+  color: #4453a4;
     margin: 0 0 ${spacing.medium};
     font-size: 28px;
   }
@@ -133,7 +133,7 @@ const SuccessContent = styled.div`
 const CheckIcon = styled.div`
   width: 80px;
   height: 80px;
-  background: #2a30ea;
+  background: #4453a4;
   border-radius: 50%;
   display: flex;
   align-items: center;
