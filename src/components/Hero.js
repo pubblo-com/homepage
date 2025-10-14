@@ -9,18 +9,21 @@ import Button from './Button';
 
 const HeroSection = styled.section`
   width: 100%;
-  height: 760px;
+  min-height: 760px;
   background: url(${backgroundImage}) center/cover no-repeat;
   display: flex;
   flex-direction: column;
   position: relative;
   justify-content: center;
 
+  /* Reserve space for the absolute-positioned wave at the bottom to prevent
+    the next section from overlapping on small screens when text wraps */
+  padding-bottom: 120px;
+
   @media (max-width: ${breakpoints.mobile}) {
     background: url(${backgroundImageMobile}) center/cover no-repeat;
     justify-content: start;
     min-height: 600px;
-    padding-bottom: 120px;
   }
 `;
 
@@ -63,6 +66,7 @@ const WaveSection = styled.div`
   left: 0;
   line-height: 0;
   z-index: 1;
+  pointer-events: none;
 `;
 
 const WaveImageContainer = styled.div`
