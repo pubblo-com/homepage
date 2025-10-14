@@ -4,8 +4,8 @@ import Button from '../components/Button';
 import { spacing, breakpoints } from '../styles/tokens';
 
 const Wrap = styled.main`
-  padding: 120px ${spacing.xXLarge} 80px;
-  max-width: 1100px;
+  padding: 64px 0 ${spacing.xXLarge};
+  max-width: 1200px;
   margin: 0 auto;
 
   @media (max-width: ${breakpoints.tablet}) {

@@ -6,7 +6,6 @@ import backgroundImage from '../assets/timeline.jpg';
 const Wrapper = styled.div`
   width: 90%;
   /* max-width: 1200px; */
-  margin: 0 auto;
   background: white;
   border-radius: 16px;
   overflow: hidden;

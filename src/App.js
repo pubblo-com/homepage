@@ -25,11 +25,6 @@ function AppContent() {
   const handleBookDemo = () => {
     navigate('/contact?demo=true');
   };
-  // Route helper for "Start free trial" style CTAs to go through launch path
-  const gotoStartTrial = () => {
-    // Use hash route under /launch so server controls cutover
-    navigate('/launch#/create-account/1-email-password');
-  };
 
   return (
     <>

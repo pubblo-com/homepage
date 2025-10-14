@@ -36,11 +36,12 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ text, onClick, type = 'button', variant = 'primary' }) => {
+const Button = ({ text, onClick, type = 'button', variant = 'primary', style }) => {
   return (
     <StyledButton
       onClick={onClick}
       type={type}
+      style={style}
       $variant={
         variant === 'contrast'
           ? 'contrast'

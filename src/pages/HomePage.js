@@ -16,10 +16,22 @@ import BigMessageComponent from '../components/BigMessageComponent.js';
 import SEOHead from '../components/SEOHead';
 import Button from '../components/Button';
 
+// const Wrap = styled.main`
+//   padding: 64px 0 ${spacing.xXLarge};
+//   max-width: 960px;
+//   margin: 0 auto;
+
+//   @media (max-width: ${breakpoints.tablet}) {
+//     padding: 100px ${spacing.large} 64px;
+//   }
+// `;
+
 const SectionWrap = styled.section`
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 64px ${spacing.xXLarge};
+  padding: 32px ${spacing.xXLarge};
+  padding-left: 0;
+  padding-right: 0;
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: 48px ${spacing.large};
@@ -171,9 +183,6 @@ const checkboxes = [
 const HomePage = ({ lockedAudience }) => {
   const navigate = useNavigate();
   const formSectionRef = useRef(null);
-  const handleScrollToForm = () => {
-    formSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
   const handleGoToLogin = () => {
     navigate('/launch#/create-account/1-email-password');
   };
@@ -256,11 +265,15 @@ const HomePage = ({ lockedAudience }) => {
         }}
       />
       <Reveal data-reveal-id='what' className={visibleIds['what'] ? 'is-visible' : ''}>
-      <BigMessageComponent
-        headline='What is Pubblo?'
-        text='Pubblo is a deal engine where publishers, designers, and distributors connect to bring new board games to market. Whether you’re scouting fresh titles, evaluating pitches, or looking for distribution partners, Pubblo is for you.'
-        underlinecolor={colors.contrast}
-      />
+      <SectionWrap>
+        <BigMessageComponent
+          text='Pubblo is a deal engine where publishers, designers, and distributors connect to bring new board games to market. Whether you’re scouting fresh titles, evaluating pitches, or looking for distribution partners, Pubblo is for you.'
+          underlinecolor={colors.contrast}
+          style={{ padding: 0 }}
+        >
+          What is <span style={{ color: colors.contrast }}>Pubblo</span>?
+        </BigMessageComponent>
+      </SectionWrap>
       </Reveal>
       <SectionWrap>
         <Reveal data-reveal-id='marcus' className={visibleIds['marcus'] ? 'is-visible' : ''}>
@@ -349,22 +362,26 @@ const HomePage = ({ lockedAudience }) => {
         textcolor={colors.text}
       />
       </Reveal>
-      <Reveal data-reveal-id='beta' className={visibleIds['beta'] ? 'is-visible' : ''}>
-      <TextImageComponent
-        headline='Beta version is live'
-        text='Platform design and development currently ongoing.'
-        backgroundcolor={colors.beige}
-      />
-      </Reveal>
-      <Reveal data-reveal-id='form' className={visibleIds['form'] ? 'is-visible' : ''}>
-      <FormComponent
-        headline='Get 6 months for free by joining our test group'
-        text='State which modules you’re interested in and fill in your contact details below.'
-        inputFields={inputFields}
-        checkboxes={checkboxes}
-        ref={formSectionRef}
-      />
-      </Reveal>
+      <SectionWrap>
+        <Reveal data-reveal-id='beta' className={visibleIds['beta'] ? 'is-visible' : ''}>
+        <TextImageComponent
+          headline='Beta version is live'
+          text='Platform design and development currently ongoing.'
+          backgroundcolor={colors.beige}
+        />
+        </Reveal>
+      </SectionWrap>
+      <SectionWrap>
+        <Reveal data-reveal-id='form' className={visibleIds['form'] ? 'is-visible' : ''}>
+        <FormComponent
+          headline='Get 6 months for free by joining our test group'
+          text='State which modules you’re interested in and fill in your contact details below.'
+          inputFields={inputFields}
+          checkboxes={checkboxes}
+          ref={formSectionRef}
+        />
+        </Reveal>
+      </SectionWrap>
       </div>
     </>
   );
