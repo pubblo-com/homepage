@@ -216,7 +216,7 @@ const HomePage = ({ lockedAudience }) => {
     "name": "Pubblo",
     "description": "The deal engine connecting board game designers, publishers, and distributors worldwide",
     "url": "https://pubblo.com",
-    "logo": "https://pubblo.com/logo.png",
+  "logo": "https://pubblo.com/logo-pubblo.png",
     "sameAs": [
       "https://twitter.com/pubblo",
       "https://linkedin.com/company/pubblo"

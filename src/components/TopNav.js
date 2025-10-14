@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors, spacing, breakpoints } from '../styles/tokens';
 import Button from './Button';
-import logo from '../assets/pubblo-logo.svg';
+// Updated to use the new PNG logo
+import logo from '../assets/logo-pubblo.png';
 import { Link, NavLink } from 'react-router-dom';
 
 const Bar = styled.header`
