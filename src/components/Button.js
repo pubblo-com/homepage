@@ -9,6 +9,7 @@ const StyledButton = styled.button`
   padding: 12px 20px;
   font-weight: 600;
   white-space: nowrap;
+  cursor: pointer;
   color: ${(p) => {
     if (p.$variant === 'secondary') return colors.buttonBackground;
     if (p.$variant === 'secondary-contrast') return colors.contrast;
@@ -31,17 +32,33 @@ const StyledButton = styled.button`
     }};
   }
 
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:disabled:hover {
+    background: ${(p) => {
+      if (p.$variant === 'contrast') return colors.contrast;
+      if (p.$variant === 'primary') return colors.buttonBackground;
+      if (p.$variant === 'secondary') return 'transparent';
+      if (p.$variant === 'secondary-contrast') return 'transparent';
+      return 'transparent';
+    }};
+  }
+
   @media (max-width: ${breakpoints.mobile}) {
     width: 100%;
   }
 `;
 
-const Button = ({ text, onClick, type = 'button', variant = 'primary', style }) => {
+const Button = ({ text, onClick, type = 'button', variant = 'primary', style, disabled = false }) => {
   return (
     <StyledButton
       onClick={onClick}
       type={type}
       style={style}
+      disabled={disabled}
       $variant={
         variant === 'contrast'
           ? 'contrast'

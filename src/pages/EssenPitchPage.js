@@ -155,9 +155,13 @@ const EssenPitchPage = () => {
   const [company, setCompany] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
 
     try {
       const recaptchaToken = await getRecaptchaToken('spielpitch_submit');
@@ -174,6 +178,7 @@ const EssenPitchPage = () => {
       });
       
       if (!response.ok) throw new Error('Failed to register');
+      await response.json().catch(() => null);
       
       setSubmittedEmail(email);
       setShowSuccess(true);
@@ -183,6 +188,8 @@ const EssenPitchPage = () => {
       setCompany('');
     } catch (err) {
       alert('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -246,7 +253,12 @@ const EssenPitchPage = () => {
               </div>
             )}
             <div>
-              <Button type='submit' text='Submit' variant={role === 'creator' ? 'contrast' : 'primary'} />
+              <Button
+                type='submit'
+                text={isSubmitting ? 'Submitting...' : 'Submit'}
+                variant={role === 'creator' ? 'contrast' : 'primary'}
+                disabled={isSubmitting}
+              />
             </div>
           </Form>
         </Card>

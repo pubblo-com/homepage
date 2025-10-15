@@ -12,6 +12,43 @@ const PORT = process.env.PORT || 8080;
 const LAUNCH_UTC_MS = new Date('2025-10-23T08:00:00Z').getTime();
 const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET;
 const DISABLE_EMAIL = String(process.env.DISABLE_EMAIL).toLowerCase() === 'true';
+const SUBMISSION_COOLDOWN_MS = 60 * 1000; // 60 seconds guard window
+
+// In-memory trackers to avoid duplicate form submissions triggering extra emails
+const submissionTrackers = new Map();
+
+function getSubmissionTracker(type) {
+  if (!submissionTrackers.has(type)) {
+    submissionTrackers.set(type, new Map());
+  }
+  return submissionTrackers.get(type);
+}
+
+function pruneTracker(tracker, now) {
+  for (const [entryKey, timestamp] of tracker.entries()) {
+    if (now - timestamp > SUBMISSION_COOLDOWN_MS) {
+      tracker.delete(entryKey);
+    }
+  }
+}
+
+function isRecentSubmission(type, key) {
+  const tracker = getSubmissionTracker(type);
+  const now = Date.now();
+  const lastSeen = tracker.get(key);
+  pruneTracker(tracker, now);
+  if (typeof lastSeen === 'number' && now - lastSeen < SUBMISSION_COOLDOWN_MS) {
+    return true;
+  }
+  return false;
+}
+
+function recordSubmission(type, key) {
+  const tracker = getSubmissionTracker(type);
+  const now = Date.now();
+  tracker.set(key, now);
+  pruneTracker(tracker, now);
+}
 
 // Middleware
 app.use(cors());
@@ -397,6 +434,16 @@ app.post('/api/contact', async (req, res) => {
     }
 
     const contactData = validation.data;
+    const spielpitchDedupeKey = `${contactData.email}:${contactData.role || ''}:${contactData.company || ''}`;
+    if (isRecentSubmission('spielpitch', spielpitchDedupeKey)) {
+      console.warn('⚠️  [SPIELPITCH] Duplicate submission detected within cooldown window - skipping duplicate processing');
+      return res.json({ success: true, duplicate: true, message: 'Submission already received' });
+    }
+    const contactDedupeKey = `${contactData.email}:${(contactData.message || '').slice(0, 200)}:${contactData.company || ''}`;
+    if (isRecentSubmission('contact', contactDedupeKey)) {
+      console.warn('⚠️  [CONTACT] Duplicate submission detected within cooldown window - skipping duplicate processing');
+      return res.json({ success: true, duplicate: true, message: 'Submission already received' });
+    }
 
     // Save to database if connected
     console.log('💾 [CONTACT] Attempting to save to MongoDB...');
@@ -441,7 +488,9 @@ app.post('/api/contact', async (req, res) => {
       console.warn('🧪 [CONTACT] Email send skipped (DISABLE_EMAIL=true)');
     }
 
-    const duration = Date.now() - startTime;
+  recordSubmission('contact', contactDedupeKey);
+
+  const duration = Date.now() - startTime;
     console.log(`✅ [CONTACT] Request completed in ${duration}ms\n`);
     res.json({ success: true, message: 'Message sent successfully' });
   } catch (error) {
@@ -567,7 +616,9 @@ app.post('/api/spielpitch', async (req, res) => {
       console.warn('🧪 [SPIELPITCH] Confirmation email skipped (DISABLE_EMAIL=true)');
     }
 
-    const duration = Date.now() - startTime;
+  recordSubmission('spielpitch', spielpitchDedupeKey);
+
+  const duration = Date.now() - startTime;
     console.log(`✅ [SPIELPITCH] Request completed in ${duration}ms\n`);
     res.json({ success: true, message: 'Registration successful' });
   } catch (error) {
@@ -623,6 +674,12 @@ app.post('/api/homepage', async (req, res) => {
 
     const contactData = validation.data;
 
+    const dedupeKey = `${contactData.email}:${contactData.phone || ''}:${contactData.company || ''}`;
+    if (isRecentSubmission('homepage', dedupeKey)) {
+      console.warn('⚠️  [HOMEPAGE] Duplicate submission detected within cooldown window - skipping duplicate processing');
+      return res.json({ success: true, duplicate: true, message: 'Submission already received' });
+    }
+
     // Save to database if connected
     console.log('💾 [HOMEPAGE] Attempting to save to MongoDB...');
     console.log('📋 [HOMEPAGE] Data to save:', JSON.stringify(contactData, null, 2));
@@ -666,7 +723,9 @@ app.post('/api/homepage', async (req, res) => {
       console.warn('🧪 [HOMEPAGE] Email send skipped (DISABLE_EMAIL=true)');
     }
 
-    const duration = Date.now() - startTime;
+  recordSubmission('homepage', dedupeKey);
+
+  const duration = Date.now() - startTime;
     console.log(`✅ [HOMEPAGE] Request completed in ${duration}ms\n`);
     res.json({ success: true, message: 'Submission successful' });
   } catch (error) {

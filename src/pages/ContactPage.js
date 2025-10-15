@@ -86,6 +86,7 @@ const ContactPage = () => {
   const [company, setCompany] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (isDemo) {
@@ -95,6 +96,9 @@ const ContactPage = () => {
 
   const submit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
     
     try {
       const recaptchaToken = await getRecaptchaToken('contact_submit');
@@ -105,6 +109,7 @@ const ContactPage = () => {
       });
       
       if (!response.ok) throw new Error('Failed to send message');
+      await response.json().catch(() => null);
       
       setSubmitted(true);
       // Reset form
@@ -115,6 +120,8 @@ const ContactPage = () => {
     } catch (error) {
       console.error('Contact form error:', error);
       alert('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -158,7 +165,7 @@ const ContactPage = () => {
             <TextArea id='message' value={message} onChange={(e) => setMessage(e.target.value)} required />
           </div>
           <div style={{ marginTop: spacing.medium }}>
-            <Button type='submit' text='Send' />
+            <Button type='submit' text={isSubmitting ? 'Sending...' : 'Send'} disabled={isSubmitting} />
           </div>
         </form>
       </Card>
