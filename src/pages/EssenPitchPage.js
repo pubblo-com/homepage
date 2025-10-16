@@ -269,9 +269,7 @@ const EssenPitchPage = () => {
         <p>
           Register and submit your pitch(es) no later than the 30th of November 2025. A jury will evaluate all submitted pitches and select winners based on market potential.
         </p>
-        <Small>
-          *Time of submission will be an advantage when choosing between pitches perceived to be equal in terms of potential.
-        </Small>
+        
         <p>
           Publishers and distributors that register will be randomly selected as winners. The winners will see pitches first but all participants will eventually get access to matching pitches.
         </p>
@@ -280,16 +278,16 @@ const EssenPitchPage = () => {
         </p>
 
         <Small>
-          Terms and notes: One account per participant/company. By registering
-          you agree to be contacted about the competition and your submission.
-          Submissions must be original and not infringe third‑party rights. The
-          jury's decision is final and cannot be appealed. No purchase is
-          necessary. Pubblo may reference anonymized statistics from the
+            Terms and notes: One account per participant/company. Participation in the competition is free and there are no strings attached, no purchase is necessary.
+            By registering you agree to be contacted about the competition and your submission.
+          The jury's decision is final and cannot be appealed.  Pubblo may reference anonymized statistics from the
           competition for product improvement and PR. Personal data is handled
-          according to our privacy policy. Benefits are non‑transferable and may
-          be withdrawn in cases of abuse. Pubblo does not assume ownership of
-          submitted material; creators retain all rights to their ideas.
-        </Small>
+          according to our <a href='/privacy'>privacy policy</a>.
+          Pubblo's <a href='/terms'>Terms and Conditions</a> apply for the use of the Pubblo platform.
+          </Small>
+          <Small>
+            *Time of submission will be an advantage when choosing between pitches perceived to be equal in terms of potential.
+          </Small>
       </Info>
       </Wrap>
     </>
