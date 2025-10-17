@@ -282,7 +282,7 @@ const EssenPitchPage = () => {
             By registering you agree to be contacted about the competition and your submission.
           The jury's decision is final and cannot be appealed.  Pubblo may reference anonymized statistics from the
           competition for product improvement and PR. Personal data is handled
-          according to our <a href='/privacy'>privacy policy</a>.
+          according to our <a href='/privacy'>Privacy Policy</a>.
           Pubblo's <a href='/terms'>Terms and Conditions</a> apply for the use of the Pubblo platform.
           </Small>
           <Small>

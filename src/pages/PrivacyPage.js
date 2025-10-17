@@ -26,12 +26,16 @@ const Wrap = styled.main`
   h3 {
     font-weight: 400;
   }
+
+  h2 {
+    margin-top: ${spacing.large};
+  }
 `;
 
 const PrivacyPage = () => (
   <Wrap>
     <h1>Pubblo Privacy Policy</h1>
-    <p><strong>Effective date:</strong> 23 October 2025</p>
+    <p><strong>Effective date:</strong> 16 October 2025</p>
     <p><strong>Company:</strong> Pubblo AB, Sweden</p>
     <p><strong>Contact:</strong> support@pubblo.com</p>
 
@@ -46,7 +50,7 @@ const PrivacyPage = () => (
     <h2>2. Who We Are</h2>
     <p>
       Pubblo AB is the data controller responsible for the processing of your personal data under this Policy.
-      Registered office: Pubblo AB, Storgatan 44, 903 26 Umea, Sweden. Email: support@pubblo.com. If you have any
+      Registered office: Pubblo AB, Storgatan 44, 903 26 Umeå, Sweden. Email: support@pubblo.com. If you have any
       questions about this Policy or how we handle your data, please contact us.
     </p>
 
@@ -74,12 +78,14 @@ const PrivacyPage = () => (
     </ul>
 
     <h3>3.3 Information from Third Parties</h3>
+    <p>We may receive limited information from:</p>
     <ul>
       <li>Payment processors for verification of successful payments.</li>
       <li>Analytics providers for aggregated, non-identifiable usage data.</li>
     </ul>
 
     <h2>4. How We Use Your Information</h2>
+    <p>We use personal data to:</p>
     <ul>
       <li>Provide and operate the Pubblo platform.</li>
       <li>Authenticate users and maintain account security.</li>
@@ -143,6 +149,7 @@ const PrivacyPage = () => (
     <ul>
       <li>Essential cookies – required for login and account management.</li>
       <li>Analytics cookies – help us understand usage patterns (aggregated).</li>
+      <li>Security cookies - used for security purposes. </li>
     </ul>
     <p>
       You can manage or disable cookies in your browser settings, but some parts of the Service may not function

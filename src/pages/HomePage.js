@@ -365,8 +365,8 @@ const HomePage = ({ lockedAudience }) => {
       <SectionWrap>
         <Reveal data-reveal-id='beta' className={visibleIds['beta'] ? 'is-visible' : ''}>
         <TextImageComponent
-          headline='Beta version is live'
-          text='Platform design and development currently ongoing.'
+              headline='We will soon release the beta'
+              text='On the 23rd of October we go live with our beta release. Join our test group to get 6 months for free and be among the first to try Pubblo.'
           backgroundcolor={colors.beige}
         />
         </Reveal>

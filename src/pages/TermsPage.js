@@ -40,7 +40,7 @@ const Wrap = styled.main`
 const TermsPage = () => (
   <Wrap>
     <h1>Pubblo Terms &amp; Conditions</h1>
-    <p><strong>Effective date:</strong> 23 October 2025</p>
+    <p><strong>Effective date:</strong> 16 October 2025</p>
     <p><strong>Company:</strong> Pubblo AB, Sweden</p>
     <p><strong>Contact:</strong> support@pubblo.com</p>
 
@@ -55,10 +55,13 @@ const TermsPage = () => (
     <h2>2. The Service</h2>
     <p>
       Pubblo is a digital platform for portfolio management and portfolio development in the board game industry,
-      designed to connect users such as board game publishers, distributors, and designers ("Customers"). Users can:
+      designed to connect users such as board game publishers, distributors, and designers ("Customers" or "Users").
+    </p>
+    <p>
+      Users can:
       <ul>
         <li>create profiles,</li>
-        <li>upload and display board game material (rules, images, descriptive texts),</li>
+        <li>upload and display board game material (rules, images, descriptive texts, etc),</li>
         <li>view material submitted or otherwise made available to them, and</li>
         <li>communicate with other users.</li>
       </ul>
@@ -80,7 +83,7 @@ const TermsPage = () => (
     </ul>
 
     <h2>4. Acceptable Use Policy</h2>
-    <p>As previously stated, the Service may only be used in accordance with laws and regulations, and these Terms and Conditions. If you do not agree, do not use the Service.
+    <p>As previously stated, the Service may only be used in accordance with laws and regulations, and these Terms. If you do not agree, do not use the Service.
       By creating an account or otherwise using the Service, you agree not to:
       <ul>
         <li>Use the Service in any way that violates any applicable national or international laws and regulations</li>
@@ -119,7 +122,7 @@ const TermsPage = () => (
     </p>
     <h4>5.2.3 License to Other Users</h4>
     <p>
-      By marking your upload as public, you grant other registered users the right to view and download your material for
+      By sharing your content with others, you grant other registered users the right to view and download your material for
       evaluation purposes only.
     </p>
     <p>

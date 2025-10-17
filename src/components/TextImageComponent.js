@@ -13,10 +13,10 @@ const Wrapper = styled.div`
   margin-top: ${spacing.xLarge};
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 100%;
+    width: calc(100% - (${spacing.large} * 2));
     max-width: none;
-    margin: 0;
-    border-radius: 0;
+    margin: ${spacing.large};
+    border-radius: 12px;
     box-shadow: none;
   }
 `;
@@ -30,7 +30,7 @@ const TextImageSection = styled.section`
   align-items: center;
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 100vw;
+    width: 100%;
   }
 `;
 
@@ -53,7 +53,7 @@ const ImageSection = styled.div`
   position: relative;
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 100vw;
+    width: 100%;
     height: 250px;
   }
 `;

@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { spacing, breakpoints, colors } from '../styles/tokens';
-import backgroundImage from '../assets/hero-bg_1.jpg';
-import backgroundImageMobile from '../assets/hero-bg_mobile_1.jpg';
+import backgroundImage from '../assets/hero-bg_2.jpg';
+import backgroundImageMobile from '../assets/hero-bg_mobile_2.jpg';
 
 import WaveImage from '../assets/wave.svg';
 import Button from './Button';
@@ -54,7 +54,7 @@ const HeroContent = styled.div`
     width: 70%;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    padding: ${spacing.xLarge} ${spacing.large};
+    padding: ${spacing.large} ${spacing.small};
     width: 100%;
   }
 `;
@@ -100,6 +100,11 @@ const CopyWrap = styled.div`
   z-index: 10;
   > p {
     max-width: 760px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    min-height: auto;
+    width: 100%;
   }
 `;
 
