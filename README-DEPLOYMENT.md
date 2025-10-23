@@ -254,7 +254,7 @@ docker push europe-west1-docker.pkg.dev/homepage-473608/homepage/homepage:latest
 
 ## Pre-launch countdown page
 
-- New route `/launch` shows a branded countdown to 2025-10-23 10:00 (Stockholm) and once the time is reached, it redirects to https://portal.pubblo.com preserving query/hash.
+- New route `/launch` shows a branded countdown to 2025-10-24 10:30 (Stockholm) and once the time is reached, it redirects to https://portal.pubblo.com preserving query/hash.
 - The rest of the website remains fully active; only the `/launch` page performs the post-date redirect.
 
 

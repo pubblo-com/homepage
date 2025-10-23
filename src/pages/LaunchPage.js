@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { colors, spacing, typography, breakpoints } from '../styles/tokens';
-import heroBg from '../assets/hero-bg_1.jpg';
+import heroBg from '../assets/bildpubblo.jpg';
 import H2WithUnderline from '../components/H2WithUnderline';
 
-// Assumption: Launch is at 10:00 Stockholm local time (CEST) on 2025-10-23.
-// CEST is UTC+2 on this date, so absolute moment is 2025-10-23T08:00:00Z.
-const TARGET_UTC_ISO = '2025-10-23T08:00:00Z';
+// Assumption: Launch is at 10:30 Stockholm local time (CEST) on 2025-10-24.
+// CEST is UTC+2 on this date, so absolute moment is 2025-10-24T08:30:00Z.
+const TARGET_UTC_ISO = '2025-10-24T08:30:00Z';
 
 const Wrapper = styled.section`
   width: 100%;
@@ -152,7 +152,7 @@ const LaunchPage = () => {
       }).format(new Date(TARGET_UTC_ISO));
     } catch (e) {
       // Fallback if Intl/timeZone unsupported
-      return '23 October 10:00 CEST';
+      return '24 October 10:30 CEST';
     }
   }, []);
 

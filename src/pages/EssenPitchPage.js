@@ -214,7 +214,7 @@ const EssenPitchPage = () => {
       
       <Wrap>
         <Heading>Join our Pitch Competition</Heading>
-      <p>Starting on the 23rd of October, the first day of SPIEL in Essen, we're running a pitch competition. The competition is open until the 30th of November but register already now - early birds will get an advantage*</p>
+      <p>Starting on the 24th of October, the second day of SPIEL in Essen, we're running a pitch competition. The competition is open until the 30th of November but register already now - early birds will get an advantage*</p>
       <ChoiceRow>
         <Card>
           <h3>Got a game?</h3>

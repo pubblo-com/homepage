@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { spacing, breakpoints, colors } from '../styles/tokens';
-import backgroundImage from '../assets/hero-bg_2.jpg';
-import backgroundImageMobile from '../assets/hero-bg_mobile_2.jpg';
+import backgroundImage from '../assets/bildpubblo.jpg';
+import backgroundImageMobile from '../assets/bildpubblo-mobil.jpg';
 
 import WaveImage from '../assets/wave.svg';
 import Button from './Button';

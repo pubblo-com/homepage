@@ -108,6 +108,7 @@ const CompanyPage = () => {
         <h3>Company information</h3>
         <p>
           <strong>Magnus Hölcke</strong> - CEO<br />
+          <strong>Olof Mjöberg</strong> - CTO<br />
           <strong>Marcus Carleson</strong> - Founder<br />
           <br />
           <strong>Pubblo AB</strong><br />

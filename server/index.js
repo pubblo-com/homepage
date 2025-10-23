@@ -8,8 +8,8 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-// Server-side launch moment: 2025-10-23 10:00 Stockholm = 2025-10-23T08:00:00Z
-const LAUNCH_UTC_MS = new Date('2025-10-23T08:00:00Z').getTime();
+// Server-side launch moment: 2025-10-24 10:30 Stockholm = 2025-10-24T08:30:00Z
+const LAUNCH_UTC_MS = new Date('2025-10-24T08:30:00Z').getTime();
 const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET;
 const DISABLE_EMAIL = String(process.env.DISABLE_EMAIL).toLowerCase() === 'true';
 const SUBMISSION_COOLDOWN_MS = 60 * 1000; // 60 seconds guard window
@@ -241,7 +241,7 @@ function getSpielPitchConfirmationEmail(name, role) {
       <h2>Welcome to the Spiel Pitch Competition!</h2>
       <p>Hi ${name},</p>
       <p>Thank you for registering for the Spiel Pitch Competition!</p>
-      <h3>The competition will begin at 10 am CET on Thursday, 23 October 2025</h3>
+  <h3>The competition will begin at 10:30 am CET on Friday, 24 October 2025</h3>
 
       <p>Once the competition starts, you will receive an e-mail containing further details and links.</p>
       
@@ -548,6 +548,11 @@ app.post('/api/spielpitch', async (req, res) => {
     }
 
     const contactData = validation.data;
+    const spielpitchDedupeKey = `${contactData.email}:${contactData.role || ''}:${contactData.company || ''}`;
+    if (isRecentSubmission('spielpitch', spielpitchDedupeKey)) {
+      console.warn('⚠️  [SPIELPITCH] Duplicate submission detected within cooldown window - skipping duplicate processing');
+      return res.json({ success: true, duplicate: true, message: 'Submission already received' });
+    }
 
     // Save to database if connected
     console.log('💾 [SPIELPITCH] Attempting to save to MongoDB...');

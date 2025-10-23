@@ -75,7 +75,7 @@ const Foldout = styled.div`
   padding: ${spacing.large};
   border: 1px solid #eee;
 
-  @media (min-width: 770px) {
+  @media (min-width: ${breakpoints.tablet}) {
     position: relative;
     left: calc(-160px - ${spacing.large});
     width: calc(100% + 160px + ${spacing.large});
@@ -335,7 +335,7 @@ const HomePage = ({ lockedAudience }) => {
           <SpielTeaser>
             <h2 style={{ marginTop: 0 }}>Pitch Competition</h2>
             <p>
-              Starting on the 23rd of October, the first day of SPIEL in Essen, we're running a pitch competition. The competition is open until the 30th of November but register already now - early birds will get an advantage.
+              Starting on the 24th of October, the second day of SPIEL in Essen, we're running a pitch competition. The competition is open until the 30th of November but register already now - early birds will get an advantage.
             </p>
             <p>
               If you've got a game, register and make a great pitch using Pubblo's pitch creation tool. You can win a pitch meeting with a matching publisher!
@@ -366,7 +366,7 @@ const HomePage = ({ lockedAudience }) => {
         <Reveal data-reveal-id='beta' className={visibleIds['beta'] ? 'is-visible' : ''}>
         <TextImageComponent
               headline='We will soon release the beta'
-              text='On the 23rd of October we go live with our beta release. Join our test group to get 6 months for free and be among the first to try Pubblo.'
+              text='On the 24th of October we go live with our first release. Join our test group to get 6 months for free and be among the first to try Pubblo.'
           backgroundcolor={colors.beige}
         />
         </Reveal>
