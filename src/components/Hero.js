@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { spacing, breakpoints, colors } from '../styles/tokens';
 import backgroundImage from '../assets/bildpubblo.jpg';
 import backgroundImageMobile from '../assets/bildpubblo-mobil.jpg';
+import competitionIcon from '../assets/competitionicon.png';
 
 import WaveImage from '../assets/wave.svg';
 import Button from './Button';
@@ -56,6 +57,25 @@ const HeroContent = styled.div`
   @media (max-width: ${breakpoints.mobile}) {
     padding: ${spacing.large} ${spacing.small};
     width: 100%;
+  }
+`;
+
+const CompetitionBadge = styled.img`
+  width: 33%;
+  height: auto;
+  margin-bottom: ${spacing.large};
+  margin-left: 20%;
+  align-self: flex-start;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.15));
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 40%;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 48%;
+    margin-bottom: ${spacing.medium};
   }
 `;
 
@@ -223,6 +243,10 @@ const Hero = ({
     <HeroSection>
       <HeroWrapper>
         <HeroContent>
+          <CompetitionBadge
+            src={competitionIcon}
+            alt='Join the Pubblo pitch competition badge'
+          />
           <SuperTitle>Powering licensing deals in the board game industry</SuperTitle>
           {audiences && !lockedAudience && (
             <PillToggle role='tablist' aria-label='Choose audience'>

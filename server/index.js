@@ -377,7 +377,15 @@ app.get('/launch', (req, res) => {
     let destination = 'https://portal.pubblo.com';
     const qs = qsBuilder.toString();
     if (qs) destination += `?${qs}`;
-    if (hash) destination += `#${hash}`;
+    let normalizedHash = hash ? String(hash).replace(/^#+/, '') : '';
+    if (normalizedHash && !normalizedHash.startsWith('/')) {
+      normalizedHash = `/${normalizedHash}`;
+    }
+    if (normalizedHash) {
+      destination += `#${normalizedHash}`;
+    } else {
+      destination += '#/login';
+    }
     return res.redirect(302, destination);
   }
   // Before launch: serve SPA so the countdown page renders
@@ -385,6 +393,35 @@ app.get('/launch', (req, res) => {
 });
 
 // Note: The launch countdown/redirect is handled client-side on /launch route only.
+
+// Temporary notice for legacy reset password link
+app.get('/api/v1/reset-password', (req, res) => {
+  res
+    .status(503)
+    .type('html')
+    .send(`<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pubblo Password Reset</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; padding: 40px; background: #f5f6fb; color: #11135e; }
+      .card { max-width: 520px; margin: 0 auto; background: #fff; border-radius: 16px; padding: 32px 36px; box-shadow: 0 18px 60px rgba(0, 0, 0, 0.12); }
+      h1 { margin-top: 0; font-size: 24px; }
+      p { font-size: 16px; line-height: 1.5; }
+      a { color: #4453a4; text-decoration: none; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Password reset is temporarily unavailable</h1>
+      <p>We are working on a fix right now. If you need help accessing your account, please contact our support team at <a href="mailto:support@pubblo.com">support@pubblo.com</a>.</p>
+      <p>Thanks for your patience while we resolve this.</p>
+    </div>
+  </body>
+</html>`);
+});
 
 // Contact form endpoint
 app.post('/api/contact', async (req, res) => {

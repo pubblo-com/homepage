@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
@@ -156,6 +156,22 @@ const EssenPitchPage = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    if (!role || !formRef.current || typeof window === 'undefined') return;
+
+    const isMobile = window.innerWidth <= 768;
+    if (!isMobile) return;
+
+    // Ensure mobile users land on the form with the heading visible below the sticky nav.
+    requestAnimationFrame(() => {
+      const headerOffset = 90;
+      const { top } = formRef.current.getBoundingClientRect();
+      const targetPosition = top + window.scrollY - headerOffset;
+      window.scrollTo({ behavior: 'smooth', top: Math.max(targetPosition, 0) });
+    });
+  }, [role]);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -235,7 +251,7 @@ const EssenPitchPage = () => {
       </ChoiceRow>
 
       {role && (
-        <Card>
+        <Card ref={formRef}>
           <h3>{role === 'creator' ? 'Got a game? – your details' : 'Looking for games? – your details'}</h3>
           <Form onSubmit={submit}>
             <div>

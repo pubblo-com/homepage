@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { colors, spacing, typography, breakpoints } from '../styles/tokens';
 import heroBg from '../assets/bildpubblo.jpg';
@@ -7,6 +8,8 @@ import H2WithUnderline from '../components/H2WithUnderline';
 // Assumption: Launch is at 10:30 Stockholm local time (CEST) on 2025-10-24.
 // CEST is UTC+2 on this date, so absolute moment is 2025-10-24T08:30:00Z.
 const TARGET_UTC_ISO = '2025-10-24T08:30:00Z';
+const PORTAL_BASE_URL = 'https://portal.pubblo.com';
+const DEFAULT_PORTAL_HASH = '/login';
 
 const Wrapper = styled.section`
   width: 100%;
@@ -126,21 +129,53 @@ function useCountdown(target) {
 const LaunchPage = () => {
   const targetMs = useMemo(() => new Date(TARGET_UTC_ISO).getTime(), []);
   const { diff, days, hours, minutes, seconds } = useCountdown(targetMs);
+  const [showFallback, setShowFallback] = useState(false);
+  const redirectUrl = useMemo(() => {
+    if (diff > 0 || typeof window === 'undefined') return null;
+    try {
+      const current = new URL(window.location.href);
+      const portalTarget = new URL(PORTAL_BASE_URL);
+      let hashFromQuery = '';
 
-  // If we're past the launch moment: trigger a hard reload of /launch
-  // Server will decide and redirect to portal, preserving query and optional hash
-  useEffect(() => {
-    if (diff <= 0) {
-      const url = new URL(window.location.href);
-      // send current hash to server via ?hash= param to preserve it
-      const currentHash = (window.location.hash || '').replace(/^#/, '');
-      if (currentHash && !url.searchParams.has('hash')) {
-        url.searchParams.set('hash', currentHash);
+      current.searchParams.forEach((value, key) => {
+        if (key.toLowerCase() === 'hash') {
+          hashFromQuery = hashFromQuery || String(value);
+          return;
+        }
+        portalTarget.searchParams.append(key, value);
+      });
+
+      const explicitHash = (current.hash || '').replace(/^#/, '');
+      const finalHash = explicitHash || hashFromQuery;
+      let sanitizedHash = finalHash ? finalHash.replace(/^#+/, '') : '';
+      if (sanitizedHash && !sanitizedHash.startsWith('/')) {
+        sanitizedHash = `/${sanitizedHash}`;
       }
-      url.pathname = '/launch';
-      window.location.replace(url.toString());
+
+      if (sanitizedHash.replace(/^\//, '').toLowerCase() === 'spielpitch') {
+        return PORTAL_BASE_URL;
+      }
+
+      if (sanitizedHash) {
+        portalTarget.hash = sanitizedHash;
+      } else {
+        portalTarget.hash = DEFAULT_PORTAL_HASH;
+      }
+
+      return portalTarget.toString();
+    } catch (error) {
+      return PORTAL_BASE_URL;
     }
   }, [diff]);
+
+  useEffect(() => {
+    if (!redirectUrl) {
+      setShowFallback(false);
+      return;
+    }
+    const timer = setTimeout(() => setShowFallback(true), 3000);
+    return () => clearTimeout(timer);
+  }, [redirectUrl]);
   // Format launch time in Stockholm timezone with short tz name (e.g., CEST)
   const stockholmDate = useMemo(() => {
     try {
@@ -176,6 +211,26 @@ const LaunchPage = () => {
     }
     return 'Welcome back to start your trial!';
   }, []);
+  if (redirectUrl) {
+    return (
+      <>
+        <Helmet>
+          <meta httpEquiv="refresh" content={`0;url='${redirectUrl}'`} />
+        </Helmet>
+        {showFallback && (
+          <Wrapper>
+            <Card>
+              <Title>Redirecting to Pubblo…</Title>
+              <Subtitle>
+                If nothing happens, <a href={redirectUrl}>click here to continue</a>.
+              </Subtitle>
+            </Card>
+          </Wrapper>
+        )}
+      </>
+    );
+  }
+
   return (
     <Wrapper>
       <Card>
@@ -204,14 +259,11 @@ const LaunchPage = () => {
             <Label>Seconds</Label>
           </Unit>
         </Countdown>
-
         {/* Marketing copy under the clock */}
-      <SmallTitle>{computedTitle}</SmallTitle>
-              <Subtitle>
-                  Looking forward to seeing you then!
-              </Subtitle>
-      
-      <div style={{ marginTop: spacing.medium }}>
+        <SmallTitle>{computedTitle}</SmallTitle>
+        <Subtitle>Looking forward to seeing you then!</Subtitle>
+
+        <div style={{ marginTop: spacing.medium }}>
         <H2WithUnderline underlinecolor={colors.contrast}>
           Work smarter. With Pubblo, it's simple.
         </H2WithUnderline>
