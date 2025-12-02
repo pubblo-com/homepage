@@ -1,9 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { Link } from 'react-router-dom';
 import { spacing, breakpoints, colors } from '../styles/tokens';
 import backgroundImage from '../assets/bildpubblo.jpg';
 import backgroundImageMobile from '../assets/bildpubblo-mobil.jpg';
 import competitionIcon from '../assets/competitionicon.png';
+import competitionIconEnded from '../assets/competitionicon2.png';
+import { isSpielPitchActive } from '../utils/spielPitch';
 
 import WaveImage from '../assets/wave.svg';
 import Button from './Button';
@@ -45,6 +48,7 @@ const HeroContent = styled.div`
   max-width: 1200px;
   padding: ${spacing.xXLarge} ${spacing.xXLarge};
   padding-left: 0;
+  padding-top: calc(${spacing.xXLarge} + 140px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -52,31 +56,61 @@ const HeroContent = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: ${spacing.xLarge} ${spacing.large};
+    padding-top: calc(${spacing.xLarge} + 160px);
     width: 70%;
   }
   @media (max-width: ${breakpoints.mobile}) {
     padding: ${spacing.large} ${spacing.small};
+    padding-top: calc(${spacing.large} + 180px);
     width: 100%;
   }
 `;
 
-const CompetitionBadge = styled.img`
-  width: 33%;
-  height: auto;
-  margin-bottom: ${spacing.large};
-  margin-left: 20%;
-  align-self: flex-start;
-  pointer-events: none;
+const CompetitionBadgeLink = styled(Link)`
+  position: absolute;
+  top: ${spacing.large};
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: min(240px, 36%);
+  display: block;
+  pointer-events: auto;
   filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.15));
+  transition: transform 180ms ease;
+  z-index: 20;
+
+  &:hover {
+    transform: translate(-50%, -40%) scale(1.02);
+  }
+
+  &:focus-visible {
+    transform: translate(-50%, -40%) scale(1.02);
+    outline: 3px solid ${colors.contrast};
+    outline-offset: 6px;
+  }
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 40%;
+    top: ${spacing.xLarge};
+    width: min(220px, 44%);
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    width: 48%;
-    margin-bottom: ${spacing.medium};
+    top: ${spacing.large};
+    width: min(200px, 54%);
+    transform: translate(-50%, -20%);
+
+    &:hover {
+      transform: translate(-50%, -20%) scale(1.02);
+    }
+
+    &:focus-visible {
+      transform: translate(-50%, -20%) scale(1.02);
+    }
   }
+`;
+
+const CompetitionBadge = styled.img`
+  width: 100%;
+  height: auto;
 `;
 
 const WaveSection = styled.div`
@@ -191,6 +225,7 @@ const Hero = ({
   audiences,
   lockedAudience,
 }) => {
+  const spielPitchActive = isSpielPitchActive();
   const prefersReducedMotion = useMemo(
     () =>
       window.matchMedia &&
@@ -243,10 +278,16 @@ const Hero = ({
     <HeroSection>
       <HeroWrapper>
         <HeroContent>
-          <CompetitionBadge
-            src={competitionIcon}
-            alt='Join the Pubblo pitch competition badge'
-          />
+          <CompetitionBadgeLink to='/spielpitch'>
+            <CompetitionBadge
+              src={spielPitchActive ? competitionIcon : competitionIconEnded}
+              alt={
+                spielPitchActive
+                  ? 'Join the Pubblo pitch competition badge'
+                  : 'Spiel Pitch competition has concluded badge'
+              }
+            />
+          </CompetitionBadgeLink>
           <SuperTitle>Powering licensing deals in the board game industry</SuperTitle>
           {audiences && !lockedAudience && (
             <PillToggle role='tablist' aria-label='Choose audience'>

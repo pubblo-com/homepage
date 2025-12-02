@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { colors, spacing, breakpoints } from '../styles/tokens';
+import { isSpielPitchActive } from '../utils/spielPitch';
 
 const Wrap = styled.footer`
   margin-top: ${spacing.xXLarge};
@@ -57,6 +58,7 @@ const Small = styled.div`
 `;
 
 const Footer = () => {
+  const spielPitchActive = isSpielPitchActive();
   return (
     <Wrap>
       <Inner>
@@ -71,7 +73,7 @@ const Footer = () => {
             <A to='/pricing'>Pricing</A>
             <A to='/compare'>Compare</A>
             <A to='/users'>Users</A>
-            <A to='/spielpitch'>Essen Pitch Competition</A>
+            {spielPitchActive && <A to='/spielpitch'>Essen Pitch Competition</A>}
           </div>
           <div>
             <ColTitle>Company</ColTitle>

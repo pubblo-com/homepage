@@ -15,6 +15,7 @@ import FormComponent from '../components/FormComponent.js';
 import BigMessageComponent from '../components/BigMessageComponent.js';
 import SEOHead from '../components/SEOHead';
 import Button from '../components/Button';
+import { isSpielPitchActive } from '../utils/spielPitch';
 
 // const Wrap = styled.main`
 //   padding: 64px 0 ${spacing.xXLarge};
@@ -188,6 +189,7 @@ const HomePage = ({ lockedAudience }) => {
   };
   const [showMarcus, setShowMarcus] = useState(false);
   const [visibleIds, setVisibleIds] = useState({});
+  const spielPitchActive = isSpielPitchActive();
 
   React.useEffect(() => {
     const elements = document.querySelectorAll('[data-reveal-id]');
@@ -330,30 +332,32 @@ const HomePage = ({ lockedAudience }) => {
         </Reveal>
       </SectionWrap>
 
-      <SectionWrap>
-        <Reveal data-reveal-id='spiel' className={visibleIds['spiel'] ? 'is-visible' : ''}>
-          <SpielTeaser>
-            <h2 style={{ marginTop: 0 }}>Pitch Competition</h2>
-            <p>
-              Starting on the 24th of October, the second day of SPIEL in Essen, we're running a pitch competition. The competition is open until the 30th of November but register already now - early birds will get an advantage.
-            </p>
-            <p>
-              If you've got a game, register and make a great pitch using Pubblo's pitch creation tool. You can win a pitch meeting with a matching publisher!
-            </p>
-            <p>
-              If you're looking for games, tell us what you're interested in and you'll be invited to review matching pitches. Register now - you can be first to see the winning pitches.
-            </p>
-            <p>
-              <strong>Join for free - no strings attached!</strong>
-            </p>
-            <div style={{ marginTop: spacing.medium }}>
-              <a href='/spielpitch' style={{ textDecoration: 'none' }}>
-                <Button text='Learn more & register' $variant='contrast' />
-              </a>
-            </div>
-          </SpielTeaser>
-        </Reveal>
-      </SectionWrap>
+      {spielPitchActive && (
+        <SectionWrap>
+          <Reveal data-reveal-id='spiel' className={visibleIds['spiel'] ? 'is-visible' : ''}>
+            <SpielTeaser>
+              <h2 style={{ marginTop: 0 }}>Pitch Competition</h2>
+              <p>
+                Starting on the 24th of October, the second day of SPIEL in Essen, we're running a pitch competition. The competition is open until the 30th of November but register already now - early birds will get an advantage.
+              </p>
+              <p>
+                If you've got a game, register and make a great pitch using Pubblo's pitch creation tool. You can win a pitch meeting with a matching publisher!
+              </p>
+              <p>
+                If you're looking for games, tell us what you're interested in and you'll be invited to review matching pitches. Register now - you can be first to see the winning pitches.
+              </p>
+              <p>
+                <strong>Join for free - no strings attached!</strong>
+              </p>
+              <div style={{ marginTop: spacing.medium }}>
+                <a href='/spielpitch' style={{ textDecoration: 'none' }}>
+                  <Button text='Learn more & register' $variant='contrast' />
+                </a>
+              </div>
+            </SpielTeaser>
+          </Reveal>
+        </SectionWrap>
+      )}
       <Reveal data-reveal-id='usps' className={visibleIds['usps'] ? 'is-visible' : ''}>
       <USPComponent
         headline='Key benefits'

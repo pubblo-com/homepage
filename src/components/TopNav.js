@@ -190,7 +190,7 @@ const TopNav = ({ onCtaClick }) => {
               <MenuLink to='/faq'>FAQ</MenuLink>
             </Dropdown>
           </MenuItem>
-          <MenuLink to='/spielpitch' $highlight>Spiel Pitch</MenuLink>
+            <MenuLink to='/spielpitch' $highlight>Spiel Pitch</MenuLink>
           <MenuItem>
             <MenuLink to='/about' end>About</MenuLink>
             <Dropdown role='menu' aria-label='About submenu'>
@@ -215,7 +215,7 @@ const TopNav = ({ onCtaClick }) => {
           <MobileMenuLink to='/pricing' onClick={close}>— Pricing</MobileMenuLink>
           <MobileMenuLink to='/compare' onClick={close}>— Compare</MobileMenuLink>
           <MobileMenuLink to='/faq' onClick={close}>— FAQ</MobileMenuLink>
-          <MobileMenuLink to='/spielpitch' onClick={close}>Spiel Pitch</MobileMenuLink>
+            <MobileMenuLink to='/spielpitch' onClick={close}>Spiel Pitch</MobileMenuLink>
           <MobileMenuLink to='/about' onClick={close}>About</MobileMenuLink>
           <MobileMenuLink to='/contact' onClick={close}>— Contact</MobileMenuLink>
     <MobileMenuLink to='/launch' onClick={close}>Log in</MobileMenuLink>

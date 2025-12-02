@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
 import { getRecaptchaToken } from '../utils/recaptcha';
+import { isSpielPitchActive } from '../utils/spielPitch';
 
 const Wrap = styled.main`
   padding: 64px 0 ${spacing.xXLarge};
@@ -149,6 +150,23 @@ const CheckIcon = styled.div`
 `;
 
 const EssenPitchPage = () => {
+  const spielPitchActive = isSpielPitchActive();
+
+  if (!spielPitchActive) {
+    return (
+      <Wrap>
+        <Heading>Spiel Pitch Competition</Heading>
+        <Info>
+          <p>The Pubblo Spiel Pitch competition has now concluded.</p>
+          <p>Our jury is now reviewing all submissions, and they have until December 10th to select the winners. As soon as their decisions are in, we’ll reach out directly to everyone who participated.</p>
+          <p>A heartfelt thank you to all designers and publishers who joined in and shared their creativity with us. Your passion and energy are truly what make this competition special.</p>
+          <p>Stay tuned — we’ll be sharing updates both in your inbox and right here on Pubblo!</p>
+          
+        </Info>
+      </Wrap>
+    );
+  }
+
   const [role, setRole] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
