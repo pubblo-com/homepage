@@ -1,12 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { spacing, breakpoints, colors } from '../styles/tokens';
 import backgroundImage from '../assets/bildpubblo.jpg';
 import backgroundImageMobile from '../assets/bildpubblo-mobil.jpg';
-import competitionIcon from '../assets/competitionicon.png';
-import competitionIconEnded from '../assets/competitionicon2.png';
-import { isSpielPitchActive } from '../utils/spielPitch';
 
 import WaveImage from '../assets/wave.svg';
 import Button from './Button';
@@ -32,14 +29,19 @@ const HeroSection = styled.section`
 `;
 
 const HeroWrapper = styled.div`
-  padding: 120px 0 ${spacing.xXLarge};
+  padding: 120px 0 0;
   display: flex;
   justify-content: start;
   max-width: 1200px;
   align-self: center;
+  width: 100%;
 
   @media (max-width: ${breakpoints.tablet}) {
-    padding: 100px ${spacing.large} 64px;
+    padding: 100px ${spacing.large} 0;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 20px ${spacing.small} 0;
   }
 `;
 
@@ -49,6 +51,7 @@ const HeroContent = styled.div`
   padding: ${spacing.xXLarge} ${spacing.xXLarge};
   padding-left: 0;
   padding-top: calc(${spacing.xXLarge} + 140px);
+  padding-bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -57,60 +60,57 @@ const HeroContent = styled.div`
   @media (max-width: ${breakpoints.tablet}) {
     padding: ${spacing.xLarge} ${spacing.large};
     padding-top: calc(${spacing.xLarge} + 160px);
+    padding-bottom: 0;
     width: 70%;
   }
   @media (max-width: ${breakpoints.mobile}) {
     padding: ${spacing.large} ${spacing.small};
-    padding-top: calc(${spacing.large} + 180px);
+    padding-top: ${spacing.large};
+    padding-bottom: 0;
     width: 100%;
   }
 `;
 
-const CompetitionBadgeLink = styled(Link)`
+const PinkBanner = styled.a`
+  background-color: ${colors.pink};
+  color: white;
+  padding: 12px ${spacing.xLarge};
+  padding-left: max(0px, calc((100% - 1200px) / 2));
+  padding-right: 60px;
   position: absolute;
-  top: ${spacing.large};
-  left: 50%;
-  transform: translate(-50%, -40%);
-  width: min(240px, 36%);
-  display: block;
-  pointer-events: auto;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.15));
-  transition: transform 180ms ease;
+  top: 100px;
+  left: 0;
+  width: fit-content;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 40px) 50%, 100% 100%, 0 100%);
   z-index: 20;
-
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 160ms ease;
+  
   &:hover {
-    transform: translate(-50%, -40%) scale(1.02);
-  }
-
-  &:focus-visible {
-    transform: translate(-50%, -40%) scale(1.02);
-    outline: 3px solid ${colors.contrast};
-    outline-offset: 6px;
+    color: ${colors.contrast};
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    top: ${spacing.xLarge};
-    width: min(220px, 44%);
+    top: 90px;
+    max-width: 90%;
+    font-size: 16px;
+    padding-left: calc(max(0px, (100% - 1200px) / 2) + ${spacing.xXLarge});
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    top: ${spacing.large};
-    width: min(200px, 54%);
-    transform: translate(-50%, -20%);
-
-    &:hover {
-      transform: translate(-50%, -20%) scale(1.02);
-    }
-
-    &:focus-visible {
-      transform: translate(-50%, -20%) scale(1.02);
-    }
+    position: relative;
+    top: 0;
+    width: 100%;
+    max-width: 100%;
+    clip-path: none;
+    padding: ${spacing.medium};
+    pointer-events: none;
+    cursor: default;
   }
-`;
-
-const CompetitionBadge = styled.img`
-  width: 100%;
-  height: auto;
 `;
 
 const WaveSection = styled.div`
@@ -149,7 +149,7 @@ const CopyWrap = styled.div`
   min-height: 280px;
   animation: ${(p) => (p.$audience === 'publishers' ? slideFromLeft : slideFromRight)} 320ms ease;
   margin-top: ${spacing.large};
-  margin-bottom: ${spacing.xLarge};
+  margin-bottom: ${spacing.medium};
   position: relative;
   z-index: 10;
   > p {
@@ -191,7 +191,7 @@ const PillButton = styled.button`
   background: ${(p) =>
     p.$active
       ? p.$variant === 'publishers'
-        ? colors.buttonBackground
+        ? colors.primary
         : colors.contrast
       : 'transparent'};
   color: ${(p) => (p.$active ? '#fff' : colors.text)};
@@ -199,14 +199,14 @@ const PillButton = styled.button`
     background: ${(p) =>
       p.$active
         ? p.$variant === 'publishers'
-          ? colors.buttonBackground
+          ? colors.primary
           : colors.contrast
         : 'transparent'};
     color: ${(p) =>
       p.$active
         ? '#fff'
         : p.$variant === 'publishers'
-        ? colors.buttonBackground
+        ? colors.primary
         : colors.contrast};
   }
 `;
@@ -225,7 +225,6 @@ const Hero = ({
   audiences,
   lockedAudience,
 }) => {
-  const spielPitchActive = isSpielPitchActive();
   const prefersReducedMotion = useMemo(
     () =>
       window.matchMedia &&
@@ -276,18 +275,17 @@ const Hero = ({
 
   return (
     <HeroSection>
+      <PinkBanner href="#early-bird-deals">
+        <div style={{ fontSize: '36px', lineHeight: '1.2', marginBottom: '8px', fontWeight: 'bold' }}>
+          Pubblo is set to launch in January 2026,
+        </div>
+        <div style={{ fontSize: '28px', lineHeight: '1.3', marginBottom: '8px' }}>
+          which means this is the perfect time to join our journey <br />— check out our early-bird offers now!
+        </div>
+        <span style={{ fontSize: '14px', opacity: 0.9 }}>(and just between us: the site is still in beta and hasn't been fully optimized for mobile yet)</span>
+      </PinkBanner>
       <HeroWrapper>
         <HeroContent>
-          <CompetitionBadgeLink to='/spielpitch'>
-            <CompetitionBadge
-              src={spielPitchActive ? competitionIcon : competitionIconEnded}
-              alt={
-                spielPitchActive
-                  ? 'Join the Pubblo pitch competition badge'
-                  : 'Spiel Pitch competition has concluded badge'
-              }
-            />
-          </CompetitionBadgeLink>
           <SuperTitle>Powering licensing deals in the board game industry</SuperTitle>
           {audiences && !lockedAudience && (
             <PillToggle role='tablist' aria-label='Choose audience'>

@@ -17,7 +17,7 @@ const StyledButton = styled.button`
   }};
   background: ${(p) => {
     if (p.$variant === 'contrast') return colors.contrast;
-    if (p.$variant === 'primary') return colors.buttonBackground;
+    if (p.$variant === 'primary') return colors.primary;
     return 'transparent';
   }};
   transition: background 200ms ease, color 200ms ease, border-color 200ms ease;

@@ -1,8 +1,12 @@
 // Colors
 export const colors = {
-  primary: '#4453a4', // Primary Blue
+ 
+  yellow: '#fed472', // Light Yellow
+  primary: '#3f8ab1', // Primary Blue
+  lightblue: '#b7d8e7', // Light Blue
   secondary: '#11135E', // Dark Blue
-  contrast: '#F95160', // Bright red
+  contrast: '#ca3946', // Bright red
+  pink: '#e6c3c7', // Light Pink
   beige: '#F6F5F2', // Light Beige
   background: '#FFFFFF', // white
   text: '#333333', // Default text color
@@ -10,7 +14,7 @@ export const colors = {
   link: '#4453a4', // Link color
   linkHover: '#35448b', // Link hover color (darker brand blue)
   buttonBackground: '#4453a4', // Button Background
-  buttonBackgroundHover: '#35448b', // Button hover background (darker brand blue)
+  buttonBackgroundHover: '#2d5a7a', // Button hover background (darker brand blue)
   buttonText: '#FFFFFF', // Button text color
 };
 

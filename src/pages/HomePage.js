@@ -9,10 +9,11 @@ import USPComponent from '../components/USPComponent.js';
 import iconRocket from '../assets/icon-white-rocket.svg';
 import iconClock from '../assets/icon-white-clock.svg';
 import iconStars from '../assets/icon-white-stars.svg';
-import TextImageComponent from '../components/TextImageComponent.js';
+//import TextImageComponent from '../components/TextImageComponent.js';
 // removed unused TextComponent import
 import FormComponent from '../components/FormComponent.js';
 import BigMessageComponent from '../components/BigMessageComponent.js';
+import EarlyBirdDeals from '../components/EarlyBirdDeals.js';
 import SEOHead from '../components/SEOHead';
 import Button from '../components/Button';
 import { isSpielPitchActive } from '../utils/spielPitch';
@@ -41,23 +42,29 @@ const SectionWrap = styled.section`
 
 const MarcusCard = styled.div`
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 220px 1fr;
   gap: ${spacing.large};
-  background: #ffe1e7;
-  border-radius: 20px;
+  background: ${colors.lightblue};
+  border-radius: 999px 0 0 999px;
   padding: ${spacing.large};
-  align-items: flex-start;
+  padding-left: 60px;
+  align-items: center;
+  margin-left: max(20px, calc((100% - 1200px) / 2));
+  padding-right: max(20px, calc((100% - 1200px) / 2));
 
   @media (max-width: ${breakpoints.tablet}) {
     grid-template-columns: 1fr;
     text-align: center;
     align-items: center;
+    border-radius: 20px;
+    margin: 0 20px;
+    padding: ${spacing.large};
   }
 `;
 
 const MarcusAvatar = styled.img`
-  width: 160px;
-  height: 160px;
+  width: 220px;
+  height: 220px;
   object-fit: cover;
   border-radius: 50%;
   border: 6px solid #fff;
@@ -67,6 +74,18 @@ const MarcusAvatar = styled.img`
     justify-self: center;
   }
 `;
+
+const BenefitsWrapper = styled.div`
+  background-color: ${colors.pink};
+  width: 100%;
+  clip-path: polygon(0 80px, calc(100% - 100px) 0, calc(100% - 400px) 100%, 0 100%);
+  margin-top: 32px;
+  
+  @media (max-width: ${breakpoints.tablet}) {
+    clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%);
+  }
+`;
+
 
 
 const Foldout = styled.div`
@@ -188,7 +207,7 @@ const HomePage = ({ lockedAudience }) => {
     navigate('/launch#/create-account/1-email-password');
   };
   const [showMarcus, setShowMarcus] = useState(false);
-  const [visibleIds, setVisibleIds] = useState({});
+  const [visibleIds, setVisibleIds] = useState({ form: true });
   const spielPitchActive = isSpielPitchActive();
 
   React.useEffect(() => {
@@ -201,7 +220,10 @@ const HomePage = ({ lockedAudience }) => {
           if (entry.isIntersecting) {
             setVisibleIds((prev) => ({ ...prev, [id]: true }));
           } else {
-            setVisibleIds((prev) => ({ ...prev, [id]: false }));
+            // Don't hide 'form' once it's been revealed
+            if (id !== 'form') {
+              setVisibleIds((prev) => ({ ...prev, [id]: false }));
+            }
           }
         });
       },
@@ -277,10 +299,11 @@ const HomePage = ({ lockedAudience }) => {
         </BigMessageComponent>
       </SectionWrap>
       </Reveal>
-      <SectionWrap>
-        <Reveal data-reveal-id='marcus' className={visibleIds['marcus'] ? 'is-visible' : ''}>
+      <Reveal data-reveal-id='marcus' className={visibleIds['marcus'] ? 'is-visible' : ''}>
+        <SectionWrap style={{ paddingBottom: 0 }}>
           <h2 style={{ marginTop: 0 }}>Why we created Pubblo</h2>
-          <MarcusCard>
+        </SectionWrap>
+        <MarcusCard>
             <MarcusAvatar src='/1706627130390.jfif' alt='Marcus Carleson' />
             <div>
               <p style={{ fontSize: '18px', lineHeight: '1.6', margin: 0 }}>
@@ -329,8 +352,7 @@ const HomePage = ({ lockedAudience }) => {
               )}
             </div>
           </MarcusCard>
-        </Reveal>
-      </SectionWrap>
+      </Reveal>
 
       {spielPitchActive && (
         <SectionWrap>
@@ -359,27 +381,27 @@ const HomePage = ({ lockedAudience }) => {
         </SectionWrap>
       )}
       <Reveal data-reveal-id='usps' className={visibleIds['usps'] ? 'is-visible' : ''}>
-      <USPComponent
-        headline='Key benefits'
-        usps={publisherUsps}
-        backgroundcolor={colors.beige}
-        textcolor={colors.text}
-      />
+        <BenefitsWrapper>
+          <USPComponent
+            headline='Key benefits'
+            usps={publisherUsps}
+            backgroundcolor='transparent'
+            textcolor={colors.text}
+          />
+        </BenefitsWrapper>
       </Reveal>
       <SectionWrap>
-        <Reveal data-reveal-id='beta' className={visibleIds['beta'] ? 'is-visible' : ''}>
-        <TextImageComponent
-              headline='We will soon release the beta'
-              text='On the 24th of October we go live with our first release. Join our test group to get 6 months for free and be among the first to try Pubblo.'
-          backgroundcolor={colors.beige}
-        />
+        <Reveal data-reveal-id='deals' className={visibleIds['deals'] ? 'is-visible' : ''}>
+          <div id="early-bird-deals">
+            <EarlyBirdDeals />
+          </div>
         </Reveal>
       </SectionWrap>
       <SectionWrap>
         <Reveal data-reveal-id='form' className={visibleIds['form'] ? 'is-visible' : ''}>
         <FormComponent
-          headline='Get 6 months for free by joining our test group'
-          text='State which modules you’re interested in and fill in your contact details below.'
+          headline=''
+          text=''
           inputFields={inputFields}
           checkboxes={checkboxes}
           ref={formSectionRef}

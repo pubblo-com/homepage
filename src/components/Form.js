@@ -10,7 +10,12 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 500px @media (max-width: ${breakpoints.tablet}) {
+  max-width: none;
+  background-color: #F9F8F6;
+  padding: ${spacing.large};
+  border-radius: 12px;
+
+  @media (max-width: ${breakpoints.tablet}) {
     padding: ${spacing.medium};
   }
 `;
@@ -103,7 +108,8 @@ const Form = ({ inputFields, checkboxes }) => {
     }
   };
 
-  const isOpen = formData.areas.length > 0;
+  // Always show the input fields
+  const isOpen = true;
 
   if (submitted) {
     return (

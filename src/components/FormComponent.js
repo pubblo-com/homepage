@@ -25,6 +25,8 @@ const FormContent = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
 
   @media (max-width: ${breakpoints.tablet}) {
     flex-direction: column;
@@ -32,11 +34,19 @@ const FormContent = styled.div`
 `;
 
 const LeftSide = styled.div`
-  width: 47%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   color: ${(props) => props.textcolor || 'text'};
+
+  h2 {
+    display: ${(props) => (props.$hideHeadline ? 'none' : 'block')};
+  }
+
+  p {
+    display: ${(props) => (props.$hideText ? 'none' : 'block')};
+  }
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
@@ -45,10 +55,13 @@ const LeftSide = styled.div`
 `;
 
 const RightSide = styled.div`
-  width: 47%;
-  display: flex;
+  width: 0;
+  display: none;
   flex-direction: column;
   align-items: flex-start;
+  background-color: #F9F8F6;
+  padding: ${spacing.large};
+  border-radius: 12px;
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
@@ -63,16 +76,10 @@ const FormComponent = forwardRef(
     return (
       <FormSection ref={ref} backgroundColor={backgroundColor}>
         <FormContent>
-          <LeftSide textcolor={textcolor}>
-            <h2>{headline}</h2>
-            <p className='body-text'>{text}</p>
-          </LeftSide>
-          <RightSide>
+          <LeftSide textcolor={textcolor} $hideHeadline={!headline} $hideText={!text}>
             <Form inputFields={inputFields} checkboxes={checkboxes} />
-            <p className='body-text'>
-              Any questions, please contact us at info@pubblo.com
-            </p>
-          </RightSide>
+          </LeftSide>
+          <RightSide />
         </FormContent>
       </FormSection>
     );

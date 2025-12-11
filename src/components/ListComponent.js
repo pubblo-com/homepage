@@ -4,8 +4,12 @@ import { spacing, breakpoints, colors } from '../styles/tokens';
 
 const USPItem = styled.div`
   display: flex;
-  align-items: top;
+  align-items: flex-start;
   margin-bottom: ${spacing.medium};
+
+  @media (min-width: ${breakpoints.tablet}) {
+    margin-left: calc(-${(props) => props.$index * 60}px - 380px);
+  }
 `;
 
 const USPIcon = styled.div`
@@ -41,7 +45,7 @@ const ListComponent = ({ usps, textcolor }) => {
   return (
     <>
       {usps.map((usp, index) => (
-        <USPItem key={index}>
+        <USPItem key={index} $index={index}>
           <USPIcon $src={usp.icon} aria-hidden='true' />
           <USPText textcolor={textcolor}>
             <h3>{usp.heading}</h3>
