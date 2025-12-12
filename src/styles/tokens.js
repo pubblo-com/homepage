@@ -13,7 +13,7 @@ export const colors = {
   white: '#FFFFFF',
   link: '#4453a4', // Link color
   linkHover: '#35448b', // Link hover color (darker brand blue)
-  buttonBackground: '#4453a4', // Button Background
+  buttonBackground: '#3f8ab1', // Button Background
   buttonBackgroundHover: '#2d5a7a', // Button hover background (darker brand blue)
   buttonText: '#FFFFFF', // Button text color
 };

@@ -54,6 +54,10 @@ function recordSubmission(type, key) {
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Redirect /login to external portal
+app.get('/login', (req, res) => {
+  res.redirect(302, 'https://portal.pubblo.com');
+});
 
 // Email validation helper
 function isValidEmail(email) {

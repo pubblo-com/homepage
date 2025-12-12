@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors, spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
@@ -100,9 +100,10 @@ const BadgeRow = styled.div`
 `;
 
 const PricingPage = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const handleGoToLogin = () => {
-    navigate('/login');
+    // Go directly to external portal account creation
+    window.location.href = 'https://portal.pubblo.com/#/create-account/';
   };
 
   return (

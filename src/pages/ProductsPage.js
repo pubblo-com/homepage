@@ -55,7 +55,7 @@ const Section = styled.section`
 `;
 
 const Panel = styled.div`
-  background: ${(p) => (p.$variant === 'pink' ? '#ffe1e7' : '#eef1ff')};
+  background: ${(p) => (p.$variant === 'pink' ? colors.pink : colors.lightblue)};
   border-radius: 14px;
   padding: ${spacing.large};
 `;
@@ -127,8 +127,8 @@ const ProductsPage = () => {
         <Tab $variant='pink' onClick={() => scrollTo(agencyRef)}>AGENCY</Tab>
       </Tabs>
 
-      <Section ref={pitchRef}>
-        <Panel>
+      <Section ref={pitchRef} >
+        <Panel >
           <h3>Increase your funnel by signing up to the Pitch list</h3>
           <ul>
             <li>Tell us what type of games you’re looking for and receive matching pitches</li>
