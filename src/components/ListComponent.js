@@ -5,7 +5,7 @@ import { spacing, breakpoints, colors } from '../styles/tokens';
 const USPItem = styled.div`
   display: flex;
   align-items: flex-start;
-  margin-bottom: ${spacing.medium};
+  margin-bottom: ${spacing.xSmall};
 
   @media (min-width: ${breakpoints.tablet}) {
     margin-left: calc(-${(props) => props.$index * 60}px - 380px);
@@ -35,9 +35,14 @@ const USPIcon = styled.div`
 const USPText = styled.div`
   display: flex;
   flex-direction: column;
-  h3,
+  line-height: 1.35;
+  h3 {
+    color: ${(props) => props.textcolor || 'text'};
+    margin: 0 0 4px 0;
+  }
   p {
     color: ${(props) => props.textcolor || 'text'};
+    margin: 0;
   }
 `;
 

@@ -113,6 +113,15 @@ const PinkBanner = styled.a`
   }
 `;
 
+const MobileCTA = styled.div`
+  display: none;
+  margin-top: ${spacing.small};
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: block;
+  }
+`;
+
 const WaveSection = styled.div`
   width: 100%;
   position: absolute;
@@ -283,6 +292,12 @@ const Hero = ({
           which means this is the perfect time to join our journey <br />— check out our early-bird offers now!
         </div>
         <span style={{ fontSize: '14px', opacity: 0.9 }}>(and just between us: the site is still in beta and hasn't been fully optimized for mobile yet)</span>
+        {/* Mobile-only CTA placed inside the pink banner after the copy */}
+        <MobileCTA>
+          <a href="#early-bird-deals" style={{ textDecoration: 'none', pointerEvents: 'auto' }}>
+            <Button text="See early-bird deals" variant="primary" />
+          </a>
+        </MobileCTA>
       </PinkBanner>
       <HeroWrapper>
         <HeroContent>

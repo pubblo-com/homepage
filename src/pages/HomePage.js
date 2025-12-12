@@ -78,11 +78,18 @@ const MarcusAvatar = styled.img`
 const BenefitsWrapper = styled.div`
   background-color: ${colors.pink};
   width: 100%;
-  clip-path: polygon(0 80px, calc(100% - 100px) 0, calc(100% - 400px) 100%, 0 100%);
+  /* Reduce right-side empty space by tightening the angle */
+  clip-path: polygon(0 80px, calc(100% - 80px) 0, calc(100% - 260px) 100%, 0 100%);
   margin-top: 32px;
   
   @media (max-width: ${breakpoints.tablet}) {
-    clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%);
+    /* Keep similar angle but with reduced right margin on laptops */
+    clip-path: polygon(0 60px, calc(100% - 60px) 0, calc(100% - 220px) 100%, 0 100%);
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    /* Mobile: minimal right margin and gentler right-edge slope */
+    clip-path: polygon(0 40px, calc(100% - 5px) 0, calc(100% - 80px) 100%, 0 100%);
   }
 `;
 

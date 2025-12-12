@@ -96,10 +96,12 @@ const RightSide = styled.div`
   align-items: flex-start;
   color: ${(props) => props.textColor || 'text'};
   text-shadow: 0 1px 0 rgba(255,255,255,0.3);
-  padding-top: 80px;
+  /* Reduce space between heading and list */
+  padding-top: 24px;
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
+    padding-top: 16px;
   }
 `;
 
