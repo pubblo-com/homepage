@@ -7,6 +7,7 @@ import backgroundImageMobile from '../assets/bildpubblo-mobil.jpg';
 
 import WaveImage from '../assets/wave.svg';
 import Button from './Button';
+import RollingBanner from './RollingBanner';
 
 const HeroSection = styled.section`
   width: 100%;
@@ -139,7 +140,6 @@ const WaveImageContainer = styled.div`
   position: relative;
   bottom: -1px;
   background: #ffffff;
-  background: linear-gradient(0deg,rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
 `;
 
 const slideFromLeft = keyframes`
@@ -286,7 +286,7 @@ const Hero = ({
     <HeroSection>
       <PinkBanner href="#early-bird-deals">
         <div style={{ fontSize: '36px', lineHeight: '1.2', marginBottom: '8px', fontWeight: 'bold' }}>
-          Pubblo is set to launch in January 2026,
+          Pubblo is set to launch in March 2026,
         </div>
         <div style={{ fontSize: '28px', lineHeight: '1.3', marginBottom: '8px' }}>
           which means this is the perfect time to join our journey <br />— check out our early-bird offers now!
@@ -340,6 +340,7 @@ const Hero = ({
           </CopyWrap>
         </HeroContent>
       </HeroWrapper>
+      <RollingBanner desktopOnly headingAlignment='hero' />
       <WaveSection>
         <WaveImageContainer src={WaveImage} alt='Wave design' />
       </WaveSection>

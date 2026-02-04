@@ -157,11 +157,12 @@ const EssenPitchPage = () => {
       <Wrap>
         <Heading>Spiel Pitch Competition</Heading>
         <Info>
-          <p>The Pubblo Spiel Pitch competition has now officially wrapped up, and we’re thrilled by the incredible response it received.</p>
-          <p>This year’s submissions showcased an impressive level of creativity, passion, and innovation within the board game community.</p>
-          <p>Due to the high number of entries, the jury is taking a bit of extra time to review all pitches carefully. The winner will be announced in January, and participants will be contacted directly once the final decision has been made.</p>
-          <p>We’d like to thank everyone who contributed, supported, or followed the competition. Your enthusiasm has made this competition so inspiring and we’re proud to celebrate such talent within the Pubblo community.</p>
-          <p>Stay tuned for updates — we’ll share the latest news here on Pubblo as soon as the results are ready.</p>
+          <p>The Pubblo Spiel Pitch Competition has now officially come to an end, and we’re thrilled by the incredible response it received.</p>
+          <p>This year’s submissions showcased an impressive level of creativity, passion, and innovation from across the board game community, making the jury’s work both exciting and challenging.</p>
+          <p>We’re happy to share that five finalists have now been selected and contacted by Jumbo, who will continue the process directly with them.</p>
+          <p>We would like to extend a heartfelt thank you to everyone who submitted a pitch, supported the competition, or followed along. Your enthusiasm and engagement have made this competition truly inspiring, and we’re proud to celebrate the talent within the Pubblo community.</p>
+          <p>Stay tuned for more updates — we’ll share the latest news here on Pubblo as soon as there’s more to announce.</p>
+          
           
         </Info>
       </Wrap>

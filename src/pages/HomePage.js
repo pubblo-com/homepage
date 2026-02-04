@@ -16,6 +16,7 @@ import BigMessageComponent from '../components/BigMessageComponent.js';
 import EarlyBirdDeals from '../components/EarlyBirdDeals.js';
 import SEOHead from '../components/SEOHead';
 import Button from '../components/Button';
+import RollingBanner from '../components/RollingBanner';
 import { isSpielPitchActive } from '../utils/spielPitch';
 
 // const Wrap = styled.main`
@@ -306,6 +307,7 @@ const HomePage = ({ lockedAudience }) => {
         </BigMessageComponent>
       </SectionWrap>
       </Reveal>
+      <RollingBanner mobileOnly fadeAtCenter={false} headingAlignment='full' />
       <Reveal data-reveal-id='marcus' className={visibleIds['marcus'] ? 'is-visible' : ''}>
         <SectionWrap style={{ paddingBottom: 0 }}>
           <h2 style={{ marginTop: 0 }}>Why we created Pubblo</h2>

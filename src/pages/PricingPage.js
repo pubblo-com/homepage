@@ -110,7 +110,7 @@ const PricingPage = () => {
     <Wrap>
       <Title>Pricing to be announced at launch</Title>
       <p style={{ marginBottom: spacing.large }}>
-        Pubblo's products are currently in beta. Pricing will be announced at launch in January 2026. Don't miss our introduction discounts!
+        Pubblo's products are currently in beta. Pricing will be announced at launch in March 2026. Don't miss our introduction discounts!
       </p>
 
       <Grid>

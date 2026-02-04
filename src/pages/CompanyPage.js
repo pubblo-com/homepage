@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../components/Button';
+import RollingBanner from '../components/RollingBanner';
 import { spacing, breakpoints } from '../styles/tokens';
 
 const Wrap = styled.main`
@@ -77,6 +78,7 @@ const CompanyPage = () => {
 
   return (
     <Wrap>
+      <RollingBanner mobileOnly fadeAtCenter={false} headingAlignment='full' />
       <Card>
         <Avatar src='/1706627130390.jfif' alt='Marcus Carleson' />
         <div>
