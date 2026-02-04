@@ -23,11 +23,13 @@ const BannerShell = styled.div`
   padding: ${spacing.small} 0;
   margin-top: ${spacing.medium};
   display: ${(p) => (p.$mobileOnly ? 'none' : 'block')};
+  --logo-opacity: 0.55;
 
   @media (max-width: ${breakpoints.mobile}) {
     margin-top: ${spacing.small};
     ${(p) => (p.$desktopOnly ? 'display: none;' : '')}
     ${(p) => (p.$mobileOnly ? 'display: block;' : '')}
+    --logo-opacity: 0.7;
   }
 `;
 
@@ -99,7 +101,7 @@ const LogoSlot = styled.div`
   justify-content: center;
   will-change: transform;
   pointer-events: none;
-  opacity: var(--alpha, 1);
+  opacity: calc(var(--alpha, 1) * var(--logo-opacity, 1));
   transition: opacity 200ms ease;
 `;
 
@@ -145,7 +147,6 @@ const RollingBanner = ({
 }) => {
   const images = useMemo(() => loadImages(), []);
   const hasImages = images.length > 0;
-  // sequence stores the working list of logos including duplicates for looping.
   const [sequence, setSequence] = useState([]);
 
   const effectiveDuration = useMemo(() => {
@@ -162,6 +163,7 @@ const RollingBanner = ({
   const containerWidthRef = useRef(0);
   const speedRef = useRef(0);
   const rafRef = useRef(null);
+  const initialBoostRef = useRef(true);
 
   useEffect(() => {
     if (!hasImages) {
@@ -248,6 +250,8 @@ const RollingBanner = ({
         return;
       }
 
+      initialBoostRef.current = true;
+
       let last = performance.now();
 
       // Main RAF loop that moves each logo, wraps it, and updates fade state.
@@ -265,10 +269,11 @@ const RollingBanner = ({
         const speed = speedRef.current;
 
         if (speed > 0 && positions.length === widths.length && positions.length === nodes.length) {
-          const delta = speed * elapsed;
+          const boost = initialBoostRef.current ? 3 : 1;
+          const delta = speed * boost * elapsed;
 
           const containerWidth = containerWidthRef.current;
-            const centerPoint = containerWidth > 0 ? (containerWidth / 2) - 10 : 0;
+          const centerPoint = containerWidth > 0 ? containerWidth / 2 - 70 : 0;
 
           if (direction === 'left') {
             for (let i = 0; i < positions.length; i += 1) {
@@ -288,6 +293,9 @@ const RollingBanner = ({
               if (positions[i] + width < -GAP_PX) {
                 positions[i] = maxRight + GAP_PX;
                 maxRight = positions[i] + width;
+                if (initialBoostRef.current) {
+                  initialBoostRef.current = false;
+                }
               }
 
               nodes[i].style.setProperty('--offset', `${positions[i]}px`);
@@ -308,6 +316,13 @@ const RollingBanner = ({
                 }
                 const anchor = Math.min(minLeft, -GAP_PX);
                 positions[i] = anchor - width - GAP_PX;
+              }
+
+              if (initialBoostRef.current && centerPoint > 0) {
+                const itemCenter = positions[i] + width / 2;
+                if (itemCenter >= centerPoint) {
+                  initialBoostRef.current = false;
+                }
               }
 
               nodes[i].style.setProperty('--offset', `${positions[i]}px`);

@@ -76,6 +76,15 @@ const MarcusAvatar = styled.img`
   }
 `;
 
+const MarcusIntro = styled.div`
+  overflow: hidden;
+  max-height: ${(p) => (p.$hidden ? '0' : '800px')};
+  opacity: ${(p) => (p.$hidden ? 0 : 1)};
+  transform: translateY(${(p) => (p.$hidden ? '-16px' : '0')});
+  pointer-events: ${(p) => (p.$hidden ? 'none' : 'auto')};
+  transition: max-height 900ms ease, opacity 900ms ease, transform 900ms ease;
+`;
+
 const BenefitsWrapper = styled.div`
   background-color: ${colors.pink};
   width: 100%;
@@ -97,24 +106,30 @@ const BenefitsWrapper = styled.div`
 
 
 const Foldout = styled.div`
-  margin-top: ${spacing.medium};
+ 
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: ${(p) => (p.$expanded ? spacing.medium : '0')};
+  overflow: hidden;
+  max-height: ${(p) => (p.$expanded ? '2000px' : '0')};
+  opacity: ${(p) => (p.$expanded ? 1 : 0)};
+  transform: translateY(${(p) => (p.$expanded ? '0' : '-12px')});
+  pointer-events: ${(p) => (p.$expanded ? 'auto' : 'none')};
+  transition: max-height 1200ms ease, opacity 900ms ease, transform 900ms ease, margin-top 900ms ease;
+`;
+
+const FoldoutInner = styled.div`
   background: #fff;
   border-radius: 16px;
   padding: ${spacing.large};
   border: 1px solid #eee;
-
-  @media (min-width: ${breakpoints.tablet}) {
-    position: relative;
-    left: calc(-160px - ${spacing.large});
-    width: calc(100% + 160px + ${spacing.large});
-  }
+  line-height: 1.7;
 
   @media (max-width: ${breakpoints.tablet}) {
-    padding: ${spacing.small};
+    padding: ${spacing.medium};
     font-size: 14px;
-    line-height: 1.4;
-    margin-left: -${spacing.small};
-    margin-right: -${spacing.small};
+    line-height: 1.5;
 
     h3 {
       font-size: 18px;
@@ -214,7 +229,10 @@ const HomePage = ({ lockedAudience }) => {
   const handleGoToLogin = () => {
     navigate('/launch#/create-account/1-email-password');
   };
-  const [showMarcus, setShowMarcus] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [introHidden, setIntroHidden] = useState(false);
+  const [letterVisible, setLetterVisible] = useState(false);
+  const letterTimerRef = useRef(null);
   const [visibleIds, setVisibleIds] = useState({ form: true });
   const spielPitchActive = isSpielPitchActive();
 
@@ -266,6 +284,34 @@ const HomePage = ({ lockedAudience }) => {
     }
   };
 
+  React.useEffect(() => {
+    if (letterTimerRef.current) {
+      clearTimeout(letterTimerRef.current);
+      letterTimerRef.current = null;
+    }
+
+    if (isExpanded) {
+      setIntroHidden(true);
+      letterTimerRef.current = setTimeout(() => {
+        setLetterVisible(true);
+        letterTimerRef.current = null;
+      }, 900);
+    } else {
+      setLetterVisible(false);
+      letterTimerRef.current = setTimeout(() => {
+        setIntroHidden(false);
+        letterTimerRef.current = null;
+      }, 1200);
+    }
+
+    return () => {
+      if (letterTimerRef.current) {
+        clearTimeout(letterTimerRef.current);
+        letterTimerRef.current = null;
+      }
+    };
+  }, [isExpanded]);
+
   return (
     <>
       <SEOHead 
@@ -315,20 +361,26 @@ const HomePage = ({ lockedAudience }) => {
         <MarcusCard>
             <MarcusAvatar src='/1706627130390.jfif' alt='Marcus Carleson' />
             <div>
-              <p style={{ fontSize: '18px', lineHeight: '1.6', margin: 0 }}>
-                Hi, I'm Marcus, the creator of HITSTER – Europe's best selling game 2024. I'm thrilled to introduce you to my new project: PUBBLO
-              </p>
-              <p style={{ fontSize: '18px', lineHeight: '1.6', marginTop: spacing.medium }}>
-                Pubblo is a digital platform designed to match and connect <strong>publishers, distributors, and creators</strong> for licensing and distribution opportunities in the board game industry
-              </p>
-              <div style={{ marginTop: spacing.medium, fontWeight: 600 }}>
-                Marcus Carleson — Chairman and founder of Pubblo, creator of HITSTER
-              </div>
+              <MarcusIntro $hidden={introHidden} aria-hidden={introHidden}>
+                <p style={{ fontSize: '18px', lineHeight: '1.6', margin: 0 }}>
+                  Hi, I'm Marcus, the creator of HITSTER – Europe's best selling game 2024. I'm thrilled to introduce you to my new project: PUBBLO
+                </p>
+                <p style={{ fontSize: '18px', lineHeight: '1.6', marginTop: spacing.medium }}>
+                  Pubblo is a digital platform designed to match and connect <strong>publishers, distributors, and creators</strong> for licensing and distribution opportunities in the board game industry
+                </p>
+                <div style={{ marginTop: spacing.medium, fontWeight: 600 }}>
+                  Marcus Carleson — Chairman and founder of Pubblo, creator of HITSTER
+                </div>
+              </MarcusIntro>
             <div style={{ marginTop: spacing.medium }}>
-              <Button text={showMarcus ? 'Hide full letter ▴' : 'Read the full letter ▾'} onClick={() => setShowMarcus(!showMarcus)} />
+              <Button
+                text={isExpanded ? 'Hide full letter ▴' : 'Read the full letter ▾'}
+                onClick={() => setIsExpanded((prev) => !prev)}
+                aria-expanded={isExpanded}
+              />
               </div>
-              {showMarcus && (
-                <Foldout>
+              <Foldout $expanded={letterVisible} aria-hidden={!letterVisible}>
+                <FoldoutInner>
                   <h3 style={{ marginTop: 0 }}>Letter from Marcus</h3>
                   <p style={{ fontSize: '16px', lineHeight: '1.6', fontStyle: 'italic', marginBottom: spacing.large }}>
                     For a long time, people came to me to get connected in the business… I thought about how I could help — and Pubblo was the answer.
@@ -357,8 +409,8 @@ const HomePage = ({ lockedAudience }) => {
                     <strong>Marcus Carleson</strong>
                     <br />Chairman and founder, Pubblo
                   </p>
-                </Foldout>
-              )}
+                </FoldoutInner>
+              </Foldout>
             </div>
           </MarcusCard>
       </Reveal>
