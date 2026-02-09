@@ -7,8 +7,9 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components';
 import { spacing, breakpoints, colors } from '../styles/tokens';
 
-// Pixel gap inserted between each logo instance.
-const GAP_PX = parseFloat(spacing.large) || 32;
+// Pixel gap inserted between each logo instance on mobile; doubled for desktop.
+const BASE_GAP_PX = parseFloat(spacing.large) || 32;
+const DOUBLE_GAP_PX = BASE_GAP_PX * 2;
 // Ensures we always have enough items to cover large screens.
 const MIN_VISIBLE_ITEMS = 50;
 
@@ -113,12 +114,24 @@ const LogoImage = styled.img`
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
 `;
 
+// Fisher-Yates shuffle keeps the logo order varied without mutating original arrays.
+const shuffleArray = (input) => {
+  const list = [...input];
+  for (let i = list.length - 1; i > 0; i -= 1) {
+    const swapIndex = Math.floor(Math.random() * (i + 1));
+    const temp = list[i];
+    list[i] = list[swapIndex];
+    list[swapIndex] = temp;
+  }
+  return list;
+};
+
 // Reads every PNG in the rolling-banner asset folder. The bundler (CRA + Webpack)
 // transforms require.context calls into static import maps at build time.
 const loadImages = () => {
   try {
     const context = require.context('../assets/rolling-banner', false, /\.png$/i);
-    return context.keys().map((key) => {
+    const items = context.keys().map((key) => {
       const fileName = key.replace('./', '');
       const label = fileName.replace(/\.png$/i, '').replace(/[-_]+/g, ' ').trim();
       return {
@@ -126,6 +139,7 @@ const loadImages = () => {
         alt: label || 'Brand logo',
       };
     });
+    return shuffleArray(items);
   } catch (error) {
     if (process.env.NODE_ENV !== 'production') {
       // Helps identify missing asset folders during development without breaking the build.
@@ -148,6 +162,40 @@ const RollingBanner = ({
   const images = useMemo(() => loadImages(), []);
   const hasImages = images.length > 0;
   const [sequence, setSequence] = useState([]);
+  const [gap, setGap] = useState(() => (mobileOnly ? BASE_GAP_PX : DOUBLE_GAP_PX));
+  const gapRef = useRef(gap);
+
+  useEffect(() => {
+    gapRef.current = gap;
+  }, [gap]);
+
+  useEffect(() => {
+    if (mobileOnly) {
+      setGap(BASE_GAP_PX);
+      return undefined;
+    }
+
+    if (typeof window === 'undefined' || !window.matchMedia) {
+      setGap(DOUBLE_GAP_PX);
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia(`(max-width: ${breakpoints.mobile})`);
+
+    const handleChange = (event) => {
+      setGap(event.matches ? BASE_GAP_PX : DOUBLE_GAP_PX);
+    };
+
+    handleChange(mediaQuery);
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
+  }, [mobileOnly]);
 
   const effectiveDuration = useMemo(() => {
     if (mobileOnly && duration >= 16) {
@@ -209,14 +257,14 @@ const RollingBanner = ({
       let cursor = 0;
       for (let i = 0; i < widths.length; i += 1) {
         positions[i] = cursor;
-        cursor += widths[i] + GAP_PX;
+        cursor += widths[i] + gap;
       }
     } else {
-      const totalSpan = widths.reduce((acc, width) => acc + width, 0) + GAP_PX * widths.length;
+      const totalSpan = widths.reduce((acc, width) => acc + width, 0) + gap * widths.length;
       let cursor = -totalSpan;
       for (let i = 0; i < widths.length; i += 1) {
         positions[i] = cursor;
-        cursor += widths[i] + GAP_PX;
+        cursor += widths[i] + gap;
       }
     }
 
@@ -229,7 +277,7 @@ const RollingBanner = ({
     speedRef.current = effectiveDuration > 0 ? containerWidth / (effectiveDuration * 1000) : 0.05;
 
     return true;
-  }, [effectiveDuration, direction, sequence.length]);
+  }, [effectiveDuration, direction, gap, sequence.length]);
 
   // On mount or whenever the duplicated sequence changes, start the animation.
   useEffect(() => {
@@ -290,8 +338,9 @@ const RollingBanner = ({
 
             for (let i = 0; i < positions.length; i += 1) {
               const width = widths[i];
-              if (positions[i] + width < -GAP_PX) {
-                positions[i] = maxRight + GAP_PX;
+              const currentGap = gapRef.current;
+              if (positions[i] + width < -currentGap) {
+                positions[i] = maxRight + currentGap;
                 maxRight = positions[i] + width;
                 if (initialBoostRef.current) {
                   initialBoostRef.current = false;
@@ -307,15 +356,16 @@ const RollingBanner = ({
 
             for (let i = 0; i < positions.length; i += 1) {
               const width = widths[i];
-              if (positions[i] > containerWidthRef.current + GAP_PX) {
+              const currentGap = gapRef.current;
+              if (positions[i] > containerWidthRef.current + currentGap) {
                 let minLeft = positions[0];
                 for (let j = 1; j < positions.length; j += 1) {
                   if (positions[j] < minLeft) {
                     minLeft = positions[j];
                   }
                 }
-                const anchor = Math.min(minLeft, -GAP_PX);
-                positions[i] = anchor - width - GAP_PX;
+                const anchor = Math.min(minLeft, -currentGap);
+                positions[i] = anchor - width - currentGap;
               }
 
               if (initialBoostRef.current && centerPoint > 0) {
