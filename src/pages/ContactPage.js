@@ -4,6 +4,13 @@ import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
 import { getRecaptchaToken } from '../utils/recaptcha';
+import magnusImg from '../assets/contacts/magnus.jpg';
+import marcusImg from '../assets/contacts/marcus.jpg';
+import stefanImg from '../assets/contacts/stefan.jpg';
+import mariaImg from '../assets/contacts/maria.jpg';
+import olofImg from '../assets/contacts/olof.jpg';
+import olleImg from '../assets/contacts/olle.jpg';
+import andersImg from '../assets/contacts/anders.jpg';
 
 const Wrap = styled.main`
   padding: 64px 0 ${spacing.xXLarge};
@@ -17,6 +24,69 @@ const Wrap = styled.main`
 
 const Title = styled.h1`
   margin-bottom: ${spacing.large};
+`;
+
+const TeamSection = styled.section`
+  margin-bottom: ${spacing.xLarge};
+`;
+
+const TeamIntro = styled.p`
+  max-width: 720px;
+  margin-top: 0;
+  margin-bottom: ${spacing.large};
+  color: #4b4b4b;
+  line-height: 1.6;
+`;
+
+const TeamGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: ${spacing.xLarge};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 680px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const TeamCard = styled.div`
+  text-align: center;
+`;
+
+const PortraitWrap = styled.div`
+  width: 200px;
+  margin: 0 auto ${spacing.medium};
+`;
+
+const Portrait = styled.img`
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0;
+  background: #f2f2f2;
+`;
+
+const PersonName = styled.h3`
+  margin: 0 0 4px;
+`;
+
+const PersonRole = styled.div`
+  font-weight: 600;
+  color: #3b3b3b;
+`;
+
+const PersonEmail = styled.a`
+  display: inline-block;
+  margin-top: 6px;
+  color: #6b6b6b;
+  text-decoration: none;
+
+  &:hover {
+    color: #2f2f2f;
+  }
 `;
 
 const Card = styled.section`
@@ -80,6 +150,65 @@ const SuccessBox = styled.div`
 const ContactPage = () => {
   const [searchParams] = useSearchParams();
   const isDemo = searchParams.get('demo') === 'true';
+
+  const teamMembers = [
+    {
+      name: 'Magnus Hölcke',
+      role: 'CEO',
+      email: 'magnus@pubblo.com',
+      image: magnusImg,
+      accent: null,
+      shape: null
+    },
+    {
+      name: 'Marcus Carleson',
+      role: 'Public & publisher relations',
+      email: 'marcus@pubblo.com',
+      image: marcusImg,
+      accent: null,
+      shape: null
+    },
+    {
+      name: 'Stefan Olstorpe',
+      role: 'Product owner',
+      email: 'stefan@pubblo.com',
+      image: stefanImg,
+      accent: null,
+      shape: null
+    },
+    {
+      name: 'Maria Laakso',
+      role: 'Sales and marketing',
+      email: 'maria@pubblo.com',
+      image: mariaImg,
+      accent: null,
+      shape: null
+    },
+    {
+      name: 'Olof Mjöberg',
+      role: 'Acting CTO',
+      email: 'olof@pubblo.com',
+      image: olofImg,
+      accent: null,
+      shape: null
+    },
+    {
+      name: 'Olle Engqvist',
+      role: 'Infrastructure',
+      email: 'olle@pubblo.com',
+      image: olleImg,
+      accent: null,
+      shape: null
+    },
+    {
+      name: 'Anders Lång',
+      role: 'Software architect',
+      email: 'anders@pubblo.com',
+      image: andersImg,
+      accent: null,
+      shape: null
+    }
+  ];
   
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -142,6 +271,26 @@ const ContactPage = () => {
   return (
     <Wrap>
       <Title>Contact us</Title>
+
+      <TeamSection>
+        <h2>Meet the team</h2>
+        <TeamIntro>
+          We are a small, dedicated crew that loves board games and great collaborations. Reach out directly to the
+          right person, or use the form below and we will get back to you quickly.
+        </TeamIntro>
+        <TeamGrid>
+          {teamMembers.map((member) => (
+            <TeamCard key={member.email}>
+              <PortraitWrap>
+                <Portrait src={member.image} alt={member.name} loading='lazy' />
+              </PortraitWrap>
+              <PersonName>{member.name}</PersonName>
+              <PersonRole>{member.role}</PersonRole>
+              <PersonEmail href={`mailto:${member.email}`}>{member.email}</PersonEmail>
+            </TeamCard>
+          ))}
+        </TeamGrid>
+      </TeamSection>
 
       <Card>
         <h3>Drop us a note, we'd love to hear from you</h3>

@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { spacing, breakpoints, colors } from '../styles/tokens';
 import backgroundImage from '../assets/bildpubblo.jpg';
 import backgroundImageMobile from '../assets/bildpubblo-mobil.jpg';
 
 import WaveImage from '../assets/wave.svg';
+import newsData from '../data/news.json';
 import Button from './Button';
 import RollingBanner from './RollingBanner';
 
@@ -72,8 +73,9 @@ const HeroContent = styled.div`
   }
 `;
 
-const PinkBanner = styled.a`
+const PinkBanner = styled.div`
   background-color: ${colors.pink};
+  box-sizing: border-box;
   color: white;
   padding: 12px ${spacing.xLarge};
   padding-left: max(0px, calc((100% - 1200px) / 2));
@@ -87,13 +89,6 @@ const PinkBanner = styled.a`
   font-size: 16px;
   line-height: 1.4;
   font-weight: 500;
-  cursor: pointer;
-  text-decoration: none;
-  transition: color 160ms ease;
-  
-  &:hover {
-    color: ${colors.contrast};
-  }
 
   @media (max-width: ${breakpoints.tablet}) {
     top: 90px;
@@ -109,8 +104,18 @@ const PinkBanner = styled.a`
     max-width: 100%;
     clip-path: none;
     padding: ${spacing.medium};
-    pointer-events: none;
-    cursor: default;
+  }
+`;
+
+const PinkBannerLink = styled(Link)`
+  color: inherit;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  transition: color 160ms ease;
+
+  &:hover {
+    color: ${colors.contrast};
   }
 `;
 
@@ -120,6 +125,49 @@ const MobileCTA = styled.div`
 
   @media (max-width: ${breakpoints.mobile}) {
     display: block;
+  }
+`;
+
+const PinkBannerKicker = styled.div`
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  opacity: 0.92;
+  text-transform: uppercase;
+`;
+
+const PinkBannerTitle = styled.div`
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 22px;
+  }
+`;
+
+const PinkBannerMeta = styled.div`
+  font-size: 20px;
+  line-height: 1.35;
+  max-width: 620px;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    max-width: 100%;
+    font-size: 16px;
+  }
+`;
+
+const PinkBannerDate = styled.div`
+  font-size: 13px;
+  line-height: 1.3;
+  margin-top: 6px;
+  opacity: 0.9;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 12px;
   }
 `;
 
@@ -274,6 +322,30 @@ const Hero = ({
     ? audiences[audience]
     : { headline, subhead: tagline, support: '', ctaText: buttonText };
 
+  const latestNews = useMemo(() => {
+    if (!Array.isArray(newsData) || newsData.length === 0) {
+      return null;
+    }
+
+    return [...newsData].sort((a, b) => b.date.localeCompare(a.date))[0];
+  }, []);
+
+  const latestNewsExcerpt = useMemo(() => {
+    if (!latestNews?.body) {
+      return 'Read the latest update from our news page...';
+    }
+
+    const firstLine = latestNews.body
+      .split('\n')
+      .map((line) => line.trim())
+      .find(Boolean);
+
+    const excerpt = firstLine || 'Read the latest update from our news page';
+    return excerpt.replace(/[.!?]+$/, '') + '...';
+  }, [latestNews]);
+
+  const latestNewsPath = latestNews ? `/news/${latestNews.slug}` : '/news';
+
   const onSelect = (value) => {
     if (intervalRef.current) {
       window.clearInterval(intervalRef.current);
@@ -284,19 +356,23 @@ const Hero = ({
 
   return (
     <HeroSection>
-      <PinkBanner href="#early-bird-deals">
-        <div style={{ fontSize: '36px', lineHeight: '1.2', marginBottom: '8px', fontWeight: 'bold' }}>
-          Pubblo is set to launch in March 2026,
-        </div>
-        <div style={{ fontSize: '28px', lineHeight: '1.3', marginBottom: '8px' }}>
-          which means this is the perfect time to join our journey <br />— check out our early-bird offers now!
-        </div>
-        <span style={{ fontSize: '14px', opacity: 0.9 }}>(and just between us: the site is still in beta and hasn't been fully optimized for mobile yet)</span>
-        {/* Mobile-only CTA placed inside the pink banner after the copy */}
+      <PinkBanner>
+        <PinkBannerLink to={latestNewsPath}>
+          <PinkBannerKicker>Latest news</PinkBannerKicker>
+          <PinkBannerTitle>
+            {latestNews ? latestNews.title : 'See the latest updates from Pubblo'}
+          </PinkBannerTitle>
+          <PinkBannerMeta>
+            {latestNews
+              ? latestNewsExcerpt
+              : 'Read the latest update from our news page.'}
+          </PinkBannerMeta>
+          {latestNews && <PinkBannerDate>{latestNews.date} · Click to read</PinkBannerDate>}
+        </PinkBannerLink>
         <MobileCTA>
-          <a href="#early-bird-deals" style={{ textDecoration: 'none', pointerEvents: 'auto' }}>
-            <Button text="See early-bird deals" variant="primary" />
-          </a>
+          <Link to={latestNewsPath} style={{ textDecoration: 'none' }}>
+            <Button text="Read latest news" variant="primary" />
+          </Link>
         </MobileCTA>
       </PinkBanner>
       <HeroWrapper>

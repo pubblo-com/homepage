@@ -1,51 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../components/Button';
-import RollingBanner from '../components/RollingBanner';
 import { spacing, breakpoints } from '../styles/tokens';
+import marcusImage from '../assets/contacts/marcus.jpg';
 
 const Wrap = styled.main`
-  padding: 64px 0 ${spacing.xXLarge};
+  padding: 40px 0 ${spacing.xLarge};
   max-width: 1200px;
   margin: 0 auto;
 
   @media (max-width: ${breakpoints.tablet}) {
-    padding: 100px ${spacing.large} 64px;
+    padding: 72px ${spacing.medium} 48px;
   }
 `;
 
-const Card = styled.section`
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: ${spacing.xLarge};
-  background: #ffe1e7;
+const MarcusImage = styled.img`
+  width: 100%;
+  max-width: 560px;
+  height: auto;
   border-radius: 20px;
-  padding: ${spacing.xLarge};
-  align-items: center;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-`;
-
-const Avatar = styled.img`
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 6px solid #fff;
-`;
-
-const Quote = styled.blockquote`
-  margin: 0;
-  font-size: 20px;
-  line-height: 1.6;
-`;
-
-const Byline = styled.div`
-  margin-top: ${spacing.medium};
-  font-weight: 600;
+  display: block;
+  margin: 0 auto;
 `;
 
 const ModalBackdrop = styled.div`
@@ -78,21 +53,12 @@ const CompanyPage = () => {
 
   return (
     <Wrap>
-      <RollingBanner mobileOnly fadeAtCenter={false} headingAlignment='full' />
-      <Card>
-        <Avatar src='/1706627130390.jfif' alt='Marcus Carleson' />
-        <div>
-          <h2 style={{ marginTop: 0 }}>Why we created Pubblo</h2>
-          <Quote>
-            “For a long time, people came to me to get connected in the business… I thought about how I
-            could help — and Pubblo was the answer.”
-          </Quote>
-          <Byline>Marcus Carleson — Chairman and founder of Pubblo, creator of HITSTER</Byline>
-          <div style={{ marginTop: spacing.medium }}>
-            <Button text='Letter from Marcus' onClick={() => setOpen(true)} />
-          </div>
+      <div style={{ marginTop: spacing.small }}>
+        <MarcusImage src={marcusImage} alt='Marcus Carleson' />
+        <div style={{ marginTop: spacing.medium, textAlign: 'center' }}>
+          <Button text='Letter from Marcus' onClick={() => setOpen(true)} />
         </div>
-      </Card>
+      </div>
 
       <div style={{ marginTop: spacing.xXLarge }}>
         <h2>About us</h2>
@@ -109,10 +75,6 @@ const CompanyPage = () => {
       <div style={{ marginTop: spacing.xLarge }}>
         <h3>Company information</h3>
         <p>
-          <strong>Magnus Hölcke</strong> - CEO<br />
-          <strong>Olof Mjöberg</strong> - CTO<br />
-          <strong>Marcus Carleson</strong> - Founder<br />
-          <br />
           <strong>Pubblo AB</strong><br />
           Registration number: 559735-9735<br />
           Address: Storgatan 44, 903 26 Umeå, Sweden

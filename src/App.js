@@ -7,6 +7,8 @@ import UsersPage from './pages/UsersPage';
 import ProductsPage from './pages/ProductsPage';
 import PricingPage from './pages/PricingPage';
 import CompanyPage from './pages/CompanyPage';
+import NewsPage from './pages/NewsPage';
+import NewsArticlePage from './pages/NewsArticlePage';
 import EssenPitchPage from './pages/EssenPitchPage';
 import HomePublisher from './pages/HomePublisher';
 import HomeCreator from './pages/HomeCreator';
@@ -43,6 +45,8 @@ function AppContent() {
           <Route path='/faq' element={<FAQPage />} />
           <Route path='/company' element={<CompanyPage />} />
           <Route path='/about' element={<CompanyPage />} />
+          <Route path='/news' element={<NewsPage />} />
+          <Route path='/news/:slug' element={<NewsArticlePage />} />
           <Route path='/contact' element={<ContactPage />} />
           <Route path='/spielpitch' element={<EssenPitchPage />} />
           <Route path='/privacy' element={<PrivacyPage />} />

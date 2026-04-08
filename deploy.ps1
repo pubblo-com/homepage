@@ -23,6 +23,13 @@ if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
     Write-Error "Docker Desktop is not installed or not in PATH. Install from https://www.docker.com/products/docker-desktop"
 }
 
+# Check Docker daemon is running
+Write-Host "Checking Docker daemon..." -ForegroundColor Cyan
+& docker info 2>&1 | Out-Null
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "Docker Desktop is not running. Please start Docker Desktop and wait for it to finish initializing, then re-run this script."
+}
+
 # Configure project
 Write-Host "Using project: $ProjectId" -ForegroundColor Green
 & gcloud config set project $ProjectId | Out-Null

@@ -55,7 +55,7 @@ const Menu = styled.nav`
   display: inline-flex;
   align-items: center;
   gap: ${spacing.large};
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: 600px) {
     display: none;
   }
 `;
@@ -108,7 +108,7 @@ const Right = styled.div`
   display: inline-flex;
   align-items: center;
   gap: ${spacing.large};
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: 600px) {
     display: none;
   }
 `;
@@ -119,7 +119,7 @@ const ToggleButton = styled.button`
   background: transparent;
   cursor: pointer;
   padding: 8px;
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: 600px) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -158,7 +158,7 @@ const MobileMenu = styled.div`
   flex-direction: column;
   gap: ${spacing.medium};
   z-index: 999;
-  @media (max-width: ${breakpoints.tablet}) {
+  @media (max-width: 600px) {
     display: ${(p) => (p.$open ? 'flex' : 'none')};
   }
 `;
@@ -190,14 +190,10 @@ const TopNav = ({ onCtaClick }) => {
               <MenuLink to='/faq'>FAQ</MenuLink>
             </Dropdown>
           </MenuItem>
-            <MenuLink to='/spielpitch' $highlight>Spiel Pitch</MenuLink>
-          <MenuItem>
-            <MenuLink to='/about' end>About</MenuLink>
-            <Dropdown role='menu' aria-label='About submenu'>
-              <MenuLink to='/about'>About us</MenuLink>
-              <MenuLink to='/contact'>Contact</MenuLink>
-            </Dropdown>
-          </MenuItem>
+          {/* <MenuLink to='/spielpitch' $highlight>Spiel Pitch</MenuLink> */}
+          <MenuLink to='/about' end>About</MenuLink>
+          <MenuLink to='/news' end>News</MenuLink>
+          <MenuLink to='/contact' end>Contact</MenuLink>
         </Menu>
 
         <Right>
@@ -215,10 +211,11 @@ const TopNav = ({ onCtaClick }) => {
           <MobileMenuLink to='/pricing' onClick={close}>— Pricing</MobileMenuLink>
           <MobileMenuLink to='/compare' onClick={close}>— Compare</MobileMenuLink>
           <MobileMenuLink to='/faq' onClick={close}>— FAQ</MobileMenuLink>
-            <MobileMenuLink to='/spielpitch' onClick={close}>Spiel Pitch</MobileMenuLink>
+          {/* <MobileMenuLink to='/spielpitch' onClick={close}>Spiel Pitch</MobileMenuLink> */}
           <MobileMenuLink to='/about' onClick={close}>About</MobileMenuLink>
-          <MobileMenuLink to='/contact' onClick={close}>— Contact</MobileMenuLink>
-    <MobileMenuLink to='/launch' onClick={close}>Log in</MobileMenuLink>
+          <MobileMenuLink to='/news' onClick={close}>News</MobileMenuLink>
+          <MobileMenuLink to='/contact' onClick={close}>Contact</MobileMenuLink>
+          <MobileMenuLink to='/launch' onClick={close}>Log in</MobileMenuLink>
           <div>
             <Button text='Book demo' onClick={() => { close(); onCtaClick(); }} />
           </div>

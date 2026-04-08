@@ -78,7 +78,11 @@ const Footer = () => {
           <div>
             <ColTitle>Company</ColTitle>
             <A to='/company'>About</A>
+            <A to='/news'>News</A>
             <A to='/faq'>FAQ</A>
+          </div>
+          <div>
+            <ColTitle>Contact</ColTitle>
             <A to='/contact'>Contact</A>
           </div>
           <div>
