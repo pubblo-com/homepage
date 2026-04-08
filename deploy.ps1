@@ -25,9 +25,19 @@ if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
 
 # Check Docker daemon is running
 Write-Host "Checking Docker daemon..." -ForegroundColor Cyan
-& docker info 2>&1 | Out-Null
-if ($LASTEXITCODE -ne 0) {
-    Write-Error "Docker Desktop is not running. Please start Docker Desktop and wait for it to finish initializing, then re-run this script."
+$dockerInfoStdOut = [System.IO.Path]::GetTempFileName()
+$dockerInfoStdErr = [System.IO.Path]::GetTempFileName()
+try {
+    $dockerInfoProcess = Start-Process -FilePath "docker" -ArgumentList "info" -NoNewWindow -Wait -PassThru -RedirectStandardOutput $dockerInfoStdOut -RedirectStandardError $dockerInfoStdErr
+    if ($dockerInfoProcess.ExitCode -ne 0) {
+        $dockerErrorOutput = (Get-Content $dockerInfoStdErr -Raw).Trim()
+        if ([string]::IsNullOrWhiteSpace($dockerErrorOutput)) {
+            $dockerErrorOutput = "Docker Desktop is not running. Please start Docker Desktop and wait for it to finish initializing, then re-run this script."
+        }
+        Write-Error $dockerErrorOutput
+    }
+} finally {
+    Remove-Item $dockerInfoStdOut, $dockerInfoStdErr -ErrorAction SilentlyContinue
 }
 
 # Configure project
