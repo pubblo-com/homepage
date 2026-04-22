@@ -153,6 +153,10 @@ const PinkBannerMeta = styled.div`
   font-size: 20px;
   line-height: 1.35;
   max-width: 620px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 
   @media (max-width: ${breakpoints.mobile}) {
     max-width: 100%;

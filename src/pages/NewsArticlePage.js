@@ -2,14 +2,15 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import newsData from '../data/news.json';
-import oopsieLogo from '../assets/news/Oopsie_logo_blue.png';
-import mariaImg from '../assets/news/maria.png';
-
-const imageMap = {
-  'Oopsie_logo_blue.png': oopsieLogo,
-  'maria.png': mariaImg,
-};
 import { spacing } from '../styles/tokens';
+
+const imageContext = require.context('../assets/news', false, /\.(png|jpe?g|gif|webp|svg)$/i);
+const imageMap = Object.fromEntries(
+  imageContext.keys().map((key) => {
+    const mod = imageContext(key);
+    return [key.replace('./', ''), mod.default || mod];
+  })
+);
 
 const Wrap = styled.main`
   max-width: 900px;
