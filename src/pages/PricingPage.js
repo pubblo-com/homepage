@@ -145,7 +145,7 @@ const FishtailBanner = styled.div`
   clip-path: ${(p) =>
     p.$flip
       ? 'polygon(33% 0, 100% 0, 100% 100%, 33% 100%, calc(33% + 40px) 50%)'
-      : 'polygon(0 0, 60% 0, calc(60% - 40px) 50%, 60% 100%, 0 100%)'};;
+      : 'polygon(0 0, 60% 0, calc(60% - 40px) 50%, 60% 100%, 0 100%)'};
   margin-bottom: ${spacing.xXLarge};
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -157,7 +157,10 @@ const FishtailBanner = styled.div`
 const FishtailLeft = styled.div`
   padding-top: ${spacing.large};
   padding-bottom: ${spacing.large};
-  padding-left: max(${spacing.large}, calc((100% - 1100px) / 2 + ${spacing.large}));
+  padding-left: max(
+    ${spacing.large},
+    calc((100% - 1100px) / 2 + ${spacing.large})
+  );
   padding-right: 44%;
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -170,7 +173,10 @@ const FishtailRight = styled.div`
   padding-top: ${spacing.large};
   padding-bottom: ${spacing.large};
   padding-left: max(calc(33% + 72px), 36%);
-  padding-right: max(${spacing.large}, calc((100% - 1100px) / 2 + ${spacing.large}));
+  padding-right: max(
+    ${spacing.large},
+    calc((100% - 1100px) / 2 + ${spacing.large})
+  );
 
   @media (max-width: ${breakpoints.mobile}) {
     padding: ${spacing.medium};
@@ -345,9 +351,7 @@ const PricingPage = () => {
       <FishtailBanner $bg={colors.lightblue}>
         <FishtailLeft>
           <FishtailKicker>Opening offer</FishtailKicker>
-          <FishtailTitle>
-            Sign up now!
-          </FishtailTitle>
+          <FishtailTitle>Sign up now!</FishtailTitle>
           <FishtailBody>
             Sign up before Aug 30 and enjoy the M plan FREE for the rest of the
             year!
@@ -357,12 +361,13 @@ const PricingPage = () => {
 
       <ContentWrap>
         {/* ── THE PORTAL ── */}
-        <Section id="portal">
+        <Section id='portal'>
           <h2>The Portal</h2>
           <SectionDesc>
-            Designed for publishers of all sizes, whether you're an indie developer
-            with a few active games or an established industry leader interested in
-            partnering, collaborating or exploring new opportunities together.{' '}
+            Designed for publishers of all sizes, whether you're an indie
+            developer with a few active games or an established industry leader
+            interested in partnering, collaborating or exploring new
+            opportunities together.{' '}
             <a href='/contact' style={{ color: colors.link }}>
               Let's talk.
             </a>
@@ -410,120 +415,143 @@ const PricingPage = () => {
           <FishtailTitle>Want a FREE marketplace slot?</FishtailTitle>
           <FishtailBody>
             We're offering 100 free marketplace slots for publishers and 100 for
-            designers.<br />
-            Use the code <strong>100LAUNCH</strong> to claim yours
-            before they're gone!
+            designers.
+            <br />
+            Use the code <strong>100LAUNCH</strong> to claim yours before
+            they're gone!
           </FishtailBody>
           <FishtailBottomKicker>
-            Limited to one use per publisher/designer. Registration required before Aug 30.
+            Limited to one use per publisher/designer. Registration required
+            before Aug 30.
           </FishtailBottomKicker>
         </FishtailRight>
       </FishtailBanner>
 
       <ContentWrap>
         {/* ── THE MARKETPLACE ── */}
-        <Section id="marketplace">
-        <h2>The Marketplace</h2>
-        <SectionDesc>
-          A digital marketplace for new and established games looking for
-          publishing opportunities in new markets. Developers can connect
-          directly with publishers, while publishers can use advanced filtering
-          and scoring tools to discover titles that fit their portfolio.
-        </SectionDesc>
+        <Section id='marketplace'>
+          <h2>The Marketplace</h2>
+          <SectionDesc>
+            A digital marketplace for new and established games looking for
+            publishing opportunities in new markets. Developers can connect
+            directly with publishers, while publishers can use advanced
+            filtering and scoring tools to discover titles that fit their
+            portfolio.
+          </SectionDesc>
 
-        <MarketGrid>
-          {/* Designers */}
-          <MarketCard>
-            <MarketAudience>For Designers</MarketAudience>
-            <MarketPriceRow>
-              <MarketBigPrice>29€</MarketBigPrice>
-              <MarketPriceNote>/ year</MarketPriceNote>
-            </MarketPriceRow>
-            <MarketPriceSub>Launch offer available until Aug 30</MarketPriceSub>
-            <MarketPriceRow>
-              <MarketBigPrice>49€</MarketBigPrice>
-              <MarketPriceNote>/ year</MarketPriceNote>
-            </MarketPriceRow>
-            <MarketPriceSub>Introductory pricing for the rest of 2026</MarketPriceSub>
-            <MarketPriceRow style={{ marginBottom: spacing.medium }}>
-              <MarketBigPrice>99€</MarketBigPrice>
-              <MarketPriceNote>/ year</MarketPriceNote>
-            </MarketPriceRow>
-            <FeatureList>
-              <FeatureItem>
-                Create strong game pitches with the Pubblo pitch tool
-              </FeatureItem>
-              <FeatureItem>
-                Instead of knocking doors, showcase your game where publishers
-                are already actively looking for new titles
-              </FeatureItem>
-              <FeatureItem>
-                Get insights and feedback on your game's performance
-              </FeatureItem>
-            </FeatureList>
-            <Button text='Get started' variant='primary' onClick={goToPortal} />
-          </MarketCard>
+          <MarketGrid>
+            {/* Designers */}
+            <MarketCard>
+              <MarketAudience>For Designers</MarketAudience>
+              <MarketPriceRow>
+                <MarketBigPrice>29€</MarketBigPrice>
+                <MarketPriceNote>/ year</MarketPriceNote>
+              </MarketPriceRow>
+              <MarketPriceSub>
+                Launch offer available until Aug 30
+              </MarketPriceSub>
+              <MarketPriceRow>
+                <MarketBigPrice>49€</MarketBigPrice>
+                <MarketPriceNote>/ year</MarketPriceNote>
+              </MarketPriceRow>
+              <MarketPriceSub>
+                Introductory pricing for the rest of 2026
+              </MarketPriceSub>
+              <MarketPriceRow style={{ marginBottom: spacing.medium }}>
+                <MarketBigPrice>99€</MarketBigPrice>
+                <MarketPriceNote>/ year</MarketPriceNote>
+              </MarketPriceRow>
+              <FeatureList>
+                <FeatureItem>
+                  Create strong game pitches with the Pubblo pitch tool
+                </FeatureItem>
+                <FeatureItem>
+                  Instead of knocking doors, showcase your game where publishers
+                  are already actively looking for new titles
+                </FeatureItem>
+                <FeatureItem>
+                  Get insights and feedback on your game's performance
+                </FeatureItem>
+              </FeatureList>
+              <Button
+                text='Get started'
+                variant='primary'
+                onClick={goToPortal}
+              />
+            </MarketCard>
 
-          {/* Publishers */}
-          <MarketCard>
-            <MarketAudience>For Publishers</MarketAudience>
-            <MarketPriceRow>
-              <MarketBigPrice>99€</MarketBigPrice>
-              <MarketPriceNote>/ year</MarketPriceNote>
-            </MarketPriceRow>
-            <MarketPriceSub>Launch offer available until Aug 30</MarketPriceSub>
-            <MarketPriceRow>
-              <MarketBigPrice>199€</MarketBigPrice>
-              <MarketPriceNote>/ year</MarketPriceNote>
-            </MarketPriceRow>
-            <MarketPriceSub>Introductory pricing for the rest of 2026</MarketPriceSub>
-            <MarketPriceRow style={{ marginBottom: 0 }}>
-              <MarketBigPrice>Want 5+ slots?</MarketBigPrice>
-            </MarketPriceRow>
-            <MarketPriceSub>Contact us for custom pricing</MarketPriceSub>
-            <FeatureList>
-              <FeatureItem>
-                Find partners in new markets for localization
-              </FeatureItem>
-              <FeatureItem>
-                Showcase your publishing portfolio to get the best match
-              </FeatureItem>
-              <FeatureItem>
-                Access performance insights and marketplace feedback
-              </FeatureItem>
-            </FeatureList>
-            <Button text='Get started' variant='primary' onClick={goToPortal} />
-          </MarketCard>
-        </MarketGrid>
-      </Section>
+            {/* Publishers */}
+            <MarketCard>
+              <MarketAudience>For Publishers</MarketAudience>
+              <MarketPriceRow>
+                <MarketBigPrice>99€</MarketBigPrice>
+                <MarketPriceNote>/ year</MarketPriceNote>
+              </MarketPriceRow>
+              <MarketPriceSub>
+                Launch offer available until Aug 30
+              </MarketPriceSub>
+              <MarketPriceRow>
+                <MarketBigPrice>199€</MarketBigPrice>
+                <MarketPriceNote>/ year</MarketPriceNote>
+              </MarketPriceRow>
+              <MarketPriceSub>
+                Introductory pricing for the rest of 2026
+              </MarketPriceSub>
+              <MarketPriceRow style={{ marginBottom: 0 }}>
+                <MarketBigPrice>Want 5+ slots?</MarketBigPrice>
+              </MarketPriceRow>
+              <MarketPriceSub>Contact us for custom pricing</MarketPriceSub>
+              <FeatureList>
+                <FeatureItem>
+                  Find partners in new markets for localization
+                </FeatureItem>
+                <FeatureItem>
+                  Showcase your publishing portfolio to get the best match
+                </FeatureItem>
+                <FeatureItem>
+                  Access performance insights and marketplace feedback
+                </FeatureItem>
+              </FeatureList>
+              <Button
+                text='Get started'
+                variant='primary'
+                onClick={goToPortal}
+              />
+            </MarketCard>
+          </MarketGrid>
+        </Section>
 
-      {/* ── THE PITCH TOOL ── */}
-      <PitchSection id="pitch-tool">
-        <h2>The Pitch tool</h2>
-        <SectionDesc>
-          Creating a strong game pitch can be difficult, especially for
-          first-time developers. Our pitch tool helps you structure and document
-          your game professionally, making it easier for publishers to evaluate
-          your project.
-        </SectionDesc>
-        <PitchNote>
-          *Publishers can also use the tool to generate standardized sell sheets
-          and export portfolio-ready presentations.
-        </PitchNote>
-        <p style={{ marginBottom: spacing.large, fontSize: 14, fontWeight: 600 }}>
-          Free to use for all registered users.
-        </p>
-        <Button
-          text='Create your pitch now'
-          variant='primary'
-          onClick={goToPortal}
-        />
-      </PitchSection>
+        {/* ── THE PITCH TOOL ── */}
+        <PitchSection id='pitch-tool'>
+          <h2>The Pitch tool</h2>
+          <SectionDesc>
+            Creating a strong game pitch can be difficult, especially for
+            first-time developers. Our pitch tool helps you structure and
+            document your game professionally, making it easier for publishers
+            to evaluate your project.
+          </SectionDesc>
+          <PitchNote>
+            *Publishers can also use the tool to generate standardized sell
+            sheets and export portfolio-ready presentations.
+          </PitchNote>
+          <p
+            style={{
+              marginBottom: spacing.large,
+              fontSize: 14,
+              fontWeight: 600,
+            }}
+          >
+            Free to use for all registered users.
+          </p>
+          <Button
+            text='Create your pitch now'
+            variant='primary'
+            onClick={goToPortal}
+          />
+        </PitchSection>
       </ContentWrap>
     </PageShell>
   );
 };
 
 export default PricingPage;
-
-

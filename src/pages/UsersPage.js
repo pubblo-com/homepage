@@ -43,7 +43,7 @@ const TwoCol = styled.section`
 const Panel = styled.div`
   background: #fff;
   border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   padding: ${spacing.xLarge};
 `;
 
@@ -71,7 +71,10 @@ const Tag = styled.span`
   padding: 8px 14px;
   border-radius: 999px;
   font-weight: 600;
-  color: ${(p) => (p.$variant === 'pink' || p.$variant === 'yellow' ? colors.text : colors.white)};
+  color: ${(p) =>
+    p.$variant === 'pink' || p.$variant === 'yellow'
+      ? colors.text
+      : colors.white};
   background: ${(p) => {
     if (p.$variant === 'pink') return colors.pink;
     if (p.$variant === 'yellow') return colors.yellow;
@@ -102,40 +105,46 @@ const UsersPage = () => {
     <>
       <HeroImage src={heroImg} alt='Who can use our product' />
       <Wrap>
-      <Title>Who can use our product?</Title>
+        <Title>Who can use our product?</Title>
 
-      <TwoCol>
-        <Panel>
-          <SubTitle>Buyers</SubTitle>
-          <TagRow>
-            <Tag>Distributors</Tag>
-            <Tag $variant='yellow'>Publishers</Tag>
-          </TagRow>
-          <Bullets>
-            <li>Receive high‑quality pitches in a standardized format – easy to evaluate.</li>
-            <li>Automatic scoring against your preferences helps you focus.</li>
-            <li>Manage information and communication in one place.</li>
-          </Bullets>
-        </Panel>
+        <TwoCol>
+          <Panel>
+            <SubTitle>Buyers</SubTitle>
+            <TagRow>
+              <Tag>Distributors</Tag>
+              <Tag $variant='yellow'>Publishers</Tag>
+            </TagRow>
+            <Bullets>
+              <li>
+                Receive high‑quality pitches in a standardized format – easy to
+                evaluate.
+              </li>
+              <li>
+                Automatic scoring against your preferences helps you focus.
+              </li>
+              <li>Manage information and communication in one place.</li>
+            </Bullets>
+          </Panel>
 
-        <Panel>
-          <SubTitle>Sellers</SubTitle>
-          <TagRow>
-            <Tag $variant='yellow'>Publishers</Tag>
-            <Tag $variant='pink'>Designers</Tag>
-          </TagRow>
-          <Bullets>
-            <li>Increase your chance of success with compelling, informative pitch pages.</li>
-            <li>Reach partners and new markets through Pubblo's network.</li>
-            <li>Get instant feedback from recipient engagement analytics.</li>
-          </Bullets>
-        </Panel>
-      </TwoCol>
-    </Wrap>
+          <Panel>
+            <SubTitle>Sellers</SubTitle>
+            <TagRow>
+              <Tag $variant='yellow'>Publishers</Tag>
+              <Tag $variant='pink'>Designers</Tag>
+            </TagRow>
+            <Bullets>
+              <li>
+                Increase your chance of success with compelling, informative
+                pitch pages.
+              </li>
+              <li>Reach partners and new markets through Pubblo's network.</li>
+              <li>Get instant feedback from recipient engagement analytics.</li>
+            </Bullets>
+          </Panel>
+        </TwoCol>
+      </Wrap>
     </>
   );
 };
 
 export default UsersPage;
-
-
