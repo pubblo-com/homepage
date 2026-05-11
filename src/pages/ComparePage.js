@@ -197,8 +197,7 @@ const ComparePage = () => {
       </TableOuter>
 
       <div style={{ marginTop: spacing.xXLarge, display: 'flex', gap: '16px' }}>
-        <Button text='Start free trial' onClick={handleGoToLogin} />
-        <Button text='Start free trial' variant='contrast' onClick={handleGoToLogin} />
+        <Button text='Try our Portal for free' onClick={handleGoToLogin} />
       </div>
 
       <div style={{ marginTop: spacing.xLarge }}>

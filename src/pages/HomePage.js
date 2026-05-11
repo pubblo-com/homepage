@@ -12,12 +12,12 @@ import iconStars from '../assets/icon-white-stars.svg';
 //import TextImageComponent from '../components/TextImageComponent.js';
 // removed unused TextComponent import
 import FormComponent from '../components/FormComponent.js';
-import BigMessageComponent from '../components/BigMessageComponent.js';
 import EarlyBirdDeals from '../components/EarlyBirdDeals.js';
 import SEOHead from '../components/SEOHead';
 import Button from '../components/Button';
 import RollingBanner from '../components/RollingBanner';
 import { isSpielPitchActive } from '../utils/spielPitch';
+import WhoAreYouFlow from '../components/WhoAreYouFlow';
 
 // const Wrap = styled.main`
 //   padding: 64px 0 ${spacing.xXLarge};
@@ -39,6 +39,37 @@ const SectionWrap = styled.section`
   @media (max-width: ${breakpoints.tablet}) {
     padding: 48px ${spacing.large};
   }
+`;
+
+const StorySection = styled(SectionWrap)`
+  padding-top: ${spacing.large};
+`;
+
+const StoryLead = styled.p`
+  margin: ${spacing.medium} 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  max-width: 960px;
+`;
+
+const StoryBody = styled.p`
+  margin: 0 0 ${spacing.medium};
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 960px;
+`;
+
+const StoryPrompt = styled.p`
+  margin: ${spacing.large} 0 ${spacing.xLarge};
+  font-size: 1.45rem;
+  font-weight: 500;
+`;
+
+
+
+const StoryTail = styled.div`
+  margin-top: ${spacing.xXLarge};
+  max-width: 960px;
 `;
 
 const MarcusCard = styled.div`
@@ -85,28 +116,7 @@ const MarcusIntro = styled.div`
   transition: max-height 900ms ease, opacity 900ms ease, transform 900ms ease;
 `;
 
-const BenefitsWrapper = styled.div`
-  background-color: ${colors.pink};
-  width: 100%;
-  /* Reduce right-side empty space by tightening the angle */
-  clip-path: polygon(0 80px, calc(100% - 80px) 0, calc(100% - 260px) 100%, 0 100%);
-  margin-top: 32px;
-  
-  @media (max-width: ${breakpoints.tablet}) {
-    /* Keep similar angle but with reduced right margin on laptops */
-    clip-path: polygon(0 60px, calc(100% - 60px) 0, calc(100% - 220px) 100%, 0 100%);
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    /* Mobile: minimal right margin and gentler right-edge slope */
-    clip-path: polygon(0 40px, calc(100% - 5px) 0, calc(100% - 80px) 100%, 0 100%);
-  }
-`;
-
-
-
 const Foldout = styled.div`
- 
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -146,6 +156,24 @@ const FoldoutInner = styled.div`
     p {
       margin-bottom: ${spacing.medium};
     }
+  }
+`;
+
+const BenefitsWrapper = styled.div`
+  background-color: ${colors.pink};
+  width: 100%;
+  /* Reduce right-side empty space by tightening the angle */
+  clip-path: polygon(0 80px, calc(100% - 80px) 0, calc(100% - 260px) 100%, 0 100%);
+  margin-top: 32px;
+  
+  @media (max-width: ${breakpoints.tablet}) {
+    /* Keep similar angle but with reduced right margin on laptops */
+    clip-path: polygon(0 60px, calc(100% - 60px) 0, calc(100% - 220px) 100%, 0 100%);
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    /* Mobile: minimal right margin and gentler right-edge slope */
+    clip-path: polygon(0 40px, calc(100% - 5px) 0, calc(100% - 80px) 100%, 0 100%);
   }
 `;
 
@@ -260,30 +288,6 @@ const HomePage = ({ lockedAudience }) => {
     return () => observer.disconnect();
   }, []);
 
-  const homeStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Pubblo",
-    "description": "The deal engine connecting board game designers, publishers, and distributors worldwide",
-    "url": "https://pubblo.com",
-  "logo": "https://pubblo.com/logo-pubblo.png",
-    "sameAs": [
-      "https://twitter.com/pubblo",
-      "https://linkedin.com/company/pubblo"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "email": "info@pubblo.com"
-    },
-    "offers": {
-      "@type": "Offer",
-      "description": "Board game licensing platform with 6 months free trial",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
-  };
-
   React.useEffect(() => {
     if (letterTimerRef.current) {
       clearTimeout(letterTimerRef.current);
@@ -311,6 +315,30 @@ const HomePage = ({ lockedAudience }) => {
       }
     };
   }, [isExpanded]);
+
+  const homeStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Pubblo",
+    "description": "The deal engine connecting board game designers, publishers, and distributors worldwide",
+    "url": "https://pubblo.com",
+  "logo": "https://pubblo.com/logo-pubblo.png",
+    "sameAs": [
+      "https://twitter.com/pubblo",
+      "https://linkedin.com/company/pubblo"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "info@pubblo.com"
+    },
+    "offers": {
+      "@type": "Offer",
+      "description": "Board game licensing platform with 6 months free trial",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
 
   return (
     <>
@@ -343,15 +371,30 @@ const HomePage = ({ lockedAudience }) => {
         }}
       />
       <Reveal data-reveal-id='what' className={visibleIds['what'] ? 'is-visible' : ''}>
-      <SectionWrap>
-        <BigMessageComponent
-          text='Pubblo is a deal engine where publishers, designers, and distributors connect to bring new board games to market. Whether you’re scouting fresh titles, evaluating pitches, or looking for distribution partners, Pubblo is for you.'
-          underlinecolor={colors.contrast}
-          style={{ padding: 0 }}
-        >
-          What is <span style={{ color: colors.contrast }}>Pubblo</span>?
-        </BigMessageComponent>
-      </SectionWrap>
+        <StorySection>
+          <h2 style={{ marginTop: 0 }}>So, what is Pubblo?</h2>
+          <StoryLead>
+            Pubblo is a matchmaking platform for the board game industry.
+          </StoryLead>
+          <StoryBody>
+            A place where publishers discover exciting new games, designers find the right partners and distributors connect with titles worth bringing to more tables.
+          </StoryBody>
+          <StoryBody>
+            From first pitch to final release, Pubblo helps the right people find each other.
+          </StoryBody>
+          <StoryPrompt>
+            We'd love to tell you more, but first- <strong>who are you?</strong>
+          </StoryPrompt>
+
+          <WhoAreYouFlow />
+
+          <StoryTail>
+            <h3>Not a designer nor a publisher?</h3>
+            <StoryBody>
+              We are truly interested in connecting with anyone navigating this wonderful industry of board games. Whether there is a business opportunity or not we would love to get to know you and hear your story. Please <a href='/contact'>contact us</a>!
+            </StoryBody>
+          </StoryTail>
+        </StorySection>
       </Reveal>
       <RollingBanner mobileOnly fadeAtCenter={false} headingAlignment='full' />
       <Reveal data-reveal-id='marcus' className={visibleIds['marcus'] ? 'is-visible' : ''}>
@@ -359,60 +402,60 @@ const HomePage = ({ lockedAudience }) => {
           <h2 style={{ marginTop: 0 }}>Why we created Pubblo</h2>
         </SectionWrap>
         <MarcusCard>
-            <MarcusAvatar src='/1706627130390.jfif' alt='Marcus Carleson' />
-            <div>
-              <MarcusIntro $hidden={introHidden} aria-hidden={introHidden}>
-                <p style={{ fontSize: '18px', lineHeight: '1.6', margin: 0 }}>
-                  Hi, I'm Marcus, the creator of HITSTER – Europe's best selling game 2024. I'm thrilled to introduce you to my new project: PUBBLO
-                </p>
-                <p style={{ fontSize: '18px', lineHeight: '1.6', marginTop: spacing.medium }}>
-                  Pubblo is a digital platform designed to match and connect <strong>publishers, distributors, and creators</strong> for licensing and distribution opportunities in the board game industry
-                </p>
-                <div style={{ marginTop: spacing.medium, fontWeight: 600 }}>
-                  Marcus Carleson — Chairman and founder of Pubblo, creator of HITSTER
-                </div>
-              </MarcusIntro>
+          <MarcusAvatar src='/1706627130390.jfif' alt='Marcus Carleson' />
+          <div>
+            <MarcusIntro $hidden={introHidden} aria-hidden={introHidden}>
+              <p style={{ fontSize: '18px', lineHeight: '1.6', margin: 0 }}>
+                Hi, I'm Marcus, the creator of HITSTER - Europe's best selling game 2024. I'm thrilled to introduce you to my new project: PUBBLO
+              </p>
+              <p style={{ fontSize: '18px', lineHeight: '1.6', marginTop: spacing.medium }}>
+                Pubblo is a digital platform designed to match and connect <strong>publishers, distributors, and creators</strong> for licensing and distribution opportunities in the board game industry
+              </p>
+              <div style={{ marginTop: spacing.medium, fontWeight: 600 }}>
+                Marcus Carleson - Chairman and founder of Pubblo, creator of HITSTER
+              </div>
+            </MarcusIntro>
             <div style={{ marginTop: spacing.medium }}>
               <Button
                 text={isExpanded ? 'Hide full letter ▴' : 'Read the full letter ▾'}
                 onClick={() => setIsExpanded((prev) => !prev)}
                 aria-expanded={isExpanded}
               />
-              </div>
-              <Foldout $expanded={letterVisible} aria-hidden={!letterVisible}>
-                <FoldoutInner>
-                  <h3 style={{ marginTop: 0 }}>Letter from Marcus</h3>
-                  <p style={{ fontSize: '16px', lineHeight: '1.6', fontStyle: 'italic', marginBottom: spacing.large }}>
-                    For a long time, people came to me to get connected in the business… I thought about how I could help — and Pubblo was the answer.
-                  </p>
-                  <h4>The gap we saw</h4>
-                  <p>
-                    Every year, thousands of brilliant board games are imagined, prototyped, and play‑tested. Some find their audience quickly; many don’t. The line between a successful launch and a forgotten campaign is razor‑thin. A Kickstarter that barely funds – or even misses – can still hide a game with enormous potential.
-                  </p>
-                  <p>
-                    I’ve seen this up close. Take HITSTER. The original crowdfunding campaign was a close call; it almost didn’t make it. Today HITSTER is the best‑selling game in Europe. The difference wasn’t a sudden change in the game’s quality – it was access: getting the concept in front of the right people at the right time, with a pitch that made evaluation easy.
-                  </p>
-                  <h4>The problem</h4>
-                  <p>
-                    Designers compete for limited attention. You don’t just need a pretty page; you need a structured, comparable pitch that answers the questions a decision‑maker asks in the first thirty seconds. Who is it for? How does it play? What’s unique? How does it fit a catalogue?
-                  </p>
-                  <p>
-                    On the other side of the table, publishers are actively searching for exciting projects – but they are overwhelmed by noise. Submissions are often wonderful games that simply don’t match current portfolio strategy, audience or price point.
-                  </p>
-                  <h4>Our approach</h4>
-                  <p>
-                    Pubblo creates a shared language for discovery. We standardize the pitch so ideas can be compared fairly, and connect the dots with scoring and a lightweight licensing pipeline.
-                  </p>
-                  <p style={{ marginTop: spacing.medium }}>
-                    Thank you for being part of this journey.
-                    <br />
-                    <strong>Marcus Carleson</strong>
-                    <br />Chairman and founder, Pubblo
-                  </p>
-                </FoldoutInner>
-              </Foldout>
             </div>
-          </MarcusCard>
+            <Foldout $expanded={letterVisible} aria-hidden={!letterVisible}>
+              <FoldoutInner>
+                <h3 style={{ marginTop: 0 }}>Letter from Marcus</h3>
+                <p style={{ fontSize: '16px', lineHeight: '1.6', fontStyle: 'italic', marginBottom: spacing.large }}>
+                  For a long time, people came to me to get connected in the business... I thought about how I could help - and Pubblo was the answer.
+                </p>
+                <h4>The gap we saw</h4>
+                <p>
+                  Every year, thousands of brilliant board games are imagined, prototyped, and play-tested. Some find their audience quickly; many do not. The line between a successful launch and a forgotten campaign is razor-thin. A Kickstarter that barely funds - or even misses - can still hide a game with enormous potential.
+                </p>
+                <p>
+                  I've seen this up close. Take HITSTER. The original crowdfunding campaign was a close call; it almost didn't make it. Today HITSTER is the best-selling game in Europe. The difference was not a sudden change in the game's quality - it was access: getting the concept in front of the right people at the right time, with a pitch that made evaluation easy.
+                </p>
+                <h4>The problem</h4>
+                <p>
+                  Designers compete for limited attention. You do not just need a pretty page; you need a structured, comparable pitch that answers the questions a decision-maker asks in the first thirty seconds. Who is it for? How does it play? What is unique? How does it fit a catalogue?
+                </p>
+                <p>
+                  On the other side of the table, publishers are actively searching for exciting projects - but they are overwhelmed by noise. Submissions are often wonderful games that simply do not match current portfolio strategy, audience or price point.
+                </p>
+                <h4>Our approach</h4>
+                <p>
+                  Pubblo creates a shared language for discovery. We standardize the pitch so ideas can be compared fairly, and connect the dots with scoring and a lightweight licensing pipeline.
+                </p>
+                <p style={{ marginTop: spacing.medium }}>
+                  Thank you for being part of this journey.
+                  <br />
+                  <strong>Marcus Carleson</strong>
+                  <br />Chairman and founder, Pubblo
+                </p>
+              </FoldoutInner>
+            </Foldout>
+          </div>
+        </MarcusCard>
       </Reveal>
 
       {spielPitchActive && (
