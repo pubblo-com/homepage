@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import { spacing, breakpoints } from '../styles/tokens';
-import marcusImage from '../assets/contacts/marcus.jpg';
+import pubbloStoryImage from '../assets/pubblostory.jpg';
 
 const Wrap = styled.main`
   padding: 40px 0 ${spacing.xLarge};
@@ -54,9 +54,9 @@ const CompanyPage = () => {
   return (
     <Wrap>
       <div style={{ marginTop: spacing.small }}>
-        <MarcusImage src={marcusImage} alt='Marcus Carleson' />
+        <MarcusImage src={pubbloStoryImage} alt='Pubblo story' />
         <div style={{ marginTop: spacing.medium, textAlign: 'center' }}>
-          <Button text='Letter from Marcus' onClick={() => setOpen(true)} />
+          <Button text='Read his letter' onClick={() => setOpen(true)} />
         </div>
       </div>
 

@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ReactFlow, { Handle, Position } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -235,9 +236,9 @@ function ForkNode({ data }) {
 
 function CtaNode({ data }) {
   return (
-    <a
-      href={data.href}
+    <div
       style={{
+        cursor: 'pointer',
         textDecoration: 'none',
         color: 'inherit',
         display: 'block',
@@ -310,7 +311,7 @@ function CtaNode({ data }) {
         id='bottom-right'
         style={{ ...hs, left: '55%' }}
       />
-    </a>
+    </div>
   );
 }
 
@@ -322,8 +323,13 @@ const nodeTypes = {
 };
 
 const WhoAreYouFlow = () => {
+  const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
   const [activeTab, setActiveTab] = useState('publisher');
+
+  const handleNodeClick = (_event, node) => {
+    if (node.data?.href) navigate(node.data.href);
+  };
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -407,7 +413,7 @@ const WhoAreYouFlow = () => {
             </>
           ),
           color: '#f0c459',
-          href: '/products',
+          href: '/pricing#portal',
         },
         style: { width: 220 },
       },
@@ -443,7 +449,7 @@ const WhoAreYouFlow = () => {
             </>
           ),
           color: '#aad4e8',
-          href: '/products',
+          href: '/pricing#marketplace',
           rightHandleStyle: { top: 8 },
           topRightHandleStyle: { left: '65%' },
         },
@@ -513,7 +519,7 @@ const WhoAreYouFlow = () => {
             </>
           ),
           color: '#e8c8d1',
-          href: '/launch',
+          href: '/pricing#pitch-tool',
         },
         style: { width: 180 },
       },
@@ -718,7 +724,7 @@ const WhoAreYouFlow = () => {
               </>
             ),
             color: '#f0c459',
-            href: '/products',
+            href: '/pricing#portal',
           },
           style: { width: 220 },
         },
@@ -755,7 +761,7 @@ const WhoAreYouFlow = () => {
               </>
             ),
             color: '#aad4e8',
-            href: '/products',
+            href: '/pricing#marketplace',
           },
           style: { width: 250 },
         },
@@ -817,7 +823,7 @@ const WhoAreYouFlow = () => {
             </>
           ),
           color: '#e8c8d1',
-          href: '/launch',
+          href: '/pricing#pitch-tool',
         },
         style: { width: 140 },
       },
@@ -841,7 +847,7 @@ const WhoAreYouFlow = () => {
             </>
           ),
           color: '#aad4e8',
-          href: '/products',
+          href: '/pricing#marketplace',
         },
         style: { width: 250 },
       },
@@ -927,11 +933,11 @@ const WhoAreYouFlow = () => {
             nodes={mobileNodes}
             edges={mobileEdges}
             nodeTypes={nodeTypes}
+            onNodeClick={handleNodeClick}
             fitView
             fitViewOptions={{ padding: 0.1 }}
             nodesDraggable={false}
             nodesConnectable={false}
-            elementsSelectable={false}
             panOnDrag={false}
             zoomOnScroll={false}
             zoomOnPinch={false}
@@ -952,11 +958,11 @@ const WhoAreYouFlow = () => {
         nodes={nodes}
         edges={edges}
         nodeTypes={nodeTypes}
+        onNodeClick={handleNodeClick}
         fitView
         fitViewOptions={{ padding: 0.08 }}
         nodesDraggable={false}
         nodesConnectable={false}
-        elementsSelectable={false}
         panOnDrag={false}
         zoomOnScroll={false}
         zoomOnPinch={false}

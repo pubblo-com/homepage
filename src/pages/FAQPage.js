@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoints, colors } from '../styles/tokens';
+import pabloFAQ from '../assets/pablo_FAQ.png';
 import SEOHead from '../components/SEOHead';
 
 const Wrap = styled.main`
@@ -240,7 +241,9 @@ const FAQPage = () => {
           to make green‑lighting smoother.
         </p>
       </QA>
+      <SectionTitle>Didn't find the answer you were looking for? <a href="/contact">Get in touch with us.</a></SectionTitle>
       </Wrap>
+      <img src={pabloFAQ} alt="" style={{ width: '100%', display: 'block' }} />
     </>
   );
 };
