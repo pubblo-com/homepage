@@ -254,8 +254,15 @@ const checkboxes = [
 const HomePage = ({ lockedAudience }) => {
   const navigate = useNavigate();
   const formSectionRef = useRef(null);
+  const storySectionRef = useRef(null);
   const handleGoToLogin = () => {
     navigate('/launch#/create-account/1-email-password');
+  };
+  const handleScrollToStory = () => {
+    if (storySectionRef.current) {
+      const y = storySectionRef.current.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   };
   const [isExpanded, setIsExpanded] = useState(false);
   const [introHidden, setIntroHidden] = useState(false);
@@ -351,27 +358,27 @@ const HomePage = ({ lockedAudience }) => {
       />
       <div>
       <Hero
-        onScrollToSection={handleGoToLogin}
+        onScrollToSection={handleScrollToStory}
         lockedAudience={lockedAudience}
         audiences={{
           publishers: {
             headline: "Don't let old systems hold you back",
             subhead:
-              "Turn emails and Excel into efficient workflows with Pubblo's digital tool for trading board game licenses and distribution rights.",
-            support: "Work smarter. With Pubblo, it's simple.",
-            ctaText: 'Start free trial',
+              "Pubblo brings all your incoming pitches into one streamlined workflow so you can quickly review, compare and identify the games worth your time. Discover new designers, uncover fresh ideas and expand into new markets.",
+            support: "Less noise. Better decisions. Faster deals.",
+            ctaText: 'Learn more',
           },
           designers: {
-            headline: 'One pitch to reach them all',
+            headline: 'One pitch - endless opportunities',
             subhead:
-              'Make compelling and informative pitches for your games with Pubblo and reach new partners and markets.',
-            support: "Work smarter. With Pubblo, it's simple.",
-            ctaText: 'Start free trial',
+              'Create a pitch that actually works. With Pubblo, you can showcase your game to publishers worldwide without sending countless emails or knocking on closed doors. Show up where publishers are already looking, get noticed and turn your ideas into real partnerships.',
+            support: "Less hustle. More traction",
+            ctaText: 'Learn more',
           },
         }}
       />
       <Reveal data-reveal-id='what' className={visibleIds['what'] ? 'is-visible' : ''}>
-        <StorySection>
+        <StorySection ref={storySectionRef}>
           <h2 style={{ marginTop: 0 }}>So, what is Pubblo?</h2>
           <StoryLead>
             Pubblo is a matchmaking platform for the board game industry.
