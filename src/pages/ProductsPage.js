@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { colors, spacing, breakpoints } from '../styles/tokens';
 import SEOHead from '../components/SEOHead';
@@ -118,6 +118,19 @@ const ProductsPage = () => {
   const pitchRef = useRef(null);
   const briefsRef = useRef(null);
 
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (!hash) return;
+    const timer = setTimeout(() => {
+      const el = document.getElementById(hash);
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.pageYOffset - 100;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   const scrollTo = (ref) => {
     if (ref.current) {
       const yOffset = -100;
@@ -167,7 +180,7 @@ const ProductsPage = () => {
           <Tab $color="#8b1a22" onClick={() => scrollTo(briefsRef)}>BRIEFS</Tab>
         </Tabs>
 
-        <Section ref={portalRef}>
+        <Section ref={portalRef} id="portal">
           <Panel $bg={colors.yellow}>
             <ul>
               <li>Ensure pitch quality with this submission CRM tool</li>
@@ -195,7 +208,7 @@ const ProductsPage = () => {
           </Details>
         </Section>
 
-        <Section ref={marketplaceRef}>
+        <Section ref={marketplaceRef} id="marketplace">
           <Panel $bg={colors.lightblue}>
             <ul>
               <li>Browse for fresh titles</li>
@@ -223,7 +236,7 @@ const ProductsPage = () => {
           </Details>
         </Section>
 
-        <Section ref={pitchRef}>
+        <Section ref={pitchRef} id="pitch-tool">
           <Panel $bg={colors.pink}>
             <ul>
               <li>Make a compelling pitch</li>
@@ -249,7 +262,7 @@ const ProductsPage = () => {
           </Details>
         </Section>
 
-        <Section ref={briefsRef}>
+        <Section ref={briefsRef} id="briefs">
           <Panel $bg={colors.contrast}>
             <ul style={{ color: colors.white }}>
               <li>Get someone to develop the game you want!</li>

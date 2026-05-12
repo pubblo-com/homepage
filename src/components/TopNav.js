@@ -181,8 +181,8 @@ const TopNav = ({ onCtaClick }) => {
 
         <Menu aria-label='Primary'>
           <MenuItem>
-            <MenuLink to='/products' end>Product</MenuLink>
-            <Dropdown role='menu' aria-label='Product submenu'>
+            <MenuLink to='/products' end>Our thing</MenuLink>
+            <Dropdown role='menu' aria-label='Our thing submenu'>
               <MenuLink to='/products'>Overview</MenuLink>
               <MenuLink to='/users'>Users</MenuLink>
               <MenuLink to='/pricing'>Pricing</MenuLink>
@@ -206,7 +206,7 @@ const TopNav = ({ onCtaClick }) => {
         </ToggleButton>
 
         <MobileMenu $open={open}>
-          <MobileMenuLink to='/products' onClick={close}>Product</MobileMenuLink>
+          <MobileMenuLink to='/products' onClick={close}>Our thing</MobileMenuLink>
           <MobileMenuLink to='/users' onClick={close}>— Users</MobileMenuLink>
           <MobileMenuLink to='/pricing' onClick={close}>— Pricing</MobileMenuLink>
           <MobileMenuLink to='/compare' onClick={close}>— Compare</MobileMenuLink>

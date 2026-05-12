@@ -77,7 +77,7 @@ const HeadingRow = styled.div`
 
 const Heading = styled.h4`
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;

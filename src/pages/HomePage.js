@@ -1,6 +1,5 @@
 import React from 'react';
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../styles/tokens';
 import { spacing, breakpoints } from '../styles/tokens';
@@ -252,12 +251,8 @@ const checkboxes = [
 ];
 
 const HomePage = ({ lockedAudience }) => {
-  const navigate = useNavigate();
   const formSectionRef = useRef(null);
   const storySectionRef = useRef(null);
-  const handleGoToLogin = () => {
-    navigate('/launch#/create-account/1-email-password');
-  };
   const handleScrollToStory = () => {
     if (storySectionRef.current) {
       const y = storySectionRef.current.getBoundingClientRect().top + window.pageYOffset - 80;

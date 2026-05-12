@@ -1,5 +1,4 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import ReactFlow, { Handle, Position } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -248,7 +247,10 @@ function CtaNode({ data }) {
         fontSize: '1rem',
         lineHeight: 1.5,
         textAlign: 'center',
+        transition: 'transform 150ms ease',
       }}
+      onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.12)'; }}
+      onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
     >
       <Handle
         type='target'
@@ -323,12 +325,13 @@ const nodeTypes = {
 };
 
 const WhoAreYouFlow = () => {
-  const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
   const [activeTab, setActiveTab] = useState('publisher');
 
   const handleNodeClick = (_event, node) => {
-    if (node.data?.href) navigate(node.data.href);
+    if (node.data?.href) {
+      window.location.href = node.data.href;
+    }
   };
 
   useEffect(() => {
@@ -413,7 +416,7 @@ const WhoAreYouFlow = () => {
             </>
           ),
           color: '#f0c459',
-          href: '/pricing#portal',
+          href: '/products#portal',
         },
         style: { width: 220 },
       },
@@ -449,7 +452,7 @@ const WhoAreYouFlow = () => {
             </>
           ),
           color: '#aad4e8',
-          href: '/pricing#marketplace',
+          href: '/products#marketplace',
           rightHandleStyle: { top: 8 },
           topRightHandleStyle: { left: '65%' },
         },
@@ -519,7 +522,7 @@ const WhoAreYouFlow = () => {
             </>
           ),
           color: '#e8c8d1',
-          href: '/pricing#pitch-tool',
+          href: '/products#pitch-tool',
         },
         style: { width: 180 },
       },
@@ -724,7 +727,7 @@ const WhoAreYouFlow = () => {
               </>
             ),
             color: '#f0c459',
-            href: '/pricing#portal',
+            href: '/products#portal',
           },
           style: { width: 220 },
         },
@@ -761,7 +764,7 @@ const WhoAreYouFlow = () => {
               </>
             ),
             color: '#aad4e8',
-            href: '/pricing#marketplace',
+            href: '/products#marketplace',
           },
           style: { width: 250 },
         },
@@ -823,7 +826,7 @@ const WhoAreYouFlow = () => {
             </>
           ),
           color: '#e8c8d1',
-          href: '/pricing#pitch-tool',
+          href: '/products#pitch-tool',
         },
         style: { width: 140 },
       },
@@ -847,7 +850,7 @@ const WhoAreYouFlow = () => {
             </>
           ),
           color: '#aad4e8',
-          href: '/pricing#marketplace',
+href: '/products#marketplace',
         },
         style: { width: 250 },
       },
