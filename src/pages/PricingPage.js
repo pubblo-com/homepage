@@ -19,6 +19,7 @@ const ContentWrap = styled.div`
 
 const Section = styled.section`
   margin-bottom: ${spacing.xXLarge};
+  scroll-margin-top: 120px;
 `;
 
 const SectionDesc = styled.p`

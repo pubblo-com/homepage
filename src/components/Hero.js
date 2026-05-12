@@ -52,7 +52,7 @@ const HeroContent = styled.div`
   max-width: 1200px;
   padding: ${spacing.xXLarge} ${spacing.xXLarge};
   padding-left: 0;
-  padding-top: calc(${spacing.xXLarge} + 140px);
+  padding-top: calc(${spacing.xXLarge} + 180px);
   padding-bottom: 0;
   display: flex;
   flex-direction: column;
@@ -61,7 +61,7 @@ const HeroContent = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: ${spacing.xLarge} ${spacing.large};
-    padding-top: calc(${spacing.xLarge} + 160px);
+    padding-top: calc(${spacing.xLarge} + 200px);
     padding-bottom: 0;
     width: 70%;
   }
@@ -208,13 +208,20 @@ const slideFromRight = keyframes`
 
 const CopyWrap = styled.div`
   min-height: 280px;
-  animation: ${(p) => (p.$audience === 'publishers' ? slideFromLeft : slideFromRight)} 320ms ease;
+  animation: ${(p) =>
+      p.$audience === 'publishers' ? slideFromLeft : slideFromRight}
+    320ms ease;
   margin-top: ${spacing.large};
   margin-bottom: ${spacing.medium};
   position: relative;
   z-index: 10;
   > p {
     max-width: 760px;
+    font-size: 1.25rem;
+  }
+
+  > p.support {
+    font-weight: 700;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -248,7 +255,9 @@ const PillButton = styled.button`
   padding: 10px 16px;
   cursor: pointer;
   font-weight: 700;
-  transition: background 160ms ease, color 160ms ease;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
   background: ${(p) =>
     p.$active
       ? p.$variant === 'publishers'
@@ -267,8 +276,8 @@ const PillButton = styled.button`
       p.$active
         ? '#fff'
         : p.$variant === 'publishers'
-        ? colors.primary
-        : colors.contrast};
+          ? colors.primary
+          : colors.contrast};
   }
 `;
 
@@ -364,24 +373,28 @@ const Hero = ({
         <PinkBannerLink to={latestNewsPath}>
           <PinkBannerKicker>Latest news</PinkBannerKicker>
           <PinkBannerTitle>
-            {latestNews ? latestNews.title : 'See the latest updates from Pubblo'}
+            {latestNews
+              ? latestNews.title
+              : 'See the latest updates from Pubblo'}
           </PinkBannerTitle>
           <PinkBannerMeta>
             {latestNews
               ? latestNewsExcerpt
               : 'Read the latest update from our news page.'}
           </PinkBannerMeta>
-          {latestNews && <PinkBannerDate>{latestNews.date} · Click to read</PinkBannerDate>}
+          {latestNews && (
+            <PinkBannerDate>{latestNews.date} · Click to read</PinkBannerDate>
+          )}
         </PinkBannerLink>
         <MobileCTA>
           <Link to={latestNewsPath} style={{ textDecoration: 'none' }}>
-            <Button text="Read latest news" variant="primary" />
+            <Button text='Read latest news' variant='primary' />
           </Link>
         </MobileCTA>
       </PinkBanner>
       <HeroWrapper>
         <HeroContent>
-          <SuperTitle>Powering licensing deals in the board game industry</SuperTitle>
+          <SuperTitle>A better workflow for board game publishing</SuperTitle>
           {audiences && !lockedAudience && (
             <PillToggle role='tablist' aria-label='Choose audience'>
               <PillButton
@@ -410,7 +423,7 @@ const Hero = ({
               <p className='body-text-medium'>{activeCopy.subhead}</p>
             )}
             {activeCopy.support && (
-              <p className='body-text-medium'>{activeCopy.support}</p>
+              <p className='body-text-medium support'>{activeCopy.support}</p>
             )}
             <Button
               text={activeCopy.ctaText || buttonText}

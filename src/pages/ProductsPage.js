@@ -48,7 +48,9 @@ const Tab = styled.button`
   font-size: 13px;
   letter-spacing: 0.04em;
   cursor: pointer;
-  transition: background 160ms ease, color 160ms ease;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
   width: 100%;
   &:hover {
     background: ${(p) => p.$color || colors.buttonBackground};
@@ -112,6 +114,23 @@ const MetaLabel = styled.span`
   margin-bottom: 2px;
 `;
 
+const PanelLink = styled.a`
+  display: block;
+  margin-top: ${spacing.medium};
+  padding: 10px 16px;
+  background: white;
+  color: ${(p) => p.$color};
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: opacity 150ms ease;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
 const ProductsPage = () => {
   const portalRef = useRef(null);
   const marketplaceRef = useRef(null);
@@ -134,59 +153,80 @@ const ProductsPage = () => {
   const scrollTo = (ref) => {
     if (ref.current) {
       const yOffset = -100;
-      const y = ref.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const y =
+        ref.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   const productsStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Pubblo Platform",
-    "description": "Platform connecting game publishers, distributors and developers with tools for submissions, discovery and pitching.",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD",
-      "description": "Free to get started"
-    }
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Pubblo Platform',
+    description:
+      'Platform connecting game publishers, distributors and developers with tools for submissions, discovery and pitching.',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      description: 'Free to get started',
+    },
   };
 
   return (
     <>
       <SEOHead
-        title="Products - Pubblo"
+        title='Products - Pubblo'
         description="Pubblo's suite of tools for game publishers, distributors and developers: The Portal, The Marketplace, The Pitch Tool and Briefs."
-        keywords="game publishing platform, pitch tool, marketplace, game submissions, publishers, distributors"
-        canonical="https://pubblo.com/products"
+        keywords='game publishing platform, pitch tool, marketplace, game submissions, publishers, distributors'
+        canonical='https://pubblo.com/products'
         structuredData={productsStructuredData}
       />
       <Wrap>
         <Title>Different products for different needs</Title>
         <Subtitle>
-          Pubblo aims   to connect buyers and sellers in one place. Our service is divided into different tools to meet the needs of publishers and distributors as well as established or aspiring game developers.
+          Pubblo aims to connect buyers and sellers in one place. Our service is
+          divided into different tools to meet the needs of publishers and
+          distributors as well as established or aspiring game developers.
         </Subtitle>
         <CompareLink>
-          Wondering how this compares to pitch directories, matchmaking or your current CRM?{' '}
-          See our <a href="/compare" style={{ color: colors.contrast }}>comparison</a>.
+          Wondering how this compares to pitch directories, matchmaking or your
+          current CRM? See our{' '}
+          <a href='/compare' style={{ color: colors.contrast }}>
+            comparison
+          </a>
+          .
         </CompareLink>
 
         <Tabs>
-          <Tab $color="#b89a2a" onClick={() => scrollTo(portalRef)}>THE PORTAL</Tab>
-          <Tab $color={colors.primary} onClick={() => scrollTo(marketplaceRef)}>THE MARKETPLACE</Tab>
-          <Tab $color={colors.contrast} onClick={() => scrollTo(pitchRef)}>THE PITCH TOOL</Tab>
-          <Tab $color="#8b1a22" onClick={() => scrollTo(briefsRef)}>BRIEFS</Tab>
+          <Tab $color='#b89a2a' onClick={() => scrollTo(portalRef)}>
+            THE PORTAL
+          </Tab>
+          <Tab $color={colors.primary} onClick={() => scrollTo(marketplaceRef)}>
+            THE MARKETPLACE
+          </Tab>
+          <Tab $color={colors.contrast} onClick={() => scrollTo(pitchRef)}>
+            THE PITCH TOOL
+          </Tab>
+          <Tab $color='#8b1a22' onClick={() => scrollTo(briefsRef)}>
+            BRIEFS
+          </Tab>
         </Tabs>
 
-        <Section ref={portalRef} id="portal">
+        <Section ref={portalRef} id='portal'>
           <Panel $bg={colors.yellow}>
             <ul>
               <li>Ensure pitch quality with this submission CRM tool</li>
-              <li>Enter your preferences to get pitches scored automatically</li>
+              <li>
+                Enter your preferences to get pitches scored automatically
+              </li>
               <li>Organise, communicate and collaborate efficiently</li>
             </ul>
+            <PanelLink href='/pricing#portal' $color='#b89a2a'>
+              See plans and apply
+            </PanelLink>
           </Panel>
           <Details>
             <ProductName>The Portal</ProductName>
@@ -196,10 +236,11 @@ const ProductsPage = () => {
             </MetaRow>
             <MetaRow>
               <MetaLabel>What It does</MetaLabel>
-              The portal replaces inbox chaos with one place to receive, compare and manage submissions.
-              Our standardised pitch format makes evaluations consistent and enables scoring to see what
-              games matches what you're looking for in an instant. Collaborate and communicate within your
-              team as with the designer.
+              The portal replaces inbox chaos with one place to receive, compare
+              and manage submissions. Our standardised pitch format makes
+              evaluations consistent and enables scoring to see what games
+              matches what you're looking for in an instant. Collaborate and
+              communicate within your team as with the designer.
             </MetaRow>
             <MetaRow>
               <MetaLabel>When it launches</MetaLabel>
@@ -208,13 +249,19 @@ const ProductsPage = () => {
           </Details>
         </Section>
 
-        <Section ref={marketplaceRef} id="marketplace">
+        <Section ref={marketplaceRef} id='marketplace'>
           <Panel $bg={colors.lightblue}>
             <ul>
               <li>Browse for fresh titles</li>
               <li>Use filters to find the games you are looking for</li>
-              <li>Find the right publisher with the best possibilities to make your game happen</li>
+              <li>
+                Find the right publisher with the best possibilities to make
+                your game happen
+              </li>
             </ul>
+            <PanelLink href='/pricing#marketplace' $color={colors.primary}>
+              See plans and apply
+            </PanelLink>
           </Panel>
           <Details>
             <ProductName>The Marketplace</ProductName>
@@ -224,10 +271,12 @@ const ProductsPage = () => {
             </MetaRow>
             <MetaRow>
               <MetaLabel>What It does</MetaLabel>
-              The Marketplace is a place for both published and unpublished games to find new partners.
-              As a publisher you can scout for new titles or get your own portfolio out there for
-              localisation. Tired of knocking doors as an aspiring game developer? This is where you can
-              upload your game one time and still reach a bunch of publishers.
+              The Marketplace is a place for both published and unpublished
+              games to find new partners. As a publisher you can scout for new
+              titles or get your own portfolio out there for localisation. Tired
+              of knocking doors as an aspiring game developer? This is where you
+              can upload your game one time and still reach a bunch of
+              publishers.
             </MetaRow>
             <MetaRow>
               <MetaLabel>When it launches</MetaLabel>
@@ -236,12 +285,15 @@ const ProductsPage = () => {
           </Details>
         </Section>
 
-        <Section ref={pitchRef} id="pitch-tool">
+        <Section ref={pitchRef} id='pitch-tool'>
           <Panel $bg={colors.pink}>
             <ul>
               <li>Make a compelling pitch</li>
               <li>Get it out there!</li>
             </ul>
+            <PanelLink href='/pricing#pitch-tool' $color='#9e4a52'>
+              See plans and apply
+            </PanelLink>
           </Panel>
           <Details>
             <ProductName>The Pitch tool</ProductName>
@@ -251,9 +303,10 @@ const ProductsPage = () => {
             </MetaRow>
             <MetaRow>
               <MetaLabel>What It does</MetaLabel>
-              Use this tool as a game developer to make a compelling pitch. This helps you to get it all
-              in there and gives you the possibility to export it as a sell sheet. You could also use this
-              to send your pitch to any publisher you like.
+              Use this tool as a game developer to make a compelling pitch. This
+              helps you to get it all in there and gives you the possibility to
+              export it as a sell sheet. You could also use this to send your
+              pitch to any publisher you like.
             </MetaRow>
             <MetaRow>
               <MetaLabel>When it launches</MetaLabel>
@@ -262,11 +315,21 @@ const ProductsPage = () => {
           </Details>
         </Section>
 
-        <Section ref={briefsRef} id="briefs">
+        <Section ref={briefsRef} id='briefs'>
           <Panel $bg={colors.contrast}>
             <ul style={{ color: colors.white }}>
               <li>Get someone to develop the game you want!</li>
             </ul>
+            <PanelLink
+              as='span'
+              style={{
+                opacity: 0.45,
+                cursor: 'default',
+                pointerEvents: 'none',
+              }}
+            >
+              coming soon
+            </PanelLink>
           </Panel>
           <Details>
             <ProductName>Briefs</ProductName>
@@ -276,9 +339,10 @@ const ProductsPage = () => {
             </MetaRow>
             <MetaRow>
               <MetaLabel>What It does</MetaLabel>
-              This is how to tell the industry you're looking for something specific. Maybe you are an IP
-              owner that is looking for someone to develop a game for that or maybe you are a publisher
-              who can't find the exact game you've been searching for?
+              This is how to tell the industry you're looking for something
+              specific. Maybe you are an IP owner that is looking for someone to
+              develop a game for that or maybe you are a publisher who can't
+              find the exact game you've been searching for?
             </MetaRow>
             <MetaRow>
               <MetaLabel>When it launches</MetaLabel>

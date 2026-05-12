@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoints, colors } from '../styles/tokens';
 import pabloFAQ from '../assets/pablo_FAQ.png';
@@ -77,10 +77,10 @@ const FAQPage = () => {
       },
       {
         '@type': 'Question',
-        name: 'Is there any commitment or lock‑in period?',
+        name: 'Is there any commitment or lock\u2011in period?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No. There is no binding period. You can start, pause, or cancel at any time.',
+          text: 'No. There is no binding period. You can start, pause, or leave at any time. Marketplace listings are purchased in 6 or 12\u2011month periods. If you remove your game before the period ends, the remaining time is non\u2011refundable.',
         },
       },
       {
@@ -104,7 +104,15 @@ const FAQPage = () => {
         name: 'Will someone steal my idea?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: "It is uncommon for ideas to be stolen in the board‑game industry, but it's fair to ask about risk. NDAs are rarely accepted at the scouting stage, and there is no way to guarantee that an idea can't be copied. What you can do is control access and create an audit trail. In Pubblo you choose the sharing level for every pitch: Private link (you share the pitch only with specific publishers), Open to verified publishers (discoverable by publisher accounts, not indexed on the public web), or Public (visible to anyone with the link when you want maximum reach). For private or publisher‑only links, Pubblo tracks who views your materials and when. That digital audit trail offers stronger evidence and control than handing out files at a trade fair.",
+          text: "It is uncommon for ideas to be stolen in the board-game industry, but it's fair to ask about risk. NDAs are rarely accepted at the scouting stage, and there is no way to guarantee that an idea can't be copied. What you can do is control access and create an audit trail. In Pubblo, every pitch has a private link that you share with whoever you choose: publishers, playtesters, or friends. If you ever feel the link has spread further than intended, you can reset it instantly. The old link stops working and a new one takes its place. Inside the platform, only verified publishers can browse and discover games. Other designers cannot see your pitches, so you are not exposed to competitors simply by being on Pubblo. We are also building view tracking, so you will be able to see who has opened your rulebook or other materials and when. That kind of digital audit trail offers stronger evidence and control than handing out files at a trade fair. In short: you decide the exposure, you control the link, and more visibility tools are on the way.",
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can publishers also list games on the Marketplace?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. If you hold the rights to a game and are looking for a co-publisher, distribution partner, or licensing deal in another territory, you can list it on the Marketplace just like any designer would. This is particularly powerful if your game already has sales data behind it. All listings on the Marketplace are clearly labeled, so you can easily filter by whether a game comes from a publisher looking for a partner or from an independent designer pitching their original concept.',
         },
       },
       {
@@ -117,10 +125,10 @@ const FAQPage = () => {
       },
       {
         '@type': 'Question',
-        name: 'Can we use our own submission form and import to Pubblo?',
+        name: 'Can we use Pubblo as our submission inbox?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. You can place a lightweight submission plugin on your website that captures incoming game pitches and sends them straight into Pubblo. From there, your team can work in one interface – tag, comment, contact, and collaborate – while seeing all pitches in a standardized, comparable format.',
+          text: 'Yes. Pubblo gives you a free, dedicated submission form that you can link to from your website or share directly with designers. Any pitch submitted through it lands straight in your private inbox inside Pubblo, ready to review. Instead of pitches arriving across different email addresses, Google Forms, or file sharing links, everything comes in through one channel in a consistent format. Your team can tag, comment, and collaborate on each submission without anything falling through the cracks.',
         },
       },
       {
@@ -128,7 +136,7 @@ const FAQPage = () => {
         name: 'Is there any commitment period?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No. There is no lock‑in. You can add users, change plan, or leave at any time.',
+          text: 'Yes and no, depending on your plan. The free plan has no commitment at all. You can join and leave whenever you want. The only condition is that you use Pubblo\'s submission form as your primary pitch intake on your website. For paid plans, we invoice 12 months upfront.',
         },
       },
       {
@@ -171,8 +179,10 @@ const FAQPage = () => {
         <QA>
           <summary>Is there any commitment or lock‑in period?</summary>
           <p>
-            No. There is no binding period. You can start, pause, or cancel at
-            any time.
+            No. There is no binding period. You can start, pause, or leave at
+            any time. Marketplace listings are purchased in 6 or 12‑month
+            periods. If you remove your game before the period ends, the
+            remaining time is non‑refundable.
           </p>
         </QA>
         <QA>
@@ -197,41 +207,60 @@ const FAQPage = () => {
         <QA>
           <summary>Will someone steal my idea?</summary>
           <p>
-            It is <strong>uncommon</strong> for ideas to be stolen in the
-            board‑game industry, but it’s fair to ask about risk. NDAs are
-            rarely accepted at the scouting stage, and there is no way to
-            guarantee that an idea can’t be copied. What you can do is control
-            access and create an audit trail.
+            It is uncommon for ideas to be stolen in the board-game industry,
+            but it's fair to ask about risk. NDAs are rarely accepted at the
+            scouting stage, and there is no way to guarantee that an idea can't
+            be copied. What you can do is control access and create an audit
+            trail.
           </p>
-          <p>In Pubblo you choose the sharing level for every pitch:</p>
-          <ul>
-            <li>
-              <strong>Private link</strong>: you share the pitch only with the
-              specific publishers you select.
-            </li>
-            <li>
-              <strong>Open to verified publishers</strong>: discoverable by
-              publisher accounts, <em>not</em> indexed on the public web.
-            </li>
-            <li>
-              <strong>Public</strong>: visible to anyone with the link when you
-              want maximum reach.
-            </li>
-          </ul>
           <p>
-            For private or publisher‑only links, Pubblo{' '}
-            <strong>tracks who views your materials</strong> (e.g. the rulebook)
-            and when. That digital audit trail offers stronger evidence and
-            control than handing out files at a trade fair, where follow‑up is
-            difficult to verify. In short: you decide the exposure; Pubblo gives
-            you the best available protection through controlled access and view
-            tracking.
+            In Pubblo, every pitch has a private link that you share with
+            whoever you choose: publishers, playtesters, or friends. If you ever
+            feel the link has spread further than intended, you can reset it
+            instantly. The old link stops working and a new one takes its place.
+          </p>
+          <p>
+            Inside the platform, only verified publishers can browse and
+            discover games. Other designers cannot see your pitches, so you are
+            not exposed to competitors simply by being on Pubblo.
+          </p>
+          <p>
+            We are also building view tracking, so you will be able to see who
+            has opened your rulebook or other materials and when. That kind of
+            digital audit trail offers stronger evidence and control than handing
+            out files at a trade fair.
+          </p>
+          <p>
+            In short: you decide the exposure, you control the link, and more
+            visibility tools are on the way.
           </p>
         </QA>
 
         <SectionTitle>For publishers</SectionTitle>
         <QA>
-          <summary>
+          <summary>Can publishers also list games on the Marketplace?</summary>
+          <p>
+            Yes. If you hold the rights to a game and are looking for a
+            co-publisher, distribution partner, or licensing deal in another
+            territory, you can list it on the Marketplace just like any designer
+            would.
+          </p>
+          <p>
+            This is particularly powerful if your game already has sales data
+            behind it. Publishers browsing the Marketplace are looking for proven
+            concepts, and a listing backed by real sales figures, retail
+            presence, or crowdfunding results is a much stronger signal than an
+            unproven pitch. It tells potential partners that the game works in at
+            least one market, which significantly lowers their perceived risk.
+          </p>
+          <p>
+            All listings on the Marketplace are clearly labeled, so you can
+            easily filter by whether a game comes from a publisher looking for a
+            partner or from an independent designer pitching their original
+            concept.
+          </p>
+        </QA>
+        <QA>          <summary>
             Isn’t this exactly like a pitch directory, matchmaking, or the CRM
             we already have?
           </summary>
@@ -255,23 +284,33 @@ const FAQPage = () => {
           </p>
         </QA>
         <QA>
-          <summary>
-            Can we use our own submission form and import to Pubblo?
-          </summary>
+          <summary>Can we use Pubblo as our submission inbox?</summary>
           <p>
-            Yes. You can place a lightweight submission plugin on your website
-            that captures incoming game pitches and sends them straight into
-            Pubblo. From there, your team can work in one interface – tag,
-            comment, contact, and collaborate – while seeing all pitches in a
-            standardized, comparable format. Pubblo is designed with publishers
-            in mind and supports the end‑to‑end evaluation workflow.
+            Yes. Pubblo gives you a free, dedicated submission form that you can
+            link to from your website or share directly with designers. Any pitch
+            submitted through it lands straight in your private inbox inside
+            Pubblo, ready to review.
+          </p>
+          <p>
+            The benefit is consolidation. Instead of pitches arriving across
+            different email addresses, Google Forms, or file sharing links,
+            everything comes in through one channel in a consistent format. Your
+            team can tag, comment, and collaborate on each submission without
+            anything falling through the cracks.
           </p>
         </QA>
         <QA>
           <summary>Is there any commitment period?</summary>
           <p>
-            No. There is no lock‑in. You can add users, change plan, or leave at
-            any time.
+            Yes and no, depending on your plan.
+          </p>
+          <p>
+            The free plan has no commitment at all. You can join and leave
+            whenever you want. The only condition is that you use Pubblo's
+            submission form as your primary pitch intake on your website.
+          </p>
+          <p>
+            For paid plans, we invoice 12 months upfront.
           </p>
         </QA>
         <QA>
