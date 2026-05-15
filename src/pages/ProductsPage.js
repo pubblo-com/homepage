@@ -244,7 +244,7 @@ const ProductsPage = () => {
             </MetaRow>
             <MetaRow>
               <MetaLabel>When it launches</MetaLabel>
-              Aug 30
+              Open
             </MetaRow>
           </Details>
         </Section>
@@ -310,7 +310,7 @@ const ProductsPage = () => {
             </MetaRow>
             <MetaRow>
               <MetaLabel>When it launches</MetaLabel>
-              Summer 2026
+              Open
             </MetaRow>
           </Details>
         </Section>
@@ -346,7 +346,7 @@ const ProductsPage = () => {
             </MetaRow>
             <MetaRow>
               <MetaLabel>When it launches</MetaLabel>
-              Fall 2026
+              Coming soon
             </MetaRow>
           </Details>
         </Section>

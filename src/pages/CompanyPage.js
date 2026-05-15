@@ -66,7 +66,7 @@ const CompanyPage = () => {
           We're a dedicated team of game designers and IT developers. Our mission is to assist in bringing new
           board games to life and bringing existing board games to new markets, by connecting people in the
           board game industry. We know from our experience how hard this can be, for all parties involved. But we
-          also know how successful a partnership can be. Our founder Marcus Carleson ran a modestly successful
+          also know how successful a partnership can be. Marcus Carleson ran a modestly successful
           Kickstarter campaign for his game Hitster in 2019, raising approx. 4&nbsp;000 €, but partnering with
           Jumbo, Hitster was the most sold game in Europe 2024.
         </p>
@@ -139,7 +139,7 @@ const CompanyPage = () => {
               Thank you for being part of this journey.
               <br />
               <strong>Marcus Carleson</strong>
-              <br />Chairman and founder, Pubblo
+              <br />Chairman of Pubblo, creator of HITSTER
             </p>
             <div style={{ marginTop: spacing.medium }}>
               <Button text='Close' onClick={() => setOpen(false)} />

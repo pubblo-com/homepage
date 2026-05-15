@@ -220,6 +220,24 @@ const ContactPage = () => {
   useEffect(() => {
     if (isDemo) {
       setMessage("I'm interested in a demo. Please contact me to schedule a meeting.");
+      setTimeout(() => {
+        const el = document.getElementById('contact-form');
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.pageYOffset - 100;
+          const start = window.pageYOffset;
+          const distance = y - start;
+          const duration = 1200;
+          let startTime = null;
+          const ease = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+          const step = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            window.scrollTo(0, start + distance * ease(progress));
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        }
+      }, 100);
     }
   }, [isDemo]);
 
@@ -292,7 +310,7 @@ const ContactPage = () => {
         </TeamGrid>
       </TeamSection>
 
-      <Card>
+      <Card id='contact-form'>
         <h3>Drop us a note, we'd love to hear from you</h3>
         <form onSubmit={submit}>
           <Row>

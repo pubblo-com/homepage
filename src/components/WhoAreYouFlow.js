@@ -249,8 +249,12 @@ function CtaNode({ data }) {
         textAlign: 'center',
         transition: 'transform 150ms ease',
       }}
-      onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.12)'; }}
-      onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'scale(1.12)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'scale(1)';
+      }}
     >
       <Handle
         type='target'
@@ -436,7 +440,7 @@ const WhoAreYouFlow = () => {
         id: 'm-all',
         type: 'text',
         position: { x: 475, y: 460 },
-        data: { label: 'Allways' },
+        data: { label: 'Always' },
         style: { width: 110 },
       },
       {
@@ -748,7 +752,7 @@ const WhoAreYouFlow = () => {
           id: 'm-all',
           type: 'text',
           position: { x: 65, y: 150 },
-          data: { label: 'Allways' },
+          data: { label: 'Always' },
           style: { width: 110 },
         },
         {
@@ -850,7 +854,7 @@ const WhoAreYouFlow = () => {
             </>
           ),
           color: '#aad4e8',
-href: '/products#marketplace',
+          href: '/products#marketplace',
         },
         style: { width: 250 },
       },

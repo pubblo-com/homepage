@@ -4,10 +4,6 @@ import styled from 'styled-components';
 import { colors } from '../styles/tokens';
 import { spacing, breakpoints } from '../styles/tokens';
 import Hero from '../components/Hero';
-import USPComponent from '../components/USPComponent.js';
-import iconRocket from '../assets/icon-white-rocket.svg';
-import iconClock from '../assets/icon-white-clock.svg';
-import iconStars from '../assets/icon-white-stars.svg';
 //import TextImageComponent from '../components/TextImageComponent.js';
 // removed unused TextComponent import
 import FormComponent from '../components/FormComponent.js';
@@ -163,39 +159,6 @@ const FoldoutInner = styled.div`
   }
 `;
 
-const BenefitsWrapper = styled.div`
-  background-color: ${colors.pink};
-  width: 100%;
-  /* Reduce right-side empty space by tightening the angle */
-  clip-path: polygon(
-    0 80px,
-    calc(100% - 80px) 0,
-    calc(100% - 260px) 100%,
-    0 100%
-  );
-  margin-top: 32px;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    /* Keep similar angle but with reduced right margin on laptops */
-    clip-path: polygon(
-      0 60px,
-      calc(100% - 60px) 0,
-      calc(100% - 220px) 100%,
-      0 100%
-    );
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    /* Mobile: minimal right margin and gentler right-edge slope */
-    clip-path: polygon(
-      0 40px,
-      calc(100% - 5px) 0,
-      calc(100% - 80px) 100%,
-      0 100%
-    );
-  }
-`;
-
 const SpielTeaser = styled.div`
   background: ${colors.beige};
   border-radius: 20px;
@@ -215,60 +178,36 @@ const Reveal = styled.div`
   }
 `;
 
-const publisherUsps = [
-  {
-    icon: iconRocket,
-    heading: 'Scale your existing games to new markets',
-    description:
-      'Expand globally by making your games available for localization and distribution in new geographies.',
-  },
-  {
-    icon: iconStars,
-    heading: 'Spot tomorrow’s hit games first',
-    description:
-      'Find the best new games for your portfolio by scouting with elaborate filters.',
-  },
-  {
-    icon: iconClock,
-    heading: 'Make pitch evaluation easy',
-    description:
-      'Organize and evaluate incoming pitches efficiently with the CRM tool and a standardized pitch format.',
-  },
-];
-
 const inputFields = [
   { label: 'Name', type: 'text', name: 'name', id: 'name' },
   { label: 'Email', type: 'email', name: 'email', id: 'email' },
-  { label: 'Phone', type: 'tel', name: 'phone', id: 'phone' },
   { label: 'Company', type: 'text', name: 'company', id: 'company' },
-  { label: 'Address', type: 'text', name: 'address', id: 'address' },
 ];
 
 const checkboxes = [
   {
-    checkboxId: 'crm',
+    checkboxId: 'portal',
     checkboxName: 'areas',
-    checkboxValue: 'crm',
-    checkboxLabel: 'The CRM tool for receiving pitches from game designers',
+    checkboxValue: 'portal',
+    checkboxLabel: "I'm drowning in pitches and want to know more about the Portal",
   },
   {
-    checkboxId: 'scouting',
+    checkboxId: 'localization',
     checkboxName: 'areas',
-    checkboxValue: 'scouting',
-    checkboxLabel: 'Scouting for new games (unpublished and published)',
+    checkboxValue: 'localization',
+    checkboxLabel: 'How can you help me with localization?',
   },
   {
-    checkboxId: 'connecting',
+    checkboxId: 'marketplace',
     checkboxName: 'areas',
-    checkboxValue: 'connecting',
-    checkboxLabel: 'Connecting with game designers',
+    checkboxValue: 'marketplace',
+    checkboxLabel: "Knocking publisher doors got the best of me, tell me more about your marketplace!",
   },
   {
-    checkboxId: 'newGeographies',
+    checkboxId: 'chat',
     checkboxName: 'areas',
-    checkboxValue: 'newGeographies',
-    checkboxLabel:
-      'Making my games available for localization and distribution in new geographies',
+    checkboxValue: 'chat',
+    checkboxLabel: 'Nothing of the above, I just wanna chat :)',
   },
 ];
 
@@ -468,7 +407,7 @@ const HomePage = ({ lockedAudience }) => {
                   industry
                 </p>
                 <div style={{ marginTop: spacing.medium, fontWeight: 600 }}>
-                  Marcus Carleson - Chairman and founder of Pubblo, creator of
+                  Marcus Carleson - Chairman of Pubblo, creator of
                   HITSTER
                 </div>
               </MarcusIntro>
@@ -541,7 +480,7 @@ const HomePage = ({ lockedAudience }) => {
                     <br />
                     <strong>Marcus Carleson</strong>
                     <br />
-                    Chairman and founder, Pubblo
+                    Chairman of Pubblo, creator of HITSTER
                   </p>
                 </FoldoutInner>
               </Foldout>
@@ -585,20 +524,7 @@ const HomePage = ({ lockedAudience }) => {
             </Reveal>
           </SectionWrap>
         )}
-        <Reveal
-          data-reveal-id='usps'
-          className={visibleIds['usps'] ? 'is-visible' : ''}
-        >
-          <BenefitsWrapper>
-            <USPComponent
-              headline='Key benefits'
-              usps={publisherUsps}
-              backgroundcolor='transparent'
-              textcolor={colors.text}
-            />
-          </BenefitsWrapper>
-        </Reveal>
-        <SectionWrap>
+        <SectionWrap style={{ display: 'none' }}>
           <Reveal
             data-reveal-id='deals'
             className={visibleIds['deals'] ? 'is-visible' : ''}
