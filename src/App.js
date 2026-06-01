@@ -20,10 +20,13 @@ import ScrollToTop from './components/ScrollToTop';
 import ComparePage from './pages/ComparePage';
 import ContactPage from './pages/ContactPage';
 import LaunchPage from './pages/LaunchPage';
+import CookieConsent from './components/CookieConsent';
+import { useGoogleAnalytics } from './utils/analytics';
 
 function AppContent() {
   const navigate = useNavigate();
-  
+  useGoogleAnalytics();
+
   const handleBookDemo = () => {
     navigate('/contact?demo=true');
   };
@@ -55,6 +58,7 @@ function AppContent() {
         </Routes>
         <Footer />
       </div>
+      <CookieConsent />
     </>
   );
 }

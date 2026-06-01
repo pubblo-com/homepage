@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { spacing, breakpoints } from '../styles/tokens';
+import { spacing, breakpoints, colors, typography } from '../styles/tokens';
+import { getConsent, resetConsent, setConsent } from '../utils/consent';
 
 const Wrap = styled.main`
   padding: 64px 0 ${spacing.xXLarge};
@@ -31,6 +32,71 @@ const Wrap = styled.main`
     margin-top: ${spacing.large};
   }
 `;
+
+const ConsentBox = styled.div`
+  margin-top: ${spacing.medium};
+  padding: ${spacing.medium};
+  border: 1px solid ${colors.lightblue};
+  border-radius: 8px;
+  background: ${colors.beige};
+`;
+
+const ConsentActions = styled.div`
+  display: flex;
+  gap: ${spacing.small};
+  flex-wrap: wrap;
+  margin-top: ${spacing.small};
+`;
+
+const ConsentButton = styled.button`
+  font-family: ${typography.fontFamily};
+  font-size: ${typography.fontSizeBody};
+  font-weight: ${typography.fontWeightSemiBold};
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid ${colors.primary};
+  background: ${colors.primary};
+  color: ${colors.white};
+  cursor: pointer;
+
+  &.secondary {
+    background: transparent;
+    color: ${colors.primary};
+  }
+`;
+
+const CookieControls = () => {
+  const consent = getConsent();
+  const analyticsOn = !!(consent && consent.analytics);
+  return (
+    <ConsentBox>
+      <p style={{ margin: 0 }}>
+        <strong>Your current choice:</strong>{' '}
+        {consent === null
+          ? 'No choice made yet.'
+          : analyticsOn
+            ? 'Analytics cookies allowed.'
+            : 'Analytics cookies declined.'}
+      </p>
+      <ConsentActions>
+        <ConsentButton onClick={() => setConsent({ analytics: true })}>
+          Allow analytics
+        </ConsentButton>
+        <ConsentButton className='secondary' onClick={() => setConsent({ analytics: false })}>
+          Decline analytics
+        </ConsentButton>
+        <ConsentButton className='secondary' onClick={() => resetConsent()}>
+          Reset / show banner again
+        </ConsentButton>
+      </ConsentActions>
+      <p style={{ marginTop: spacing.small, fontSize: typography.fontSizeBodySmall }}>
+        Your choice is stored locally in your browser. Declining or resetting takes effect
+        on the next page load; existing Google Analytics scripts will no longer receive
+        new page views after you decline.
+      </p>
+    </ConsentBox>
+  );
+};
 
 const PrivacyPage = () => (
   <Wrap>
@@ -155,6 +221,29 @@ const PrivacyPage = () => (
       You can manage or disable cookies in your browser settings, but some parts of the Service may not function
       properly without them.
     </p>
+
+    <h3>9.1 Google Analytics</h3>
+    <p>
+      With your consent, we use Google Analytics 4 (provided by Google Ireland Limited) to
+      collect aggregated, pseudonymous statistics about how visitors interact with our website,
+      such as pages visited, session duration, approximate location (derived from a truncated
+      IP address) and device/browser type. We have enabled IP anonymization and do not use
+      Google Analytics for advertising or cross-site tracking. The legal basis for this
+      processing is your consent (Art. 6(1)(a) GDPR), which you can withdraw at any time
+      using the controls below or by clearing the cookies in your browser.
+    </p>
+    <p>
+      Google may transfer data outside the EU/EEA. Such transfers are covered by the EU-U.S.
+      Data Privacy Framework and Standard Contractual Clauses where applicable. For more
+      information, see Google's privacy policy at{' '}
+      <a href='https://policies.google.com/privacy' target='_blank' rel='noopener noreferrer'>
+        policies.google.com/privacy
+      </a>
+      .
+    </p>
+
+    <h3>9.2 Manage Your Cookie Preferences</h3>
+    <CookieControls />
 
     <h2>10. Your Rights Under GDPR</h2>
     <p>You have the following rights:</p>
