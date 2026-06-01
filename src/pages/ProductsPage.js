@@ -77,6 +77,10 @@ const Panel = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 
+  @media (max-width: ${breakpoints.tablet}) {
+    order: 2;
+  }
+
   ul {
     list-style: disc;
     padding-left: 20px;
@@ -92,6 +96,10 @@ const Panel = styled.div`
 
 const Details = styled.div`
   padding: ${spacing.small} 0;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    order: 1;
+  }
 `;
 
 const ProductName = styled.h2`
