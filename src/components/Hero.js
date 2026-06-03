@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { spacing, breakpoints, colors } from '../styles/tokens';
 import backgroundImage from '../assets/bildpubblo.jpg';
@@ -194,27 +194,24 @@ const WaveImageContainer = styled.div`
   background: #ffffff;
 `;
 
-const slideFromLeft = keyframes`
-  from { opacity: 0; transform: translateX(-16px); }
-  to { opacity: 1; transform: translateX(0); }
-`;
-
-const slideFromRight = keyframes`
-  from { opacity: 0; transform: translateX(16px); }
-  to { opacity: 1; transform: translateX(0); }
-`;
-
-// removed unused gradientShift animation
-
-const CopyWrap = styled.div`
-  min-height: 280px;
-  animation: ${(p) =>
-      p.$audience === 'publishers' ? slideFromLeft : slideFromRight}
-    320ms ease;
+const CopyPanelContainer = styled.div`
+  display: grid;
   margin-top: ${spacing.large};
   margin-bottom: ${spacing.medium};
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 100%;
+  }
+`;
+
+const CopyWrap = styled.div`
+  grid-row: 1;
+  grid-column: 1;
+  visibility: ${(p) => (p.$visible ? 'visible' : 'hidden')};
+  opacity: ${(p) => (p.$visible ? 1 : 0)};
+  transition: opacity 1800ms ease;
   position: relative;
-  z-index: 10;
+  z-index: ${(p) => (p.$visible ? 10 : 0)};
   > p {
     max-width: 760px;
     font-size: 1.25rem;
@@ -222,11 +219,6 @@ const CopyWrap = styled.div`
 
   > p.support {
     font-weight: 700;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    min-height: auto;
-    width: 100%;
   }
 `;
 
@@ -250,20 +242,23 @@ const PillToggle = styled.div`
 `;
 
 const PillButton = styled.button`
-  border: 0;
   border-radius: 999px;
   padding: 10px 16px;
   cursor: pointer;
   font-weight: 700;
   transition:
     background 160ms ease,
-    color 160ms ease;
+    color 160ms ease,
+    border-color 160ms ease;
   background: ${(p) =>
     p.$active
       ? p.$variant === 'publishers'
         ? colors.primary
         : colors.contrast
       : 'transparent'};
+  border: 2px solid
+    ${(p) =>
+      p.$variant === 'publishers' ? colors.primary : colors.contrast};
   color: ${(p) => (p.$active ? '#fff' : colors.text)};
   &:hover {
     background: ${(p) =>
@@ -417,20 +412,41 @@ const Hero = ({
               </PillButton>
             </PillToggle>
           )}
-          <CopyWrap key={audience} $audience={audience}>
-            <h3>{activeCopy.headline}</h3>
-            {activeCopy.subhead && (
-              <p className='body-text-medium'>{activeCopy.subhead}</p>
+          <CopyPanelContainer>
+            {audiences ? (
+              Object.entries(audiences).map(([key, copy]) => (
+                <CopyWrap key={key} $visible={audience === key}>
+                  <h3>{copy.headline}</h3>
+                  {copy.subhead && (
+                    <p className='body-text-medium'>{copy.subhead}</p>
+                  )}
+                  {copy.support && (
+                    <p className='body-text-medium support'>{copy.support}</p>
+                  )}
+                  <Button
+                    text={copy.ctaText || buttonText}
+                    onClick={onScrollToSection}
+                    variant={key === 'designers' ? 'contrast' : 'primary'}
+                  />
+                </CopyWrap>
+              ))
+            ) : (
+              <CopyWrap $visible={true}>
+                <h3>{activeCopy.headline}</h3>
+                {activeCopy.subhead && (
+                  <p className='body-text-medium'>{activeCopy.subhead}</p>
+                )}
+                {activeCopy.support && (
+                  <p className='body-text-medium support'>{activeCopy.support}</p>
+                )}
+                <Button
+                  text={activeCopy.ctaText || buttonText}
+                  onClick={onScrollToSection}
+                  variant='primary'
+                />
+              </CopyWrap>
             )}
-            {activeCopy.support && (
-              <p className='body-text-medium support'>{activeCopy.support}</p>
-            )}
-            <Button
-              text={activeCopy.ctaText || buttonText}
-              onClick={onScrollToSection}
-              variant={audience === 'designers' ? 'contrast' : 'primary'}
-            />
-          </CopyWrap>
+          </CopyPanelContainer>
         </HeroContent>
       </HeroWrapper>
       <RollingBanner desktopOnly headingAlignment='hero' />

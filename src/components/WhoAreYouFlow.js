@@ -936,7 +936,6 @@ const WhoAreYouFlow = () => {
         <div style={{ height: 640 }}>
           <style>{`.react-flow__edge-path { marker-end: none !important; }`}</style>
           <ReactFlow
-            key={activeTab}
             nodes={mobileNodes}
             edges={mobileEdges}
             nodeTypes={nodeTypes}
