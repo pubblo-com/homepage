@@ -407,7 +407,7 @@ const HomePage = ({ lockedAudience }) => {
                   industry
                 </p>
                 <div style={{ marginTop: spacing.medium, fontWeight: 600 }}>
-                  Marcus Carleson - Chairman of Pubblo, creator of
+                  Marcus Carleson - Founder of Pubblo, creator of
                   HITSTER
                 </div>
               </MarcusIntro>
@@ -480,7 +480,7 @@ const HomePage = ({ lockedAudience }) => {
                     <br />
                     <strong>Marcus Carleson</strong>
                     <br />
-                    Chairman of Pubblo, creator of HITSTER
+                    Founder of Pubblo, creator of HITSTER
                   </p>
                 </FoldoutInner>
               </Foldout>

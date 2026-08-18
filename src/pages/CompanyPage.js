@@ -139,7 +139,7 @@ const CompanyPage = () => {
               Thank you for being part of this journey.
               <br />
               <strong>Marcus Carleson</strong>
-              <br />Chairman of Pubblo, creator of HITSTER
+              <br />Founder of Pubblo, creator of HITSTER
             </p>
             <div style={{ marginTop: spacing.medium }}>
               <Button text='Close' onClick={() => setOpen(false)} />

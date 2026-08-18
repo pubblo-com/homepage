@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { spacing, breakpoints, colors } from '../styles/tokens';
 import backgroundImage from '../assets/bildpubblo.jpg';
 import backgroundImageMobile from '../assets/bildpubblo-mobil.jpg';
+import spielwarenmesseLogo from '../assets/spielwarenmesse.png';
 
 import WaveImage from '../assets/wave.svg';
 import newsData from '../data/news.json';
@@ -52,7 +53,7 @@ const HeroContent = styled.div`
   max-width: 1200px;
   padding: ${spacing.xXLarge} ${spacing.xXLarge};
   padding-left: 0;
-  padding-top: calc(${spacing.xXLarge} + 180px);
+  padding-top: calc(${spacing.xXLarge} + 250px);
   padding-bottom: 0;
   display: flex;
   flex-direction: column;
@@ -61,7 +62,7 @@ const HeroContent = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: ${spacing.xLarge} ${spacing.large};
-    padding-top: calc(${spacing.xLarge} + 200px);
+    padding-top: calc(${spacing.xLarge} + 270px);
     padding-bottom: 0;
     width: 70%;
   }
@@ -73,15 +74,103 @@ const HeroContent = styled.div`
   }
 `;
 
-const PinkBanner = styled.div`
+const PartnerBanner = styled.div`
   background-color: ${colors.pink};
+  box-sizing: border-box;
+  color: white;
+  padding: 12px ${spacing.xLarge};
+  padding-left: ${spacing.xLarge};
+  padding-right: 60px;
+  position: absolute;
+  top: 32px;
+  left: 280px;
+  width: calc(100% - 280px);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 36px 50%);
+  z-index: 21;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    top: 24px;
+    left: 20px;
+    width: calc(100% - 20px);
+    font-size: 16px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    clip-path: none;
+    padding: ${spacing.medium};
+  }
+`;
+
+const PartnerBannerLink = styled(Link)`
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: ${spacing.medium};
+  text-decoration: none;
+  transition: opacity 160ms ease;
+  margin-left: 31px;
+
+  &:hover {
+    opacity: 0.92;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    margin-left: 0;
+    gap: ${spacing.small};
+    align-items: flex-start;
+  }
+`;
+
+const PartnerBannerLogo = styled.img`
+  width: 180px;
+  height: auto;
+  display: block;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 120px;
+  }
+`;
+
+const PartnerBannerText = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  max-width: 100%;
+`;
+
+const PartnerBannerTitle = styled.div`
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 24px;
+  }
+`;
+
+const PartnerBannerMeta = styled.div`
+  font-size: 15px;
+  margin-top: 4px;
+  opacity: 0.92;
+`;
+
+const LatestNewsBanner = styled.div`
+  background-color: #3f8db8;
   box-sizing: border-box;
   color: white;
   padding: 12px ${spacing.xLarge};
   padding-left: max(0px, calc((100% - 1200px) / 2));
   padding-right: 60px;
   position: absolute;
-  top: 100px;
+  top: 222px;
   left: 0;
   width: fit-content;
   clip-path: polygon(0 0, 100% 0, calc(100% - 40px) 50%, 100% 100%, 0 100%);
@@ -91,7 +180,7 @@ const PinkBanner = styled.div`
   font-weight: 500;
 
   @media (max-width: ${breakpoints.tablet}) {
-    top: 90px;
+    top: 214px;
     max-width: 90%;
     font-size: 16px;
     padding-left: calc(max(0px, (100% - 1200px) / 2) + ${spacing.xXLarge});
@@ -107,15 +196,15 @@ const PinkBanner = styled.div`
   }
 `;
 
-const PinkBannerLink = styled(Link)`
+const LatestNewsBannerLink = styled(Link)`
   color: inherit;
   cursor: pointer;
   display: block;
   text-decoration: none;
-  transition: color 160ms ease;
+  transition: opacity 160ms ease;
 
   &:hover {
-    color: ${colors.contrast};
+    opacity: 0.92;
   }
 `;
 
@@ -128,7 +217,7 @@ const MobileCTA = styled.div`
   }
 `;
 
-const PinkBannerKicker = styled.div`
+const LatestNewsKicker = styled.div`
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -137,19 +226,19 @@ const PinkBannerKicker = styled.div`
   text-transform: uppercase;
 `;
 
-const PinkBannerTitle = styled.div`
-  font-size: 28px;
-  font-weight: 700;
+const LatestNewsTitle = styled.div`
+  font-size: 24px;
+  font-weight: 400;
   line-height: 1.2;
   margin-bottom: 8px;
   overflow-wrap: anywhere;
 
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 22px;
+    font-size: 24px;
   }
 `;
 
-const PinkBannerMeta = styled.div`
+const LatestNewsMeta = styled.div`
   font-size: 20px;
   line-height: 1.35;
   max-width: 620px;
@@ -164,7 +253,7 @@ const PinkBannerMeta = styled.div`
   }
 `;
 
-const PinkBannerDate = styled.div`
+const LatestNewsDate = styled.div`
   font-size: 13px;
   line-height: 1.3;
   margin-top: 6px;
@@ -327,13 +416,27 @@ const Hero = ({
     ? audiences[audience]
     : { headline, subhead: tagline, support: '', ctaText: buttonText };
 
+  const partnerNewsSlug = 'pubblo-partnership-spielwarenmesse-2027';
+
+  const partnerNews = useMemo(() => {
+    if (!Array.isArray(newsData) || newsData.length === 0) {
+      return null;
+    }
+    return newsData.find((item) => item.slug === partnerNewsSlug) || null;
+  }, [partnerNewsSlug]);
+
   const latestNews = useMemo(() => {
     if (!Array.isArray(newsData) || newsData.length === 0) {
       return null;
     }
 
-    return [...newsData].sort((a, b) => b.date.localeCompare(a.date))[0];
-  }, []);
+    const sortedNews = [...newsData].sort((a, b) => b.date.localeCompare(a.date));
+    const latestNonPartner = sortedNews.find(
+      (item) => item.slug !== partnerNewsSlug,
+    );
+
+    return latestNonPartner || sortedNews[0];
+  }, [partnerNewsSlug]);
 
   const latestNewsExcerpt = useMemo(() => {
     if (!latestNews?.body) {
@@ -350,6 +453,11 @@ const Hero = ({
   }, [latestNews]);
 
   const latestNewsPath = latestNews ? `/news/${latestNews.slug}` : '/news';
+  const partnerNewsPath = partnerNews ? `/news/${partnerNews.slug}` : '/news';
+  const partnerBannerText =
+    partnerNews?.push?.trim() ||
+    partnerNews?.title ||
+    'Official partner of the Game Inventors Convention 2027';
 
   const onSelect = (value) => {
     if (intervalRef.current) {
@@ -361,29 +469,38 @@ const Hero = ({
 
   return (
     <HeroSection>
-      <PinkBanner>
-        <PinkBannerLink to={latestNewsPath}>
-          <PinkBannerKicker>Latest news</PinkBannerKicker>
-          <PinkBannerTitle>
+      <PartnerBanner>
+        <PartnerBannerLink to={partnerNewsPath}>
+          <PartnerBannerLogo src={spielwarenmesseLogo} alt='Spielwarenmesse' />
+          <PartnerBannerText>
+            <PartnerBannerTitle>{partnerBannerText}</PartnerBannerTitle>
+            <PartnerBannerMeta>Read more</PartnerBannerMeta>
+          </PartnerBannerText>
+        </PartnerBannerLink>
+      </PartnerBanner>
+      <LatestNewsBanner>
+        <LatestNewsBannerLink to={latestNewsPath}>
+          <LatestNewsKicker>Latest news</LatestNewsKicker>
+          <LatestNewsTitle>
             {latestNews
               ? latestNews.title
               : 'See the latest updates from Pubblo'}
-          </PinkBannerTitle>
-          <PinkBannerMeta>
+          </LatestNewsTitle>
+          <LatestNewsMeta>
             {latestNews
               ? latestNewsExcerpt
               : 'Read the latest update from our news page.'}
-          </PinkBannerMeta>
+          </LatestNewsMeta>
           {latestNews && (
-            <PinkBannerDate>{latestNews.date} · Click to read</PinkBannerDate>
+            <LatestNewsDate>{latestNews.date} · Click to read</LatestNewsDate>
           )}
-        </PinkBannerLink>
+        </LatestNewsBannerLink>
         <MobileCTA>
           <Link to={latestNewsPath} style={{ textDecoration: 'none' }}>
             <Button text='Read latest news' variant='primary' />
           </Link>
         </MobileCTA>
-      </PinkBanner>
+      </LatestNewsBanner>
       <HeroWrapper>
         <HeroContent>
           <SuperTitle>A better workflow for board game publishing</SuperTitle>

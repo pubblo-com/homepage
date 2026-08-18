@@ -8,9 +8,9 @@ import magnusImg from '../assets/contacts/magnus.jpg';
 import marcusImg from '../assets/contacts/marcus.jpg';
 import stefanImg from '../assets/contacts/stefan.jpg';
 import mariaImg from '../assets/contacts/maria.jpg';
-import olofImg from '../assets/contacts/olof.jpg';
+
 import olleImg from '../assets/contacts/olle.jpg';
-import andersImg from '../assets/contacts/anders.jpg';
+import niklasImg from '../assets/contacts/niklas.jpg';
 
 const Wrap = styled.main`
   padding: 64px 0 ${spacing.xXLarge};
@@ -185,10 +185,10 @@ const ContactPage = () => {
       shape: null
     },
     {
-      name: 'Olof Mjöberg',
-      role: 'Acting CTO',
-      email: 'olof@pubblo.com',
-      image: olofImg,
+      name: 'Niklas Grundström',
+      role: 'CTO',
+      email: 'niklas@pubblo.com',
+      image: niklasImg,
       accent: null,
       shape: null
     },
@@ -197,14 +197,6 @@ const ContactPage = () => {
       role: 'Infrastructure',
       email: 'olle@pubblo.com',
       image: olleImg,
-      accent: null,
-      shape: null
-    },
-    {
-      name: 'Anders Lång',
-      role: 'Software architect',
-      email: 'anders@pubblo.com',
-      image: andersImg,
       accent: null,
       shape: null
     }
