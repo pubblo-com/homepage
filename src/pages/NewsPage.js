@@ -53,6 +53,14 @@ const NewsImage = styled.img`
 const NewsBody = styled.div`
   font-size: 1.25rem;
   line-height: 1.6;
+
+  p {
+    margin: 0 0 1em;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const NewsPage = () => {
@@ -80,7 +88,11 @@ const NewsPage = () => {
               <div style={{color: 'red', margin: '16px 0'}}>Bild saknas: {news.image}</div>
             ) : null}
             <NewsBody>
-              {news.body.split('\n').map((line, i) => (
+              {news.body
+                .split(/\n+/)
+                .map((line) => line.trim())
+                .filter(Boolean)
+                .map((line, i) => (
                 <p key={i}>{line}</p>
               ))}
               {news.link && (

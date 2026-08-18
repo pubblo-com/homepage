@@ -43,7 +43,13 @@ const NewsImage = styled.img`
 const NewsBody = styled.div`
   font-size: 1.25rem;
   line-height: 1.6;
-  white-space: pre-line;
+  p {
+    margin: 0 0 1em;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const BackLink = styled(Link)`
@@ -80,6 +86,11 @@ const NewsArticlePage = () => {
   }
 
   const imageSrc = article.image ? imageMap[article.image] : undefined;
+  const paragraphs = article.body
+    .split(/\n+/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+
   if (article.image && !imageSrc) {
     // eslint-disable-next-line no-console
     console.warn('Bild saknas i imageMap:', article.image);
@@ -96,7 +107,9 @@ const NewsArticlePage = () => {
         <div style={{color: 'red', margin: '16px 0'}}>Bild saknas: {article.image}</div>
       ) : null}
       <NewsBody>
-        {article.body}
+        {paragraphs.map((paragraph, index) => (
+          <p key={`${article.slug}-paragraph-${index}`}>{paragraph}</p>
+        ))}
         {article.link && (
           <p style={{marginTop: 24}}>
             <a href={article.link} target="_blank" rel="noopener noreferrer">Read more here!</a>

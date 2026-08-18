@@ -4,7 +4,7 @@ import { breakpoints, colors } from '../styles/tokens';
 
 const StyledButton = styled.button`
   width: auto;
-  border: ${(p) => (p.$variant === 'secondary' || p.$variant === 'secondary-contrast' ? '2px solid currentColor' : 0)};
+  border: none;
   border-radius: 32px;
   padding: 12px 20px;
   font-weight: 600;

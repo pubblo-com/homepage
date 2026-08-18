@@ -10,7 +10,7 @@ const Bar = styled.div`
   right: ${spacing.medium};
   bottom: ${spacing.medium};
   z-index: 1000;
-  background: ${colors.secondary};
+  background: ${colors.buttonBackgroundHover};
   color: ${colors.white};
   border-radius: 12px;
   padding: ${spacing.medium} ${spacing.large};

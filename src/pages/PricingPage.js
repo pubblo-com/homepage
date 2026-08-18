@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors, spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
@@ -29,6 +29,64 @@ const SectionDesc = styled.p`
   margin: 0 0 ${spacing.large};
 `;
 
+/* ── Welcome section ────────────────────────────────── */
+const WelcomeSection = styled.div`
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  padding: ${spacing.xLarge};
+  margin-bottom: ${spacing.xXLarge};
+  display: flex;
+  gap: ${spacing.large};
+  align-items: flex-start;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+`;
+
+const WelcomeAvatar = styled.div`
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #66b3ff 0%, #4a9fd8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+  }
+`;
+
+const WelcomeContent = styled.div`
+  flex: 1;
+`;
+
+const WelcomeTitle = styled.h2`
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: #333;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 24px;
+  }
+`;
+
+const WelcomeDesc = styled.p`
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+`;
+
 /* ── Portal grid ─────────────────────────────────────── */
 const PortalGrid = styled.div`
   display: grid;
@@ -45,12 +103,31 @@ const PortalGrid = styled.div`
 const PortalCard = styled.div`
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  border: 2px solid ${(p) => (p.$selected ? colors.buttonBackground : '#ebedf0')};
+  box-shadow: ${(p) =>
+    p.$selected ? '0 6px 22px rgba(63, 138, 177, 0.18)' : 'none'};
   padding: ${spacing.large};
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+`;
+
+const PlanSelector = styled.span`
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid
+    ${(p) => (p.$selected ? colors.buttonBackground : '#d2d6dc')};
+  background: ${(p) => (p.$selected ? colors.buttonBackground : '#fff')};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 22px;
+  left: 22px;
 `;
 
 const PlanName = styled.h3`
@@ -79,7 +156,6 @@ const CardFishtail = styled.div`
 const PlanTagline = styled.p`
   font-size: 12px;
   line-height: 1.4;
-  height: calc(12px * 1.4 * 2);
   color: #888;
   margin: 0 0 ${spacing.small};
   text-align: center;
@@ -102,15 +178,82 @@ const PlanHeader = styled.div`
 `;
 
 const PlanPrice = styled.div`
-  font-size: 26px;
-  font-weight: 800;
+  font-size: 50px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   margin: ${spacing.small} 0 4px;
   text-align: center;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+`;
+
+const PlanOldPrice = styled.span`
+  font-size: 36px;
+  font-weight: 600;
+  color: #a6adb7;
+  text-decoration: line-through;
+  margin-right: 2px;
+`;
+
+const PlanCurrentPrice = styled.span`
+  font-size: inherit;
+  font-weight: inherit;
+  color: #111827;
+  line-height: 1;
 `;
 
 const PlanPer = styled.span`
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
+  color: #6b7280;
+`;
+
+const PlanMonth = styled.span`
+  font-size: 18px;
+  font-weight: 400;
+  color: #6b7280;
+`;
+
+const PlanBilling = styled.div`
+  font-size: 12px;
+  margin-top: 6px;
+  white-space: pre-line;
+  text-align: center;
+  color: ${(p) => (p.$accent ? colors.primary : '#888')};
+`;
+
+const PricingInfoRow = styled.div`
+  margin-top: ${spacing.small};
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #f5f7fa;
+  color: #2d3748;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const PricingInfoIcon = styled.span`
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid ${colors.buttonBackground};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 3px;
+    border-left: 2px solid ${colors.buttonBackground};
+    border-bottom: 2px solid ${colors.buttonBackground};
+    transform: rotate(-45deg) translate(0, -1px);
+  }
 `;
 
 const FeatureList = styled.ul`
@@ -280,6 +423,8 @@ const PitchNote = styled.p`
 `;
 
 const PricingPage = () => {
+  const [selectedPlan, setSelectedPlan] = useState('M');
+
   const goToPortal = () => {
     window.location.href = 'https://portal.pubblo.com/#/create-account/';
   };
@@ -287,60 +432,63 @@ const PricingPage = () => {
   const portalPlans = [
     {
       name: 'S',
-      price: '0€',
-      tagline: 'Just curious? Start here!',
+      price: '0',
+      currency: '€',
+      monthLabel: '/month',
+      tagline: 'Built for small publishers',
       users: '1-2 users',
+      billing: '',
       features: [
-        'Receive pitches in a standardized sellsheet through a simple link on your website*',
-        'Score incoming pitches to quickly identify the best matches',
+        'Receive pitches via a link or button from your own website',
+        'Score incoming pitches against your preferences',
         'Marketplace access',
       ],
-      cta: { text: 'Get started', disabled: false },
+      cta: { text: 'Apply', disabled: false },
     },
     {
       name: 'M',
-      price: '49€',
+      oldPrice: '49€',
+      price: '0',
+      monthLabel: '/month',
       tagline: 'Built for growing teams',
       users: '1-2 users',
+      billing: 'Free trial until 1 jan. 2027\nNo automatic billing',
+      billingAccent: true,
       bestValue: true,
       features: [
-        'Receive pitches in a standardized sellsheet through a simple link on your website*',
-        'Score all incoming pitches',
-        'Save games for further evaluation',
-        'Collaborate with your team and game developers',
-        'Marketplace access with scoring tools for efficient browsing',
+        'All in S',
+        'Save games for evaluation',
+        'Collaborate with your team',
+        'Score marketplace games against your preferences',
       ],
-      cta: { text: 'Try for free', disabled: false },
+      cta: { text: 'Apply', disabled: false },
     },
     {
       name: 'L',
-      price: '99€',
+      price: '99',
+      currency: '€',
+      monthLabel: '/month',
       tagline: 'Designed for established publishers',
       users: '1-2 users',
+      billing: 'Billed annually',
       features: [
-        'Receive pitches in a standardized sellsheet through a simple link on your website*',
-        'Score all incoming pitches',
-        'Save games for further evaluation',
-        'Collaborate with your team and game developers',
-        'Marketplace access with scoring',
+        'All in M',
         'Request exclusivity',
-        'Get preview on new submissions',
+        'Preview new submissions',
       ],
       cta: { text: 'Coming soon', disabled: true },
     },
     {
       name: 'XL',
-      price: '199€',
+      price: '199',
+      currency: '€',
+      monthLabel: '/month',
       tagline: 'For industry leaders',
-      users: '3+ users',
+      users: 'Unlimited users in your company',
+      billing: 'Billed annually',
       features: [
-        'Receive pitches in a standardized sellsheet through a simple link on your website*',
-        'Score all incoming pitches',
-        'Save games for further evaluation',
-        'Collaborate with your team and game developers',
-        'Marketplace access with scoring',
-        'Request exclusivity',
-        'Get preview on new submissions',
+        'All in L',
+        'Unlimited users in your company',
       ],
       cta: { text: 'Coming soon', disabled: true },
     },
@@ -361,32 +509,53 @@ const PricingPage = () => {
       </FishtailBanner>
 
       <ContentWrap>
+        {/* ── WELCOME ── */}
+        <WelcomeSection>
+          <WelcomeAvatar>👋</WelcomeAvatar>
+          <WelcomeContent>
+            <WelcomeTitle>Welcome to Pubblo Portal!</WelcomeTitle>
+            <WelcomeDesc>
+              Choose the plan that best fits your team to start exploring the
+              platform.
+            </WelcomeDesc>
+          </WelcomeContent>
+        </WelcomeSection>
+
         {/* ── THE PORTAL ── */}
-        <Section id='portal'>
-          <h2>The Portal</h2>
-          <SectionDesc>
-            Designed for publishers of all sizes, whether you're an indie
-            developer with a few active games or an established industry leader
-            interested in partnering, collaborating or exploring new
-            opportunities together.{' '}
-            <a href='/contact' style={{ color: colors.link }}>
-              Let's talk.
-            </a>
-          </SectionDesc>
+        <Section id='portal' style={{ marginTop: spacing.xXLarge }}>
         </Section>
 
         <PortalGrid>
           {portalPlans.map((plan) => (
-            <PortalCard key={plan.name}>
-              {plan.bestValue && <CardFishtail>Best offer</CardFishtail>}
+            <PortalCard
+              key={plan.name}
+              $selected={selectedPlan === plan.name}
+              onClick={() => setSelectedPlan(plan.name)}
+            >
+              {plan.bestValue && <CardFishtail>Opening offer</CardFishtail>}
+              <PlanSelector $selected={selectedPlan === plan.name} />
               <PlanHeader>
                 <PlanName>{plan.name}</PlanName>
                 <PlanPrice>
-                  {plan.price}
-                  <PlanPer> /month</PlanPer>
+                  {plan.oldPrice && <PlanOldPrice>{plan.oldPrice}</PlanOldPrice>}
+                  <PlanCurrentPrice>
+                    {plan.price}
+                    {plan.currency || ''}
+                  </PlanCurrentPrice>
+                  {plan.monthLabel && (
+                    <>
+                      <PlanPer>/</PlanPer>
+                      <PlanMonth>month</PlanMonth>
+                    </>
+                  )}
                 </PlanPrice>
                 <PlanTagline>{plan.tagline}</PlanTagline>
                 <PlanUsers>{plan.users}</PlanUsers>
+                {plan.billing && (
+                  <PlanBilling $accent={plan.billingAccent}>
+                    {plan.billing}
+                  </PlanBilling>
+                )}
               </PlanHeader>
               <FeatureList>
                 {plan.features.map((f) => (
@@ -403,10 +572,13 @@ const PricingPage = () => {
           ))}
         </PortalGrid>
 
-        <p style={{ fontSize: 12, color: '#aaa', marginTop: spacing.small }}>
-          *The free tier requires the use of a submission inbox linked from your
-          company website.
-        </p>
+        <PricingInfoRow>
+          <PricingInfoIcon aria-hidden='true' />
+          <span>
+            No hidden fees, no credit card required, and no automatic renewal
+            when the free period ends.
+          </span>
+        </PricingInfoRow>
       </ContentWrap>
 
       {/* ── PROMO BANNER ── */}

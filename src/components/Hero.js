@@ -248,17 +248,14 @@ const PillButton = styled.button`
   font-weight: 700;
   transition:
     background 160ms ease,
-    color 160ms ease,
-    border-color 160ms ease;
+    color 160ms ease;
   background: ${(p) =>
     p.$active
       ? p.$variant === 'publishers'
         ? colors.primary
         : colors.contrast
       : 'transparent'};
-  border: 2px solid
-    ${(p) =>
-      p.$variant === 'publishers' ? colors.primary : colors.contrast};
+  border: none;
   color: ${(p) => (p.$active ? '#fff' : colors.text)};
   &:hover {
     background: ${(p) =>
