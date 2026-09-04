@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+> **Note**
+> We can reuse the `/launch` page to publish temporary announcements or status messages without shipping a new standalone page—just adjust the copy in `src/pages/LaunchPage.js`.
+
 ## Available Scripts
 
 In the project directory, you can run:

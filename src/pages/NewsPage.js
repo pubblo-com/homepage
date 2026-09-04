@@ -4,12 +4,16 @@ import { Link } from 'react-router-dom';
 import { spacing } from '../styles/tokens';
 
 import newsData from '../data/news.json';
-const imageContext = require.context('../assets/news', false, /\.(png|jpe?g|gif|webp|svg)$/i);
+const imageContext = require.context(
+  '../assets/news',
+  false,
+  /\.(png|jpe?g|gif|webp|svg)$/i,
+);
 const imageMap = Object.fromEntries(
   imageContext.keys().map((key) => {
     const mod = imageContext(key);
     return [key.replace('./', ''), mod.default || mod];
-  })
+  }),
 );
 
 const Wrap = styled.main`
@@ -44,8 +48,10 @@ const NewsDate = styled.div`
 `;
 
 const NewsImage = styled.img`
-  max-width: 320px;
   width: 100%;
+  max-width: 840px;
+  height: 180px;
+  object-fit: contain;
   display: block;
   margin: 24px 0 24px 0;
 `;
@@ -85,7 +91,9 @@ const NewsPage = () => {
             {imageSrc ? (
               <NewsImage src={imageSrc} alt={news.title} />
             ) : news.image ? (
-              <div style={{color: 'red', margin: '16px 0'}}>Bild saknas: {news.image}</div>
+              <div style={{ color: 'red', margin: '16px 0' }}>
+                Bild saknas: {news.image}
+              </div>
             ) : null}
             <NewsBody>
               {news.body
@@ -93,11 +101,13 @@ const NewsPage = () => {
                 .map((line) => line.trim())
                 .filter(Boolean)
                 .map((line, i) => (
-                <p key={i}>{line}</p>
-              ))}
+                  <p key={i}>{line}</p>
+                ))}
               {news.link && (
-                <p style={{marginTop: 24}}>
-                  <a href={news.link} target="_blank" rel="noopener noreferrer">Read more here!</a>
+                <p style={{ marginTop: 24 }}>
+                  <a href={news.link} target='_blank' rel='noopener noreferrer'>
+                    {news.linktext || 'Read more here!'}
+                  </a>
                 </p>
               )}
             </NewsBody>

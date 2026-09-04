@@ -103,7 +103,8 @@ const PortalGrid = styled.div`
 const PortalCard = styled.div`
   background: #fff;
   border-radius: 12px;
-  border: 2px solid ${(p) => (p.$selected ? colors.buttonBackground : '#ebedf0')};
+  border: 2px solid
+    ${(p) => (p.$selected ? colors.buttonBackground : '#ebedf0')};
   box-shadow: ${(p) =>
     p.$selected ? '0 6px 22px rgba(63, 138, 177, 0.18)' : 'none'};
   padding: ${spacing.large};
@@ -111,7 +112,9 @@ const PortalCard = styled.div`
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
   cursor: pointer;
 `;
 
@@ -312,33 +315,11 @@ const FishtailLeft = styled.div`
   }
 `;
 
-/* pink: text starts after tail (~27vw), right edge matches ContentWrap right edge */
-const FishtailRight = styled.div`
-  padding-top: ${spacing.large};
-  padding-bottom: ${spacing.large};
-  padding-left: max(calc(33% + 72px), 36%);
-  padding-right: max(
-    ${spacing.large},
-    calc((100% - 1100px) / 2 + ${spacing.large})
-  );
-
-  @media (max-width: ${breakpoints.mobile}) {
-    padding: ${spacing.medium};
-  }
-`;
-
 const FishtailKicker = styled.div`
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.88;
-  margin-bottom: 6px;
-`;
-const FishtailBottomKicker = styled.div`
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
   opacity: 0.88;
   margin-bottom: 6px;
 `;
@@ -471,11 +452,7 @@ const PricingPage = () => {
       tagline: 'Designed for established publishers',
       users: '1-2 users',
       billing: 'Billed annually',
-      features: [
-        'All in M',
-        'Request exclusivity',
-        'Preview new submissions',
-      ],
+      features: ['All in M', 'Request exclusivity', 'Preview new submissions'],
       cta: { text: 'Coming soon', disabled: true },
     },
     {
@@ -486,10 +463,7 @@ const PricingPage = () => {
       tagline: 'For industry leaders',
       users: 'Unlimited users in your company',
       billing: 'Billed annually',
-      features: [
-        'All in L',
-        'Unlimited users in your company',
-      ],
+      features: ['All in L', 'Unlimited users in your company'],
       cta: { text: 'Coming soon', disabled: true },
     },
   ];
@@ -499,11 +473,10 @@ const PricingPage = () => {
       {/* ── OPENING OFFER ── */}
       <FishtailBanner $bg={colors.lightblue}>
         <FishtailLeft>
-          <FishtailKicker>Opening offer</FishtailKicker>
-          <FishtailTitle>Sign up now!</FishtailTitle>
+          <FishtailKicker>Check it out</FishtailKicker>
+          <FishtailTitle>PubbloMarketplace Launched!</FishtailTitle>
           <FishtailBody>
-            Sign up before Aug 30 and enjoy the M plan FREE for the rest of the
-            year!
+            Now you can explore and manage your games directly through our Marketplace!
           </FishtailBody>
         </FishtailLeft>
       </FishtailBanner>
@@ -522,8 +495,7 @@ const PricingPage = () => {
         </WelcomeSection>
 
         {/* ── THE PORTAL ── */}
-        <Section id='portal' style={{ marginTop: spacing.xXLarge }}>
-        </Section>
+        <Section id='portal' style={{ marginTop: spacing.xXLarge }}></Section>
 
         <PortalGrid>
           {portalPlans.map((plan) => (
@@ -537,7 +509,9 @@ const PricingPage = () => {
               <PlanHeader>
                 <PlanName>{plan.name}</PlanName>
                 <PlanPrice>
-                  {plan.oldPrice && <PlanOldPrice>{plan.oldPrice}</PlanOldPrice>}
+                  {plan.oldPrice && (
+                    <PlanOldPrice>{plan.oldPrice}</PlanOldPrice>
+                  )}
                   <PlanCurrentPrice>
                     {plan.price}
                     {plan.currency || ''}
@@ -581,25 +555,6 @@ const PricingPage = () => {
         </PricingInfoRow>
       </ContentWrap>
 
-      {/* ── PROMO BANNER ── */}
-      <FishtailBanner $bg={colors.pink} $flip>
-        <FishtailRight>
-          <FishtailKicker>Limited offer</FishtailKicker>
-          <FishtailTitle>Want a FREE marketplace slot?</FishtailTitle>
-          <FishtailBody>
-            We're offering 100 free marketplace slots for publishers and 100 for
-            designers.
-            <br />
-            Use the code <strong>100LAUNCH</strong> to claim yours before
-            they're gone!
-          </FishtailBody>
-          <FishtailBottomKicker>
-            Limited to one use per publisher/designer. Registration required
-            before Aug 30.
-          </FishtailBottomKicker>
-        </FishtailRight>
-      </FishtailBanner>
-
       <ContentWrap>
         {/* ── THE MARKETPLACE ── */}
         <Section id='marketplace'>
@@ -621,7 +576,7 @@ const PricingPage = () => {
                 <MarketPriceNote>/ year</MarketPriceNote>
               </MarketPriceRow>
               <MarketPriceSub>
-                Launch offer available until Aug 30
+               
               </MarketPriceSub>
               <MarketPriceRow>
                 <MarketBigPrice>49€</MarketBigPrice>
@@ -661,7 +616,7 @@ const PricingPage = () => {
                 <MarketPriceNote>/ year</MarketPriceNote>
               </MarketPriceRow>
               <MarketPriceSub>
-                Launch offer available until Aug 30
+                
               </MarketPriceSub>
               <MarketPriceRow>
                 <MarketBigPrice>199€</MarketBigPrice>

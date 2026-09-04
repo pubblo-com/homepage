@@ -6,7 +6,8 @@ param(
     [string]$Region = "europe-west1",
     [string]$RepoName = "homepage",  # Artifact Registry repository name
     [string]$RecaptchaSiteKey,
-    [string]$RecaptchaSecret
+    [string]$RecaptchaSecret,
+    [string]$GaId
 )
 
 $ErrorActionPreference = "Stop"
@@ -149,8 +150,20 @@ if (-not $skipSecretUpdate -and -not $resolvedRecaptchaSecret) {
 # Build and push image
 $image = "$registry/$ProjectId/$RepoName/${ServiceName}:latest"
 Write-Host "Building Docker image: $image" -ForegroundColor Cyan
+
+# Resolve GA Measurement ID (param > .env)
+if (-not $GaId) {
+    $GaId = Get-EnvValueFromFile -filePath $envFile -key 'REACT_APP_GA_ID'
+}
+if ($GaId) {
+    Write-Host "Using REACT_APP_GA_ID: $GaId" -ForegroundColor Green
+} else {
+    Write-Host "REACT_APP_GA_ID not set; Google Analytics will be disabled in the build." -ForegroundColor Yellow
+}
+
 $buildArgs = @('build','-t',$image)
 if ($RecaptchaSiteKey) { $buildArgs += @('--build-arg',"REACT_APP_RECAPTCHA_SITE_KEY=$RecaptchaSiteKey") }
+if ($GaId) { $buildArgs += @('--build-arg',"REACT_APP_GA_ID=$GaId") }
 $buildArgs += '.'
 & docker @buildArgs
 if ($LASTEXITCODE -ne 0) {

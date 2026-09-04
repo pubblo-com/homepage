@@ -4,12 +4,16 @@ import styled from 'styled-components';
 import newsData from '../data/news.json';
 import { spacing } from '../styles/tokens';
 
-const imageContext = require.context('../assets/news', false, /\.(png|jpe?g|gif|webp|svg)$/i);
+const imageContext = require.context(
+  '../assets/news',
+  false,
+  /\.(png|jpe?g|gif|webp|svg)$/i,
+);
 const imageMap = Object.fromEntries(
   imageContext.keys().map((key) => {
     const mod = imageContext(key);
     return [key.replace('./', ''), mod.default || mod];
-  })
+  }),
 );
 
 const Wrap = styled.main`
@@ -34,8 +38,10 @@ const NewsDate = styled.div`
 `;
 
 const NewsImage = styled.img`
-  max-width: 320px;
   width: 100%;
+  max-width: 840px;
+  height: 180px;
+  object-fit: contain;
   display: block;
   margin: 24px 0 24px 0;
 `;
@@ -80,7 +86,7 @@ const NewsArticlePage = () => {
       <Wrap>
         <Title>News</Title>
         <p>News article not found.</p>
-        <BackLink to="/news">← Back to news</BackLink>
+        <BackLink to='/news'>← Back to news</BackLink>
       </Wrap>
     );
   }
@@ -98,21 +104,25 @@ const NewsArticlePage = () => {
 
   return (
     <Wrap>
-      <BackLink to="/news">← Back to news</BackLink>
+      <BackLink to='/news'>← Back to news</BackLink>
       <Title>{article.title}</Title>
       <NewsDate>{article.date}</NewsDate>
       {imageSrc ? (
         <NewsImage src={imageSrc} alt={article.title} />
       ) : article.image ? (
-        <div style={{color: 'red', margin: '16px 0'}}>Bild saknas: {article.image}</div>
+        <div style={{ color: 'red', margin: '16px 0' }}>
+          Bild saknas: {article.image}
+        </div>
       ) : null}
       <NewsBody>
         {paragraphs.map((paragraph, index) => (
           <p key={`${article.slug}-paragraph-${index}`}>{paragraph}</p>
         ))}
         {article.link && (
-          <p style={{marginTop: 24}}>
-            <a href={article.link} target="_blank" rel="noopener noreferrer">Read more here!</a>
+          <p style={{ marginTop: 24 }}>
+            <a href={article.link} target='_blank' rel='noopener noreferrer'>
+              {article.linktext || 'Read more here!'}
+            </a>
           </p>
         )}
       </NewsBody>

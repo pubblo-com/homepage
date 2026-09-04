@@ -54,6 +54,7 @@ chmod +x deploy.sh
 ```
 
 On Windows PowerShell (recommended):
+Make sure that docker desktop is running first!
 ```powershell
 ./deploy.ps1 -ProjectId homepage-473608 -ServiceName homepage -Region europe-west1 -RepoName homepage
 ```

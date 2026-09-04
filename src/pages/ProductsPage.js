@@ -288,7 +288,7 @@ const ProductsPage = () => {
             </MetaRow>
             <MetaRow>
               <MetaLabel>When it launches</MetaLabel>
-              Aug 30
+              Open
             </MetaRow>
           </Details>
         </Section>
