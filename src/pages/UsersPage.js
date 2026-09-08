@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors, spacing, breakpoints } from '../styles/tokens';
 import heroImg from '../assets/pablo_users.png';
+import SEOHead from '../components/SEOHead';
+import { useI18n } from '../i18n/I18nProvider';
 
 const HeroImage = styled.img`
   display: block;
@@ -33,7 +35,7 @@ const SubTitle = styled.h2`
 const TwoCol = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: ${spacing.xLarge};
+  gap: ${spacing.xXLarge};
 
   @media (max-width: ${breakpoints.tablet}) {
     grid-template-columns: 1fr;
@@ -101,44 +103,52 @@ const Bullets = styled.ul`
 `;
 
 const UsersPage = () => {
+  const { t } = useI18n();
+  const u = t('users');
+  const buyerTagVariants = [null, 'yellow'];
+  const sellerTagVariants = ['yellow', 'pink'];
+
   return (
     <>
-      <HeroImage src={heroImg} alt='Who can use our product' />
+      <SEOHead
+        title={t('seo.pages.users.title')}
+        description={t('seo.pages.users.description')}
+        path='/users'
+      />
+      <HeroImage src={heroImg} alt={u.heroAlt} />
       <Wrap>
-        <Title>Who can use our product?</Title>
+        <Title>{u.title}</Title>
 
         <TwoCol>
           <Panel>
-            <SubTitle>Buyers</SubTitle>
+            <SubTitle>{u.buyers.title}</SubTitle>
             <TagRow>
-              <Tag>Distributors</Tag>
-              <Tag $variant='yellow'>Publishers</Tag>
+              {u.buyers.tags.map((label, i) => (
+                <Tag key={label} $variant={buyerTagVariants[i]}>
+                  {label}
+                </Tag>
+              ))}
             </TagRow>
             <Bullets>
-              <li>
-                Receive high‑quality pitches in a standardized format – easy to
-                evaluate.
-              </li>
-              <li>
-                Automatic scoring against your preferences helps you focus.
-              </li>
-              <li>Manage information and communication in one place.</li>
+              {u.buyers.bullets.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </Bullets>
           </Panel>
 
           <Panel>
-            <SubTitle>Sellers</SubTitle>
+            <SubTitle>{u.sellers.title}</SubTitle>
             <TagRow>
-              <Tag $variant='yellow'>Publishers</Tag>
-              <Tag $variant='pink'>Designers</Tag>
+              {u.sellers.tags.map((label, i) => (
+                <Tag key={label} $variant={sellerTagVariants[i]}>
+                  {label}
+                </Tag>
+              ))}
             </TagRow>
             <Bullets>
-              <li>
-                Increase your chance of success with compelling, informative
-                pitch pages.
-              </li>
-              <li>Reach partners and new markets through Pubblo's network.</li>
-              <li>Get instant feedback from recipient engagement analytics.</li>
+              {u.sellers.bullets.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </Bullets>
           </Panel>
         </TwoCol>

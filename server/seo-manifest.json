@@ -1,0 +1,4466 @@
+{
+  "en:/": {
+    "title": "Pubblo – Board Game Marketplace for Designers & Publishers",
+    "description": "Pitch your board game to vetted publishers, or scout new titles and localization partners — all in one marketplace. Free to start.",
+    "canonical": "https://pubblo.com/",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es"
+      }
+    ],
+    "xDefault": "https://pubblo.com/"
+  },
+  "en:/publisher": {
+    "title": "Board Game Publishing Platform for Publishers | Pubblo",
+    "description": "Manage submissions in one place, score pitches against your preferences, and discover new designers on the Pubblo board game marketplace.",
+    "canonical": "https://pubblo.com/publisher",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/publisher",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/publisher"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/publisher"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/publisher"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/publisher"
+      }
+    ],
+    "xDefault": "https://pubblo.com/publisher"
+  },
+  "en:/creator": {
+    "title": "Pitch Your Board Game to Publishers | Pubblo",
+    "description": "Pitch your board game to vetted publishers on Pubblo. Create a submission, reach partners worldwide — without buying publisher lists.",
+    "canonical": "https://pubblo.com/creator",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/creator",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/creator"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/creator"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/creator"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/creator"
+      }
+    ],
+    "xDefault": "https://pubblo.com/creator"
+  },
+  "en:/products": {
+    "title": "Pubblo Products – Portal, Marketplace, Pitch & Briefs | Pubblo",
+    "description": "Overview of Pubblo products: Portal for publisher submissions, Marketplace for game discovery, Pitch tool for designers, and Briefs for structured game request…",
+    "canonical": "https://pubblo.com/products",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/products",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/products"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/products"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/products"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/products"
+      }
+    ],
+    "xDefault": "https://pubblo.com/products"
+  },
+  "en:/users": {
+    "title": "For Publishers, Designers & Distributors | Pubblo",
+    "description": "See who uses Pubblo: publishers managing submissions, designers pitching board games, and distributors scouting titles for new markets.",
+    "canonical": "https://pubblo.com/users",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/users",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/users"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/users"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/users"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/users"
+      }
+    ],
+    "xDefault": "https://pubblo.com/users"
+  },
+  "en:/compare": {
+    "title": "Pubblo vs Pitch Directories, CRMs & Trade Fairs | Pubblo",
+    "description": "Compare Pubblo to pitch directories, matchmaking, trade fairs, and CRMs. Why a board game marketplace beats buying publisher lists or directories.",
+    "canonical": "https://pubblo.com/compare",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/compare",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/compare"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/compare"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/compare"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/compare"
+      }
+    ],
+    "xDefault": "https://pubblo.com/compare"
+  },
+  "en:/pricing": {
+    "title": "Pricing | Pubblo",
+    "description": "Pubblo pricing for the Marketplace and Pitch tool. Plans for publishers, distributors, and game designers — free to start.",
+    "canonical": "https://pubblo.com/pricing",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/pricing",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/pricing"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/pricing"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/pricing"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/pricing"
+      }
+    ],
+    "xDefault": "https://pubblo.com/pricing"
+  },
+  "en:/company": {
+    "title": "About Pubblo | Pubblo",
+    "description": "Meet the Pubblo team and learn how we built the board game marketplace connecting designers, publishers, and distributors worldwide.",
+    "canonical": "https://pubblo.com/company",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/company",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/company"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/company"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/company"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/company"
+      }
+    ],
+    "xDefault": "https://pubblo.com/company"
+  },
+  "en:/news": {
+    "title": "News | Pubblo",
+    "description": "Latest news from Pubblo: Marketplace launches, partnerships, Game Inventors Convention 2027, and updates from the board game industry.",
+    "canonical": "https://pubblo.com/news",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news"
+  },
+  "en:/guides": {
+    "title": "Board Game Publishing Guides | Pubblo",
+    "description": "Guides for board game designers and publishers: submission lists, pitching tips, and how to get discovered on Pubblo.",
+    "canonical": "https://pubblo.com/guides",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/guides",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/guides"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/guides"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/guides"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/guides"
+      }
+    ],
+    "xDefault": "https://pubblo.com/guides"
+  },
+  "en:/contact": {
+    "title": "Contact Us | Pubblo",
+    "description": "Contact Pubblo to book a demo, ask about pitching to publishers, localization partners, or publisher submissions on the Marketplace.",
+    "canonical": "https://pubblo.com/contact",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/contact",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/contact"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/contact"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/contact"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/contact"
+      }
+    ],
+    "xDefault": "https://pubblo.com/contact"
+  },
+  "en:/privacy": {
+    "title": "Privacy Policy | Pubblo",
+    "description": "How Pubblo AB collects, uses, and protects personal data on the board game marketplace platform, in accordance with GDPR.",
+    "canonical": "https://pubblo.com/privacy",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/privacy",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/privacy"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/privacy"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/privacy"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/privacy"
+      }
+    ],
+    "xDefault": "https://pubblo.com/privacy"
+  },
+  "en:/terms": {
+    "title": "Terms & Conditions | Pubblo",
+    "description": "Pubblo Terms and Conditions for using the board game marketplace, submission platform, and related services.",
+    "canonical": "https://pubblo.com/terms",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/terms",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/terms"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/terms"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/terms"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/terms"
+      }
+    ],
+    "xDefault": "https://pubblo.com/terms"
+  },
+  "en:/gic-2027": {
+    "title": "Game Inventors Convention 2027 Partnership | Pubblo",
+    "description": "Pubblo powers the submission platform behind Game Inventors Convention 2027 at Spielwarenmesse. White-label platform for fairs, competitions, and industry part…",
+    "canonical": "https://pubblo.com/gic-2027",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/gic-2027",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/gic-2027"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/gic-2027"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/gic-2027"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/gic-2027"
+      }
+    ],
+    "xDefault": "https://pubblo.com/gic-2027"
+  },
+  "en:/faq": {
+    "title": "Board Game Publishing FAQ | Pubblo",
+    "description": "Answers about pitching board games, publisher submissions, the Marketplace, IP protection, and localization — for designers and publishers using Pubblo.",
+    "canonical": "https://pubblo.com/faq",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/faq",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/faq"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/faq"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/faq"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/faq"
+      }
+    ],
+    "xDefault": "https://pubblo.com/faq"
+  },
+  "en:/about": {
+    "title": "About Pubblo | Pubblo",
+    "description": "Meet the Pubblo team and learn how we built the board game marketplace connecting designers, publishers, and distributors worldwide.",
+    "canonical": "https://pubblo.com/about",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/about",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/about"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/about"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/about"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/about"
+      }
+    ],
+    "xDefault": "https://pubblo.com/about"
+  },
+  "en:/portal": {
+    "title": "The Portal – Board Game Submission Management | Pubblo",
+    "description": "Pubblo Portal helps publishers manage board game submissions in one place. Score pitches automatically, scout new titles, and collaborate with your team.",
+    "canonical": "https://pubblo.com/portal",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/portal",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/portal"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/portal"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/portal"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/portal"
+      }
+    ],
+    "xDefault": "https://pubblo.com/portal"
+  },
+  "en:/marketplace": {
+    "title": "The Marketplace – Board Game Marketplace for Designers | Pubblo",
+    "description": "Discover and list board games on Pubblo Marketplace. A submission platform where designers pitch to publishers and publishers scout new titles and localization…",
+    "canonical": "https://pubblo.com/marketplace",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/marketplace",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/marketplace"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/marketplace"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/marketplace"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/marketplace"
+      }
+    ],
+    "xDefault": "https://pubblo.com/marketplace"
+  },
+  "en:/pitch": {
+    "title": "The Pitch Tool – Board Game Pitch Deck & Sell Sheet | Pubblo",
+    "description": "Create a board game pitch deck and export a sell sheet with Pubblo. The pitch tool for board game designers who want to reach publishers with a decision-ready…",
+    "canonical": "https://pubblo.com/pitch",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/pitch",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/pitch"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/pitch"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/pitch"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/pitch"
+      }
+    ],
+    "xDefault": "https://pubblo.com/pitch"
+  },
+  "en:/briefs": {
+    "title": "Briefs – Coming Soon | Pubblo",
+    "description": "Pubblo Briefs will let publishers and IP owners post structured game requests and connect with designers. Coming soon.",
+    "canonical": "https://pubblo.com/briefs",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/briefs",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/briefs"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/briefs"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/briefs"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/briefs"
+      }
+    ],
+    "xDefault": "https://pubblo.com/briefs"
+  },
+  "en:/pitch-to-publishers": {
+    "title": "Pitch Your Board Game to Publishers | Pubblo",
+    "description": "Pitch your board game to publishers with a standardized submission — no cold emails. Publishers are already scouting — free to start.",
+    "canonical": "https://pubblo.com/pitch-to-publishers",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/pitch-to-publishers",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/pitch-to-publishers"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/pitch-to-publishers"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/pitch-to-publishers"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/pitch-to-publishers"
+      }
+    ],
+    "xDefault": "https://pubblo.com/pitch-to-publishers"
+  },
+  "en:/localization-partners": {
+    "title": "Find Localization Partners for Your Board Game | Pubblo",
+    "description": "Already published? Find distributors and localization partners for new markets — standardized profiles, vetted publishers.",
+    "canonical": "https://pubblo.com/localization-partners",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/localization-partners",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/localization-partners"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/localization-partners"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/localization-partners"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/localization-partners"
+      }
+    ],
+    "xDefault": "https://pubblo.com/localization-partners"
+  },
+  "en:/skip-the-publisher-list": {
+    "title": "Stop Buying Publisher Lists — Get Discovered Instead | Pubblo",
+    "description": "Alternative to buying board game publisher lists: post one pitch and let matching publishers find you — free to start.",
+    "canonical": "https://pubblo.com/skip-the-publisher-list",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/skip-the-publisher-list",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/skip-the-publisher-list"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/skip-the-publisher-list"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/skip-the-publisher-list"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/skip-the-publisher-list"
+      }
+    ],
+    "xDefault": "https://pubblo.com/skip-the-publisher-list"
+  },
+  "en:/guides/board-game-publishers-accepting-submissions": {
+    "title": "Board Game Publishers Accepting Submissions (Updated 2026) | Pubblo",
+    "description": "A running list of board game publishers currently open to submissions, plus why waiting for the right inbox to open is not the only way to get noticed.",
+    "canonical": "https://pubblo.com/guides/board-game-publishers-accepting-submissions",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/guides/board-game-publishers-accepting-submissions",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/guides/board-game-publishers-accepting-submissions"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/guides/board-game-publishers-accepting-submissions"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/guides/board-game-publishers-accepting-submissions"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/guides/board-game-publishers-accepting-submissions"
+      }
+    ],
+    "xDefault": "https://pubblo.com/guides/board-game-publishers-accepting-submissions"
+  },
+  "en:/news/pubblo-marketplace-is-now-live": {
+    "title": "Pubblo Marketplace is now live! | Pubblo",
+    "description": "We created Pubblo with a simple ambition: to make it easier for great game ideas to find the right publishing opportunities. Today, we're taking a major step t…",
+    "canonical": "https://pubblo.com/news/pubblo-marketplace-is-now-live",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/pubblo-marketplace-is-now-live",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/pubblo-marketplace-is-now-live"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/pubblo-marketplace-is-now-live"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/pubblo-marketplace-is-now-live"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/pubblo-marketplace-is-now-live"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/pubblo-marketplace-is-now-live"
+  },
+  "en:/news/limited-offer": {
+    "title": "Limited Offer | Pubblo",
+    "description": "We're offering 100 free marketplace slots for publishers and 100 for designers. Use the code 100LAUNCH to claim yours before they're gone!",
+    "canonical": "https://pubblo.com/news/limited-offer",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/limited-offer",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/limited-offer"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/limited-offer"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/limited-offer"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/limited-offer"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/limited-offer"
+  },
+  "en:/news/a-recap-from-bologna-licensing-fair": {
+    "title": "A recap from Bologna Licensing Fair | Pubblo",
+    "description": "Pubblo was thrilled to be invited to the guest programme at Bologna Licensing Fair last week, it was a fantastic experience. As board game publishers were rela…",
+    "canonical": "https://pubblo.com/news/a-recap-from-bologna-licensing-fair",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/a-recap-from-bologna-licensing-fair",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/a-recap-from-bologna-licensing-fair"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/a-recap-from-bologna-licensing-fair"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/a-recap-from-bologna-licensing-fair"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/a-recap-from-bologna-licensing-fair"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/a-recap-from-bologna-licensing-fair"
+  },
+  "en:/news/pubblo-secures-investment-to-accelerate-growth": {
+    "title": "Pubblo secures investment to accelerate growth! | Pubblo",
+    "description": "We're both proud and grateful to announce that Pubblo has secured a new investment from Partnerinvest Norr, E14 Invest, Northern Light Capital and First Gate I…",
+    "canonical": "https://pubblo.com/news/pubblo-secures-investment-to-accelerate-growth",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/pubblo-secures-investment-to-accelerate-growth",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/pubblo-secures-investment-to-accelerate-growth"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/pubblo-secures-investment-to-accelerate-growth"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/pubblo-secures-investment-to-accelerate-growth"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/pubblo-secures-investment-to-accelerate-growth"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/pubblo-secures-investment-to-accelerate-growth"
+  },
+  "en:/news/pubblo-uminova-true": {
+    "title": "PUBBLO + Uminova = true | Pubblo",
+    "description": "We're both grateful and excited to have been accepted into the Uminova Innovation programme! Uminova Innovation is a key driver for growth in northern Sweden,…",
+    "canonical": "https://pubblo.com/news/pubblo-uminova-true",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/pubblo-uminova-true",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/pubblo-uminova-true"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/pubblo-uminova-true"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/pubblo-uminova-true"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/pubblo-uminova-true"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/pubblo-uminova-true"
+  },
+  "en:/news/winner-of-the-pubblo-spiel-pitch-competition": {
+    "title": "Meet the winner of the Pubblo spiel pitch competition | Pubblo",
+    "description": "The PUBBLO Spiel Pitch Competition has now wrapped up! A huge thank you to everyone who joined in and shared your ideas with us. The creativity and passion beh…",
+    "canonical": "https://pubblo.com/news/winner-of-the-pubblo-spiel-pitch-competition",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/winner-of-the-pubblo-spiel-pitch-competition",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/winner-of-the-pubblo-spiel-pitch-competition"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/winner-of-the-pubblo-spiel-pitch-competition"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/winner-of-the-pubblo-spiel-pitch-competition"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/winner-of-the-pubblo-spiel-pitch-competition"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/winner-of-the-pubblo-spiel-pitch-competition"
+  },
+  "en:/news/spielwarenmesse-wrapped-up": {
+    "title": "Spielwarenmesse wrapped up! | Pubblo",
+    "description": "We've just returned from a fantastic fair! It was truly inspiring to meet such interesting and impressive publishers from different parts of the world. There a…",
+    "canonical": "https://pubblo.com/news/spielwarenmesse-wrapped-up",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/spielwarenmesse-wrapped-up",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/spielwarenmesse-wrapped-up"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/spielwarenmesse-wrapped-up"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/spielwarenmesse-wrapped-up"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/spielwarenmesse-wrapped-up"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/spielwarenmesse-wrapped-up"
+  },
+  "en:/news/new-sales-and-marketing-manager": {
+    "title": "Say hi to our new sales- and marketing manager! | Pubblo",
+    "description": "The Pubblo team is growing fast and we are happy to welcome Maria as our new head of sales and marketing.",
+    "canonical": "https://pubblo.com/news/new-sales-and-marketing-manager",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/new-sales-and-marketing-manager",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/new-sales-and-marketing-manager"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/new-sales-and-marketing-manager"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/new-sales-and-marketing-manager"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/new-sales-and-marketing-manager"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/new-sales-and-marketing-manager"
+  },
+  "en:/news/team-pubblo-is-going-to-spiel-essen": {
+    "title": "Team Pubblo is going to SPIEL Essen! | Pubblo",
+    "description": "We'll be attending SPIEL Essen from October 23–26, and we couldn't be more excited! Whether you're a publisher, distributor or designer, we'd love to connect.…",
+    "canonical": "https://pubblo.com/news/team-pubblo-is-going-to-spiel-essen",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/team-pubblo-is-going-to-spiel-essen",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/team-pubblo-is-going-to-spiel-essen"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/team-pubblo-is-going-to-spiel-essen"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/team-pubblo-is-going-to-spiel-essen"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/team-pubblo-is-going-to-spiel-essen"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/team-pubblo-is-going-to-spiel-essen"
+  },
+  "en:/launch": {
+    "title": "Launch | Pubblo",
+    "description": "Redirecting to Pubblo Portal.",
+    "canonical": "https://pubblo.com/launch",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/launch",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/launch"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/launch"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/launch"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/launch"
+      }
+    ],
+    "xDefault": "https://pubblo.com/launch"
+  },
+  "en:/preview": {
+    "title": "Pubblo – Board Game Marketplace for Designers & Publishers",
+    "description": "Pitch your board game to vetted publishers, or scout new titles and localization partners — all in one marketplace. Free to start.",
+    "canonical": "https://pubblo.com/preview",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/preview",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/preview"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/preview"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/preview"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/preview"
+      }
+    ],
+    "xDefault": "https://pubblo.com/preview"
+  },
+  "en:/spielpitch": {
+    "title": "SPIEL Essen Pitch Competition | Pubblo",
+    "description": "Join the Pubblo pitch competition at SPIEL Essen. Designers pitch to publishers; publishers get early access to winning pitches. Free Pubblo access for 2025.",
+    "canonical": "https://pubblo.com/spielpitch",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/spielpitch",
+    "locale": "en",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/spielpitch"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/spielpitch"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/spielpitch"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/spielpitch"
+      }
+    ],
+    "xDefault": "https://pubblo.com/spielpitch"
+  },
+  "de:/": {
+    "title": "Pubblo – Brettspiel-Marktplatz für Designer & Publisher",
+    "description": "Pitch dein Brettspiel bei geprüften Publishern oder entdecke neue Titel und Lokalisierungspartner — alles auf einem Marktplatz. Kostenlos starten.",
+    "canonical": "https://pubblo.com/de",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es"
+      }
+    ],
+    "xDefault": "https://pubblo.com/"
+  },
+  "de:/publisher": {
+    "title": "Brettspiel-Plattform für Publisher | Pubblo",
+    "description": "Einsendungsplattform für Brettspiel-Publisher: Pitches an einem Ort verwalten, automatisch scoren und neue Spieleautoren auf dem Pubblo Marktplatz entdecken.",
+    "canonical": "https://pubblo.com/de/publisher",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/publisher",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/publisher"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/publisher"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/publisher"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/publisher"
+      }
+    ],
+    "xDefault": "https://pubblo.com/publisher"
+  },
+  "de:/creator": {
+    "title": "Brettspiel bei Publishern pitchen | Pubblo",
+    "description": "Pitch dein Brettspiel bei geprüften Publishern auf Pubblo. Einsendung erstellen, Partner weltweit erreichen — ohne Publisher-Listen kaufen.",
+    "canonical": "https://pubblo.com/de/creator",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/creator",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/creator"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/creator"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/creator"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/creator"
+      }
+    ],
+    "xDefault": "https://pubblo.com/creator"
+  },
+  "de:/products": {
+    "title": "Pubblo Produkte – Portal, Marketplace, Pitch & Briefs | Pubblo",
+    "description": "Pubblo Produkte für Brettspiel-Publishing: Portal für Publisher-Einsendungen, Brettspiel-Marketplace, Pitch-Tool für Spieleautoren und Briefs für Spieleanfrage…",
+    "canonical": "https://pubblo.com/de/products",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/products",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/products"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/products"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/products"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/products"
+      }
+    ],
+    "xDefault": "https://pubblo.com/products"
+  },
+  "de:/users": {
+    "title": "Für Publisher, Spieleautoren & Distributoren | Pubblo",
+    "description": "Wer Pubblo nutzt: Publisher mit Einsendungs-Management, Spieleautoren die pitchen, und Distributoren die Brettspiele für neue Märkte scouten.",
+    "canonical": "https://pubblo.com/de/users",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/users",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/users"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/users"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/users"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/users"
+      }
+    ],
+    "xDefault": "https://pubblo.com/users"
+  },
+  "de:/compare": {
+    "title": "Pubblo vs. Pitch-Verzeichnisse, CRMs & Messen | Pubblo",
+    "description": "Pubblo vs. Pitch-Verzeichnisse, Matchmaking, Messen und CRM: Warum ein Brettspiel-Marktplatz besser ist als Publisher-Listen oder Verzeichnisse kaufen.",
+    "canonical": "https://pubblo.com/de/compare",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/compare",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/compare"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/compare"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/compare"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/compare"
+      }
+    ],
+    "xDefault": "https://pubblo.com/compare"
+  },
+  "de:/pricing": {
+    "title": "Preise – Marketplace & Pitch-Tool | Pubblo",
+    "description": "Pubblo Preise für Brettspiel-Marketplace und Pitch-Tool. Pläne für Publisher, Distributoren und Spieleautoren — kostenlos starten.",
+    "canonical": "https://pubblo.com/de/pricing",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/pricing",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/pricing"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/pricing"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/pricing"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/pricing"
+      }
+    ],
+    "xDefault": "https://pubblo.com/pricing"
+  },
+  "de:/company": {
+    "title": "Über Pubblo | Pubblo",
+    "description": "Lerne das Pubblo-Team kennen und erfahre, wie wir den Brettspiel-Marktplatz für Designer, Publisher und Distributoren weltweit aufgebaut haben.",
+    "canonical": "https://pubblo.com/de/company",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/company",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/company"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/company"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/company"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/company"
+      }
+    ],
+    "xDefault": "https://pubblo.com/company"
+  },
+  "de:/news": {
+    "title": "News | Pubblo",
+    "description": "Aktuelles von Pubblo: Marketplace-Launches, Partnerschaften, Game Inventors Convention 2027 und Updates aus der Brettspiel-Branche.",
+    "canonical": "https://pubblo.com/de/news",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news"
+  },
+  "de:/guides": {
+    "title": "Ratgeber für Brettspiel-Publishing | Pubblo",
+    "description": "Ratgeber für Spieleautoren und Publisher: Publisher mit offenen Einsendungen, Pitch-Tipps und wie du auf Pubblo gefunden wirst.",
+    "canonical": "https://pubblo.com/de/guides",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/guides",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/guides"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/guides"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/guides"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/guides"
+      }
+    ],
+    "xDefault": "https://pubblo.com/guides"
+  },
+  "de:/contact": {
+    "title": "Kontakt | Pubblo",
+    "description": "Kontaktiere Pubblo für eine Demo, Fragen zum Brettspiel-Pitch bei Publishern, Lokalisierungspartnern oder Einsendungen auf dem Marketplace.",
+    "canonical": "https://pubblo.com/de/contact",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/contact",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/contact"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/contact"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/contact"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/contact"
+      }
+    ],
+    "xDefault": "https://pubblo.com/contact"
+  },
+  "de:/privacy": {
+    "title": "Datenschutz | Pubblo",
+    "description": "Wie Pubblo AB personenbezogene Daten auf der Brettspiel-Marktplatz-Plattform erhebt, nutzt und schützt — gemäß DSGVO.",
+    "canonical": "https://pubblo.com/de/privacy",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/privacy",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/privacy"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/privacy"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/privacy"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/privacy"
+      }
+    ],
+    "xDefault": "https://pubblo.com/privacy"
+  },
+  "de:/terms": {
+    "title": "AGB | Pubblo",
+    "description": "Pubblo AGB für die Nutzung des Brettspiel-Marktplatzes, der Einsendeplattform und verwandter Services.",
+    "canonical": "https://pubblo.com/de/terms",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/terms",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/terms"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/terms"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/terms"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/terms"
+      }
+    ],
+    "xDefault": "https://pubblo.com/terms"
+  },
+  "de:/gic-2027": {
+    "title": "Game Inventors Convention 2027 Partnerschaft | Pubblo",
+    "description": "Pubblo betreibt die Einsendeplattform hinter der Game Inventors Convention 2027 auf der Spielwarenmesse. White-Label für Messen, Wettbewerbe und Branchenpartne…",
+    "canonical": "https://pubblo.com/de/gic-2027",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/gic-2027",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/gic-2027"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/gic-2027"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/gic-2027"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/gic-2027"
+      }
+    ],
+    "xDefault": "https://pubblo.com/gic-2027"
+  },
+  "de:/faq": {
+    "title": "FAQ – Brettspiel veröffentlichen & pitchen | Pubblo",
+    "description": "FAQ zum Brettspiel-Publishing: Pitches, Einsendungen bei Publishern, Marketplace, IP-Schutz und Lokalisierung für Spieleautoren und Publisher.",
+    "canonical": "https://pubblo.com/de/faq",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/faq",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/faq"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/faq"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/faq"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/faq"
+      }
+    ],
+    "xDefault": "https://pubblo.com/faq"
+  },
+  "de:/about": {
+    "title": "Über Pubblo | Pubblo",
+    "description": "Lerne das Pubblo-Team kennen und erfahre, wie wir den Brettspiel-Marktplatz für Designer, Publisher und Distributoren weltweit aufgebaut haben.",
+    "canonical": "https://pubblo.com/de/about",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/about",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/about"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/about"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/about"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/about"
+      }
+    ],
+    "xDefault": "https://pubblo.com/about"
+  },
+  "de:/portal": {
+    "title": "Das Portal – Einsendungs-Management für Brettspiele | Pubblo",
+    "description": "Pubblo Portal: Einsendungsplattform für Brettspiel-Publisher. Pitches automatisch scoren, neue Titel scouten und Einsendungen im Team bewerten.",
+    "canonical": "https://pubblo.com/de/portal",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/portal",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/portal"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/portal"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/portal"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/portal"
+      }
+    ],
+    "xDefault": "https://pubblo.com/portal"
+  },
+  "de:/marketplace": {
+    "title": "Der Marketplace – Brettspiel-Marktplatz für Spieleautoren | Pubblo",
+    "description": "Brettspiel-Marktplatz auf Pubblo: Spiele listen, bei Publishern pitchen und Lokalisierungspartner finden — Einsendungen statt Cold Mails.",
+    "canonical": "https://pubblo.com/de/marketplace",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/marketplace",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/marketplace"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/marketplace"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/marketplace"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/marketplace"
+      }
+    ],
+    "xDefault": "https://pubblo.com/marketplace"
+  },
+  "de:/pitch": {
+    "title": "Das Pitch-Tool – Brettspiel Pitch-Deck & Sell Sheet | Pubblo",
+    "description": "Brettspiel Pitch-Deck und Sell Sheet mit Pubblo erstellen. Pitch-Tool für Spieleautoren, die Publisher mit einer entscheidungsreifen Einsendung erreichen.",
+    "canonical": "https://pubblo.com/de/pitch",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/pitch",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/pitch"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/pitch"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/pitch"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/pitch"
+      }
+    ],
+    "xDefault": "https://pubblo.com/pitch"
+  },
+  "de:/briefs": {
+    "title": "Briefs – Demnächst | Pubblo",
+    "description": "Pubblo Briefs lässt Publisher und IP-Inhaber strukturierte Spieleanfragen posten und mit Designern verbinden. Demnächst verfügbar.",
+    "canonical": "https://pubblo.com/de/briefs",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/briefs",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/briefs"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/briefs"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/briefs"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/briefs"
+      }
+    ],
+    "xDefault": "https://pubblo.com/briefs"
+  },
+  "de:/pitch-to-publishers": {
+    "title": "Brettspiel bei Publishern pitchen | Pubblo",
+    "description": "Brettspiel bei Publishern pitchen: standardisierter Pitch statt Cold Mails. Publisher finden Spiele wie deins — kostenlos starten.",
+    "canonical": "https://pubblo.com/de/pitch-to-publishers",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/pitch-to-publishers",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/pitch-to-publishers"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/pitch-to-publishers"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/pitch-to-publishers"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/pitch-to-publishers"
+      }
+    ],
+    "xDefault": "https://pubblo.com/pitch-to-publishers"
+  },
+  "de:/localization-partners": {
+    "title": "Lokalisierungspartner für Brettspiele finden | Pubblo",
+    "description": "Brettspiel schon veröffentlicht? Lokalisierungspartner und Distributoren für neue Märkte finden — standardisierte Profile, geprüfte Publisher.",
+    "canonical": "https://pubblo.com/de/localization-partners",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/localization-partners",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/localization-partners"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/localization-partners"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/localization-partners"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/localization-partners"
+      }
+    ],
+    "xDefault": "https://pubblo.com/localization-partners"
+  },
+  "de:/skip-the-publisher-list": {
+    "title": "Schluss mit Publisher-Listen kaufen — werde gefunden | Pubblo",
+    "description": "Alternative zum Kauf von Publisher-Listen für Brettspiele: Ein Pitch statt statischem Verzeichnis — passende Publisher finden dich. Kostenlos starten.",
+    "canonical": "https://pubblo.com/de/skip-the-publisher-list",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/skip-the-publisher-list",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/skip-the-publisher-list"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/skip-the-publisher-list"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/skip-the-publisher-list"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/skip-the-publisher-list"
+      }
+    ],
+    "xDefault": "https://pubblo.com/skip-the-publisher-list"
+  },
+  "de:/guides/board-game-publishers-accepting-submissions": {
+    "title": "Liste: Brettspiel-Publisher mit offenen Einsendungen (2026) | Pubblo",
+    "description": "Liste von Brettspiel-Publishern mit offenen Einsendungen (2026), plus warum Cold Mails allein nicht reicht — auf Pubblo von passenden Publishern gefunden werde…",
+    "canonical": "https://pubblo.com/de/guides/board-game-publishers-accepting-submissions",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/guides/board-game-publishers-accepting-submissions",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/guides/board-game-publishers-accepting-submissions"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/guides/board-game-publishers-accepting-submissions"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/guides/board-game-publishers-accepting-submissions"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/guides/board-game-publishers-accepting-submissions"
+      }
+    ],
+    "xDefault": "https://pubblo.com/guides/board-game-publishers-accepting-submissions"
+  },
+  "de:/news/pubblo-marketplace-is-now-live": {
+    "title": "Pubblo Marketplace ist live! | Pubblo",
+    "description": "Wir haben Pubblo mit einem einfachen Ziel gebaut: großartigen Spielideen leichter den Weg zu den richtigen Publishing-Chancen zu ebnen. Heute machen wir einen…",
+    "canonical": "https://pubblo.com/de/news/pubblo-marketplace-is-now-live",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/pubblo-marketplace-is-now-live",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/pubblo-marketplace-is-now-live"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/pubblo-marketplace-is-now-live"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/pubblo-marketplace-is-now-live"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/pubblo-marketplace-is-now-live"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/pubblo-marketplace-is-now-live"
+  },
+  "de:/news/limited-offer": {
+    "title": "Limitiertes Angebot | Pubblo",
+    "description": "Wir vergeben 100 kostenlose Marketplace-Slots für Publisher und 100 für Designer. Nutze den Code 100LAUNCH und sichere dir deinen, bevor sie weg sind!",
+    "canonical": "https://pubblo.com/de/news/limited-offer",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/limited-offer",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/limited-offer"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/limited-offer"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/limited-offer"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/limited-offer"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/limited-offer"
+  },
+  "de:/news/a-recap-from-bologna-licensing-fair": {
+    "title": "Recap von der Bologna Licensing Fair | Pubblo",
+    "description": "Pubblo durfte letzte Woche am Gastprogramm der Bologna Licensing Fair teilnehmen — ein fantastisches Erlebnis. Brettspiel-Publisher waren relativ wenige vertre…",
+    "canonical": "https://pubblo.com/de/news/a-recap-from-bologna-licensing-fair",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/a-recap-from-bologna-licensing-fair",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/a-recap-from-bologna-licensing-fair"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/a-recap-from-bologna-licensing-fair"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/a-recap-from-bologna-licensing-fair"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/a-recap-from-bologna-licensing-fair"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/a-recap-from-bologna-licensing-fair"
+  },
+  "de:/news/pubblo-secures-investment-to-accelerate-growth": {
+    "title": "Pubblo sichert sich Investment für weiteres Wachstum! | Pubblo",
+    "description": "Wir sind stolz und dankbar, bekanntgeben zu können, dass Pubblo eine neue Finanzierung von Partnerinvest Norr, E14 Invest, Northern Light Capital und First Gat…",
+    "canonical": "https://pubblo.com/de/news/pubblo-secures-investment-to-accelerate-growth",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/pubblo-secures-investment-to-accelerate-growth",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/pubblo-secures-investment-to-accelerate-growth"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/pubblo-secures-investment-to-accelerate-growth"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/pubblo-secures-investment-to-accelerate-growth"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/pubblo-secures-investment-to-accelerate-growth"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/pubblo-secures-investment-to-accelerate-growth"
+  },
+  "de:/news/pubblo-uminova-true": {
+    "title": "PUBBLO + Uminova = true | Pubblo",
+    "description": "Wir sind dankbar und begeistert, ins Uminova Innovation-Programm aufgenommen worden zu sein! Uminova Innovation treibt Wachstum in Nordschweden voran und hilft…",
+    "canonical": "https://pubblo.com/de/news/pubblo-uminova-true",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/pubblo-uminova-true",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/pubblo-uminova-true"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/pubblo-uminova-true"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/pubblo-uminova-true"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/pubblo-uminova-true"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/pubblo-uminova-true"
+  },
+  "de:/news/winner-of-the-pubblo-spiel-pitch-competition": {
+    "title": "Triff die Gewinnerin des Pubblo Spiel Pitch Wettbewerbs | Pubblo",
+    "description": "Der PUBBLO Spiel Pitch Wettbewerb ist vorbei! Ein riesiges Danke an alle, die mitgemacht und ihre Ideen mit uns geteilt haben. Die Kreativität und Leidenschaft…",
+    "canonical": "https://pubblo.com/de/news/winner-of-the-pubblo-spiel-pitch-competition",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/winner-of-the-pubblo-spiel-pitch-competition",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/winner-of-the-pubblo-spiel-pitch-competition"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/winner-of-the-pubblo-spiel-pitch-competition"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/winner-of-the-pubblo-spiel-pitch-competition"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/winner-of-the-pubblo-spiel-pitch-competition"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/winner-of-the-pubblo-spiel-pitch-competition"
+  },
+  "de:/news/spielwarenmesse-wrapped-up": {
+    "title": "Spielwarenmesse vorbei! | Pubblo",
+    "description": "Wir sind gerade von einer fantastischen Messe zurück! Es war wirklich inspirierend, so interessante und beeindruckende Publisher aus verschiedenen Teilen der W…",
+    "canonical": "https://pubblo.com/de/news/spielwarenmesse-wrapped-up",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/spielwarenmesse-wrapped-up",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/spielwarenmesse-wrapped-up"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/spielwarenmesse-wrapped-up"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/spielwarenmesse-wrapped-up"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/spielwarenmesse-wrapped-up"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/spielwarenmesse-wrapped-up"
+  },
+  "de:/news/new-sales-and-marketing-manager": {
+    "title": "Sag hallo zu unserer neuen Sales- und Marketing-Managerin! | Pubblo",
+    "description": "Das Pubblo-Team wächst schnell, und wir freuen uns, Maria als unsere neue Leiterin für Sales und Marketing willkommen zu heißen.",
+    "canonical": "https://pubblo.com/de/news/new-sales-and-marketing-manager",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/new-sales-and-marketing-manager",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/new-sales-and-marketing-manager"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/new-sales-and-marketing-manager"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/new-sales-and-marketing-manager"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/new-sales-and-marketing-manager"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/new-sales-and-marketing-manager"
+  },
+  "de:/news/team-pubblo-is-going-to-spiel-essen": {
+    "title": "Team Pubblo geht zur SPIEL Essen! | Pubblo",
+    "description": "Wir sind vom 23. bis 26. Oktober auf der SPIEL Essen — wir freuen uns riesig! Ob Publisher, Distributor oder Designer: Wir würden uns freuen, uns zu connecten.…",
+    "canonical": "https://pubblo.com/de/news/team-pubblo-is-going-to-spiel-essen",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/team-pubblo-is-going-to-spiel-essen",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/team-pubblo-is-going-to-spiel-essen"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/team-pubblo-is-going-to-spiel-essen"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/team-pubblo-is-going-to-spiel-essen"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/team-pubblo-is-going-to-spiel-essen"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/team-pubblo-is-going-to-spiel-essen"
+  },
+  "de:/launch": {
+    "title": "Launch | Pubblo",
+    "description": "Weiterleitung zum Pubblo Portal.",
+    "canonical": "https://pubblo.com/de/launch",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/launch",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/launch"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/launch"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/launch"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/launch"
+      }
+    ],
+    "xDefault": "https://pubblo.com/launch"
+  },
+  "de:/preview": {
+    "title": "Pubblo – Brettspiel-Marktplatz für Designer & Publisher",
+    "description": "Pitch dein Brettspiel bei geprüften Publishern oder entdecke neue Titel und Lokalisierungspartner — alles auf einem Marktplatz. Kostenlos starten.",
+    "canonical": "https://pubblo.com/de/preview",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/preview",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/preview"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/preview"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/preview"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/preview"
+      }
+    ],
+    "xDefault": "https://pubblo.com/preview"
+  },
+  "de:/spielpitch": {
+    "title": "SPIEL Essen Pitch-Wettbewerb | Pubblo",
+    "description": "Mach beim Pubblo Pitch-Wettbewerb auf der SPIEL Essen mit. Designer pitchen Publishern; Publisher sehen Gewinner-Pitches zuerst. Kostenloser Pubblo-Zugang für…",
+    "canonical": "https://pubblo.com/de/spielpitch",
+    "htmlLang": "de",
+    "ogLocale": "de_DE",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/spielpitch",
+    "locale": "de",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/spielpitch"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/spielpitch"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/spielpitch"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/spielpitch"
+      }
+    ],
+    "xDefault": "https://pubblo.com/spielpitch"
+  },
+  "fr:/": {
+    "title": "Pubblo – Marketplace de jeux de société pour créateurs de jeu et éditeurs",
+    "description": "Pitch ton jeu de société auprès d'éditeurs vérifiés, ou découvre de nouveaux titres et partenaires de localisation, le tout sur un seul marketplace. Gratuit po…",
+    "canonical": "https://pubblo.com/fr",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es"
+      }
+    ],
+    "xDefault": "https://pubblo.com/"
+  },
+  "fr:/publisher": {
+    "title": "Plateforme d'édition pour éditeurs de jeux de société | Pubblo",
+    "description": "Plateforme de soumissions pour éditeurs de jeux de société : gère les pitchs au même endroit, évalue automatiquement et découvre de nouveaux créateurs sur Pubb…",
+    "canonical": "https://pubblo.com/fr/publisher",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/publisher",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/publisher"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/publisher"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/publisher"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/publisher"
+      }
+    ],
+    "xDefault": "https://pubblo.com/publisher"
+  },
+  "fr:/creator": {
+    "title": "Pitch ton jeu de société aux éditeurs | Pubblo",
+    "description": "Pitch ton jeu de société auprès d'éditeurs vérifiés sur Pubblo. Crée une soumission, connecte-toi à des partenaires dans le monde entier — sans acheter de list…",
+    "canonical": "https://pubblo.com/fr/creator",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/creator",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/creator"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/creator"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/creator"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/creator"
+      }
+    ],
+    "xDefault": "https://pubblo.com/creator"
+  },
+  "fr:/products": {
+    "title": "Produits Pubblo – Portal, Marketplace, Pitch et Briefs | Pubblo",
+    "description": "Produits Pubblo pour l'édition de jeux de société : Portal pour les soumissions, marketplace, outil Pitch pour créateurs de jeu et Briefs pour demandes structu…",
+    "canonical": "https://pubblo.com/fr/products",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/products",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/products"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/products"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/products"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/products"
+      }
+    ],
+    "xDefault": "https://pubblo.com/products"
+  },
+  "fr:/users": {
+    "title": "Pour éditeurs, créateurs de jeu et distributeurs | Pubblo",
+    "description": "Découvre qui utilise Pubblo : éditeurs qui gèrent les soumissions, créateurs de jeu qui pitchent, et distributeurs qui recherchent activement des titres pour d…",
+    "canonical": "https://pubblo.com/fr/users",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/users",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/users"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/users"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/users"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/users"
+      }
+    ],
+    "xDefault": "https://pubblo.com/users"
+  },
+  "fr:/compare": {
+    "title": "Pubblo vs annuaires de pitch, CRM et salons | Pubblo",
+    "description": "Compare Pubblo aux annuaires de pitch, services de mise en relation, salons et CRM. Pourquoi le marketplace vaut mieux qu'acheter des listes ou annuaires d'édi…",
+    "canonical": "https://pubblo.com/fr/compare",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/compare",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/compare"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/compare"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/compare"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/compare"
+      }
+    ],
+    "xDefault": "https://pubblo.com/compare"
+  },
+  "fr:/pricing": {
+    "title": "Tarifs – Marketplace et outil Pitch | Pubblo",
+    "description": "Tarifs Pubblo pour le marketplace de jeux de société et l'outil Pitch. Plans pour éditeurs, distributeurs et créateurs de jeu — gratuit pour commencer.",
+    "canonical": "https://pubblo.com/fr/pricing",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/pricing",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/pricing"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/pricing"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/pricing"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/pricing"
+      }
+    ],
+    "xDefault": "https://pubblo.com/pricing"
+  },
+  "fr:/company": {
+    "title": "À propos de Pubblo | Pubblo",
+    "description": "Rencontre l'équipe Pubblo et découvre comment on a construit le Marketplace pour créateurs de jeu, éditeurs et distributeurs dans le monde entier.",
+    "canonical": "https://pubblo.com/fr/company",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/company",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/company"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/company"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/company"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/company"
+      }
+    ],
+    "xDefault": "https://pubblo.com/company"
+  },
+  "fr:/news": {
+    "title": "Actualités | Pubblo",
+    "description": "Dernières actus Pubblo : lancements Marketplace, partenariats, Game Inventors Convention 2027 et actualités de l'industrie du jeu de société.",
+    "canonical": "https://pubblo.com/fr/news",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news"
+  },
+  "fr:/guides": {
+    "title": "Guides sur l'édition de jeux de société | Pubblo",
+    "description": "Guides pour créateurs de jeu et éditeurs : éditeurs ouverts aux soumissions, conseils de pitch et comment te faire découvrir sur Pubblo.",
+    "canonical": "https://pubblo.com/fr/guides",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/guides",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/guides"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/guides"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/guides"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/guides"
+      }
+    ],
+    "xDefault": "https://pubblo.com/guides"
+  },
+  "fr:/contact": {
+    "title": "Contact | Pubblo",
+    "description": "Contacte Pubblo pour une démo, des questions sur le pitch aux éditeurs de jeux de société, la localisation ou les soumissions sur le Marketplace.",
+    "canonical": "https://pubblo.com/fr/contact",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/contact",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/contact"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/contact"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/contact"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/contact"
+      }
+    ],
+    "xDefault": "https://pubblo.com/contact"
+  },
+  "fr:/privacy": {
+    "title": "Confidentialité | Pubblo",
+    "description": "Comment Pubblo AB collecte, utilise et protège les données personnelles sur le Marketplace Pubblo et la plateforme associée, conformément au RGPD.",
+    "canonical": "https://pubblo.com/fr/privacy",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/privacy",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/privacy"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/privacy"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/privacy"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/privacy"
+      }
+    ],
+    "xDefault": "https://pubblo.com/privacy"
+  },
+  "fr:/terms": {
+    "title": "CGU | Pubblo",
+    "description": "Conditions générales Pubblo pour l'utilisation du Marketplace Pubblo, de la plateforme de soumission et des services associés.",
+    "canonical": "https://pubblo.com/fr/terms",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/terms",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/terms"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/terms"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/terms"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/terms"
+      }
+    ],
+    "xDefault": "https://pubblo.com/terms"
+  },
+  "fr:/gic-2027": {
+    "title": "Partenariat Game Inventors Convention 2027 | Pubblo",
+    "description": "Pubblo alimente la plateforme de soumission derrière la Game Inventors Convention 2027 à la Spielwarenmesse. Plateforme white-label pour salons, concours et pa…",
+    "canonical": "https://pubblo.com/fr/gic-2027",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/gic-2027",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/gic-2027"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/gic-2027"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/gic-2027"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/gic-2027"
+      }
+    ],
+    "xDefault": "https://pubblo.com/gic-2027"
+  },
+  "fr:/faq": {
+    "title": "FAQ – édition et pitch de jeux de société | Pubblo",
+    "description": "Réponses sur le pitch aux éditeurs, les soumissions, le Marketplace, la protection IP et la localisation — pour créateurs de jeu et éditeurs sur Pubblo.",
+    "canonical": "https://pubblo.com/fr/faq",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/faq",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/faq"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/faq"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/faq"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/faq"
+      }
+    ],
+    "xDefault": "https://pubblo.com/faq"
+  },
+  "fr:/about": {
+    "title": "À propos de Pubblo | Pubblo",
+    "description": "Rencontre l'équipe Pubblo et découvre comment on a construit le Marketplace pour créateurs de jeu, éditeurs et distributeurs dans le monde entier.",
+    "canonical": "https://pubblo.com/fr/about",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/about",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/about"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/about"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/about"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/about"
+      }
+    ],
+    "xDefault": "https://pubblo.com/about"
+  },
+  "fr:/portal": {
+    "title": "Le Portal – Gestion des soumissions de jeux de société | Pubblo",
+    "description": "Pubblo Portal : plateforme de soumissions pour éditeurs de jeux de société. Évalue les pitchs automatiquement, déniche de nouveaux titres et décide en équipe.",
+    "canonical": "https://pubblo.com/fr/portal",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/portal",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/portal"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/portal"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/portal"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/portal"
+      }
+    ],
+    "xDefault": "https://pubblo.com/portal"
+  },
+  "fr:/marketplace": {
+    "title": "Le Marketplace — fais découvrir tes jeux aux éditeurs | Pubblo",
+    "description": "Marketplace de jeux de société sur Pubblo : publie des fiches jeu, pitch aux éditeurs et trouve des partenaires de localisation — sans mails à froid.",
+    "canonical": "https://pubblo.com/fr/marketplace",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/marketplace",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/marketplace"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/marketplace"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/marketplace"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/marketplace"
+      }
+    ],
+    "xDefault": "https://pubblo.com/marketplace"
+  },
+  "fr:/pitch": {
+    "title": "L'outil Pitch – Pitch deck et sell sheet de jeux de société | Pubblo",
+    "description": "Crée un pitch deck de jeu de société et exporte un sell sheet avec Pubblo. Outil Pitch pour joindre les éditeurs avec une soumission prête à trancher.",
+    "canonical": "https://pubblo.com/fr/pitch",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/pitch",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/pitch"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/pitch"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/pitch"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/pitch"
+      }
+    ],
+    "xDefault": "https://pubblo.com/pitch"
+  },
+  "fr:/briefs": {
+    "title": "Briefs – Bientôt disponible | Pubblo",
+    "description": "Pubblo Briefs permettra aux éditeurs et détenteurs d'IP de publier des demandes de jeux structurées et de se connecter aux créateurs de jeu. Bientôt disponible.",
+    "canonical": "https://pubblo.com/fr/briefs",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/briefs",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/briefs"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/briefs"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/briefs"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/briefs"
+      }
+    ],
+    "xDefault": "https://pubblo.com/briefs"
+  },
+  "fr:/pitch-to-publishers": {
+    "title": "Pitch ton jeu de société aux éditeurs | Pubblo",
+    "description": "Pitch ton jeu de société aux éditeurs : soumission standardisée sans mails à froid. Les éditeurs cherchent déjà — gratuit pour commencer.",
+    "canonical": "https://pubblo.com/fr/pitch-to-publishers",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/pitch-to-publishers",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/pitch-to-publishers"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/pitch-to-publishers"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/pitch-to-publishers"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/pitch-to-publishers"
+      }
+    ],
+    "xDefault": "https://pubblo.com/pitch-to-publishers"
+  },
+  "fr:/localization-partners": {
+    "title": "Partenaires de localisation pour jeux de société | Pubblo",
+    "description": "Jeu déjà publié ? Trouve distributeurs et partenaires de localisation pour de nouveaux marchés — profils standardisés, éditeurs vérifiés.",
+    "canonical": "https://pubblo.com/fr/localization-partners",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/localization-partners",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/localization-partners"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/localization-partners"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/localization-partners"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/localization-partners"
+      }
+    ],
+    "xDefault": "https://pubblo.com/localization-partners"
+  },
+  "fr:/skip-the-publisher-list": {
+    "title": "Fini d'acheter des listes d'éditeurs — fais-toi découvrir | Pubblo",
+    "description": "Alternative à l'achat de listes d'éditeurs de jeux de société : un pitch à la place de l'annuaire statique — les bons éditeurs te trouvent. Gratuit.",
+    "canonical": "https://pubblo.com/fr/skip-the-publisher-list",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/skip-the-publisher-list",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/skip-the-publisher-list"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/skip-the-publisher-list"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/skip-the-publisher-list"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/skip-the-publisher-list"
+      }
+    ],
+    "xDefault": "https://pubblo.com/skip-the-publisher-list"
+  },
+  "fr:/guides/board-game-publishers-accepting-submissions": {
+    "title": "Liste d'éditeurs de jeux de société acceptant les soumissions (2026) | Pubblo",
+    "description": "Liste à jour d'éditeurs de jeux de société ouverts aux soumissions (gratuit), plus pourquoi attendre la bonne boîte mail ne suffit pas — te faire découvrir sur…",
+    "canonical": "https://pubblo.com/fr/guides/board-game-publishers-accepting-submissions",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/guides/board-game-publishers-accepting-submissions",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/guides/board-game-publishers-accepting-submissions"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/guides/board-game-publishers-accepting-submissions"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/guides/board-game-publishers-accepting-submissions"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/guides/board-game-publishers-accepting-submissions"
+      }
+    ],
+    "xDefault": "https://pubblo.com/guides/board-game-publishers-accepting-submissions"
+  },
+  "fr:/news/pubblo-marketplace-is-now-live": {
+    "title": "Le Pubblo Marketplace est en ligne ! | Pubblo",
+    "description": "On a construit Pubblo avec un objectif simple : faciliter le chemin des super idées de jeux vers les bonnes opportunités d'édition. Aujourd'hui, on fait un gra…",
+    "canonical": "https://pubblo.com/fr/news/pubblo-marketplace-is-now-live",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/pubblo-marketplace-is-now-live",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/pubblo-marketplace-is-now-live"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/pubblo-marketplace-is-now-live"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/pubblo-marketplace-is-now-live"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/pubblo-marketplace-is-now-live"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/pubblo-marketplace-is-now-live"
+  },
+  "fr:/news/limited-offer": {
+    "title": "Offre limitée | Pubblo",
+    "description": "On offre 100 emplacements Marketplace gratuits pour les éditeurs et 100 pour les créateurs de jeu. Utilise le code 100LAUNCH et réserve le tien avant qu'ils pa…",
+    "canonical": "https://pubblo.com/fr/news/limited-offer",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/limited-offer",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/limited-offer"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/limited-offer"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/limited-offer"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/limited-offer"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/limited-offer"
+  },
+  "fr:/news/a-recap-from-bologna-licensing-fair": {
+    "title": "Retour sur la Bologna Licensing Fair | Pubblo",
+    "description": "Pubblo a eu le plaisir de participer la semaine dernière au programme invité de la Bologna Licensing Fair, une expérience fantastique. Les éditeurs de jeux de…",
+    "canonical": "https://pubblo.com/fr/news/a-recap-from-bologna-licensing-fair",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/a-recap-from-bologna-licensing-fair",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/a-recap-from-bologna-licensing-fair"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/a-recap-from-bologna-licensing-fair"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/a-recap-from-bologna-licensing-fair"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/a-recap-from-bologna-licensing-fair"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/a-recap-from-bologna-licensing-fair"
+  },
+  "fr:/news/pubblo-secures-investment-to-accelerate-growth": {
+    "title": "Pubblo lève des fonds pour accélérer sa croissance ! | Pubblo",
+    "description": "On est fiers et reconnaissants d'annoncer que Pubblo a reçu un nouveau financement de Partnerinvest Norr, E14 Invest, Northern Light Capital et First Gate Inve…",
+    "canonical": "https://pubblo.com/fr/news/pubblo-secures-investment-to-accelerate-growth",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/pubblo-secures-investment-to-accelerate-growth",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/pubblo-secures-investment-to-accelerate-growth"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/pubblo-secures-investment-to-accelerate-growth"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/pubblo-secures-investment-to-accelerate-growth"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/pubblo-secures-investment-to-accelerate-growth"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/pubblo-secures-investment-to-accelerate-growth"
+  },
+  "fr:/news/pubblo-uminova-true": {
+    "title": "PUBBLO + Uminova = true | Pubblo",
+    "description": "On est reconnaissants et ravis d'avoir été acceptés dans le programme Uminova Innovation ! Uminova Innovation stimule la croissance en Suède du Nord et aide le…",
+    "canonical": "https://pubblo.com/fr/news/pubblo-uminova-true",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/pubblo-uminova-true",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/pubblo-uminova-true"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/pubblo-uminova-true"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/pubblo-uminova-true"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/pubblo-uminova-true"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/pubblo-uminova-true"
+  },
+  "fr:/news/winner-of-the-pubblo-spiel-pitch-competition": {
+    "title": "Rencontre la gagnante du concours Pitch SPIEL Pubblo | Pubblo",
+    "description": "Le concours Pitch SPIEL PUBBLO est terminé ! Un immense merci à tous ceux qui ont participé et partagé leurs idées. La créativité et la passion dans vos soumis…",
+    "canonical": "https://pubblo.com/fr/news/winner-of-the-pubblo-spiel-pitch-competition",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/winner-of-the-pubblo-spiel-pitch-competition",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/winner-of-the-pubblo-spiel-pitch-competition"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/winner-of-the-pubblo-spiel-pitch-competition"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/winner-of-the-pubblo-spiel-pitch-competition"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/winner-of-the-pubblo-spiel-pitch-competition"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/winner-of-the-pubblo-spiel-pitch-competition"
+  },
+  "fr:/news/spielwarenmesse-wrapped-up": {
+    "title": "Spielwarenmesse terminée ! | Pubblo",
+    "description": "On revient d'un salon fantastique ! C'était vraiment inspirant de rencontrer des éditeurs intéressants et impressionnants du monde entier. Tant d'idées et de p…",
+    "canonical": "https://pubblo.com/fr/news/spielwarenmesse-wrapped-up",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/spielwarenmesse-wrapped-up",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/spielwarenmesse-wrapped-up"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/spielwarenmesse-wrapped-up"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/spielwarenmesse-wrapped-up"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/spielwarenmesse-wrapped-up"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/spielwarenmesse-wrapped-up"
+  },
+  "fr:/news/new-sales-and-marketing-manager": {
+    "title": "Dis bonjour à notre nouvelle responsable produit, ventes et marketing ! | Pubblo",
+    "description": "L'équipe Pubblo grandit vite, et on est ravis d'accueillir Maria comme notre nouvelle responsable produit, ventes et marketing.",
+    "canonical": "https://pubblo.com/fr/news/new-sales-and-marketing-manager",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/new-sales-and-marketing-manager",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/new-sales-and-marketing-manager"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/new-sales-and-marketing-manager"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/new-sales-and-marketing-manager"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/new-sales-and-marketing-manager"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/new-sales-and-marketing-manager"
+  },
+  "fr:/news/team-pubblo-is-going-to-spiel-essen": {
+    "title": "L'équipe Pubblo va à SPIEL Essen ! | Pubblo",
+    "description": "On sera à SPIEL Essen du 23 au 26 octobre, on a trop hâte ! Éditeur, distributeur ou créateur de jeu : on serait ravis de se connecter. Écris-nous à hello@pubb…",
+    "canonical": "https://pubblo.com/fr/news/team-pubblo-is-going-to-spiel-essen",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/team-pubblo-is-going-to-spiel-essen",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/team-pubblo-is-going-to-spiel-essen"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/team-pubblo-is-going-to-spiel-essen"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/team-pubblo-is-going-to-spiel-essen"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/team-pubblo-is-going-to-spiel-essen"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/team-pubblo-is-going-to-spiel-essen"
+  },
+  "fr:/launch": {
+    "title": "Lancement | Pubblo",
+    "description": "Redirection vers le Pubblo Portal.",
+    "canonical": "https://pubblo.com/fr/launch",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/launch",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/launch"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/launch"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/launch"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/launch"
+      }
+    ],
+    "xDefault": "https://pubblo.com/launch"
+  },
+  "fr:/preview": {
+    "title": "Pubblo – Marketplace de jeux de société pour créateurs de jeu et éditeurs",
+    "description": "Pitch ton jeu de société auprès d'éditeurs vérifiés, ou découvre de nouveaux titres et partenaires de localisation, le tout sur un seul marketplace. Gratuit po…",
+    "canonical": "https://pubblo.com/fr/preview",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/preview",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/preview"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/preview"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/preview"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/preview"
+      }
+    ],
+    "xDefault": "https://pubblo.com/preview"
+  },
+  "fr:/spielpitch": {
+    "title": "Concours Pitch SPIEL Essen | Pubblo",
+    "description": "Participe au concours Pitch Pubblo à SPIEL Essen. Les créateurs de jeu pitchent aux éditeurs ; les éditeurs voient les pitchs gagnants en premier. Accès Pubblo…",
+    "canonical": "https://pubblo.com/fr/spielpitch",
+    "htmlLang": "fr",
+    "ogLocale": "fr_FR",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/spielpitch",
+    "locale": "fr",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/spielpitch"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/spielpitch"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/spielpitch"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/spielpitch"
+      }
+    ],
+    "xDefault": "https://pubblo.com/spielpitch"
+  },
+  "es:/": {
+    "title": "Pubblo – Marketplace de juegos de mesa para creadores de juegos y editoriales",
+    "description": "Presenta tu juego de mesa a editoriales verificadas, o descubre nuevos títulos y socios de localización, todo en un solo marketplace. Gratis para empezar.",
+    "canonical": "https://pubblo.com/es",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es"
+      }
+    ],
+    "xDefault": "https://pubblo.com/"
+  },
+  "es:/publisher": {
+    "title": "Plataforma de edición para editoriales de juegos de mesa | Pubblo",
+    "description": "Plataforma de solicitudes para editoriales de juegos de mesa: gestiona pitch en un solo lugar, evalúa automáticamente y descubre nuevos creadores en Pubblo.",
+    "canonical": "https://pubblo.com/es/publisher",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/publisher",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/publisher"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/publisher"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/publisher"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/publisher"
+      }
+    ],
+    "xDefault": "https://pubblo.com/publisher"
+  },
+  "es:/creator": {
+    "title": "Presenta tu juego de mesa a editoriales | Pubblo",
+    "description": "Presenta tu juego de mesa a editoriales verificadas en Pubblo. Crea una solicitud, conecta con socios en todo el mundo y olvídate de comprar listas de editoria…",
+    "canonical": "https://pubblo.com/es/creator",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/creator",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/creator"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/creator"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/creator"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/creator"
+      }
+    ],
+    "xDefault": "https://pubblo.com/creator"
+  },
+  "es:/products": {
+    "title": "Productos Pubblo – Portal, Marketplace, Pitch y Briefs | Pubblo",
+    "description": "Productos Pubblo para juegos de mesa: Portal de solicitudes para editoriales, marketplace, herramienta Pitch para creadores y Briefs para solicitudes estructur…",
+    "canonical": "https://pubblo.com/es/products",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/products",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/products"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/products"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/products"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/products"
+      }
+    ],
+    "xDefault": "https://pubblo.com/products"
+  },
+  "es:/users": {
+    "title": "Para editoriales, creadores de juegos y distribuidores | Pubblo",
+    "description": "Descubre quién usa Pubblo: editoriales que gestionan solicitudes, creadores de juegos que presentan pitch y distribuidores que buscan títulos para nuevos merca…",
+    "canonical": "https://pubblo.com/es/users",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/users",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/users"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/users"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/users"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/users"
+      }
+    ],
+    "xDefault": "https://pubblo.com/users"
+  },
+  "es:/compare": {
+    "title": "Pubblo vs directorios de pitch, CRM y ferias | Pubblo",
+    "description": "Compara Pubblo con directorios de pitch, servicios de conexión, ferias y CRM. Por qué un marketplace supera comprar listas o directorios de editoriales.",
+    "canonical": "https://pubblo.com/es/compare",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/compare",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/compare"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/compare"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/compare"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/compare"
+      }
+    ],
+    "xDefault": "https://pubblo.com/compare"
+  },
+  "es:/pricing": {
+    "title": "Precios – Marketplace y herramienta Pitch | Pubblo",
+    "description": "Precios Pubblo para marketplace de juegos de mesa y herramienta Pitch. Planes para editoriales, distribuidores y creadores — gratis para empezar.",
+    "canonical": "https://pubblo.com/es/pricing",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/pricing",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/pricing"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/pricing"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/pricing"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/pricing"
+      }
+    ],
+    "xDefault": "https://pubblo.com/pricing"
+  },
+  "es:/company": {
+    "title": "Sobre Pubblo | Pubblo",
+    "description": "Conoce al equipo Pubblo y descubre cómo construimos el marketplace de juegos de mesa que conecta creadores de juegos, editoriales y distribuidores en todo el m…",
+    "canonical": "https://pubblo.com/es/company",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/company",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/company"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/company"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/company"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/company"
+      }
+    ],
+    "xDefault": "https://pubblo.com/company"
+  },
+  "es:/news": {
+    "title": "Noticias | Pubblo",
+    "description": "Últimas noticias de Pubblo: lanzamientos del Marketplace, alianzas, Game Inventors Convention 2027 y novedades de la industria del juego de mesa.",
+    "canonical": "https://pubblo.com/es/news",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news"
+  },
+  "es:/guides": {
+    "title": "Guías de edición de juegos de mesa | Pubblo",
+    "description": "Guías para creadores de juegos y editoriales: editoriales abiertas a solicitudes, consejos de pitch y cómo ser descubierto en Pubblo.",
+    "canonical": "https://pubblo.com/es/guides",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/guides",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/guides"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/guides"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/guides"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/guides"
+      }
+    ],
+    "xDefault": "https://pubblo.com/guides"
+  },
+  "es:/contact": {
+    "title": "Contacto | Pubblo",
+    "description": "Contacta con Pubblo para reservar una demo, preguntar sobre pitch a editoriales de juegos de mesa, localización o solicitudes en el Marketplace.",
+    "canonical": "https://pubblo.com/es/contact",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/contact",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/contact"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/contact"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/contact"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/contact"
+      }
+    ],
+    "xDefault": "https://pubblo.com/contact"
+  },
+  "es:/privacy": {
+    "title": "Política de privacidad | Pubblo",
+    "description": "Cómo Pubblo AB recopila, usa y protege datos personales en la plataforma marketplace de juegos de mesa, conforme al RGPD.",
+    "canonical": "https://pubblo.com/es/privacy",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/privacy",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/privacy"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/privacy"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/privacy"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/privacy"
+      }
+    ],
+    "xDefault": "https://pubblo.com/privacy"
+  },
+  "es:/terms": {
+    "title": "Términos y condiciones | Pubblo",
+    "description": "Términos y condiciones Pubblo para usar el marketplace de juegos de mesa, la plataforma de solicitudes y servicios relacionados.",
+    "canonical": "https://pubblo.com/es/terms",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/terms",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/terms"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/terms"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/terms"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/terms"
+      }
+    ],
+    "xDefault": "https://pubblo.com/terms"
+  },
+  "es:/gic-2027": {
+    "title": "Alianza Game Inventors Convention 2027 | Pubblo",
+    "description": "Pubblo impulsa la plataforma de solicitudes detrás de Game Inventors Convention 2027 en Spielwarenmesse. Plataforma de marca blanca para ferias, concursos y so…",
+    "canonical": "https://pubblo.com/es/gic-2027",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/gic-2027",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/gic-2027"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/gic-2027"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/gic-2027"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/gic-2027"
+      }
+    ],
+    "xDefault": "https://pubblo.com/gic-2027"
+  },
+  "es:/faq": {
+    "title": "FAQ – publicar y presentar juegos de mesa | Pubblo",
+    "description": "Respuestas sobre pitch de juegos de mesa, solicitudes a editoriales, Marketplace, protección de IP y localización — para creadores y editoriales.",
+    "canonical": "https://pubblo.com/es/faq",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/faq",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/faq"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/faq"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/faq"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/faq"
+      }
+    ],
+    "xDefault": "https://pubblo.com/faq"
+  },
+  "es:/about": {
+    "title": "Sobre Pubblo | Pubblo",
+    "description": "Conoce al equipo Pubblo y descubre cómo construimos el marketplace de juegos de mesa que conecta creadores de juegos, editoriales y distribuidores en todo el m…",
+    "canonical": "https://pubblo.com/es/about",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/about",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/about"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/about"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/about"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/about"
+      }
+    ],
+    "xDefault": "https://pubblo.com/about"
+  },
+  "es:/portal": {
+    "title": "El Portal – Gestión de solicitudes de juegos de mesa | Pubblo",
+    "description": "Pubblo Portal: plataforma de solicitudes para editoriales de juegos de mesa. Puntuación automática de pitch, búsqueda de títulos y revisión en equipo.",
+    "canonical": "https://pubblo.com/es/portal",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/portal",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/portal"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/portal"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/portal"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/portal"
+      }
+    ],
+    "xDefault": "https://pubblo.com/portal"
+  },
+  "es:/marketplace": {
+    "title": "El Marketplace — descubre y publica fichas de juegos | Pubblo",
+    "description": "Marketplace de juegos de mesa en Pubblo: publica fichas, presenta pitch a editoriales y encuentra socios de localización — sin correos en frío.",
+    "canonical": "https://pubblo.com/es/marketplace",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/marketplace",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/marketplace"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/marketplace"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/marketplace"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/marketplace"
+      }
+    ],
+    "xDefault": "https://pubblo.com/marketplace"
+  },
+  "es:/pitch": {
+    "title": "La herramienta Pitch – Pitch deck y sell sheet de juegos de mesa | Pubblo",
+    "description": "Crea un pitch deck de juego de mesa y exporta un sell sheet con Pubblo. Herramienta Pitch para llegar a editoriales con una solicitud lista para decidir.",
+    "canonical": "https://pubblo.com/es/pitch",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/pitch",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/pitch"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/pitch"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/pitch"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/pitch"
+      }
+    ],
+    "xDefault": "https://pubblo.com/pitch"
+  },
+  "es:/briefs": {
+    "title": "Briefs – Próximamente | Pubblo",
+    "description": "Pubblo Briefs permitirá a editoriales y titulares de IP publicar solicitudes de juegos estructuradas y conectar con creadores de juegos. Próximamente.",
+    "canonical": "https://pubblo.com/es/briefs",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/briefs",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/briefs"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/briefs"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/briefs"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/briefs"
+      }
+    ],
+    "xDefault": "https://pubblo.com/briefs"
+  },
+  "es:/pitch-to-publishers": {
+    "title": "Presenta tu juego de mesa a editoriales | Pubblo",
+    "description": "Presenta tu juego de mesa a editoriales con un pitch estandarizado, sin correos en frío. Las editoriales ya buscan — gratis para empezar.",
+    "canonical": "https://pubblo.com/es/pitch-to-publishers",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/pitch-to-publishers",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/pitch-to-publishers"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/pitch-to-publishers"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/pitch-to-publishers"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/pitch-to-publishers"
+      }
+    ],
+    "xDefault": "https://pubblo.com/pitch-to-publishers"
+  },
+  "es:/localization-partners": {
+    "title": "Socios de localización para juegos de mesa | Pubblo",
+    "description": "¿Juego ya publicado? Encuentra distribuidores y socios de localización para nuevos mercados — perfiles estandarizados, editoriales verificadas.",
+    "canonical": "https://pubblo.com/es/localization-partners",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/localization-partners",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/localization-partners"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/localization-partners"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/localization-partners"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/localization-partners"
+      }
+    ],
+    "xDefault": "https://pubblo.com/localization-partners"
+  },
+  "es:/skip-the-publisher-list": {
+    "title": "Deja de comprar listas de editoriales — haz que te descubran | Pubblo",
+    "description": "Alternativa a comprar listas de editoriales de juegos de mesa: publica tu pitch y deja que las editoriales adecuadas te encuentren. Gratis para empezar.",
+    "canonical": "https://pubblo.com/es/skip-the-publisher-list",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/skip-the-publisher-list",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/skip-the-publisher-list"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/skip-the-publisher-list"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/skip-the-publisher-list"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/skip-the-publisher-list"
+      }
+    ],
+    "xDefault": "https://pubblo.com/skip-the-publisher-list"
+  },
+  "es:/guides/board-game-publishers-accepting-submissions": {
+    "title": "Lista de editoriales de juegos de mesa que aceptan solicitudes (2026) | Pubblo",
+    "description": "Lista actualizada de editoriales de juegos de mesa abiertas a solicitudes (gratis), y por qué esperar no basta — alternativa a comprar listas en Pubblo.",
+    "canonical": "https://pubblo.com/es/guides/board-game-publishers-accepting-submissions",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/guides/board-game-publishers-accepting-submissions",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/guides/board-game-publishers-accepting-submissions"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/guides/board-game-publishers-accepting-submissions"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/guides/board-game-publishers-accepting-submissions"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/guides/board-game-publishers-accepting-submissions"
+      }
+    ],
+    "xDefault": "https://pubblo.com/guides/board-game-publishers-accepting-submissions"
+  },
+  "es:/news/pubblo-marketplace-is-now-live": {
+    "title": "¡Pubblo Marketplace ya está en línea! | Pubblo",
+    "description": "Creamos Pubblo con una ambición sencilla: facilitar que las grandes ideas de juegos encuentren las oportunidades de edición adecuadas. Hoy damos un paso import…",
+    "canonical": "https://pubblo.com/es/news/pubblo-marketplace-is-now-live",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/pubblo-marketplace-is-now-live",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/pubblo-marketplace-is-now-live"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/pubblo-marketplace-is-now-live"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/pubblo-marketplace-is-now-live"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/pubblo-marketplace-is-now-live"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/pubblo-marketplace-is-now-live"
+  },
+  "es:/news/limited-offer": {
+    "title": "Oferta limitada | Pubblo",
+    "description": "Ofrecemos 100 fichas gratuitas del Marketplace para editoriales y 100 para creadores de juegos. Usa el código 100LAUNCH y reclama la tuya antes de que se agote…",
+    "canonical": "https://pubblo.com/es/news/limited-offer",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/limited-offer",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/limited-offer"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/limited-offer"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/limited-offer"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/limited-offer"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/limited-offer"
+  },
+  "es:/news/a-recap-from-bologna-licensing-fair": {
+    "title": "Resumen de Bologna Licensing Fair | Pubblo",
+    "description": "Pubblo tuvo el placer de ser invitado al programa de invitados de Bologna Licensing Fair la semana pasada; fue una experiencia fantástica. Las editoriales de j…",
+    "canonical": "https://pubblo.com/es/news/a-recap-from-bologna-licensing-fair",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/a-recap-from-bologna-licensing-fair",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/a-recap-from-bologna-licensing-fair"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/a-recap-from-bologna-licensing-fair"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/a-recap-from-bologna-licensing-fair"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/a-recap-from-bologna-licensing-fair"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/a-recap-from-bologna-licensing-fair"
+  },
+  "es:/news/pubblo-secures-investment-to-accelerate-growth": {
+    "title": "¡Pubblo asegura inversión para acelerar su crecimiento! | Pubblo",
+    "description": "Estamos orgullosos y agradecidos de anunciar que Pubblo ha asegurado una nueva inversión de Partnerinvest Norr, E14 Invest, Northern Light Capital y First Gate…",
+    "canonical": "https://pubblo.com/es/news/pubblo-secures-investment-to-accelerate-growth",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/pubblo-secures-investment-to-accelerate-growth",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/pubblo-secures-investment-to-accelerate-growth"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/pubblo-secures-investment-to-accelerate-growth"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/pubblo-secures-investment-to-accelerate-growth"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/pubblo-secures-investment-to-accelerate-growth"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/pubblo-secures-investment-to-accelerate-growth"
+  },
+  "es:/news/pubblo-uminova-true": {
+    "title": "PUBBLO + Uminova = true | Pubblo",
+    "description": "Estamos agradecidos y emocionados de haber sido aceptados en el programa Uminova Innovation. Uminova Innovation es un motor clave de crecimiento en el norte de…",
+    "canonical": "https://pubblo.com/es/news/pubblo-uminova-true",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/pubblo-uminova-true",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/pubblo-uminova-true"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/pubblo-uminova-true"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/pubblo-uminova-true"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/pubblo-uminova-true"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/pubblo-uminova-true"
+  },
+  "es:/news/winner-of-the-pubblo-spiel-pitch-competition": {
+    "title": "Conoce a la ganadora del concurso Pitch SPIEL de Pubblo | Pubblo",
+    "description": "¡El Concurso Pitch SPIEL de PUBBLO ha terminado! Un enorme agradecimiento a todos los que participaron y compartieron sus ideas con nosotros. La creatividad y…",
+    "canonical": "https://pubblo.com/es/news/winner-of-the-pubblo-spiel-pitch-competition",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/winner-of-the-pubblo-spiel-pitch-competition",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/winner-of-the-pubblo-spiel-pitch-competition"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/winner-of-the-pubblo-spiel-pitch-competition"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/winner-of-the-pubblo-spiel-pitch-competition"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/winner-of-the-pubblo-spiel-pitch-competition"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/winner-of-the-pubblo-spiel-pitch-competition"
+  },
+  "es:/news/spielwarenmesse-wrapped-up": {
+    "title": "¡Spielwarenmesse terminada! | Pubblo",
+    "description": "Acabamos de volver de una feria fantástica. Fue realmente inspirador conocer editoriales tan interesantes e impresionantes de distintas partes del mundo. Hay t…",
+    "canonical": "https://pubblo.com/es/news/spielwarenmesse-wrapped-up",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/spielwarenmesse-wrapped-up",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/spielwarenmesse-wrapped-up"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/spielwarenmesse-wrapped-up"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/spielwarenmesse-wrapped-up"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/spielwarenmesse-wrapped-up"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/spielwarenmesse-wrapped-up"
+  },
+  "es:/news/new-sales-and-marketing-manager": {
+    "title": "¡Saluda a nuestra nueva responsable de ventas y marketing! | Pubblo",
+    "description": "El equipo Pubblo crece rápido y estamos encantados de dar la bienvenida a Maria como nuestra nueva responsable de ventas y marketing.",
+    "canonical": "https://pubblo.com/es/news/new-sales-and-marketing-manager",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/new-sales-and-marketing-manager",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/new-sales-and-marketing-manager"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/new-sales-and-marketing-manager"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/new-sales-and-marketing-manager"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/new-sales-and-marketing-manager"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/new-sales-and-marketing-manager"
+  },
+  "es:/news/team-pubblo-is-going-to-spiel-essen": {
+    "title": "¡El equipo Pubblo va a SPIEL Essen! | Pubblo",
+    "description": "Estaremos en SPIEL Essen del 23 al 26 de octubre, ¡y estamos muy emocionados! Ya seas editorial, distribuidor o creador de juegos, nos encantaría conectar. Esc…",
+    "canonical": "https://pubblo.com/es/news/team-pubblo-is-going-to-spiel-essen",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "article",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": false,
+    "barePath": "/news/team-pubblo-is-going-to-spiel-essen",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/news/team-pubblo-is-going-to-spiel-essen"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/news/team-pubblo-is-going-to-spiel-essen"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/news/team-pubblo-is-going-to-spiel-essen"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/news/team-pubblo-is-going-to-spiel-essen"
+      }
+    ],
+    "xDefault": "https://pubblo.com/news/team-pubblo-is-going-to-spiel-essen"
+  },
+  "es:/launch": {
+    "title": "Lanzamiento | Pubblo",
+    "description": "Redirigiendo a Pubblo Portal.",
+    "canonical": "https://pubblo.com/es/launch",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/launch",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/launch"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/launch"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/launch"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/launch"
+      }
+    ],
+    "xDefault": "https://pubblo.com/launch"
+  },
+  "es:/preview": {
+    "title": "Pubblo – Marketplace de juegos de mesa para creadores de juegos y editoriales",
+    "description": "Presenta tu juego de mesa a editoriales verificadas, o descubre nuevos títulos y socios de localización, todo en un solo marketplace. Gratis para empezar.",
+    "canonical": "https://pubblo.com/es/preview",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/preview",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/preview"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/preview"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/preview"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/preview"
+      }
+    ],
+    "xDefault": "https://pubblo.com/preview"
+  },
+  "es:/spielpitch": {
+    "title": "Concurso Pitch SPIEL Essen | Pubblo",
+    "description": "Únete al concurso de pitch Pubblo en SPIEL Essen. Los creadores de juegos presentan pitch a editoriales; las editoriales obtienen acceso anticipado a los pitch…",
+    "canonical": "https://pubblo.com/es/spielpitch",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "ogType": "website",
+    "ogImage": "https://pubblo.com/og-image.jpg",
+    "noindex": true,
+    "barePath": "/spielpitch",
+    "locale": "es",
+    "hreflang": [
+      {
+        "hreflang": "en",
+        "href": "https://pubblo.com/spielpitch"
+      },
+      {
+        "hreflang": "de",
+        "href": "https://pubblo.com/de/spielpitch"
+      },
+      {
+        "hreflang": "fr",
+        "href": "https://pubblo.com/fr/spielpitch"
+      },
+      {
+        "hreflang": "es",
+        "href": "https://pubblo.com/es/spielpitch"
+      }
+    ],
+    "xDefault": "https://pubblo.com/spielpitch"
+  }
+}

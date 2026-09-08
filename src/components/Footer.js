@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { colors, spacing, breakpoints } from '../styles/tokens';
-import { isSpielPitchActive } from '../utils/spielPitch';
+import LocalizedLink from '../i18n/LocalizedLink';
+import { useI18n } from '../i18n/I18nProvider';
 
 const Wrap = styled.footer`
   margin-top: ${spacing.xXLarge};
@@ -53,7 +53,7 @@ const ColTitle = styled.h4`
   margin: 0 0 ${spacing.small};
 `;
 
-const A = styled(Link)`
+const A = styled(LocalizedLink)`
   display: block;
   color: ${colors.text};
   text-decoration: none;
@@ -72,51 +72,46 @@ const Small = styled.div`
 `;
 
 const Footer = () => {
-  const spielPitchActive = isSpielPitchActive();
+  const { t } = useI18n();
+
   return (
     <Wrap>
       <Inner>
         <Grid>
           <div>
             <ColTitle>Pubblo</ColTitle>
-            <BrandText>
-              Our network is built to simplify collaboration, inspire innovation and create games that players truly love.
-            </BrandText>
-            <BrandText>
-              From vision to bestseller, we help bring the right people together to make it happen.
-            </BrandText>
+            <BrandText>{t('footer.brand1')}</BrandText>
+            <BrandText>{t('footer.brand2')}</BrandText>
           </div>
           <div>
-            <ColTitle>Explore</ColTitle>
-            <A to='/products'>Our products</A>
-            <A to='/pricing'>Pricing</A>
-            <A to='/compare'>Compare us!</A>
-            <A to='/users'>Users</A>
-            {spielPitchActive && <A to='/spielpitch'>Essen Pitch Competition</A>}
+            <ColTitle>{t('footer.explore')}</ColTitle>
+            <A to='/products'>{t('footer.ourProducts')}</A>
+            <A to='/pricing'>{t('nav.pricing')}</A>
+            <A to='/compare'>{t('footer.compareUs')}</A>
+            <A to='/users'>{t('nav.users')}</A>
           </div>
           <div>
-            <ColTitle>Company</ColTitle>
-            <A to='/company'>About</A>
-            <A to='/news'>News</A>
-            <A to='/faq'>FAQ</A>
+            <ColTitle>{t('footer.company')}</ColTitle>
+            <A to='/company'>{t('footer.about')}</A>
+            <A to='/news'>{t('footer.news')}</A>
+            <A to='/guides'>{t('footer.guides')}</A>
+            <A to='/faq'>{t('footer.faq')}</A>
           </div>
           <div>
-            <ColTitle>Contact</ColTitle>
-            <A to='/contact'>Contact us</A>
+            <ColTitle>{t('footer.contact')}</ColTitle>
+            <A to='/contact'>{t('footer.contactUs')}</A>
           </div>
         </Grid>
         <LegalRow>
-          <ColTitle>Legal</ColTitle>
-          <A to='/privacy'>Privacy</A>
-          <A to='/terms'>Terms</A>
+          <ColTitle>{t('footer.legal')}</ColTitle>
+          <A to='/privacy'>{t('footer.privacy')}</A>
+          <A to='/terms'>{t('footer.terms')}</A>
         </LegalRow>
         <FullWidthDivider />
-        <Small>© {new Date().getFullYear()} Pubblo. All rights reserved.</Small>
+        <Small>© {new Date().getFullYear()} Pubblo. {t('footer.copyright')}</Small>
       </Inner>
     </Wrap>
   );
 };
 
 export default Footer;
-
-

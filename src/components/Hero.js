@@ -1,6 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import LocalizedLink from '../i18n/LocalizedLink';
+import { useI18n } from '../i18n/I18nProvider';
+import { getLocalizedNewsArticle } from '../i18n/localizedContent';
+import { localizePath } from '../i18n/paths';
 import { spacing, breakpoints, colors } from '../styles/tokens';
 import backgroundImage from '../assets/bildpubblo.jpg';
 import backgroundImageMobile from '../assets/bildpubblo-mobil.jpg';
@@ -26,8 +30,11 @@ const HeroSection = styled.section`
 
   @media (max-width: ${breakpoints.mobile}) {
     background: url(${backgroundImageMobile}) center/cover no-repeat;
-    justify-content: start;
-    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: auto;
+    padding-bottom: 80px;
   }
 `;
 
@@ -45,6 +52,8 @@ const HeroWrapper = styled.div`
 
   @media (max-width: ${breakpoints.mobile}) {
     padding: 20px ${spacing.small} 0;
+    order: 1;
+    width: 100%;
   }
 `;
 
@@ -105,7 +114,11 @@ const PartnerBanner = styled.div`
     width: 100%;
     max-width: 100%;
     clip-path: none;
-    padding: ${spacing.medium};
+    order: 2;
+    margin-top: ${spacing.small};
+    padding: 8px ${spacing.small};
+    font-size: 11px;
+    line-height: 1.35;
   }
 `;
 
@@ -124,7 +137,7 @@ const PartnerBannerLink = styled(Link)`
 
   @media (max-width: ${breakpoints.mobile}) {
     margin-left: 0;
-    gap: ${spacing.small};
+    gap: 8px;
     align-items: flex-start;
   }
 `;
@@ -135,7 +148,8 @@ const PartnerBannerLogo = styled.img`
   display: block;
 
   @media (max-width: ${breakpoints.mobile}) {
-    width: 120px;
+    width: 60px;
+    flex-shrink: 0;
   }
 `;
 
@@ -144,6 +158,11 @@ const PartnerBannerText = styled.div`
   flex-direction: column;
   width: 550px;
   max-width: 100%;
+  min-width: 0;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    flex: 1;
+  }
 `;
 
 const PartnerBannerTitle = styled.div`
@@ -152,7 +171,9 @@ const PartnerBannerTitle = styled.div`
   line-height: 1.2;
 
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 24px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.35;
   }
 `;
 
@@ -160,6 +181,10 @@ const PartnerBannerMeta = styled.div`
   font-size: 15px;
   margin-top: 4px;
   opacity: 0.92;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
 `;
 
 const LatestNewsBanner = styled.div`
@@ -192,7 +217,11 @@ const LatestNewsBanner = styled.div`
     width: 100%;
     max-width: 100%;
     clip-path: none;
-    padding: ${spacing.medium};
+    order: 3;
+    margin-top: 0;
+    padding: 8px ${spacing.small};
+    font-size: 13px;
+    line-height: 1.3;
   }
 `;
 
@@ -213,7 +242,7 @@ const MobileCTA = styled.div`
   margin-top: ${spacing.small};
 
   @media (max-width: ${breakpoints.mobile}) {
-    display: block;
+    display: none;
   }
 `;
 
@@ -224,6 +253,12 @@ const LatestNewsKicker = styled.div`
   margin-bottom: 6px;
   opacity: 0.92;
   text-transform: uppercase;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 10px;
+    margin-bottom: 2px;
+    letter-spacing: 0.06em;
+  }
 `;
 
 const LatestNewsTitle = styled.div`
@@ -234,7 +269,13 @@ const LatestNewsTitle = styled.div`
   overflow-wrap: anywhere;
 
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 24px;
+    font-size: 14px;
+    line-height: 1.25;
+    margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 `;
 
@@ -248,8 +289,7 @@ const LatestNewsMeta = styled.div`
   overflow: hidden;
 
   @media (max-width: ${breakpoints.mobile}) {
-    max-width: 100%;
-    font-size: 16px;
+    display: none;
   }
 `;
 
@@ -260,7 +300,7 @@ const LatestNewsDate = styled.div`
   opacity: 0.9;
 
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 12px;
+    display: none;
   }
 `;
 
@@ -375,7 +415,13 @@ const Hero = ({
   onScrollToSection,
   audiences,
   lockedAudience,
+  superTitle = 'A better workflow for board game publishing',
+  publisherPillLabel = 'For publishers',
+  designerPillLabel = 'For designers',
 }) => {
+  const { t, locale } = useI18n();
+  const heroCopy = t('components.hero');
+
   const prefersReducedMotion = useMemo(
     () =>
       window.matchMedia &&
@@ -416,7 +462,7 @@ const Hero = ({
     ? audiences[audience]
     : { headline, subhead: tagline, support: '', ctaText: buttonText };
 
-  const partnerNewsSlug = 'pubblo-partnership-spielwarenmesse-2027';
+  const partnerNewsSlug = 'pubblo-marketplace-is-now-live';
 
   const partnerNews = useMemo(() => {
     if (!Array.isArray(newsData) || newsData.length === 0) {
@@ -438,26 +484,35 @@ const Hero = ({
     return latestNonPartner || sortedNews[0];
   }, [partnerNewsSlug]);
 
+  const localizedLatestNews = latestNews
+    ? getLocalizedNewsArticle(latestNews, t, locale)
+    : null;
+  const localizedPartnerNews = partnerNews
+    ? getLocalizedNewsArticle(partnerNews, t, locale)
+    : null;
+
   const latestNewsExcerpt = useMemo(() => {
-    if (!latestNews?.body) {
-      return 'Read the latest update from our news page...';
+    if (!localizedLatestNews?.body) {
+      return heroCopy.latestNewsFallbackExcerptShort;
     }
 
-    const firstLine = latestNews.body
+    const firstLine = localizedLatestNews.body
       .split('\n')
       .map((line) => line.trim())
       .find(Boolean);
 
-    const excerpt = firstLine || 'Read the latest update from our news page';
+    const excerpt = firstLine || heroCopy.latestNewsFallbackExcerpt;
     return excerpt.replace(/[.!?]+$/, '') + '...';
-  }, [latestNews]);
+  }, [localizedLatestNews, heroCopy]);
 
-  const latestNewsPath = latestNews ? `/news/${latestNews.slug}` : '/news';
-  const partnerNewsPath = partnerNews ? `/news/${partnerNews.slug}` : '/news';
+  const latestNewsPath = localizedLatestNews
+    ? localizePath(`/news/${localizedLatestNews.slug}`, locale)
+    : localizePath('/news', locale);
+  const partnerBannerPath = localizePath('/gic-2027', locale);
   const partnerBannerText =
-    partnerNews?.push?.trim() ||
-    partnerNews?.title ||
-    'Official partner of the Game Inventors Convention 2027';
+    localizedPartnerNews?.push?.trim() ||
+    localizedPartnerNews?.title ||
+    heroCopy.partnerBannerFallback;
 
   const onSelect = (value) => {
     if (intervalRef.current) {
@@ -470,42 +525,44 @@ const Hero = ({
   return (
     <HeroSection>
       <PartnerBanner>
-        <PartnerBannerLink to={partnerNewsPath}>
-          <PartnerBannerLogo src={spielwarenmesseLogo} alt='Spielwarenmesse' />
+        <PartnerBannerLink to={partnerBannerPath}>
+          <PartnerBannerLogo src={spielwarenmesseLogo} alt={heroCopy.spielwarenmesseAlt} />
           <PartnerBannerText>
             <PartnerBannerTitle>{partnerBannerText}</PartnerBannerTitle>
-            <PartnerBannerMeta>Read more</PartnerBannerMeta>
+            <PartnerBannerMeta>{heroCopy.readMore}</PartnerBannerMeta>
           </PartnerBannerText>
         </PartnerBannerLink>
       </PartnerBanner>
       <LatestNewsBanner>
         <LatestNewsBannerLink to={latestNewsPath}>
-          <LatestNewsKicker>Latest news</LatestNewsKicker>
+          <LatestNewsKicker>{heroCopy.latestNews}</LatestNewsKicker>
           <LatestNewsTitle>
-            {latestNews
-              ? latestNews.title
-              : 'See the latest updates from Pubblo'}
+            {localizedLatestNews
+              ? localizedLatestNews.title
+              : heroCopy.latestNewsFallbackTitle}
           </LatestNewsTitle>
           <LatestNewsMeta>
-            {latestNews
+            {localizedLatestNews
               ? latestNewsExcerpt
-              : 'Read the latest update from our news page.'}
+              : heroCopy.latestNewsFallbackExcerpt}
           </LatestNewsMeta>
-          {latestNews && (
-            <LatestNewsDate>{latestNews.date} · Click to read</LatestNewsDate>
+          {localizedLatestNews && (
+            <LatestNewsDate>
+              {localizedLatestNews.date} · {heroCopy.clickToRead}
+            </LatestNewsDate>
           )}
         </LatestNewsBannerLink>
         <MobileCTA>
-          <Link to={latestNewsPath} style={{ textDecoration: 'none' }}>
-            <Button text='Read latest news' variant='primary' />
-          </Link>
+          <LocalizedLink to={latestNewsPath} style={{ textDecoration: 'none' }}>
+            <Button text={heroCopy.readLatestNews} variant='primary' />
+          </LocalizedLink>
         </MobileCTA>
       </LatestNewsBanner>
       <HeroWrapper>
         <HeroContent>
-          <SuperTitle>A better workflow for board game publishing</SuperTitle>
+          <SuperTitle>{superTitle}</SuperTitle>
           {audiences && !lockedAudience && (
-            <PillToggle role='tablist' aria-label='Choose audience'>
+            <PillToggle role='tablist' aria-label={heroCopy.audienceTabLabel}>
               <PillButton
                 role='tab'
                 aria-selected={audience === 'publishers'}
@@ -513,7 +570,7 @@ const Hero = ({
                 $variant='publishers'
                 $active={audience === 'publishers'}
               >
-                For publishers
+                {publisherPillLabel}
               </PillButton>
               <PillButton
                 role='tab'
@@ -522,7 +579,7 @@ const Hero = ({
                 $variant='designers'
                 $active={audience === 'designers'}
               >
-                For designers
+                {designerPillLabel}
               </PillButton>
             </PillToggle>
           )}

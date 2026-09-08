@@ -1,7 +1,15 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import ReactFlow, { Handle, Position } from 'reactflow';
+import { useNavigate } from 'react-router-dom';
 import 'reactflow/dist/style.css';
-
+import { useI18n } from '../i18n/I18nProvider';
+import {
+  buildWhoAreYouNodes,
+  DESKTOP_NODE_IDS,
+  PUBLISHER_NODE_IDS,
+  MARKETPLACE_NODE_IDS,
+  DESIGNER_NODE_IDS,
+} from '../i18n/whoAreYouNodes';
 const hs = {
   opacity: 0,
   pointerEvents: 'none',
@@ -24,6 +32,9 @@ function BadgeNode({ data }) {
         fontSize: '1rem',
         textAlign: 'center',
         whiteSpace: 'nowrap',
+        width: 'fit-content',
+        maxWidth: '100%',
+        boxSizing: 'border-box',
       }}
     >
       <Handle
@@ -62,8 +73,8 @@ function BadgeNode({ data }) {
         id='src-top-right'
         style={{ ...hs, left: '55%' }}
       />
-      <Handle type='source' position={Position.Right} id='right' style={hs} />
       {data.label}
+      <Handle type='source' position={Position.Right} id='right' style={hs} />
       <Handle
         type='source'
         position={Position.Bottom}
@@ -331,13 +342,14 @@ const nodeTypes = {
 const WhoAreYouFlow = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [activeTab, setActiveTab] = useState('publisher');
+  const { t, locale } = useI18n();
+  const navigate = useNavigate();
 
   const handleNodeClick = (_event, node) => {
     if (node.data?.href) {
-      window.location.href = node.data.href;
+      navigate(node.data.href);
     }
   };
-
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
@@ -345,195 +357,12 @@ const WhoAreYouFlow = () => {
     return () => window.removeEventListener('resize', check);
   }, []);
 
+  const colors = { yellow: '#f0c459', pink: '#e8c8d1' };
+
   const nodes = useMemo(
-    () => [
-      // ── Publisher (left) ──────────────────────────────────
-      {
-        id: 'p-badge',
-        type: 'badge',
-        position: { x: 30, y: 0 },
-        data: { label: "I'm a publisher", color: '#f0c459' },
-        style: { width: 160 },
-      },
-      {
-        id: 'p-q1',
-        type: 'text',
-        position: { x: 10, y: 75 },
-        data: { label: 'Do you receive pitches?' },
-        style: { width: 200 },
-      },
-      {
-        id: 'p-yes',
-        type: 'fork',
-        position: { x: 15, y: 190 },
-        data: { label: 'Oh yes' },
-        style: { width: 80 },
-      },
-      {
-        id: 'p-no',
-        type: 'fork',
-        position: { x: 135, y: 190 },
-        data: { label: 'Not yet' },
-        style: { width: 80 },
-      },
-      {
-        id: 'p-portal',
-        type: 'text',
-        position: { x: 10, y: 290 },
-        data: {
-          label: (
-            <>
-              Use our Portal
-              <br />
-              for handling
-              <br />
-              incoming pitches!
-            </>
-          ),
-        },
-        style: { width: 200 },
-      },
-      {
-        id: 'p-sys',
-        type: 'text',
-        position: { x: 10, y: 400 },
-        data: { label: 'I already have a system' },
-        style: { width: 200 },
-      },
-      {
-        id: 'p-try',
-        type: 'text',
-        position: { x: 10, y: 460 },
-        data: { label: 'Trying is free, so why not give Pubblo a chance?' },
-        style: { width: 200 },
-      },
-      {
-        id: 'p-cta',
-        type: 'cta',
-        position: { x: 0, y: 545 },
-        data: {
-          label: (
-            <>
-              Learn more about
-              <br />
-              <strong>the Portal</strong>
-            </>
-          ),
-          color: '#f0c459',
-          href: '/products#portal',
-        },
-        style: { width: 220 },
-      },
-
-      // ── Middle ────────────────────────────────────────────
-      {
-        id: 'm-q',
-        type: 'text',
-        position: { x: 420, y: 290 },
-        data: {
-          label:
-            'Do you want to find partners in new markets for localization?',
-        },
-        style: { width: 220 },
-      },
-      {
-        id: 'm-all',
-        type: 'text',
-        position: { x: 475, y: 460 },
-        data: { label: 'Always' },
-        style: { width: 110 },
-      },
-      {
-        id: 'm-cta',
-        type: 'cta',
-        position: { x: 405, y: 545 },
-        data: {
-          label: (
-            <>
-              Explore the possibilities
-              <br />
-              with our <strong>Marketplace</strong>
-            </>
-          ),
-          color: '#aad4e8',
-          href: '/products#marketplace',
-          rightHandleStyle: { top: 8 },
-          topRightHandleStyle: { left: '65%' },
-        },
-        style: { width: 250 },
-      },
-
-      // ── Designer (right) ──────────────────────────────────
-      {
-        id: 'd-badge',
-        type: 'badge',
-        position: { x: 870, y: 0 },
-        data: { label: "I'm a designer", color: '#e8c8d1' },
-        style: { width: 160 },
-      },
-      {
-        id: 'd-q1',
-        type: 'text',
-        position: { x: 830, y: 75 },
-        data: { label: 'Have you pitched your game to publishers yet?' },
-        style: { width: 240 },
-      },
-      {
-        id: 'd-yes',
-        type: 'fork',
-        position: { x: 830, y: 200 },
-        data: { label: 'Oh yes' },
-        style: { width: 80 },
-      },
-      {
-        id: 'd-wish',
-        type: 'fork',
-        position: { x: 990, y: 200 },
-        data: { label: 'I wish' },
-        style: { width: 80 },
-      },
-      {
-        id: 'd-q2',
-        type: 'text',
-        position: { x: 820, y: 290 },
-        data: {
-          label: (
-            <>
-              Do you want to make <strong>one</strong> pitch yet reach a bunch
-              of publishers?
-            </>
-          ),
-        },
-        style: { width: 260, paddingRight: 80 },
-      },
-      {
-        id: 'd-course',
-        type: 'text',
-        position: { x: 680, y: 455 },
-        data: { label: 'Well, of course!' },
-        style: { width: 160 },
-      },
-      {
-        id: 'd-cta',
-        type: 'cta',
-        position: { x: 860, y: 545 },
-        data: {
-          label: (
-            <>
-              Use our <strong>Pitch tool</strong>
-              <br />
-              to get going!
-            </>
-          ),
-          color: '#e8c8d1',
-          href: '/products#pitch-tool',
-        },
-        style: { width: 180 },
-      },
-    ],
-    [],
+    () => buildWhoAreYouNodes(t, locale, DESKTOP_NODE_IDS, colors),
+    [t, locale],
   );
-
   const edges = useMemo(() => {
     // sh = sourceHandle, th = targetHandle
     const e = (id, source, target, sh = 'bottom', th = 'top') => ({
@@ -551,16 +380,7 @@ const WhoAreYouFlow = () => {
       e('e1', 'p-badge', 'p-q1'),
       e('e2', 'p-q1', 'p-yes'),
       e('e3', 'p-q1', 'p-no'),
-      {
-        id: 'e4',
-        source: 'p-yes',
-        target: 'p-portal',
-        sourceHandle: 'bottom',
-        targetHandle: 'top',
-        type: 'smoothstep',
-        pathOptions: { borderRadius: 20 },
-        style: edgeSt,
-      },
+      e('e4', 'p-yes', 'p-portal'),
       e('e5', 'p-portal', 'p-sys'),
       e('e6', 'p-sys', 'p-try'),
       e('e7', 'p-try', 'p-cta'),
@@ -575,17 +395,7 @@ const WhoAreYouFlow = () => {
         pathOptions: { borderRadius: 20 },
         style: edgeSt,
       },
-      // "Not yet" → portal (same as "Oh yes")
-      {
-        id: 'e18',
-        source: 'p-no',
-        target: 'p-portal',
-        sourceHandle: 'bottom',
-        targetHandle: 'top',
-        type: 'smoothstep',
-        pathOptions: { borderRadius: 20 },
-        style: edgeSt,
-      },
+      e('e18', 'p-no', 'p-portal'),
       // Middle column – vertical
       e('e9', 'm-q', 'm-all'),
       e('e10', 'm-all', 'm-cta'),
@@ -654,213 +464,32 @@ const WhoAreYouFlow = () => {
     ];
   }, []);
 
-  const mobileNodes = useMemo(() => {
-    if (activeTab === 'publisher')
-      return [
-        {
-          id: 'p-badge',
-          type: 'badge',
-          position: { x: 30, y: 0 },
-          data: { label: "I'm a publisher", color: '#f0c459' },
-          style: { width: 160 },
-        },
-        {
-          id: 'p-q1',
-          type: 'text',
-          position: { x: 10, y: 75 },
-          data: { label: 'Do you receive pitches?' },
-          style: { width: 200 },
-        },
-        {
-          id: 'p-yes',
-          type: 'fork',
-          position: { x: 15, y: 190 },
-          data: { label: 'Oh yes' },
-          style: { width: 80 },
-        },
-        {
-          id: 'p-no',
-          type: 'fork',
-          position: { x: 115, y: 190 },
-          data: { label: 'Not yet' },
-          style: { width: 80 },
-        },
-        {
-          id: 'p-portal',
-          type: 'text',
-          position: { x: 10, y: 290 },
-          data: {
-            label: (
-              <>
-                Use our Portal
-                <br />
-                for handling
-                <br />
-                incoming pitches!
-              </>
-            ),
-          },
-          style: { width: 200 },
-        },
-        {
-          id: 'p-sys',
-          type: 'text',
-          position: { x: 10, y: 400 },
-          data: { label: 'I already have a system' },
-          style: { width: 200 },
-        },
-        {
-          id: 'p-try',
-          type: 'text',
-          position: { x: 10, y: 460 },
-          data: {
-            label: 'Trying is free, so why not give Pubblo a chance?',
-          },
-          style: { width: 200 },
-        },
-        {
-          id: 'p-cta',
-          type: 'cta',
-          position: { x: 0, y: 545 },
-          data: {
-            label: (
-              <>
-                Learn more about
-                <br />
-                <strong>the Portal</strong>
-              </>
-            ),
-            color: '#f0c459',
-            href: '/products#portal',
-          },
-          style: { width: 220 },
-        },
-      ];
-    if (activeTab === 'marketplace')
-      return [
-        {
-          id: 'm-q',
-          type: 'text',
-          position: { x: 10, y: 0 },
-          data: {
-            label:
-              'Do you want to find partners in new markets for localization?',
-          },
-          style: { width: 220 },
-        },
-        {
-          id: 'm-all',
-          type: 'text',
-          position: { x: 65, y: 150 },
-          data: { label: 'Always' },
-          style: { width: 110 },
-        },
-        {
-          id: 'm-cta',
-          type: 'cta',
-          position: { x: 0, y: 250 },
-          data: {
-            label: (
-              <>
-                Explore the possibilities
-                <br />
-                with our <strong>Marketplace</strong>
-              </>
-            ),
-            color: '#aad4e8',
-            href: '/products#marketplace',
-          },
-          style: { width: 250 },
-        },
-      ];
-    // designer
-    return [
-      {
-        id: 'd-badge',
-        type: 'badge',
-        position: { x: 30, y: 0 },
-        data: { label: "I'm a designer", color: '#e8c8d1' },
-        style: { width: 160 },
-      },
-      {
-        id: 'd-q1',
-        type: 'text',
-        position: { x: 0, y: 80 },
-        data: { label: 'Have you pitched your game to publishers yet?' },
-        style: { width: 230 },
-      },
-      {
-        id: 'd-yes',
-        type: 'fork',
-        position: { x: 10, y: 200 },
-        data: { label: 'Oh yes' },
-        style: { width: 80 },
-      },
-      {
-        id: 'd-wish',
-        type: 'fork',
-        position: { x: 155, y: 200 },
-        data: { label: 'I wish' },
-        style: { width: 80 },
-      },
-      {
-        id: 'd-q2',
-        type: 'text',
-        position: { x: 0, y: 315 },
-        data: {
-          label: (
-            <>
-              Do you want to make <strong>one</strong> pitch yet reach a bunch
-              of publishers?
-            </>
-          ),
-        },
-        style: { width: 140 },
-      },
-      {
-        id: 'd-cta',
-        type: 'cta',
-        position: { x: 155, y: 315 },
-        data: {
-          label: (
-            <>
-              Use our <strong>Pitch tool</strong>
-              <br />
-              to get going!
-            </>
-          ),
-          color: '#e8c8d1',
-          href: '/products#pitch-tool',
-        },
-        style: { width: 140 },
-      },
-      {
-        id: 'd-course',
-        type: 'text',
-        position: { x: 0, y: 460 },
-        data: { label: 'Well, of course!' },
-        style: { width: 140 },
-      },
-      {
-        id: 'm-cta',
-        type: 'cta',
-        position: { x: 0, y: 555 },
-        data: {
-          label: (
-            <>
-              Explore the possibilities
-              <br />
-              with our <strong>Marketplace</strong>
-            </>
-          ),
-          color: '#aad4e8',
-          href: '/products#marketplace',
-        },
-        style: { width: 250 },
-      },
-    ];
-  }, [activeTab]);
+  const mobilePublisherOverrides = { 'p-no': { x: 115, y: 190, w: 80 } };
+  const mobileDesignerOverrides = {
+    'd-badge': { x: 0, y: 0, w: 230 },
+    'd-q1': { x: 0, y: 80, w: 230 },
+    'd-yes': { x: 10, y: 200, w: 80 },
+    'd-wish': { x: 155, y: 200, w: 80 },
+    'd-q2': { x: 0, y: 315, w: 140 },
+    'd-cta': { x: 155, y: 315, w: 140 },
+    'd-course': { x: 0, y: 460, w: 140 },
+    'm-cta': { x: 0, y: 555, w: 250 },
+  };
+  const mobileMarketplaceOverrides = {
+    'm-q': { x: 10, y: 0, w: 220 },
+    'm-all': { x: 65, y: 150, w: 110 },
+    'm-cta': { x: 0, y: 250, w: 250 },
+  };
 
+  const mobileNodes = useMemo(() => {
+    if (activeTab === 'publisher') {
+      return buildWhoAreYouNodes(t, locale, PUBLISHER_NODE_IDS, colors, mobilePublisherOverrides);
+    }
+    if (activeTab === 'marketplace') {
+      return buildWhoAreYouNodes(t, locale, MARKETPLACE_NODE_IDS, colors, mobileMarketplaceOverrides);
+    }
+    return buildWhoAreYouNodes(t, locale, DESIGNER_NODE_IDS, colors, mobileDesignerOverrides);
+  }, [activeTab, t, locale]);
   const mobileEdges = useMemo(() => {
     const e = (id, source, target, sh = 'bottom', th = 'top') => ({
       id,
@@ -899,11 +528,10 @@ const WhoAreYouFlow = () => {
 
   if (isMobile) {
     const tabs = [
-      { id: 'publisher', label: 'Publisher' },
-      { id: 'marketplace', label: 'Marketplace' },
-      { id: 'designer', label: 'Designer' },
-    ];
-    return (
+      { id: 'publisher', label: t('whoAreYou.tabs.publisher') },
+      { id: 'marketplace', label: t('whoAreYou.tabs.marketplace') },
+      { id: 'designer', label: t('whoAreYou.tabs.designer') },
+    ];    return (
       <div>
         <div
           style={{

@@ -1,8 +1,17 @@
-import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import newsData from '../data/news.json';
 import { spacing } from '../styles/tokens';
+import SEOHead from '../components/SEOHead';
+import LocalizedLink from '../i18n/LocalizedLink';
+import { useI18n } from '../i18n/I18nProvider';
+import { getLocalizedNewsArticle } from '../i18n/localizedContent';
+import {
+  ORGANIZATION_LOGO,
+  truncateDescription,
+} from '../constants/seo';
+import { getCanonicalUrl } from '../i18n/paths';
 
 const imageContext = require.context(
   '../assets/news',
@@ -58,7 +67,7 @@ const NewsBody = styled.div`
   }
 `;
 
-const BackLink = styled(Link)`
+const BackLink = styled(LocalizedLink)`
   display: inline-block;
   margin-bottom: ${spacing.large};
   color: #4453a4;
@@ -67,27 +76,26 @@ const BackLink = styled(Link)`
 
 const NewsArticlePage = () => {
   const { slug } = useParams();
-
-  const article = newsData.find((n) => n.slug === slug);
-
-  useEffect(() => {
-    if (article) {
-      document.title = article.title + ' | Pubblo';
-    } else {
-      document.title = 'News | Pubblo';
-    }
-    return () => {
-      document.title = 'Pubblo';
-    };
-  }, [article]);
+  const { t, locale } = useI18n();
+  const ui = t('news');
+  const raw = newsData.find((n) => n.slug === slug);
+  const article = raw ? getLocalizedNewsArticle(raw, t, locale) : null;
 
   if (!article) {
     return (
-      <Wrap>
-        <Title>News</Title>
-        <p>News article not found.</p>
-        <BackLink to='/news'>← Back to news</BackLink>
-      </Wrap>
+      <>
+        <SEOHead
+          title={ui.notFoundSeoTitle}
+          description={ui.notFoundSeoDescription}
+          path={`/news/${slug}`}
+          noindex
+        />
+        <Wrap>
+          <Title>{ui.notFoundTitle}</Title>
+          <p>{ui.notFoundBody}</p>
+          <BackLink to='/news'>{ui.backToNews}</BackLink>
+        </Wrap>
+      </>
     );
   }
 
@@ -96,37 +104,68 @@ const NewsArticlePage = () => {
     .split(/\n+/)
     .map((paragraph) => paragraph.trim())
     .filter(Boolean);
+  const description = truncateDescription(article.body);
+  const canonical = getCanonicalUrl(`/news/${slug}`, locale);
 
-  if (article.image && !imageSrc) {
-    // eslint-disable-next-line no-console
-    console.warn('Bild saknas i imageMap:', article.image);
-  }
+  const articleStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: article.title,
+    datePublished: article.date,
+    description,
+    author: {
+      '@type': 'Organization',
+      name: 'Pubblo',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Pubblo',
+      logo: {
+        '@type': 'ImageObject',
+        url: ORGANIZATION_LOGO,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonical,
+    },
+  };
 
   return (
-    <Wrap>
-      <BackLink to='/news'>← Back to news</BackLink>
-      <Title>{article.title}</Title>
-      <NewsDate>{article.date}</NewsDate>
-      {imageSrc ? (
-        <NewsImage src={imageSrc} alt={article.title} />
-      ) : article.image ? (
-        <div style={{ color: 'red', margin: '16px 0' }}>
-          Bild saknas: {article.image}
-        </div>
-      ) : null}
-      <NewsBody>
-        {paragraphs.map((paragraph, index) => (
-          <p key={`${article.slug}-paragraph-${index}`}>{paragraph}</p>
-        ))}
-        {article.link && (
-          <p style={{ marginTop: 24 }}>
-            <a href={article.link} target='_blank' rel='noopener noreferrer'>
-              {article.linktext || 'Read more here!'}
-            </a>
-          </p>
-        )}
-      </NewsBody>
-    </Wrap>
+    <>
+      <SEOHead
+        title={article.title}
+        description={description}
+        path={`/news/${slug}`}
+        ogType='article'
+        publishedTime={article.date}
+        structuredData={articleStructuredData}
+      />
+      <Wrap>
+        <BackLink to='/news'>{ui.backToNews}</BackLink>
+        <Title>{article.title}</Title>
+        <NewsDate>{article.date}</NewsDate>
+        {imageSrc ? (
+          <NewsImage src={imageSrc} alt={article.title} />
+        ) : article.image ? (
+          <div style={{ color: 'red', margin: '16px 0' }}>
+            {ui.missingImage} {article.image}
+          </div>
+        ) : null}
+        <NewsBody>
+          {paragraphs.map((paragraph, index) => (
+            <p key={`${article.slug}-paragraph-${index}`}>{paragraph}</p>
+          ))}
+          {article.link && (
+            <p style={{ marginTop: 24 }}>
+              <a href={article.link} target='_blank' rel='noopener noreferrer'>
+                {article.linktext || ui.readMoreDefault}
+              </a>
+            </p>
+          )}
+        </NewsBody>
+      </Wrap>
+    </>
   );
 };
 

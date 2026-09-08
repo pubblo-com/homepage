@@ -147,6 +147,14 @@ if (-not $skipSecretUpdate -and -not $resolvedRecaptchaSecret) {
     }
 }
 
+# Generate SEO manifest on host (locale ESM imports fail inside Docker Linux)
+Write-Host "Generating SEO manifest..." -ForegroundColor Cyan
+& node scripts/generate-seo-manifest.mjs
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "SEO manifest generation failed. See output above."
+    exit 1
+}
+
 # Build and push image
 $image = "$registry/$ProjectId/$RepoName/${ServiceName}:latest"
 Write-Host "Building Docker image: $image" -ForegroundColor Cyan

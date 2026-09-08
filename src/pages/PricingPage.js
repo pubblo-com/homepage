@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { colors, spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
+import SEOHead from '../components/SEOHead';
+import { useI18n } from '../i18n/I18nProvider';
 
-/* ── Layout ─────────────────────────────────────────── */
 const PageShell = styled.main`
   padding-top: 80px;
   @media (max-width: ${breakpoints.tablet}) {
@@ -17,9 +18,72 @@ const ContentWrap = styled.div`
   padding: ${spacing.xXLarge} ${spacing.large};
 `;
 
+const PageHeader = styled.header`
+  margin-bottom: ${spacing.xXLarge};
+`;
+
+const PageTitle = styled.h1`
+  margin: 0 0 ${spacing.medium};
+  font-size: 40px;
+  font-weight: 800;
+  color: #333;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 32px;
+  }
+`;
+
+const PageIntro = styled.p`
+  max-width: 720px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0 0 ${spacing.large};
+`;
+
+const PillToggle = styled.div`
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  padding: 0;
+`;
+
+const PillButton = styled.button`
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 700;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+  background: ${(p) =>
+    p.$active
+      ? p.$variant === 'publishers'
+        ? colors.primary
+        : colors.contrast
+      : 'transparent'};
+  border: none;
+  color: ${(p) => (p.$active ? '#fff' : colors.text)};
+
+  &:hover {
+    color: ${(p) =>
+      p.$active
+        ? '#fff'
+        : p.$variant === 'publishers'
+          ? colors.primary
+          : colors.contrast};
+  }
+`;
+
 const Section = styled.section`
   margin-bottom: ${spacing.xXLarge};
   scroll-margin-top: 120px;
+`;
+
+const SectionTitle = styled.h2`
+  margin: 0 0 ${spacing.medium};
 `;
 
 const SectionDesc = styled.p`
@@ -29,65 +93,6 @@ const SectionDesc = styled.p`
   margin: 0 0 ${spacing.large};
 `;
 
-/* ── Welcome section ────────────────────────────────── */
-const WelcomeSection = styled.div`
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-  padding: ${spacing.xLarge};
-  margin-bottom: ${spacing.xXLarge};
-  display: flex;
-  gap: ${spacing.large};
-  align-items: flex-start;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-`;
-
-const WelcomeAvatar = styled.div`
-  width: 80px;
-  height: 80px;
-  min-width: 80px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #66b3ff 0%, #4a9fd8 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 60px;
-    height: 60px;
-    min-width: 60px;
-  }
-`;
-
-const WelcomeContent = styled.div`
-  flex: 1;
-`;
-
-const WelcomeTitle = styled.h2`
-  font-size: 32px;
-  font-weight: 800;
-  margin: 0 0 8px;
-  color: #333;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 24px;
-  }
-`;
-
-const WelcomeDesc = styled.p`
-  font-size: 16px;
-  color: #666;
-  margin: 0;
-  line-height: 1.5;
-`;
-
-/* ── Portal grid ─────────────────────────────────────── */
 const PortalGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -168,16 +173,17 @@ const PlanTagline = styled.p`
 const PlanUsers = styled.p`
   font-size: 12px;
   color: #333;
-  margin: 0 0 0;
+  margin: 0;
   text-align: center;
 `;
 
 const PlanHeader = styled.div`
-  height: 200px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   margin-bottom: ${spacing.small};
+  flex-shrink: 0;
 `;
 
 const PlanPrice = styled.div`
@@ -220,7 +226,8 @@ const PlanMonth = styled.span`
 `;
 
 const PlanBilling = styled.div`
-  font-size: 12px;
+  font-size: ${(p) => (p.$accent ? '11px' : '12px')};
+  line-height: 1.25;
   margin-top: 6px;
   white-space: pre-line;
   text-align: center;
@@ -275,6 +282,7 @@ const FeatureItem = styled.li`
   color: #444;
   line-height: 1.5;
   margin-bottom: 6px;
+
   &::before {
     content: '✔';
     color: ${colors.primary};
@@ -283,71 +291,8 @@ const FeatureItem = styled.li`
   }
 `;
 
-/* ── Fishtail banners ────────────────────────────────── */
-const FishtailBanner = styled.div`
-  background-color: ${(p) => p.$bg};
-  color: white;
-  /* blue: flat left edge, inward-notch (tail) on right at ~75% of screen
-     pink: inward-notch (tail) on left at ~25%, flat right edge */
-  clip-path: ${(p) =>
-    p.$flip
-      ? 'polygon(33% 0, 100% 0, 100% 100%, 33% 100%, calc(33% + 40px) 50%)'
-      : 'polygon(0 0, 60% 0, calc(60% - 40px) 50%, 60% 100%, 0 100%)'};
-  margin-bottom: ${spacing.xXLarge};
-
-  @media (max-width: ${breakpoints.mobile}) {
-    clip-path: none;
-  }
-`;
-
-/* blue: left edge matches ContentWrap, right edge stays clear of the 60% tail */
-const FishtailLeft = styled.div`
-  padding-top: ${spacing.large};
-  padding-bottom: ${spacing.large};
-  padding-left: max(
-    ${spacing.large},
-    calc((100% - 1100px) / 2 + ${spacing.large})
-  );
-  padding-right: 44%;
-
-  @media (max-width: ${breakpoints.mobile}) {
-    padding: ${spacing.medium};
-  }
-`;
-
-const FishtailKicker = styled.div`
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.88;
-  margin-bottom: 6px;
-`;
-
-const FishtailTitle = styled.div`
-  font-size: 48px;
-  line-height: 1.2;
-  margin-bottom: 8px;
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 22px;
-  }
-`;
-
-const FishtailBody = styled.div`
-  font-size: 24px;
-  line-height: 1.5;
-  opacity: 0.95;
-`;
-
-/* ── Marketplace cards ───────────────────────────────── */
-const MarketGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: ${spacing.large};
-  @media (max-width: ${breakpoints.tablet}) {
-    grid-template-columns: 1fr;
-  }
+const MarketCardWrap = styled.div`
+  max-width: 520px;
 `;
 
 const MarketCard = styled.div`
@@ -392,9 +337,21 @@ const MarketPriceSub = styled.p`
   margin: 0 0 ${spacing.small};
 `;
 
-/* ── Pitch tool section ──────────────────────────────── */
-const PitchSection = styled.section`
-  margin-bottom: ${spacing.xXLarge};
+const IntroPriceNote = styled.p`
+  font-size: 14px;
+  color: #444;
+  text-align: center;
+  margin: 0 0 ${spacing.small};
+  line-height: 1.5;
+  font-weight: 600;
+`;
+
+const RegularPriceNote = styled.p`
+  font-size: 13px;
+  color: #888;
+  text-align: center;
+  margin: ${spacing.small} 0 ${spacing.medium};
+  line-height: 1.5;
 `;
 
 const PitchNote = styled.p`
@@ -403,100 +360,224 @@ const PitchNote = styled.p`
   margin: ${spacing.small} 0;
 `;
 
+const SlotToggleWrap = styled.div`
+  margin-bottom: ${spacing.large};
+`;
+
+const SlotToggleLabel = styled.p`
+  margin: 0 0 ${spacing.small};
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+`;
+
+const SlotIntro = styled.p`
+  max-width: 720px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0 0 ${spacing.medium};
+  padding: ${spacing.medium};
+  background: #f5f7fa;
+  border-radius: 10px;
+  font-size: 14px;
+`;
+
+const SlotPriceLabel = styled.p`
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+  text-align: center;
+  margin: 0 0 ${spacing.medium};
+`;
+
+const FreeNote = styled.p`
+  margin-bottom: ${spacing.large};
+  font-size: 14px;
+  font-weight: 600;
+`;
+
+function parsePricingHash(hash) {
+  const id = hash.replace(/^#/, '');
+
+  if (id === 'portal') {
+    return { audience: 'publishers', marketplaceAudience: 'publishers', scrollTo: '#portal' };
+  }
+  if (id === 'pitch-tool') {
+    return { audience: 'designers', marketplaceAudience: 'designers', scrollTo: '#pitch-tool' };
+  }
+  if (id === 'marketplace-designers') {
+    return { marketplaceAudience: 'designers', scrollTo: '#marketplace' };
+  }
+  if (id === 'marketplace-publishers') {
+    return { marketplaceAudience: 'publishers', scrollTo: '#marketplace' };
+  }
+  if (id === 'marketplace') {
+    return { scrollTo: '#marketplace' };
+  }
+
+  return null;
+}
+
 const PricingPage = () => {
   const [selectedPlan, setSelectedPlan] = useState('M');
+  const [audience, setAudience] = useState('publishers');
+  const [marketplaceAudience, setMarketplaceAudience] = useState('publishers');
+  const { t } = useI18n();
+  const p = t('pricing');
+  const portalPlans = p.portalPlans;
 
   const goToPortal = () => {
     window.location.href = 'https://portal.pubblo.com/#/create-account/';
   };
 
-  const portalPlans = [
-    {
-      name: 'S',
-      price: '0',
-      currency: '€',
-      monthLabel: '/month',
-      tagline: 'Built for small publishers',
-      users: '1-2 users',
-      billing: '',
-      features: [
-        'Receive pitches via a link or button from your own website',
-        'Score incoming pitches against your preferences',
-        'Marketplace access',
-      ],
-      cta: { text: 'Apply', disabled: false },
-    },
-    {
-      name: 'M',
-      oldPrice: '49€',
-      price: '0',
-      monthLabel: '/month',
-      tagline: 'Built for growing teams',
-      users: '1-2 users',
-      billing: 'Free trial until 1 jan. 2027\nNo automatic billing',
-      billingAccent: true,
-      bestValue: true,
-      features: [
-        'All in S',
-        'Save games for evaluation',
-        'Collaborate with your team',
-        'Score marketplace games against your preferences',
-      ],
-      cta: { text: 'Apply', disabled: false },
-    },
-    {
-      name: 'L',
-      price: '99',
-      currency: '€',
-      monthLabel: '/month',
-      tagline: 'Designed for established publishers',
-      users: '1-2 users',
-      billing: 'Billed annually',
-      features: ['All in M', 'Request exclusivity', 'Preview new submissions'],
-      cta: { text: 'Coming soon', disabled: true },
-    },
-    {
-      name: 'XL',
-      price: '199',
-      currency: '€',
-      monthLabel: '/month',
-      tagline: 'For industry leaders',
-      users: 'Unlimited users in your company',
-      billing: 'Billed annually',
-      features: ['All in L', 'Unlimited users in your company'],
-      cta: { text: 'Coming soon', disabled: true },
-    },
-  ];
+  const selectAudience = (role) => {
+    setAudience(role);
+    setMarketplaceAudience(role);
+    const hash = role === 'designers' ? '#pitch-tool' : '#portal';
+    window.history.replaceState(null, '', hash);
+  };
 
-  return (
-    <PageShell>
-      {/* ── OPENING OFFER ── */}
-      <FishtailBanner $bg={colors.lightblue}>
-        <FishtailLeft>
-          <FishtailKicker>Check it out</FishtailKicker>
-          <FishtailTitle>PubbloMarketplace Launched!</FishtailTitle>
-          <FishtailBody>
-            Now you can explore and manage your games directly through our Marketplace!
-          </FishtailBody>
-        </FishtailLeft>
-      </FishtailBanner>
+  const selectMarketplaceAudience = (role) => {
+    setMarketplaceAudience(role);
+    const hash =
+      role === 'designers' ? '#marketplace-designers' : '#marketplace-publishers';
+    window.history.replaceState(null, '', hash);
+  };
 
-      <ContentWrap>
-        {/* ── WELCOME ── */}
-        <WelcomeSection>
-          <WelcomeAvatar>👋</WelcomeAvatar>
-          <WelcomeContent>
-            <WelcomeTitle>Welcome to Pubblo Portal!</WelcomeTitle>
-            <WelcomeDesc>
-              Choose the plan that best fits your team to start exploring the
-              platform.
-            </WelcomeDesc>
-          </WelcomeContent>
-        </WelcomeSection>
+  useEffect(() => {
+    const syncFromHash = () => {
+      const parsed = parsePricingHash(window.location.hash);
+      if (!parsed) return;
 
-        {/* ── THE PORTAL ── */}
-        <Section id='portal' style={{ marginTop: spacing.xXLarge }}></Section>
+      if (parsed.audience) {
+        setAudience(parsed.audience);
+      }
+      if (parsed.marketplaceAudience) {
+        setMarketplaceAudience(parsed.marketplaceAudience);
+      } else if (parsed.scrollTo === '#marketplace' && parsed.audience) {
+        setMarketplaceAudience(parsed.audience);
+      }
 
+      if (!parsed.scrollTo) return;
+
+      requestAnimationFrame(() => {
+        const target = document.querySelector(parsed.scrollTo);
+        target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    };
+
+    syncFromHash();
+    window.addEventListener('hashchange', syncFromHash);
+    return () => window.removeEventListener('hashchange', syncFromHash);
+  }, []);
+
+  const renderSlotPricing = (slotPricing) => (
+    <>
+      <IntroPriceNote>{slotPricing.introNote}</IntroPriceNote>
+      <MarketPriceRow>
+        <MarketBigPrice>{slotPricing.introPrice}</MarketBigPrice>
+        <MarketPriceNote>{slotPricing.period}</MarketPriceNote>
+      </MarketPriceRow>
+      <RegularPriceNote>
+        {slotPricing.regularNote}: {slotPricing.regularPrice}
+        {slotPricing.period}
+      </RegularPriceNote>
+    </>
+  );
+
+  const renderMarketplaceCard = (role) => {
+    const copy = p.marketplace[role];
+
+    return (
+      <MarketCardWrap>
+        <MarketCard>
+          <MarketAudience>{copy.audience}</MarketAudience>
+          <SlotPriceLabel>{p.marketplace.slotPriceLabel}</SlotPriceLabel>
+          {renderSlotPricing(copy.slotPricing)}
+          {role === 'publishers' && (
+            <>
+              <MarketPriceRow style={{ marginBottom: 0 }}>
+                <MarketBigPrice>{copy.customSlots}</MarketBigPrice>
+              </MarketPriceRow>
+              <MarketPriceSub>{copy.customPricing}</MarketPriceSub>
+            </>
+          )}
+          <FeatureList>
+            {copy.features.map((feature) => (
+              <FeatureItem key={feature}>{feature}</FeatureItem>
+            ))}
+          </FeatureList>
+          <Button
+            text={copy.cta}
+            variant={role === 'designers' ? 'contrast' : 'primary'}
+            onClick={goToPortal}
+          />
+        </MarketCard>
+      </MarketCardWrap>
+    );
+  };
+
+  const renderMarketplaceSection = () => {
+    const slotCopy = p.marketplace[marketplaceAudience];
+
+    return (
+      <Section id='marketplace'>
+        <SectionTitle>{p.marketplace.title}</SectionTitle>
+        <SectionDesc>{p.marketplace.description}</SectionDesc>
+
+        <SlotToggleWrap>
+          <SlotToggleLabel>{p.marketplace.slotTabLabel}</SlotToggleLabel>
+          <PillToggle role='tablist' aria-label={p.marketplace.slotTabLabel}>
+            <PillButton
+              type='button'
+              role='tab'
+              aria-selected={marketplaceAudience === 'designers'}
+              $active={marketplaceAudience === 'designers'}
+              $variant='designers'
+              onClick={() => selectMarketplaceAudience('designers')}
+            >
+              {p.marketplace.slotDesigners}
+            </PillButton>
+            <PillButton
+              type='button'
+              role='tab'
+              aria-selected={marketplaceAudience === 'publishers'}
+              $active={marketplaceAudience === 'publishers'}
+              $variant='publishers'
+              onClick={() => selectMarketplaceAudience('publishers')}
+            >
+              {p.marketplace.slotPublishers}
+            </PillButton>
+          </PillToggle>
+        </SlotToggleWrap>
+
+        <SlotIntro>{slotCopy.intro}</SlotIntro>
+        {renderMarketplaceCard(marketplaceAudience)}
+      </Section>
+    );
+  };
+
+  const renderDesignerContent = () => (
+    <>
+      <Section id='pitch-tool'>
+        <SectionTitle>{p.pitchTool.title}</SectionTitle>
+        <SectionDesc>{p.pitchTool.description}</SectionDesc>
+        <PitchNote>{p.pitchTool.note}</PitchNote>
+        <FreeNote>{p.pitchTool.freeNote}</FreeNote>
+        <Button text={p.pitchTool.cta} variant='contrast' onClick={goToPortal} />
+      </Section>
+
+      {renderMarketplaceSection()}
+    </>
+  );
+
+  const renderPublisherContent = () => (
+    <>
+      <Section id='portal'>
+        <SectionTitle>{p.portal.title}</SectionTitle>
+        <SectionDesc>{p.portal.description}</SectionDesc>
         <PortalGrid>
           {portalPlans.map((plan) => (
             <PortalCard
@@ -504,22 +585,22 @@ const PricingPage = () => {
               $selected={selectedPlan === plan.name}
               onClick={() => setSelectedPlan(plan.name)}
             >
-              {plan.bestValue && <CardFishtail>Opening offer</CardFishtail>}
+              {plan.bestValue && (
+                <CardFishtail>{plan.bestValueLabel}</CardFishtail>
+              )}
               <PlanSelector $selected={selectedPlan === plan.name} />
               <PlanHeader>
                 <PlanName>{plan.name}</PlanName>
                 <PlanPrice>
-                  {plan.oldPrice && (
-                    <PlanOldPrice>{plan.oldPrice}</PlanOldPrice>
-                  )}
+                  {plan.oldPrice && <PlanOldPrice>{plan.oldPrice}</PlanOldPrice>}
                   <PlanCurrentPrice>
                     {plan.price}
                     {plan.currency || ''}
                   </PlanCurrentPrice>
                   {plan.monthLabel && (
                     <>
-                      <PlanPer>/</PlanPer>
-                      <PlanMonth>month</PlanMonth>
+                      <PlanPer>{plan.perLabel || '/'}</PlanPer>
+                      <PlanMonth>{plan.monthWord || 'month'}</PlanMonth>
                     </>
                   )}
                 </PlanPrice>
@@ -532,8 +613,8 @@ const PricingPage = () => {
                 )}
               </PlanHeader>
               <FeatureList>
-                {plan.features.map((f) => (
-                  <FeatureItem key={f}>{f}</FeatureItem>
+                {plan.features.map((feature) => (
+                  <FeatureItem key={feature}>{feature}</FeatureItem>
                 ))}
               </FeatureList>
               <Button
@@ -545,140 +626,58 @@ const PricingPage = () => {
             </PortalCard>
           ))}
         </PortalGrid>
-
         <PricingInfoRow>
           <PricingInfoIcon aria-hidden='true' />
-          <span>
-            No hidden fees, no credit card required, and no automatic renewal
-            when the free period ends.
-          </span>
+          <span>{p.infoRow}</span>
         </PricingInfoRow>
-      </ContentWrap>
+      </Section>
 
-      <ContentWrap>
-        {/* ── THE MARKETPLACE ── */}
-        <Section id='marketplace'>
-          <h2>The Marketplace</h2>
-          <SectionDesc>
-            A digital marketplace for new and established games looking for
-            publishing opportunities in new markets. Developers can connect
-            directly with publishers, while publishers can use advanced
-            filtering and scoring tools to discover titles that fit their
-            portfolio.
-          </SectionDesc>
+      {renderMarketplaceSection()}
+    </>
+  );
 
-          <MarketGrid>
-            {/* Designers */}
-            <MarketCard>
-              <MarketAudience>For Designers</MarketAudience>
-              <MarketPriceRow>
-                <MarketBigPrice>29€</MarketBigPrice>
-                <MarketPriceNote>/ year</MarketPriceNote>
-              </MarketPriceRow>
-              <MarketPriceSub>
-               
-              </MarketPriceSub>
-              <MarketPriceRow>
-                <MarketBigPrice>49€</MarketBigPrice>
-                <MarketPriceNote>/ year</MarketPriceNote>
-              </MarketPriceRow>
-              <MarketPriceSub>
-                Introductory pricing for the rest of 2026
-              </MarketPriceSub>
-              <MarketPriceRow style={{ marginBottom: spacing.medium }}>
-                <MarketBigPrice>99€</MarketBigPrice>
-                <MarketPriceNote>/ year</MarketPriceNote>
-              </MarketPriceRow>
-              <FeatureList>
-                <FeatureItem>
-                  Create strong game pitches with the Pubblo pitch tool
-                </FeatureItem>
-                <FeatureItem>
-                  Instead of knocking doors, showcase your game where publishers
-                  are already actively looking for new titles
-                </FeatureItem>
-                <FeatureItem>
-                  Get insights and feedback on your game's performance
-                </FeatureItem>
-              </FeatureList>
-              <Button
-                text='Get started'
-                variant='primary'
-                onClick={goToPortal}
-              />
-            </MarketCard>
+  return (
+    <>
+      <SEOHead
+        title={t('seo.pages.pricing.title')}
+        description={t('seo.pages.pricing.description')}
+        path='/pricing'
+      />
+      <PageShell>
+        <ContentWrap>
+          <PageHeader>
+            <PageTitle>{p.pageTitle}</PageTitle>
+            <PageIntro>{p.intro}</PageIntro>
+            <PillToggle role='tablist' aria-label={p.audience.tabLabel}>
+              <PillButton
+                type='button'
+                role='tab'
+                aria-selected={audience === 'designers'}
+                $active={audience === 'designers'}
+                $variant='designers'
+                onClick={() => selectAudience('designers')}
+              >
+                {p.audience.designers}
+              </PillButton>
+              <PillButton
+                type='button'
+                role='tab'
+                aria-selected={audience === 'publishers'}
+                $active={audience === 'publishers'}
+                $variant='publishers'
+                onClick={() => selectAudience('publishers')}
+              >
+                {p.audience.publishers}
+              </PillButton>
+            </PillToggle>
+          </PageHeader>
 
-            {/* Publishers */}
-            <MarketCard>
-              <MarketAudience>For Publishers</MarketAudience>
-              <MarketPriceRow>
-                <MarketBigPrice>99€</MarketBigPrice>
-                <MarketPriceNote>/ year</MarketPriceNote>
-              </MarketPriceRow>
-              <MarketPriceSub>
-                
-              </MarketPriceSub>
-              <MarketPriceRow>
-                <MarketBigPrice>199€</MarketBigPrice>
-                <MarketPriceNote>/ year</MarketPriceNote>
-              </MarketPriceRow>
-              <MarketPriceSub>
-                Introductory pricing for the rest of 2026
-              </MarketPriceSub>
-              <MarketPriceRow style={{ marginBottom: 0 }}>
-                <MarketBigPrice>Want 5+ slots?</MarketBigPrice>
-              </MarketPriceRow>
-              <MarketPriceSub>Contact us for custom pricing</MarketPriceSub>
-              <FeatureList>
-                <FeatureItem>
-                  Find partners in new markets for localization
-                </FeatureItem>
-                <FeatureItem>
-                  Showcase your publishing portfolio to get the best match
-                </FeatureItem>
-                <FeatureItem>
-                  Access performance insights and marketplace feedback
-                </FeatureItem>
-              </FeatureList>
-              <Button
-                text='Get started'
-                variant='primary'
-                onClick={goToPortal}
-              />
-            </MarketCard>
-          </MarketGrid>
-        </Section>
-
-        {/* ── THE PITCH TOOL ── */}
-        <PitchSection id='pitch-tool'>
-          <h2>The Pitch tool</h2>
-          <SectionDesc>
-            Creating a strong game pitch can be difficult, especially for
-            first-time developers. Our pitch tool helps you structure and
-            document your game professionally, making it easier for publishers
-            to evaluate your project.
-          </SectionDesc>
-          <PitchNote>
-            *Publishers can also use the tool to generate standardized sell
-            sheets and export portfolio-ready presentations.
-          </PitchNote>
-          <p
-            style={{
-              marginBottom: spacing.large,
-              fontSize: 14,
-              fontWeight: 600,
-            }}
-          >
-            Free to use for all registered users.
-          </p>
-          <Button
-            text='Create your pitch now'
-            variant='primary'
-            onClick={goToPortal}
-          />
-        </PitchSection>
-      </ContentWrap>
-    </PageShell>
+          {audience === 'designers'
+            ? renderDesignerContent()
+            : renderPublisherContent()}
+        </ContentWrap>
+      </PageShell>
+    </>
   );
 };
 

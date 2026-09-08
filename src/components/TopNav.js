@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors, spacing, breakpoints } from '../styles/tokens';
 import Button from './Button';
-// Updated to use the new PNG logo
 import logo from '../assets/logo-pubblo.png';
-import { Link, NavLink } from 'react-router-dom';
+import LocalizedLink from '../i18n/LocalizedLink';
+import LocalizedNavLink from '../i18n/LocalizedNavLink';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useI18n } from '../i18n/I18nProvider';
 
 const Bar = styled.header`
   position: fixed;
@@ -28,19 +30,15 @@ const Bar = styled.header`
 `;
 
 const NavWrap = styled.div`
-
   width: 100%;
-
   max-width: 1200px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   height: 72px;
 `;
 
-const Brand = styled(Link)`
+const Brand = styled(LocalizedLink)`
   display: inline-flex;
   align-items: center;
   gap: ${spacing.small};
@@ -92,7 +90,7 @@ const Dropdown = styled.div`
   z-index: 1001;
 `;
 
-const MenuLink = styled(NavLink)`
+const MenuLink = styled(LocalizedNavLink)`
   color: ${(p) => (p.$highlight ? colors.contrast : colors.text)};
   text-decoration: none;
   font-weight: 500;
@@ -107,7 +105,8 @@ const MenuLink = styled(NavLink)`
 const Right = styled.div`
   display: inline-flex;
   align-items: center;
-  gap: ${spacing.large};
+  gap: ${spacing.medium};
+
   @media (max-width: 600px) {
     display: none;
   }
@@ -163,7 +162,7 @@ const MobileMenu = styled.div`
   }
 `;
 
-const MobileMenuLink = styled(Link)`
+const MobileMenuLink = styled(LocalizedLink)`
   color: ${colors.text};
   text-decoration: none;
   font-weight: 600;
@@ -171,7 +170,9 @@ const MobileMenuLink = styled(Link)`
 
 const TopNav = ({ onCtaClick }) => {
   const [open, setOpen] = useState(false);
+  const { t } = useI18n();
   const close = () => setOpen(false);
+
   return (
     <Bar>
       <NavWrap>
@@ -181,43 +182,49 @@ const TopNav = ({ onCtaClick }) => {
 
         <Menu aria-label='Primary'>
           <MenuItem>
-            <MenuLink to='/products' end>What we do</MenuLink>
-            <Dropdown role='menu' aria-label='What we do submenu'>
-              <MenuLink to='/products'>Overview</MenuLink>
-              <MenuLink to='/users'>Users</MenuLink>
-              <MenuLink to='/pricing'>Pricing</MenuLink>
-              <MenuLink to='/compare'>Compare</MenuLink>
-              <MenuLink to='/faq'>FAQ</MenuLink>
+            <MenuLink to='/products' end>{t('nav.whatWeDo')}</MenuLink>
+            <Dropdown role='menu' aria-label={t('nav.whatWeDo')}>
+              <MenuLink to='/products'>{t('nav.overview')}</MenuLink>
+              <MenuLink to='/portal'>{t('nav.portal')}</MenuLink>
+              <MenuLink to='/marketplace'>{t('nav.marketplace')}</MenuLink>
+              <MenuLink to='/pitch'>{t('nav.pitchTool')}</MenuLink>
+              <MenuLink to='/users'>{t('nav.users')}</MenuLink>
+              <MenuLink to='/pricing'>{t('nav.pricing')}</MenuLink>
+              <MenuLink to='/compare'>{t('nav.compare')}</MenuLink>
+              <MenuLink to='/faq'>{t('nav.faq')}</MenuLink>
             </Dropdown>
           </MenuItem>
-          {/* <MenuLink to='/spielpitch' $highlight>Spiel Pitch</MenuLink> */}
-          <MenuLink to='/about' end>About</MenuLink>
-          <MenuLink to='/news' end>News</MenuLink>
-          <MenuLink to='/contact' end>Contact</MenuLink>
+          <MenuLink to='/about' end>{t('nav.about')}</MenuLink>
+          <MenuLink to='/news' end>{t('nav.news')}</MenuLink>
+          <MenuLink to='/contact' end>{t('nav.contact')}</MenuLink>
         </Menu>
 
         <Right>
-          <MenuLink to='/launch'>Log in</MenuLink>
-          <Button text='Book demo' onClick={onCtaClick} style={{ marginBottom: 0 }} />
+          <LanguageSwitcher />
+          <MenuLink to='/launch'>{t('nav.login')}</MenuLink>
+          <Button text={t('nav.bookDemo')} onClick={onCtaClick} style={{ marginBottom: 0 }} />
         </Right>
 
-        <ToggleButton aria-label='Open menu' onClick={() => setOpen((v) => !v)} style={{ marginBottom: 0, padding: spacing.small }}>
+        <ToggleButton aria-label={t('nav.openMenu')} onClick={() => setOpen((v) => !v)} style={{ marginBottom: 0, padding: spacing.small }}>
           <Burger />
         </ToggleButton>
 
         <MobileMenu $open={open}>
-          <MobileMenuLink to='/products' onClick={close}>What we do</MobileMenuLink>
-          <MobileMenuLink to='/users' onClick={close}>— Users</MobileMenuLink>
-          <MobileMenuLink to='/pricing' onClick={close}>— Pricing</MobileMenuLink>
-          <MobileMenuLink to='/compare' onClick={close}>— Compare</MobileMenuLink>
-          <MobileMenuLink to='/faq' onClick={close}>— FAQ</MobileMenuLink>
-          {/* <MobileMenuLink to='/spielpitch' onClick={close}>Spiel Pitch</MobileMenuLink> */}
-          <MobileMenuLink to='/about' onClick={close}>About</MobileMenuLink>
-          <MobileMenuLink to='/news' onClick={close}>News</MobileMenuLink>
-          <MobileMenuLink to='/contact' onClick={close}>Contact</MobileMenuLink>
-          <MobileMenuLink to='/launch' onClick={close}>Log in</MobileMenuLink>
+          <LanguageSwitcher variant='list' onSelect={close} />
+          <MobileMenuLink to='/products' onClick={close}>{t('nav.whatWeDo')}</MobileMenuLink>
+          <MobileMenuLink to='/portal' onClick={close}>— {t('nav.portal')}</MobileMenuLink>
+          <MobileMenuLink to='/marketplace' onClick={close}>— {t('nav.marketplace')}</MobileMenuLink>
+          <MobileMenuLink to='/pitch' onClick={close}>— {t('nav.pitchTool')}</MobileMenuLink>
+          <MobileMenuLink to='/users' onClick={close}>— {t('nav.users')}</MobileMenuLink>
+          <MobileMenuLink to='/pricing' onClick={close}>— {t('nav.pricing')}</MobileMenuLink>
+          <MobileMenuLink to='/compare' onClick={close}>— {t('nav.compare')}</MobileMenuLink>
+          <MobileMenuLink to='/faq' onClick={close}>— {t('nav.faq')}</MobileMenuLink>
+          <MobileMenuLink to='/about' onClick={close}>{t('nav.about')}</MobileMenuLink>
+          <MobileMenuLink to='/news' onClick={close}>{t('nav.news')}</MobileMenuLink>
+          <MobileMenuLink to='/contact' onClick={close}>{t('nav.contact')}</MobileMenuLink>
+          <MobileMenuLink to='/launch' onClick={close}>{t('nav.login')}</MobileMenuLink>
           <div>
-            <Button text='Book demo' onClick={() => { close(); onCtaClick(); }} />
+            <Button text={t('nav.bookDemo')} onClick={() => { close(); onCtaClick(); }} />
           </div>
         </MobileMenu>
       </NavWrap>
@@ -226,5 +233,3 @@ const TopNav = ({ onCtaClick }) => {
 };
 
 export default TopNav;
-
-

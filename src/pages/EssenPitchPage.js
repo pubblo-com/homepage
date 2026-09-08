@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
+import SEOHead from '../components/SEOHead';
+import LocalizedLink from '../i18n/LocalizedLink';
+import { useI18n } from '../i18n/I18nProvider';
 import { getRecaptchaToken } from '../utils/recaptcha';
 import { isSpielPitchActive } from '../utils/spielPitch';
 
@@ -71,6 +74,10 @@ const Small = styled.small`
   display: block;
   color: #666;
   line-height: 1.6;
+
+  a {
+    color: inherit;
+  }
 `;
 
 const SuccessModal = styled.div`
@@ -150,24 +157,10 @@ const CheckIcon = styled.div`
 `;
 
 const EssenPitchPage = () => {
+  const { t } = useI18n();
+  const e = t('essen');
+  const formCopy = t('components.form');
   const spielPitchActive = isSpielPitchActive();
-
-  if (!spielPitchActive) {
-    return (
-      <Wrap>
-        <Heading>Spiel Pitch Competition</Heading>
-        <Info>
-          <p>The Pubblo Spiel Pitch Competition has now officially come to an end, and we’re thrilled by the incredible response it received.</p>
-          <p>This year’s submissions showcased an impressive level of creativity, passion, and innovation from across the board game community, making the jury’s work both exciting and challenging.</p>
-          <p>We’re happy to share that five finalists have now been selected and contacted by Jumbo, who will continue the process directly with them.</p>
-          <p>We would like to extend a heartfelt thank you to everyone who submitted a pitch, supported the competition, or followed along. Your enthusiasm and engagement have made this competition truly inspiring, and we’re proud to celebrate the talent within the Pubblo community.</p>
-          <p>Stay tuned for more updates — we’ll share the latest news here on Pubblo as soon as there’s more to announce.</p>
-          
-          
-        </Info>
-      </Wrap>
-    );
-  }
 
   const [role, setRole] = useState('');
   const [name, setName] = useState('');
@@ -179,22 +172,21 @@ const EssenPitchPage = () => {
   const formRef = useRef(null);
 
   useEffect(() => {
-    if (!role || !formRef.current || typeof window === 'undefined') return;
+    if (!spielPitchActive || !role || !formRef.current || typeof window === 'undefined') return;
 
     const isMobile = window.innerWidth <= 768;
     if (!isMobile) return;
 
-    // Ensure mobile users land on the form with the heading visible below the sticky nav.
     requestAnimationFrame(() => {
       const headerOffset = 90;
       const { top } = formRef.current.getBoundingClientRect();
       const targetPosition = top + window.scrollY - headerOffset;
       window.scrollTo({ behavior: 'smooth', top: Math.max(targetPosition, 0) });
     });
-  }, [role]);
+  }, [role, spielPitchActive]);
 
-  const submit = async (e) => {
-    e.preventDefault();
+  const submit = async (submitEvent) => {
+    submitEvent.preventDefault();
     if (isSubmitting) return;
 
     setIsSubmitting(true);
@@ -204,18 +196,18 @@ const EssenPitchPage = () => {
       const response = await fetch('/api/spielpitch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          name, 
-          email, 
-          company: role === 'publisher' ? company : undefined, 
+        body: JSON.stringify({
+          name,
+          email,
+          company: role === 'publisher' ? company : undefined,
           role,
-          recaptchaToken
-        })
+          recaptchaToken,
+        }),
       });
-      
+
       if (!response.ok) throw new Error('Failed to register');
       await response.json().catch(() => null);
-      
+
       setSubmittedEmail(email);
       setShowSuccess(true);
       setRole('');
@@ -223,7 +215,7 @@ const EssenPitchPage = () => {
       setEmail('');
       setCompany('');
     } catch (err) {
-      alert('Something went wrong. Please try again.');
+      alert(formCopy.errorAlert);
     } finally {
       setIsSubmitting(false);
     }
@@ -233,103 +225,147 @@ const EssenPitchPage = () => {
     setShowSuccess(false);
   };
 
+  if (!spielPitchActive) {
+    return (
+      <Wrap>
+        <SEOHead
+          title={e.seo.title}
+          description={e.seo.description}
+          path='/spielpitch'
+          noindex
+        />
+        <Heading>{e.ended.title}</Heading>
+        <Info>
+          {e.ended.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+          ))}
+        </Info>
+      </Wrap>
+    );
+  }
+
+  const roleCopy = role === 'creator' ? e.active.creator : e.active.publisher;
+
   return (
     <>
+      <SEOHead
+        title={e.seo.title}
+        description={e.seo.description}
+        path='/spielpitch'
+        noindex
+      />
       {showSuccess && (
         <SuccessModal onClick={closeSuccessModal}>
-          <SuccessContent onClick={(e) => e.stopPropagation()}>
+          <SuccessContent onClick={(clickEvent) => clickEvent.stopPropagation()}>
             <CheckIcon />
-            <h2>Registration Successful! 🎉</h2>
+            <h2>{e.active.success.title}</h2>
             <p>
-              Thanks for registering! We've sent a confirmation email to <strong>{submittedEmail}</strong> with next steps and information about your free Pubblo access for 2025.
+              {e.active.success.bodyBefore}
+              <strong>{submittedEmail}</strong>
+              {e.active.success.bodyAfter}
             </p>
-            <Button text="Close" onClick={closeSuccessModal} />
+            <Button text={e.active.success.close} onClick={closeSuccessModal} />
           </SuccessContent>
         </SuccessModal>
       )}
-      
+
       <Wrap>
-        <Heading>Join our Pitch Competition</Heading>
-      <p>Starting on the 24th of October, the second day of SPIEL in Essen, we're running a pitch competition. The competition is open until the 30th of November but register already now - early birds will get an advantage*</p>
-      <ChoiceRow>
-        <Card>
-          <h3>Got a game?</h3>
-          <p>You can win a pitch meeting with a matching publisher!</p>
-          <p style={{ marginBottom: spacing.small }}>Register and submit your pitch no later than the 30th of November</p>
-          <CTA>
-            <Button text="I've got a game" variant='contrast' onClick={() => setRole('creator')} />
-          </CTA>
-        </Card>
-        <Card>
-          <h3>Looking for games?</h3>
-          <p>You can be the first to see the winning pitches!</p>
-          <p style={{ marginBottom: spacing.small }}>Register no later than the 30th of November</p>
-          <CTA>
-            <Button text="I'm looking for games" onClick={() => setRole('publisher')} />
-          </CTA>
-        </Card>
-      </ChoiceRow>
-
-      {role && (
-        <Card ref={formRef}>
-          <h3>{role === 'creator' ? 'Got a game? – your details' : 'Looking for games? – your details'}</h3>
-          <Form onSubmit={submit}>
-            <div>
-              <Label htmlFor='name'>Name</Label>
-              <Input id='name' value={name} onChange={(e) => setName(e.target.value)} required />
-            </div>
-            <div>
-              <Label htmlFor='email'>Email</Label>
-              <Input id='email' type='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
-            </div>
-            {role === 'publisher' && (
-              <div>
-                <Label htmlFor='company'>Company</Label>
-                <Input id='company' value={company} onChange={(e) => setCompany(e.target.value)} required />
-              </div>
-            )}
-            <div>
+        <Heading>{e.active.title}</Heading>
+        <p>{e.active.intro}</p>
+        <ChoiceRow>
+          <Card>
+            <h3>{e.active.creator.cardTitle}</h3>
+            <p>{e.active.creator.cardBody1}</p>
+            <p style={{ marginBottom: spacing.small }}>{e.active.creator.cardBody2}</p>
+            <CTA>
               <Button
-                type='submit'
-                text={isSubmitting ? 'Submitting...' : 'Submit'}
-                variant={role === 'creator' ? 'contrast' : 'primary'}
-                disabled={isSubmitting}
+                text={e.active.creator.cta}
+                variant='contrast'
+                onClick={() => setRole('creator')}
               />
-            </div>
-          </Form>
-        </Card>
-      )}
+            </CTA>
+          </Card>
+          <Card>
+            <h3>{e.active.publisher.cardTitle}</h3>
+            <p>{e.active.publisher.cardBody1}</p>
+            <p style={{ marginBottom: spacing.small }}>{e.active.publisher.cardBody2}</p>
+            <CTA>
+              <Button
+                text={e.active.publisher.cta}
+                onClick={() => setRole('publisher')}
+              />
+            </CTA>
+          </Card>
+        </ChoiceRow>
 
-      <Info>
-        <h3>About the competition</h3>
-        <p>
-          Register and submit your pitch(es) no later than the 30th of November 2025. A jury will evaluate all submitted pitches and select winners based on market potential.
-        </p>
-        
-        <p>
-          Publishers and distributors that register will be randomly selected as winners. The winners will see pitches first but all participants will eventually get access to matching pitches.
-        </p>
-        <p>
-          <strong>Everyone who registers receives free access to Pubblo for the remainder of 2025.</strong>
-        </p>
+        {role && (
+          <Card ref={formRef}>
+            <h3>{roleCopy.formTitle}</h3>
+            <Form onSubmit={submit}>
+              <div>
+                <Label htmlFor='name'>{e.active.form.name}</Label>
+                <Input
+                  id='name'
+                  value={name}
+                  onChange={(changeEvent) => setName(changeEvent.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <Label htmlFor='email'>{e.active.form.email}</Label>
+                <Input
+                  id='email'
+                  type='email'
+                  value={email}
+                  onChange={(changeEvent) => setEmail(changeEvent.target.value)}
+                  required
+                />
+              </div>
+              {role === 'publisher' && (
+                <div>
+                  <Label htmlFor='company'>{e.active.form.company}</Label>
+                  <Input
+                    id='company'
+                    value={company}
+                    onChange={(changeEvent) => setCompany(changeEvent.target.value)}
+                    required
+                  />
+                </div>
+              )}
+              <div>
+                <Button
+                  type='submit'
+                  text={isSubmitting ? formCopy.submitting : formCopy.submit}
+                  variant={role === 'creator' ? 'contrast' : 'primary'}
+                  disabled={isSubmitting}
+                />
+              </div>
+            </Form>
+          </Card>
+        )}
 
-        <Small>
-            Terms and notes: One account per participant/company. Participation in the competition is free and there are no strings attached, no purchase is necessary.
-            By registering you agree to be contacted about the competition and your submission.
-          The jury's decision is final and cannot be appealed.  Pubblo may reference anonymized statistics from the
-          competition for product improvement and PR. Personal data is handled
-          according to our <a href='/privacy'>Privacy Policy</a>.
-          Pubblo's <a href='/terms'>Terms and Conditions</a> apply for the use of the Pubblo platform.
-          </Small>
+        <Info>
+          <h3>{e.active.about.title}</h3>
+          {e.active.about.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+          ))}
+
+          <p>
+            <strong>{e.active.about.highlight}</strong>
+          </p>
+
           <Small>
-            *Time of submission will be an advantage when choosing between pitches perceived to be equal in terms of potential.
+            {e.active.about.termsBefore}
+            <LocalizedLink to='/privacy'>{e.active.about.privacyLink}</LocalizedLink>
+            {e.active.about.termsMiddle}
+            <LocalizedLink to='/terms'>{e.active.about.termsLink}</LocalizedLink>
+            {e.active.about.termsAfter}
           </Small>
-      </Info>
+          <Small>{e.active.about.footnote}</Small>
+        </Info>
       </Wrap>
     </>
   );
 };
 
 export default EssenPitchPage;
-
-

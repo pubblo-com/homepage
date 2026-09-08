@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import LocalizedLink from '../i18n/LocalizedLink';
 import { colors, spacing, typography, breakpoints } from '../styles/tokens';
 import { getConsent, setConsent, CONSENT_EVENT } from '../utils/consent';
+import { useI18n } from '../i18n/I18nProvider';
 
 const Bar = styled.div`
   position: fixed;
@@ -79,6 +80,8 @@ const Decline = styled(BaseBtn)`
 
 const CookieConsent = () => {
   const [visible, setVisible] = useState(false);
+  const { t } = useI18n();
+  const labels = t('components.cookie');
 
   useEffect(() => {
     setVisible(getConsent() === null);
@@ -90,15 +93,15 @@ const CookieConsent = () => {
   if (!visible) return null;
 
   return (
-    <Bar role='dialog' aria-live='polite' aria-label='Cookie consent'>
+    <Bar role='dialog' aria-live='polite' aria-label={labels.ariaLabel}>
       <Text>
-        We use essential cookies to run the site and, with your permission, Google Analytics
-        to understand how the site is used. See our{' '}
-        <Link to='/privacy'>Privacy Policy</Link> for details.
+        {labels.messageBefore}{' '}
+        <LocalizedLink to='/privacy'>{labels.privacyLink}</LocalizedLink>{' '}
+        {labels.messageAfter}
       </Text>
       <Actions>
-        <Decline onClick={() => setConsent({ analytics: false })}>Decline</Decline>
-        <Accept onClick={() => setConsent({ analytics: true })}>Accept analytics</Accept>
+        <Decline onClick={() => setConsent({ analytics: false })}>{labels.decline}</Decline>
+        <Accept onClick={() => setConsent({ analytics: true })}>{labels.acceptAnalytics}</Accept>
       </Actions>
     </Bar>
   );

@@ -5,6 +5,7 @@ import Checkbox from './Checkbox';
 import InputField from './InputField';
 import Button from './Button';
 import { getRecaptchaToken } from '../utils/recaptcha';
+import { useI18n } from '../i18n/I18nProvider';
 
 const StyledForm = styled.form`
   display: flex;
@@ -43,6 +44,8 @@ const ButtonSection = styled.div`
 `;
 
 const Form = ({ inputFields, checkboxes }) => {
+  const { t } = useI18n();
+  const labels = t('components.form');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -102,7 +105,7 @@ const Form = ({ inputFields, checkboxes }) => {
       });
     } catch (error) {
       console.error('Homepage form error:', error);
-      alert('Something went wrong. Please try again.');
+      alert(labels.errorAlert);
     } finally {
       setIsSubmitting(false);
     }
@@ -114,9 +117,9 @@ const Form = ({ inputFields, checkboxes }) => {
   if (submitted) {
     return (
       <div style={{ textAlign: 'center', padding: spacing.xLarge }}>
-        <h3 style={{ color: '#2e7d32' }}>✓ Thank you for your interest!</h3>
-        <p>We've received your submission and will be in touch soon.</p>
-  <Button text='Submit another form' onClick={() => { setIsSubmitting(false); setSubmitted(false); }} />
+        <h3 style={{ color: '#2e7d32' }}>{labels.thankYouTitle}</h3>
+        <p>{labels.thankYouBody}</p>
+        <Button text={labels.submitAnother} onClick={() => { setIsSubmitting(false); setSubmitted(false); }} />
       </div>
     );
   }
@@ -124,7 +127,7 @@ const Form = ({ inputFields, checkboxes }) => {
   return (
     <StyledForm onSubmit={handleSubmit}>
 
-      <Label>I'm interested in:</Label>
+      <Label>{labels.interestedIn}</Label>
 
       <CheckboxSection>
         {checkboxes.map((checkbox, index) => (
@@ -155,7 +158,7 @@ const Form = ({ inputFields, checkboxes }) => {
           ))}
         </InputSection>
         <ButtonSection>
-          <Button type='submit' text={isSubmitting ? 'Submitting...' : 'Submit'} disabled={isSubmitting} />
+          <Button type='submit' text={isSubmitting ? labels.submitting : labels.submit} disabled={isSubmitting} />
         </ButtonSection>
       </Collapsible>
     </StyledForm>

@@ -18,7 +18,7 @@ ENV REACT_APP_RECAPTCHA_SITE_KEY=$REACT_APP_RECAPTCHA_SITE_KEY
 ARG REACT_APP_GA_ID
 ENV REACT_APP_GA_ID=$REACT_APP_GA_ID
 ENV DISABLE_ESLINT_PLUGIN=true
-RUN npm run build
+RUN npm run build:docker
 
 # Production stage
 FROM node:18-alpine
@@ -34,8 +34,9 @@ RUN npm ci --only=production
 # Copy built React app from build stage
 COPY --from=build /app/build ./build
 
-# Copy server code
+# Copy server code and build-time SEO manifest
 COPY server ./server
+COPY --from=build /app/server/seo-manifest.json ./server/seo-manifest.json
 
 # Expose port
 EXPOSE 8080

@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "board-game-publishers-accepting-submissions",
+    "kind": "guide",
+    "path": "/guides/board-game-publishers-accepting-submissions",
+    "lastModified": "2026-09-07",
+    "changefreq": "weekly",
+    "priority": "0.8"
+  },
+  {
+    "slug": "pitch-to-publishers",
+    "kind": "landing",
+    "path": "/pitch-to-publishers",
+    "lastModified": "2026-09-04",
+    "changefreq": "monthly",
+    "priority": "0.8"
+  },
+  {
+    "slug": "skip-the-publisher-list",
+    "kind": "landing",
+    "path": "/skip-the-publisher-list",
+    "lastModified": "2026-09-04",
+    "changefreq": "monthly",
+    "priority": "0.8"
+  },
+  {
+    "slug": "localization-partners",
+    "kind": "landing",
+    "path": "/localization-partners",
+    "lastModified": "2026-09-04",
+    "changefreq": "monthly",
+    "priority": "0.8"
+  }
+]

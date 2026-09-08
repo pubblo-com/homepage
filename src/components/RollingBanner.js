@@ -6,6 +6,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { spacing, breakpoints, colors } from '../styles/tokens';
+import { useI18n } from '../i18n/I18nProvider';
 
 // Pixel gap inserted between each logo instance on mobile; doubled for desktop.
 const BASE_GAP_PX = parseFloat(spacing.large) || 32;
@@ -159,6 +160,8 @@ const RollingBanner = ({
   mobileOnly = false,
   headingAlignment = 'hero',
 }) => {
+  const { t } = useI18n();
+  const bannerCopy = t('components.rollingBanner');
   const images = useMemo(() => loadImages(), []);
   const hasImages = images.length > 0;
   const [sequence, setSequence] = useState([]);
@@ -271,6 +274,9 @@ const RollingBanner = ({
     positionsRef.current = positions;
 
     for (let i = 0; i < nodes.length; i += 1) {
+      if (!nodes[i]) {
+        return false;
+      }
       nodes[i].style.setProperty('--offset', `${positions[i]}px`);
     }
 
@@ -308,10 +314,18 @@ const RollingBanner = ({
           return;
         }
 
+        const nodes = itemRefs.current;
+        if (
+          !containerRef.current ||
+          nodes.length === 0 ||
+          nodes.some((node) => !node)
+        ) {
+          return;
+        }
+
         const elapsed = timestamp - last;
         last = timestamp;
 
-        const nodes = itemRefs.current;
         const positions = positionsRef.current;
         const widths = widthsRef.current;
         const speed = speedRef.current;
@@ -347,6 +361,10 @@ const RollingBanner = ({
                 }
               }
 
+              if (!nodes[i]) {
+                continue;
+              }
+
               nodes[i].style.setProperty('--offset', `${positions[i]}px`);
             }
           } else {
@@ -373,6 +391,10 @@ const RollingBanner = ({
                 if (itemCenter >= centerPoint) {
                   initialBoostRef.current = false;
                 }
+              }
+
+              if (!nodes[i]) {
+                continue;
               }
 
               nodes[i].style.setProperty('--offset', `${positions[i]}px`);
@@ -436,7 +458,7 @@ const RollingBanner = ({
       $mobileOnly={mobileOnly}
     >
       <HeadingRow $alignment={headingAlignment}>
-        <Heading>Made possible in collaboration with</Heading>
+        <Heading>{bannerCopy.heading}</Heading>
       </HeadingRow>
       <BannerTrack>
         {sequence.map((image, index) => (

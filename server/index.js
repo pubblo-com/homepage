@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const path = require('path');
+const { sendSpaWithSeo } = require('./seo');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -393,7 +394,7 @@ app.get('/launch', (req, res) => {
     return res.redirect(302, destination);
   }
   // Before launch: serve SPA so the countdown page renders
-  return res.sendFile(path.join(__dirname, '../build', 'index.html'));
+  return sendSpaWithSeo(req, res);
 });
 
 // Note: The launch countdown/redirect is handled client-side on /launch route only.
@@ -784,7 +785,7 @@ app.post('/api/homepage', async (req, res) => {
 // Serve React app (static files)
 app.use(express.static(path.join(__dirname, '../build')));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build', 'index.html'));
+  sendSpaWithSeo(req, res);
 });
 
 // Start server

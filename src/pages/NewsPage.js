@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import LocalizedLink from '../i18n/LocalizedLink';
 import { spacing } from '../styles/tokens';
+import SEOHead from '../components/SEOHead';
+import { useI18n } from '../i18n/I18nProvider';
+import { getLocalizedNewsArticle } from '../i18n/localizedContent';
 
 import newsData from '../data/news.json';
 const imageContext = require.context(
@@ -70,51 +73,57 @@ const NewsBody = styled.div`
 `;
 
 const NewsPage = () => {
-  // Sort news by date descending
-  const sortedNews = [...newsData].sort((a, b) => b.date.localeCompare(a.date));
+  const { t, locale } = useI18n();
+  const ui = t('news');
+  const sortedNews = [...newsData]
+    .map((article) => getLocalizedNewsArticle(article, t, locale))
+    .sort((a, b) => b.date.localeCompare(a.date));
 
   return (
-    <Wrap>
-      <Title>News</Title>
-      {sortedNews.map((news) => {
-        const imageSrc = news.image ? imageMap[news.image] : undefined;
-        if (news.image && !imageSrc) {
-          // eslint-disable-next-line no-console
-          console.warn('Bild saknas i imageMap:', news.image);
-        }
-        return (
-          <NewsItem key={news.slug}>
-            <NewsHeadline>
-              <Link to={`/news/${news.slug}`}>{news.title}</Link>
-            </NewsHeadline>
-            <NewsDate>{news.date}</NewsDate>
-            {imageSrc ? (
-              <NewsImage src={imageSrc} alt={news.title} />
-            ) : news.image ? (
-              <div style={{ color: 'red', margin: '16px 0' }}>
-                Bild saknas: {news.image}
-              </div>
-            ) : null}
-            <NewsBody>
-              {news.body
-                .split(/\n+/)
-                .map((line) => line.trim())
-                .filter(Boolean)
-                .map((line, i) => (
-                  <p key={i}>{line}</p>
-                ))}
-              {news.link && (
-                <p style={{ marginTop: 24 }}>
-                  <a href={news.link} target='_blank' rel='noopener noreferrer'>
-                    {news.linktext || 'Read more here!'}
-                  </a>
-                </p>
-              )}
-            </NewsBody>
-          </NewsItem>
-        );
-      })}
-    </Wrap>
+    <>
+      <SEOHead
+        title={t('seo.pages.news.title')}
+        description={t('seo.pages.news.description')}
+        path='/news'
+      />
+      <Wrap>
+        <Title>{ui.title}</Title>
+        {sortedNews.map((news) => {
+          const imageSrc = news.image ? imageMap[news.image] : undefined;
+          return (
+            <NewsItem key={news.slug}>
+              <NewsHeadline>
+                <LocalizedLink to={`/news/${news.slug}`}>{news.title}</LocalizedLink>
+              </NewsHeadline>
+              <NewsDate>{news.date}</NewsDate>
+              {imageSrc ? (
+                <NewsImage src={imageSrc} alt={news.title} />
+              ) : news.image ? (
+                <div style={{ color: 'red', margin: '16px 0' }}>
+                  {ui.missingImage} {news.image}
+                </div>
+              ) : null}
+              <NewsBody>
+                {news.body
+                  .split(/\n+/)
+                  .map((line) => line.trim())
+                  .filter(Boolean)
+                  .map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                {news.link && (
+                  <p style={{ marginTop: 24 }}>
+                    <a href={news.link} target='_blank' rel='noopener noreferrer'>
+                      {news.linktext || ui.readMoreDefault}
+                    </a>
+                  </p>
+                )}
+              </NewsBody>
+            </NewsItem>
+          );
+        })}
+      </Wrap>
+    </>
   );
 };
 

@@ -3,14 +3,24 @@ import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
+import SEOHead from '../components/SEOHead';
 import { getRecaptchaToken } from '../utils/recaptcha';
+import { useI18n } from '../i18n/I18nProvider';
 import magnusImg from '../assets/contacts/magnus.jpg';
 import marcusImg from '../assets/contacts/marcus.jpg';
 import stefanImg from '../assets/contacts/stefan.jpg';
 import mariaImg from '../assets/contacts/maria.jpg';
-
 import olleImg from '../assets/contacts/olle.jpg';
 import niklasImg from '../assets/contacts/niklas.jpg';
+
+const TEAM_IMAGES = {
+  'magnus@pubblo.com': magnusImg,
+  'marcus@pubblo.com': marcusImg,
+  'stefan@pubblo.com': stefanImg,
+  'maria@pubblo.com': mariaImg,
+  'niklas@pubblo.com': niklasImg,
+  'olle@pubblo.com': olleImg,
+};
 
 const Wrap = styled.main`
   padding: 64px 0 ${spacing.xXLarge};
@@ -41,7 +51,7 @@ const TeamIntro = styled.p`
 const TeamGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: ${spacing.xLarge};
+  gap: ${spacing.xXLarge};
 
   @media (max-width: ${breakpoints.tablet}) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -130,17 +140,17 @@ const SuccessBox = styled.div`
   background: #e8f5e9;
   border: 2px solid #4caf50;
   border-radius: 14px;
-  padding: ${spacing.xLarge};
+  padding: ${spacing.xXLarge};
   text-align: center;
   margin: ${spacing.xXLarge} auto;
   max-width: 500px;
-  
+
   h3 {
     color: #2e7d32;
     margin-top: 0;
     margin-bottom: ${spacing.medium};
   }
-  
+
   p {
     color: #1b5e20;
     line-height: 1.6;
@@ -150,58 +160,13 @@ const SuccessBox = styled.div`
 const ContactPage = () => {
   const [searchParams] = useSearchParams();
   const isDemo = searchParams.get('demo') === 'true';
+  const { t } = useI18n();
+  const copy = t('contact');
+  const teamMembers = copy.team.members.map((member) => ({
+    ...member,
+    image: TEAM_IMAGES[member.email],
+  }));
 
-  const teamMembers = [
-    {
-      name: 'Magnus Hölcke',
-      role: 'CEO',
-      email: 'magnus@pubblo.com',
-      image: magnusImg,
-      accent: null,
-      shape: null
-    },
-    {
-      name: 'Marcus Carleson',
-      role: 'Public & publisher relations',
-      email: 'marcus@pubblo.com',
-      image: marcusImg,
-      accent: null,
-      shape: null
-    },
-    {
-      name: 'Stefan Olstorpe',
-      role: 'Product owner',
-      email: 'stefan@pubblo.com',
-      image: stefanImg,
-      accent: null,
-      shape: null
-    },
-    {
-      name: 'Maria Laakso',
-      role: 'Sales and marketing',
-      email: 'maria@pubblo.com',
-      image: mariaImg,
-      accent: null,
-      shape: null
-    },
-    {
-      name: 'Niklas Grundström',
-      role: 'CTO',
-      email: 'niklas@pubblo.com',
-      image: niklasImg,
-      accent: null,
-      shape: null
-    },
-    {
-      name: 'Olle Engqvist',
-      role: 'Infrastructure',
-      email: 'olle@pubblo.com',
-      image: olleImg,
-      accent: null,
-      shape: null
-    }
-  ];
-  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
@@ -211,54 +176,42 @@ const ContactPage = () => {
 
   useEffect(() => {
     if (isDemo) {
-      setMessage("I'm interested in a demo. Please contact me to schedule a meeting.");
+      setMessage(copy.form.demoPrefill);
       setTimeout(() => {
         const el = document.getElementById('contact-form');
         if (el) {
           const y = el.getBoundingClientRect().top + window.pageYOffset - 100;
-          const start = window.pageYOffset;
-          const distance = y - start;
-          const duration = 1200;
-          let startTime = null;
-          const ease = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-          const step = (timestamp) => {
-            if (!startTime) startTime = timestamp;
-            const progress = Math.min((timestamp - startTime) / duration, 1);
-            window.scrollTo(0, start + distance * ease(progress));
-            if (progress < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
+          window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }, 100);
     }
-  }, [isDemo]);
+  }, [isDemo, copy.form.demoPrefill]);
 
   const submit = async (e) => {
     e.preventDefault();
     if (isSubmitting) return;
 
     setIsSubmitting(true);
-    
+
     try {
       const recaptchaToken = await getRecaptchaToken('contact_submit');
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, company, message, recaptchaToken })
+        body: JSON.stringify({ name, email, company, message, recaptchaToken }),
       });
-      
+
       if (!response.ok) throw new Error('Failed to send message');
       await response.json().catch(() => null);
-      
+
       setSubmitted(true);
-      // Reset form
       setName('');
       setEmail('');
       setCompany('');
       setMessage('');
     } catch (error) {
       console.error('Contact form error:', error);
-      alert('Something went wrong. Please try again.');
+      alert(copy.form.errorAlert);
     } finally {
       setIsSubmitting(false);
     }
@@ -268,10 +221,10 @@ const ContactPage = () => {
     return (
       <Wrap>
         <SuccessBox>
-          <h3>✓ Message sent successfully!</h3>
-          <p>Thank you for reaching out. We'll get back to you as soon as possible.</p>
+          <h3>{copy.success.title}</h3>
+          <p>{copy.success.body}</p>
           <div style={{ marginTop: spacing.large }}>
-            <Button text='Send another message' onClick={() => setSubmitted(false)} />
+            <Button text={copy.success.sendAnother} onClick={() => setSubmitted(false)} />
           </div>
         </SuccessBox>
       </Wrap>
@@ -279,59 +232,65 @@ const ContactPage = () => {
   }
 
   return (
-    <Wrap>
-      <Title>Contact us</Title>
+    <>
+      <SEOHead
+        title={t('seo.pages.contact.title')}
+        description={t('seo.pages.contact.description')}
+        path='/contact'
+      />
+      <Wrap>
+        <Title>{copy.title}</Title>
 
-      <TeamSection>
-        <h2>Meet the team</h2>
-        <TeamIntro>
-          We are a small, dedicated crew that loves board games and great collaborations. Reach out directly to the
-          right person, or use the form below and we will get back to you quickly.
-        </TeamIntro>
-        <TeamGrid>
-          {teamMembers.map((member) => (
-            <TeamCard key={member.email}>
-              <PortraitWrap>
-                <Portrait src={member.image} alt={member.name} loading='lazy' />
-              </PortraitWrap>
-              <PersonName>{member.name}</PersonName>
-              <PersonRole>{member.role}</PersonRole>
-              <PersonEmail href={`mailto:${member.email}`}>{member.email}</PersonEmail>
-            </TeamCard>
-          ))}
-        </TeamGrid>
-      </TeamSection>
+        <TeamSection>
+          <h2>{copy.team.title}</h2>
+          <TeamIntro>{copy.team.intro}</TeamIntro>
+          <TeamGrid>
+            {teamMembers.map((member) => (
+              <TeamCard key={member.email}>
+                <PortraitWrap>
+                  <Portrait src={member.image} alt={member.name} loading='lazy' />
+                </PortraitWrap>
+                <PersonName>{member.name}</PersonName>
+                <PersonRole>{member.role}</PersonRole>
+                <PersonEmail href={`mailto:${member.email}`}>{member.email}</PersonEmail>
+              </TeamCard>
+            ))}
+          </TeamGrid>
+        </TeamSection>
 
-      <Card id='contact-form'>
-        <h3>Drop us a note, we'd love to hear from you</h3>
-        <form onSubmit={submit}>
-          <Row>
-            <div>
-              <Label htmlFor='name'>Name</Label>
-              <Input id='name' value={name} onChange={(e) => setName(e.target.value)} required />
+        <Card id='contact-form'>
+          <h3>{copy.form.title}</h3>
+          <form onSubmit={submit}>
+            <Row>
+              <div>
+                <Label htmlFor='name'>{copy.form.name}</Label>
+                <Input id='name' value={name} onChange={(e) => setName(e.target.value)} required />
+              </div>
+              <div>
+                <Label htmlFor='email'>{copy.form.email}</Label>
+                <Input id='email' type='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+              </div>
+            </Row>
+            <div style={{ marginTop: spacing.medium }}>
+              <Label htmlFor='company'>{isDemo ? copy.form.companyRequired : copy.form.company}</Label>
+              <Input id='company' value={company} onChange={(e) => setCompany(e.target.value)} required={isDemo} />
             </div>
-            <div>
-              <Label htmlFor='email'>Email</Label>
-              <Input id='email' type='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <div style={{ marginTop: spacing.medium }}>
+              <Label htmlFor='message'>{copy.form.message}</Label>
+              <TextArea id='message' value={message} onChange={(e) => setMessage(e.target.value)} required />
             </div>
-          </Row>
-          <div style={{ marginTop: spacing.medium }}>
-            <Label htmlFor='company'>Company{isDemo && ' *'}</Label>
-            <Input id='company' value={company} onChange={(e) => setCompany(e.target.value)} required={isDemo} />
-          </div>
-          <div style={{ marginTop: spacing.medium }}>
-            <Label htmlFor='message'>Message</Label>
-            <TextArea id='message' value={message} onChange={(e) => setMessage(e.target.value)} required />
-          </div>
-          <div style={{ marginTop: spacing.medium }}>
-            <Button type='submit' text={isSubmitting ? 'Sending...' : 'Send'} disabled={isSubmitting} />
-          </div>
-        </form>
-      </Card>
-    </Wrap>
+            <div style={{ marginTop: spacing.medium }}>
+              <Button
+                type='submit'
+                text={isSubmitting ? copy.form.sending : copy.form.send}
+                disabled={isSubmitting}
+              />
+            </div>
+          </form>
+        </Card>
+      </Wrap>
+    </>
   );
 };
 
 export default ContactPage;
-
-

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../styles/tokens';
 import { spacing, breakpoints } from '../styles/tokens';
@@ -9,10 +10,16 @@ import Hero from '../components/Hero';
 import FormComponent from '../components/FormComponent.js';
 import EarlyBirdDeals from '../components/EarlyBirdDeals.js';
 import SEOHead from '../components/SEOHead';
+import {
+  ORGANIZATION_LOGO,
+  SITE_URL,
+} from '../constants/seo';
 import Button from '../components/Button';
 import RollingBanner from '../components/RollingBanner';
-import { isSpielPitchActive } from '../utils/spielPitch';
 import WhoAreYouFlow from '../components/WhoAreYouFlow';
+import LocalizedLink from '../i18n/LocalizedLink';
+import { useI18n } from '../i18n/I18nProvider';
+import { stripLocalePrefix } from '../i18n/paths';
 
 // const Wrap = styled.main`
 //   padding: 64px 0 ${spacing.xXLarge};
@@ -159,12 +166,6 @@ const FoldoutInner = styled.div`
   }
 `;
 
-const SpielTeaser = styled.div`
-  background: ${colors.beige};
-  border-radius: 20px;
-  padding: ${spacing.xLarge};
-`;
-
 const Reveal = styled.div`
   opacity: 0;
   transform: translateY(24px);
@@ -178,40 +179,58 @@ const Reveal = styled.div`
   }
 `;
 
-const inputFields = [
-  { label: 'Name', type: 'text', name: 'name', id: 'name' },
-  { label: 'Email', type: 'email', name: 'email', id: 'email' },
-  { label: 'Company', type: 'text', name: 'company', id: 'company' },
+const inputFields = (t) => [
+  { label: t('home.form.name'), type: 'text', name: 'name', id: 'name' },
+  { label: t('home.form.email'), type: 'email', name: 'email', id: 'email' },
+  { label: t('home.form.company'), type: 'text', name: 'company', id: 'company' },
 ];
 
-const checkboxes = [
+const checkboxes = (t) => [
   {
     checkboxId: 'portal',
     checkboxName: 'areas',
     checkboxValue: 'portal',
-    checkboxLabel: "I'm drowning in pitches and want to know more about the Portal",
+    checkboxLabel: t('home.form.checkboxes.portal'),
   },
   {
     checkboxId: 'localization',
     checkboxName: 'areas',
     checkboxValue: 'localization',
-    checkboxLabel: 'How can you help me with localization?',
+    checkboxLabel: t('home.form.checkboxes.localization'),
   },
   {
     checkboxId: 'marketplace',
     checkboxName: 'areas',
     checkboxValue: 'marketplace',
-    checkboxLabel: "Knocking publisher doors got the best of me, tell me more about your marketplace!",
+    checkboxLabel: t('home.form.checkboxes.marketplace'),
+  },
+  {
+    checkboxId: 'publisher-lists',
+    checkboxName: 'areas',
+    checkboxValue: 'publisher-lists',
+    checkboxLabel: t('home.form.checkboxes.publisherLists'),
   },
   {
     checkboxId: 'chat',
     checkboxName: 'areas',
     checkboxValue: 'chat',
-    checkboxLabel: 'Nothing of the above, I just wanna chat :)',
+    checkboxLabel: t('home.form.checkboxes.chat'),
   },
 ];
 
 const HomePage = ({ lockedAudience }) => {
+  const { pathname } = useLocation();
+  const { t } = useI18n();
+  const ext = t('homeExtended');
+  const marcus = ext.marcus;
+  const isPreview = stripLocalePrefix(pathname) === '/preview';
+  const audienceSeo = lockedAudience
+    ? {
+        title: t(`seo.audience.${lockedAudience}.title`),
+        description: t(`seo.audience.${lockedAudience}.description`),
+        path: lockedAudience === 'publishers' ? '/publisher' : '/creator',
+      }
+    : null;
   const formSectionRef = useRef(null);
   const storySectionRef = useRef(null);
   const handleScrollToStory = () => {
@@ -228,7 +247,6 @@ const HomePage = ({ lockedAudience }) => {
   const [letterVisible, setLetterVisible] = useState(false);
   const letterTimerRef = useRef(null);
   const [visibleIds, setVisibleIds] = useState({ form: true });
-  const spielPitchActive = isSpielPitchActive();
 
   React.useEffect(() => {
     const elements = document.querySelectorAll('[data-reveal-id]');
@@ -287,9 +305,9 @@ const HomePage = ({ lockedAudience }) => {
     '@type': 'Organization',
     name: 'Pubblo',
     description:
-      'The deal engine connecting board game designers, publishers, and distributors worldwide',
-    url: 'https://pubblo.com',
-    logo: 'https://pubblo.com/logo-pubblo.png',
+      'The board game marketplace and submission platform connecting designers, publishers, and distributors worldwide',
+    url: SITE_URL,
+    logo: ORGANIZATION_LOGO,
     sameAs: [
       'https://twitter.com/pubblo',
       'https://linkedin.com/company/pubblo',
@@ -310,30 +328,32 @@ const HomePage = ({ lockedAudience }) => {
   return (
     <>
       <SEOHead
-        title='The Deal Engine for Board Game Licensing'
-        description='Connect designers, publishers, and distributors worldwide. Streamline licensing deals with standardized pitches, automated scoring, and team collaboration. Get 6 months free.'
-        keywords='board game licensing, game publishing platform, deal engine, game designers, publishers, distributors, pitch platform'
-        canonical='https://pubblo.com'
+        title={audienceSeo?.title || t('seo.home.title')}
+        description={audienceSeo?.description || t('seo.home.description')}
+        path={audienceSeo?.path || '/'}
+        exactTitle={!audienceSeo}
+        noindex={isPreview}
         structuredData={homeStructuredData}
       />
       <div>
         <Hero
           onScrollToSection={handleScrollToStory}
           lockedAudience={lockedAudience}
+          superTitle={t('home.hero.superTitle')}
+          publisherPillLabel={t('home.hero.forPublishers')}
+          designerPillLabel={t('home.hero.forDesigners')}
           audiences={{
             publishers: {
-              headline: "Don't let old systems hold you back",
-              subhead:
-                'Pubblo brings all your incoming pitches into one streamlined workflow so you can quickly review, compare and identify the games worth your time. Discover new designers, uncover fresh ideas and expand into new markets.',
-              support: 'Less noise. Better decisions. Faster deals.',
-              ctaText: 'Learn more',
+              headline: t('home.hero.publishers.headline'),
+              subhead: t('home.hero.publishers.subhead'),
+              support: t('home.hero.publishers.support'),
+              ctaText: t('home.hero.publishers.ctaText'),
             },
             designers: {
-              headline: 'One pitch - endless opportunities',
-              subhead:
-                'Create a pitch that actually works. With Pubblo, you can showcase your game to publishers worldwide without sending countless emails or knocking on closed doors. Show up where publishers are already looking, get noticed and turn your ideas into real partnerships.',
-              support: 'Less hustle. More traction',
-              ctaText: 'Learn more',
+              headline: t('home.hero.designers.headline'),
+              subhead: t('home.hero.designers.subhead'),
+              support: t('home.hero.designers.support'),
+              ctaText: t('home.hero.designers.ctaText'),
             },
           }}
         />
@@ -342,33 +362,23 @@ const HomePage = ({ lockedAudience }) => {
           className={visibleIds['what'] ? 'is-visible' : ''}
         >
           <StorySection ref={storySectionRef}>
-            <h2 style={{ marginTop: 0 }}>So, what is Pubblo?</h2>
-            <StoryLead>
-              Pubblo is a matchmaking platform for the board game industry.
-            </StoryLead>
-            <StoryBody>
-              A place where publishers discover exciting new games, designers
-              find the right partners and distributors connect with titles worth
-              bringing to more tables.
-            </StoryBody>
-            <StoryBody>
-              From first pitch to final release, Pubblo helps the right people
-              find each other.
-            </StoryBody>
+            <h2 style={{ marginTop: 0 }}>{t('home.story.title')}</h2>
+            <StoryLead>{t('home.story.lead')}</StoryLead>
+            <StoryBody>{t('home.story.body1')}</StoryBody>
+            <StoryBody>{t('home.story.body2')}</StoryBody>
             <StoryPrompt>
-              We'd love to tell you more, but first-{' '}
-              <strong>who are you?</strong>
+              {t('home.story.promptBefore')}{' '}
+              <strong>{t('home.story.promptStrong')}</strong>
             </StoryPrompt>
 
             <WhoAreYouFlow />
 
             <StoryTail>
-              <h3>Not a designer nor a publisher?</h3>
+              <h3>{t('home.story.notEitherTitle')}</h3>
               <StoryBody>
-                We are truly interested in connecting with anyone navigating
-                this wonderful industry of board games. Whether there is a
-                business opportunity or not we would love to get to know you and
-                hear your story. Please <a href='/contact'>contact us</a>!
+                {t('home.story.notEitherBody')}
+                <LocalizedLink to='/contact'>{t('home.story.contactLink')}</LocalizedLink>
+                {t('home.story.notEitherSuffix')}
               </StoryBody>
             </StoryTail>
           </StorySection>
@@ -383,16 +393,14 @@ const HomePage = ({ lockedAudience }) => {
           className={visibleIds['marcus'] ? 'is-visible' : ''}
         >
           <SectionWrap style={{ paddingBottom: 0 }}>
-            <h2 style={{ marginTop: 0 }}>Why we created Pubblo</h2>
+            <h2 style={{ marginTop: 0 }}>{ext.whyWeCreated}</h2>
           </SectionWrap>
           <MarcusCard>
-            <MarcusAvatar src='/1706627130390.jfif' alt='Marcus Carleson' />
+            <MarcusAvatar src='/1706627130390.jfif' alt={marcus.avatarAlt} />
             <div>
               <MarcusIntro $hidden={introHidden} aria-hidden={introHidden}>
                 <p style={{ fontSize: '18px', lineHeight: '1.6', margin: 0 }}>
-                  Hi, I'm Marcus, the creator of HITSTER - Europe's best selling
-                  game 2024. I'm thrilled to introduce you to my new project:
-                  PUBBLO
+                  {marcus.intro1}
                 </p>
                 <p
                   style={{
@@ -401,28 +409,24 @@ const HomePage = ({ lockedAudience }) => {
                     marginTop: spacing.medium,
                   }}
                 >
-                  Pubblo is a digital platform designed to match and connect{' '}
-                  <strong>publishers, distributors, and creators</strong> for
-                  licensing and distribution opportunities in the board game
-                  industry
+                  {marcus.intro2.split(marcus.intro2Highlight)[0]}
+                  <strong>{marcus.intro2Highlight}</strong>
+                  {marcus.intro2.split(marcus.intro2Highlight)[1]}
                 </p>
                 <div style={{ marginTop: spacing.medium, fontWeight: 600 }}>
-                  Marcus Carleson - Founder of Pubblo, creator of
-                  HITSTER
+                  {marcus.signature}
                 </div>
               </MarcusIntro>
               <div style={{ marginTop: spacing.medium }}>
                 <Button
-                  text={
-                    isExpanded ? 'Hide full letter ▴' : 'Read the full letter ▾'
-                  }
+                  text={isExpanded ? marcus.collapse : marcus.expand}
                   onClick={() => setIsExpanded((prev) => !prev)}
                   aria-expanded={isExpanded}
                 />
               </div>
               <Foldout $expanded={letterVisible} aria-hidden={!letterVisible}>
                 <FoldoutInner>
-                  <h3 style={{ marginTop: 0 }}>Letter from Marcus</h3>
+                  <h3 style={{ marginTop: 0 }}>{marcus.letterTitle}</h3>
                   <p
                     style={{
                       fontSize: '16px',
@@ -431,56 +435,22 @@ const HomePage = ({ lockedAudience }) => {
                       marginBottom: spacing.large,
                     }}
                   >
-                    For a long time, people came to me to get connected in the
-                    business... I thought about how I could help - and Pubblo
-                    was the answer.
+                    {marcus.quote}
                   </p>
-                  <h4>The gap we saw</h4>
-                  <p>
-                    Every year, thousands of brilliant board games are imagined,
-                    prototyped, and play-tested. Some find their audience
-                    quickly; many do not. The line between a successful launch
-                    and a forgotten campaign is razor-thin. A Kickstarter that
-                    barely funds - or even misses - can still hide a game with
-                    enormous potential.
-                  </p>
-                  <p>
-                    I've seen this up close. Take HITSTER. The original
-                    crowdfunding campaign was a close call; it almost didn't
-                    make it. Today HITSTER is the best-selling game in Europe.
-                    The difference was not a sudden change in the game's quality
-                    - it was access: getting the concept in front of the right
-                    people at the right time, with a pitch that made evaluation
-                    easy.
-                  </p>
-                  <h4>The problem</h4>
-                  <p>
-                    Designers compete for limited attention. You do not just
-                    need a pretty page; you need a structured, comparable pitch
-                    that answers the questions a decision-maker asks in the
-                    first thirty seconds. Who is it for? How does it play? What
-                    is unique? How does it fit a catalogue?
-                  </p>
-                  <p>
-                    On the other side of the table, publishers are actively
-                    searching for exciting projects - but they are overwhelmed
-                    by noise. Submissions are often wonderful games that simply
-                    do not match current portfolio strategy, audience or price
-                    point.
-                  </p>
-                  <h4>Our approach</h4>
-                  <p>
-                    Pubblo creates a shared language for discovery. We
-                    standardize the pitch so ideas can be compared fairly, and
-                    connect the dots with scoring and a lightweight licensing
-                    pipeline.
-                  </p>
+                  {marcus.sections.map((section) => (
+                    <React.Fragment key={section.heading}>
+                      <h4>{section.heading}</h4>
+                      {section.paragraphs.map((paragraph) => (
+                        <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                      ))}
+                    </React.Fragment>
+                  ))}
                   <p style={{ marginTop: spacing.medium }}>
-                    Thank you for being part of this journey.
+                    {marcus.closing}
                     <br />
-                    <strong>Marcus Carleson</strong>
+                    <strong>{marcus.signatureName}</strong>
                     <br />
-                    Founder of Pubblo, creator of HITSTER
+                    {marcus.signatureTitle}
                   </p>
                 </FoldoutInner>
               </Foldout>
@@ -488,42 +458,6 @@ const HomePage = ({ lockedAudience }) => {
           </MarcusCard>
         </Reveal>
 
-        {spielPitchActive && (
-          <SectionWrap>
-            <Reveal
-              data-reveal-id='spiel'
-              className={visibleIds['spiel'] ? 'is-visible' : ''}
-            >
-              <SpielTeaser>
-                <h2 style={{ marginTop: 0 }}>Pitch Competition</h2>
-                <p>
-                  Starting on the 24th of October, the second day of SPIEL in
-                  Essen, we're running a pitch competition. The competition is
-                  open until the 30th of November but register already now -
-                  early birds will get an advantage.
-                </p>
-                <p>
-                  If you've got a game, register and make a great pitch using
-                  Pubblo's pitch creation tool. You can win a pitch meeting with
-                  a matching publisher!
-                </p>
-                <p>
-                  If you're looking for games, tell us what you're interested in
-                  and you'll be invited to review matching pitches. Register now
-                  - you can be first to see the winning pitches.
-                </p>
-                <p>
-                  <strong>Join for free - no strings attached!</strong>
-                </p>
-                <div style={{ marginTop: spacing.medium }}>
-                  <a href='/spielpitch' style={{ textDecoration: 'none' }}>
-                    <Button text='Learn more & register' $variant='contrast' />
-                  </a>
-                </div>
-              </SpielTeaser>
-            </Reveal>
-          </SectionWrap>
-        )}
         <SectionWrap style={{ display: 'none' }}>
           <Reveal
             data-reveal-id='deals'
@@ -542,8 +476,8 @@ const HomePage = ({ lockedAudience }) => {
             <FormComponent
               headline=''
               text=''
-              inputFields={inputFields}
-              checkboxes={checkboxes}
+              inputFields={inputFields(t)}
+              checkboxes={checkboxes(t)}
               ref={formSectionRef}
             />
           </Reveal>

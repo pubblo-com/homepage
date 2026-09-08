@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors, spacing, breakpoints } from '../styles/tokens';
+import { useI18n } from '../i18n/I18nProvider';
 
 const Section = styled.section`
   padding: ${spacing.xLarge} 0;
@@ -69,30 +70,37 @@ const Description = styled.p`
 `;
 
 const EarlyBirdDeals = () => {
+  const { t } = useI18n();
+  const copy = t('components.earlyBird');
+
   return (
     <Section>
-      <Headline>Our early bird deals!</Headline>
+      <Headline>{copy.headline}</Headline>
       <CardsContainer>
         <Card>
-                  <BigNumber color={colors.lightblue}>3</BigNumber>
+          <BigNumber color={colors.lightblue}>3</BigNumber>
           <MonthsText color={colors.lightblue}>
-            MONTHS FOR<br />FREE
+            {copy.monthsForFree}
+            <br />
+            {copy.free}
           </MonthsText>
           <Description>
-            Sign a non-binding Letter of Intent (LOI) and enjoy <strong>3 months of free access!</strong>
-            <br />
-            Just fill in your details below, and we'll get in touch with you as soon as possible.
+            {copy.card1DescriptionBefore}
+            <strong>{copy.card1DescriptionStrong}</strong>
+            {copy.card1DescriptionAfter}
           </Description>
         </Card>
         <Card>
-                  <BigNumber color={colors.pink}>6</BigNumber>
-                  <MonthsText color={colors.pink}>
-            MONTHS FOR<br />FREE
+          <BigNumber color={colors.pink}>6</BigNumber>
+          <MonthsText color={colors.pink}>
+            {copy.monthsForFree}
+            <br />
+            {copy.free}
           </MonthsText>
           <Description>
-            Join our test group for <strong>6 months of free access</strong> and get the unique chance to influence how our product evolves. This offer is non-binding so you got absolutely nothing to lose.
-            <br />
-            Use the form to reach out to us- we'd love to hear your thoughts!
+            {copy.card2DescriptionBefore}
+            <strong>{copy.card2DescriptionStrong}</strong>
+            {copy.card2DescriptionAfter}
           </Description>
         </Card>
       </CardsContainer>

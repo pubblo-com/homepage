@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors, spacing, breakpoints } from '../styles/tokens';
 import Button from '../components/Button';
+import SEOHead from '../components/SEOHead';
+import { useI18n } from '../i18n/I18nProvider';
+import { localizePath } from '../i18n/paths';
 
 const Wrap = styled.main`
   padding: 64px 0 ${spacing.xXLarge};
@@ -23,7 +26,6 @@ const Lead = styled.p`
   line-height: 1.7;
 `;
 
-// Outer wrapper hosts the stationary gradient overlay
 const TableOuter = styled.div`
   margin-top: ${spacing.xLarge};
   position: relative;
@@ -31,7 +33,7 @@ const TableOuter = styled.div`
     &::after {
       content: '';
       position: absolute;
-      inset: 0 0 0 auto; /* ensure full height, right side */
+      inset: 0 0 0 auto;
       width: 24px;
       background: linear-gradient(to left, rgba(255,255,255,0.95), rgba(255,255,255,0));
       pointer-events: none;
@@ -39,7 +41,6 @@ const TableOuter = styled.div`
   }
 `;
 
-// Scrollable inner container so the gradient does not move with content
 const TableScroll = styled.div`
   @media (max-width: ${breakpoints.tablet}), (orientation: landscape) and (max-height: 480px) {
     overflow-x: auto;
@@ -76,7 +77,6 @@ const Table = styled.div`
   overflow: hidden;
 
   @media (max-width: ${breakpoints.tablet}), (orientation: landscape) and (max-height: 480px) {
-    /* Make columns only as wide as their content and allow horizontal overflow */
     grid-template-columns: minmax(180px, max-content) repeat(5, max-content);
     width: max-content;
   }
@@ -90,19 +90,14 @@ const Cell = styled.div`
   font-weight: ${(p) => (p.$head ? 700 : 400)};
   font-size: ${(p) => (p.$head ? '14px' : '13px')};
   text-align: ${(p) => (p.$center ? 'center' : 'left')};
-  /* first row */
   &:nth-child(-n+6) { border-top: 0; }
 
   @media (max-width: ${breakpoints.tablet}), (orientation: landscape) and (max-height: 480px) {
     padding: ${spacing.small} 12px;
     line-height: 1.4;
-    min-width: 0; /* allow shrinking to content */
-    white-space: nowrap; /* default: keep compact */
-    
-    /* Allow first column to wrap for readability */
-    &:nth-child(6n+1) {
-      white-space: normal;
-    }
+    min-width: 0;
+    white-space: nowrap;
+    &:nth-child(6n+1) { white-space: normal; }
   }
 `;
 
@@ -125,95 +120,79 @@ const Pink = styled.span`
   font-weight: 700;
 `;
 
+function highlightText(text, highlight) {
+  if (!highlight || !text.includes(highlight)) return text;
+  const [before, after] = text.split(highlight);
+  return (
+    <>
+      {before}
+      <Pink>{highlight}</Pink>
+      {after}
+    </>
+  );
+}
+
 const ComparePage = () => {
   const navigate = useNavigate();
+  const { t, locale } = useI18n();
+  const c = t('compare');
+
   const handleGoToLogin = () => {
-    navigate('/launch#/create-account/1-email-password');
+    navigate(localizePath('/launch#/create-account/1-email-password', locale));
   };
 
   return (
-    <Wrap>
-      <Title>Pubblo vs. pitch directories, matchmaking, trade fairs and generic CRMs</Title>
-      <Lead>
-        Pubblo is a <Pink>Deal engine</Pink> for board‑game licensing. Where pitch directories stop at listing,
-        Pubblo adds a CRM‑grade workflow: preferences, auto‑scoring, team review and status – for publishers –
-        and decision‑ready portfolio pages for creators.
-      </Lead>
+    <>
+      <SEOHead
+        title={t('seo.pages.compare.title')}
+        description={t('seo.pages.compare.description')}
+        path='/compare'
+      />
+      <Wrap>
+        <Title>{c.title}</Title>
+        <Lead>
+          {c.leadBefore} <Pink>{c.leadHighlight}</Pink> {c.leadAfter}
+        </Lead>
 
-      <ScrollHint>← Swipe to compare →</ScrollHint>
-      <TableOuter>
-        <TableScroll>
-          <Table>
-        <Cell $head>Capability</Cell>
-        <Cell $head>Pitch directory</Cell>
-        <Cell $head>Generic CRM</Cell>
-        <Cell $head>Pitch matchmaking</Cell>
-        <Cell $head>Trade fairs</Cell>
-        <Cell $head $center>Pubblo <Badge>Deal engine</Badge></Cell>
+        <ScrollHint>{c.scrollHint}</ScrollHint>
+        <TableOuter>
+          <TableScroll>
+            <Table>
+              {c.columns.map((col, i) => (
+                <Cell key={col} $head $center={i === c.columns.length - 1}>
+                  {col}
+                  {i === c.columns.length - 1 && <Badge>{c.badge}</Badge>}
+                </Cell>
+              ))}
 
-        <Cell>Submission intake</Cell>
-        <Cell>Manual forms / e‑mail</Cell>
-        <Cell>Requires custom mapping</Cell>
-        <Cell>Sign‑up + meeting facilitation</Cell>
-        <Cell>Meetings scheduled on site</Cell>
-        <Cell>Standardized pitch format with <Pink>creator templates</Pink></Cell>
+              {c.rows.map((row) => (
+                <React.Fragment key={row.capability}>
+                  <Cell>{row.capability}</Cell>
+                  <Cell>{row.pitchDirectory}</Cell>
+                  <Cell>{row.genericCrm}</Cell>
+                  <Cell>{row.pitchMatchmaking}</Cell>
+                  <Cell>{row.tradeFairs}</Cell>
+                  <Cell>{highlightText(row.pubblo, row.pubbloHighlight)}</Cell>
+                </React.Fragment>
+              ))}
+            </Table>
+          </TableScroll>
+        </TableOuter>
 
-        <Cell>Buyer preferences & matching</Cell>
-        <Cell>Basic filters</Cell>
-        <Cell>Not native</Cell>
-        <Cell>Manual matching by facilitators</Cell>
-        <Cell>—</Cell>
-        <Cell>Preferences + <Pink>auto‑score</Pink> to reduce noise</Cell>
+        <div style={{ marginTop: spacing.xXLarge, display: 'flex', gap: '16px' }}>
+          <Button text={c.cta} onClick={handleGoToLogin} />
+        </div>
 
-        <Cell>Team review & comments</Cell>
-        <Cell>Not native</Cell>
-        <Cell>Generic notes</Cell>
-        <Cell>Not provided</Cell>
-        <Cell>Not provided</Cell>
-        <Cell><Pink>Assign</Pink>, comment and track status</Cell>
-
-        <Cell>Status pipeline</Cell>
-        <Cell>Not available</Cell>
-        <Cell>Custom setup</Cell>
-        <Cell>Not provided</Cell>
-        <Cell>Not provided</Cell>
-        <Cell>Built‑in pipeline for <Pink>go / no‑go</Pink></Cell>
-
-        <Cell>Portfolio → decision‑ready pitch</Cell>
-        <Cell>Not available</Cell>
-        <Cell>Manual document work</Cell>
-        <Cell>Not standardized</Cell>
-        <Cell>Decks/rulebooks handed over in person</Cell>
-        <Cell>Generate <Pink>Pubblo‑ready</Pink> pitch from portfolio in one click</Cell>
-
-        <Cell>Outreach / agency option</Cell>
-        <Cell>—</Cell>
-        <Cell>—</Cell>
-        <Cell>Facilitation of meetings only</Cell>
-        <Cell>—</Cell>
-        <Cell>Optional Pubblo <Pink>Agency</Pink> for targeted partner outreach</Cell>
-          </Table>
-        </TableScroll>
-      </TableOuter>
-
-      <div style={{ marginTop: spacing.xXLarge, display: 'flex', gap: '16px' }}>
-        <Button text='Try our Portal for free' onClick={handleGoToLogin} />
-      </div>
-
-      <div style={{ marginTop: spacing.xLarge }}>
-        <h2>Why digital is safer for your ideas</h2>
-        <p>
-          A common concern is idea theft. With Pubblo, every view is <Pink>tracked</Pink> – you can see which
-          publishers accessed your materials (e.g. rulebook) and when. At trade fairs, hand‑overs and meetings are
-          hard to audit after the fact; in Pubblo, access is controlled and logged, giving creators more
-          transparency and a stronger paper trail.
-        </p>
-      </div>
-    </Wrap>
+        <div style={{ marginTop: spacing.xLarge }}>
+          <h2>{c.safety.title}</h2>
+          <p>
+            {c.safety.bodyBefore} <Pink>{c.safety.bodyHighlight}</Pink>{' '}
+            {c.safety.bodyAfter}
+          </p>
+        </div>
+      </Wrap>
+    </>
   );
 };
 
 export default ComparePage;
-
-
-

@@ -1,5 +1,9 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow: /preview
+Disallow: /launch
+Disallow: /spielpitch
+Disallow: /de/spielpitch
+Disallow: /fr/spielpitch
+Disallow: /es/spielpitch
 
 Sitemap: https://pubblo.com/sitemap.xml

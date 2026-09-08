@@ -1,7 +1,12 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors, spacing, breakpoints } from '../styles/tokens';
 import SEOHead from '../components/SEOHead';
+import { LEGACY_PRODUCT_HASHES, PRODUCT_LIST } from '../data/products';
+import LocalizedLink from '../i18n/LocalizedLink';
+import { useI18n } from '../i18n/I18nProvider';
+import { localizePath } from '../i18n/paths';
 
 const Wrap = styled.main`
   padding: 64px 0 ${spacing.xXLarge};
@@ -18,346 +23,144 @@ const Title = styled.h1`
 `;
 
 const Subtitle = styled.p`
-  margin-bottom: ${spacing.small};
+  margin-bottom: ${spacing.xLarge};
+  line-height: 1.6;
+  max-width: 720px;
 `;
 
 const CompareLink = styled.p`
-  margin-bottom: ${spacing.xLarge};
+  margin-top: ${spacing.xXLarge};
   font-size: 14px;
   color: ${colors.text};
 `;
 
-const Tabs = styled.div`
+const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: ${spacing.small};
-  margin-bottom: ${spacing.xLarge};
-
-  @media (max-width: ${breakpoints.tablet}) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-`;
-
-const Tab = styled.button`
-  border: 2px solid ${(p) => p.$color || colors.buttonBackground};
-  color: ${(p) => p.$color || colors.buttonBackground};
-  background: transparent;
-  border-radius: 20px;
-  padding: 10px 22px;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition:
-    background 160ms ease,
-    color 160ms ease;
-  width: 100%;
-  &:hover {
-    background: ${(p) => p.$color || colors.buttonBackground};
-    color: ${colors.white};
-  }
-`;
-
-const Section = styled.section`
-  display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: ${spacing.large};
-  margin-bottom: ${spacing.xXLarge};
 
   @media (max-width: ${breakpoints.tablet}) {
     grid-template-columns: 1fr;
   }
 `;
 
-const Panel = styled.div`
-  background: ${(p) => p.$bg || colors.lightblue};
-  border-radius: 14px;
-  padding: ${spacing.large};
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+const PANEL_BG = {
+  yellow: colors.yellow,
+  lightblue: colors.lightblue,
+  pink: colors.pink,
+  contrast: colors.contrast,
+};
 
-  @media (max-width: ${breakpoints.tablet}) {
-    order: 2;
-  }
+const productAccent = (product) =>
+  product.panelColor === 'primary' ? colors.primary : product.panelColor;
 
-  ul {
-    list-style: disc;
-    padding-left: 20px;
-    margin: 0;
-  }
-
-  li {
-    margin-bottom: 10px;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-`;
-
-const Details = styled.div`
-  padding: ${spacing.small} 0;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    order: 1;
-  }
-`;
-
-const ProductName = styled.h2`
-  margin-bottom: ${spacing.medium};
-`;
-
-const MetaRow = styled.div`
-  margin-bottom: ${spacing.small};
-  font-size: 15px;
-  line-height: 1.6;
-`;
-
-const MetaLabel = styled.span`
-  font-weight: 700;
+const Card = styled(LocalizedLink)`
   display: block;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: ${colors.text};
-  margin-bottom: 2px;
-`;
-
-const PanelLink = styled.a`
-  display: block;
-  margin-top: ${spacing.medium};
-  padding: 10px 16px;
-  background: white;
-  color: ${(p) => p.$color};
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 700;
-  text-align: center;
   text-decoration: none;
-  transition: opacity 150ms ease;
+  color: inherit;
+  background: ${(p) => p.$bg};
+  border-radius: 16px;
+  padding: ${spacing.large};
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+
   &:hover {
-    opacity: 0.8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  h2 {
+    margin: 0 0 ${spacing.small};
+    font-size: 1.35rem;
+    color: ${(p) => (p.$lightText ? colors.white : 'inherit')};
+  }
+
+  .tagline {
+    margin: 0 0 ${spacing.medium};
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: ${(p) => (p.$lightText ? 'rgba(255,255,255,0.95)' : '#333')};
+  }
+
+  .label {
+    display: block;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    color: ${(p) => (p.$lightText ? 'rgba(255,255,255,0.85)' : colors.text)};
+  }
+
+  .description {
+    margin: 0 0 ${spacing.medium};
+    line-height: 1.6;
+    font-size: 15px;
+    color: ${(p) => (p.$lightText ? 'rgba(255,255,255,0.9)' : '#444')};
+  }
+
+  span {
+    font-weight: 700;
+    color: ${(p) => (p.$lightText ? colors.white : p.$accent)};
   }
 `;
 
 const ProductsPage = () => {
-  const portalRef = useRef(null);
-  const marketplaceRef = useRef(null);
-  const pitchRef = useRef(null);
-  const briefsRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { t, locale } = useI18n();
 
   useEffect(() => {
-    const hash = window.location.hash.replace('#', '');
-    if (!hash) return;
-    const timer = setTimeout(() => {
-      const el = document.getElementById(hash);
-      if (el) {
-        const y = el.getBoundingClientRect().top + window.pageYOffset - 100;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const scrollTo = (ref) => {
-    if (ref.current) {
-      const yOffset = -100;
-      const y =
-        ref.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+    const hash = location.hash.replace('#', '');
+    const target = LEGACY_PRODUCT_HASHES[hash];
+    if (target) {
+      navigate(localizePath(target, locale), { replace: true });
     }
-  };
-
-  const productsStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'Pubblo Platform',
-    description:
-      'Platform connecting game publishers, distributors and developers with tools for submissions, discovery and pitching.',
-    applicationCategory: 'BusinessApplication',
-    operatingSystem: 'Web',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-      description: 'Free to get started',
-    },
-  };
+  }, [location.hash, locale, navigate]);
 
   return (
     <>
       <SEOHead
-        title='Products - Pubblo'
-        description="Pubblo's suite of tools for game publishers, distributors and developers: The Portal, The Marketplace, The Pitch Tool and Briefs."
-        keywords='game publishing platform, pitch tool, marketplace, game submissions, publishers, distributors'
-        canonical='https://pubblo.com/products'
-        structuredData={productsStructuredData}
+        title={t('seo.pages.products.title')}
+        description={t('seo.pages.products.description')}
+        path='/products'
       />
       <Wrap>
-        <Title>Different products for different needs</Title>
-        <Subtitle>
-          Pubblo aims to connect buyers and sellers in one place. Our service is
-          divided into different tools to meet the needs of publishers and
-          distributors as well as established or aspiring game developers.
-        </Subtitle>
+        <Title>{t('products.title')}</Title>
+        <Subtitle>{t('products.subtitle')}</Subtitle>
+
+        <Grid>
+          {PRODUCT_LIST.map((product) => {
+            const localized = t(`products.items.${product.id}`);
+            return (
+              <Card
+                key={product.id}
+                to={product.path}
+                $bg={PANEL_BG[product.panelBg]}
+                $accent={productAccent(product)}
+                $lightText={product.panelBg === 'contrast'}
+              >
+                <h2>{localized.name}</h2>
+                <p className='tagline'>{localized.tagline}</p>
+                <span className='label'>{t('products.whatItDoes')}</span>
+                <p className='description'>{localized.description}</p>
+                <span>
+                  {product.comingSoon ? t('products.comingSoon') : t('products.learnMore')}
+                </span>
+              </Card>
+            );
+          })}
+        </Grid>
+
         <CompareLink>
-          Wondering how this compares to pitch directories, matchmaking or your
-          current CRM? See our{' '}
-          <a href='/compare' style={{ color: colors.contrast }}>
-            comparison
-          </a>
-          .
+          {t('products.compareBefore')}{' '}
+          <LocalizedLink to='/compare' style={{ color: colors.contrast }}>
+            {t('products.compareLink')}
+          </LocalizedLink>
+          {t('products.compareAfter')}
         </CompareLink>
-
-        <Tabs>
-          <Tab $color='#b89a2a' onClick={() => scrollTo(portalRef)}>
-            THE PORTAL
-          </Tab>
-          <Tab $color={colors.primary} onClick={() => scrollTo(marketplaceRef)}>
-            THE MARKETPLACE
-          </Tab>
-          <Tab $color={colors.contrast} onClick={() => scrollTo(pitchRef)}>
-            THE PITCH TOOL
-          </Tab>
-          <Tab $color='#8b1a22' onClick={() => scrollTo(briefsRef)}>
-            BRIEFS
-          </Tab>
-        </Tabs>
-
-        <Section ref={portalRef} id='portal'>
-          <Panel $bg={colors.yellow}>
-            <ul>
-              <li>Ensure pitch quality with this submission CRM tool</li>
-              <li>
-                Enter your preferences to get pitches scored automatically
-              </li>
-              <li>Organise, communicate and collaborate efficiently</li>
-            </ul>
-            <PanelLink href='/pricing#portal' $color='#b89a2a'>
-              See plans and apply
-            </PanelLink>
-          </Panel>
-          <Details>
-            <ProductName>The Portal</ProductName>
-            <MetaRow>
-              <MetaLabel>Who it's for</MetaLabel>
-              Publishers and distributors
-            </MetaRow>
-            <MetaRow>
-              <MetaLabel>What It does</MetaLabel>
-              The portal replaces inbox chaos with one place to receive, compare
-              and manage submissions. Our standardised pitch format makes
-              evaluations consistent and enables scoring to see what games
-              matches what you're looking for in an instant. Collaborate and
-              communicate within your team as with the designer.
-            </MetaRow>
-            <MetaRow>
-              <MetaLabel>When it launches</MetaLabel>
-              Open
-            </MetaRow>
-          </Details>
-        </Section>
-
-        <Section ref={marketplaceRef} id='marketplace'>
-          <Panel $bg={colors.lightblue}>
-            <ul>
-              <li>Browse for fresh titles</li>
-              <li>Use filters to find the games you are looking for</li>
-              <li>
-                Find the right publisher with the best possibilities to make
-                your game happen
-              </li>
-            </ul>
-            <PanelLink href='/pricing#marketplace' $color={colors.primary}>
-              See plans and apply
-            </PanelLink>
-          </Panel>
-          <Details>
-            <ProductName>The Marketplace</ProductName>
-            <MetaRow>
-              <MetaLabel>Who it's for</MetaLabel>
-              Publishers, distributors and game developers
-            </MetaRow>
-            <MetaRow>
-              <MetaLabel>What It does</MetaLabel>
-              The Marketplace is a place for both published and unpublished
-              games to find new partners. As a publisher you can scout for new
-              titles or get your own portfolio out there for localisation. Tired
-              of knocking doors as an aspiring game developer? This is where you
-              can upload your game one time and still reach a bunch of
-              publishers.
-            </MetaRow>
-            <MetaRow>
-              <MetaLabel>When it launches</MetaLabel>
-              Open
-            </MetaRow>
-          </Details>
-        </Section>
-
-        <Section ref={pitchRef} id='pitch-tool'>
-          <Panel $bg={colors.pink}>
-            <ul>
-              <li>Make a compelling pitch</li>
-              <li>Get it out there!</li>
-            </ul>
-            <PanelLink href='/pricing#pitch-tool' $color='#9e4a52'>
-              See plans and apply
-            </PanelLink>
-          </Panel>
-          <Details>
-            <ProductName>The Pitch tool</ProductName>
-            <MetaRow>
-              <MetaLabel>Who it's for</MetaLabel>
-              Game developers
-            </MetaRow>
-            <MetaRow>
-              <MetaLabel>What It does</MetaLabel>
-              Use this tool as a game developer to make a compelling pitch. This
-              helps you to get it all in there and gives you the possibility to
-              export it as a sell sheet. You could also use this to send your
-              pitch to any publisher you like.
-            </MetaRow>
-            <MetaRow>
-              <MetaLabel>When it launches</MetaLabel>
-              Open
-            </MetaRow>
-          </Details>
-        </Section>
-
-        <Section ref={briefsRef} id='briefs'>
-          <Panel $bg={colors.contrast}>
-            <ul style={{ color: colors.white }}>
-              <li>Get someone to develop the game you want!</li>
-            </ul>
-            <PanelLink
-              as='span'
-              style={{
-                opacity: 0.45,
-                cursor: 'default',
-                pointerEvents: 'none',
-              }}
-            >
-              coming soon
-            </PanelLink>
-          </Panel>
-          <Details>
-            <ProductName>Briefs</ProductName>
-            <MetaRow>
-              <MetaLabel>Who it's for</MetaLabel>
-              Anyone
-            </MetaRow>
-            <MetaRow>
-              <MetaLabel>What It does</MetaLabel>
-              This is how to tell the industry you're looking for something
-              specific. Maybe you are an IP owner that is looking for someone to
-              develop a game for that or maybe you are a publisher who can't
-              find the exact game you've been searching for?
-            </MetaRow>
-            <MetaRow>
-              <MetaLabel>When it launches</MetaLabel>
-              Coming soon
-            </MetaRow>
-          </Details>
-        </Section>
       </Wrap>
     </>
   );
